@@ -20,41 +20,43 @@ const Hero: React.FC = () => {
 
   return (
     <>
-      {/* Announcement Banner */}
-      <AnimatePresence>
-        {showBanner && (
-          <motion.div
-            key="banner"
-            className="fixed top-15 left-0 w-full bg-blue-600 text-white px-4 py-3 flex justify-between items-center z-50"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={bannerVariants}
-          >
-            <span>
-              📣 Join me at the Neo4j Graph Summit in Chicago on {" "}
-              <strong>Aug 21, 2025</strong>, where I’ll be presenting on how building
-              enterprise identity graphs help unlock next‑gen analytics, marketing & CX.{" "}
-              <a
-                href="https://neo4j.com/graphsummit/chicago-2025/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline font-semibold"
-              >
-                Learn more
-              </a>
-            </span>
-            <button
-              onClick={() => setShowBanner(false)}
-              aria-label="Close announcement"
-              className="text-2xl leading-none ml-4 hover:text-gray-200"
+    {/* Announcement Banner */} 
+    <AnimatePresence>
+      {showBanner && (
+        <motion.div
+          key="banner"
+          className="fixed top-15 left-0 w-full bg-blue-600 text-white px-4 py-3 flex justify-between items-center z-50"
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          variants={bannerVariants}
+        >
+          <span>
+            📖 I recently presented at {" "}
+            <strong>Neo4j Graph Summit Chicago 2025</strong> on how enterprise identity
+            graphs unlock next-gen analytics, marketing & CX.{" "}
+            <a
+              href="https://www.rejozmathew.com/blog/Identity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold"
             >
-              ×
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              Read article
+            </a>
+          </span>
+          <button
+            onClick={() => setShowBanner(false)}
+            aria-label="Close announcement"
+            className="text-2xl leading-none ml-4 hover:text-gray-200"
+          >
+            x
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
 
+
+    
       {/* Hero Section */}
       <motion.div
         initial="hidden"
