@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
                   Contact Me
                 </a>
                 <a
-                  href="/Rejo_Z_Mathew_Resume.pdf"
+                  href="/Rejo_Mathew_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded border border-primary px-4 py-2 font-bold text-primary shadow transition duration-300 hover:bg-primary/10"
