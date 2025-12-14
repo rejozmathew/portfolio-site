@@ -75,11 +75,11 @@ const Hero: React.FC = () => {
                 Rejo Z Mathew
               </h1>
               <h2 className="text-primary mb-6 text-2xl font-semibold md:text-3xl">
-                AI & Data Strategy Leader in Financial Services
+                Senior Data & AI Strategy Leader in Financial Services
               </h2>
               <p className="mb-8 text-lg text-gray-700">
-                Bridging advanced technology and business strategy to drive
-                innovation and ROI in the financial sector.
+                Driving enterprise transformation by aligning data, analytics, and AI
+                with business strategy, regulatory priorities, and customer outcomes.
               </p>
               <div className="flex justify-center gap-4 md:justify-start">
                 <a
@@ -89,13 +89,13 @@ const Hero: React.FC = () => {
                   Contact Me
                 </a>
                 <a
-                  href="/Rejo_Mathew_Resume.pdf"
+                  href="/Resume - Rejo Z Mathew.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded border border-primary px-4 py-2 font-bold text-primary shadow transition duration-300 hover:bg-primary/10"
                   download
                 >
-                  Download Resume
+                  View Resume
                 </a>
               </div>
             </div>
