@@ -39,6 +39,7 @@ const expertiseAreas = [
       "MLOps (Concept & Certification)",
       "Natural Language Processing (NLP - Implied)",
       "Graph Analytics (Neo4j, RAG)",
+      "Generative AI Applications",
       "Data Science Languages (Python, SAS)",
     ],
   },

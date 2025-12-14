@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
           Contact Me
         </h2>
         <p className="mb-8 text-lg text-gray-700">
-          Let&apos;s connect and explore collaboration opportunities. Feel free
+          Let&apos;s connect and explore opportunities. Feel free
           to reach out via email or phone.
         </p>
 

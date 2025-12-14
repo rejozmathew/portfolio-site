@@ -15,17 +15,17 @@ interface Project {
 const highlightedProjects: Project[] = [
   // ... (Keep the existing highlightedProjects array definition) ...
   {
-    title: "Self-Service BI",
+    title: "Self-Service BI & Analytics Enablement",
     summary:
-      "Build semantic self-service BI layers for KPI standardization, speed-of-delivery and democratizing analytics and reporting",
+      "Built self-service semantic layers for KPI standardization, speed-of-delivery and democratizing analytics and reporting",
     tech: ["Self-Service BI", "Tableau", "AtScale", "KPI standardization"],
     imageUrl: "/images/blog/semantic/semantic.jpg" // Example placeholder path
   },
   {
-    title: "Enterprise Identity Graph / Customer360",
+    title: "Enterprise Identity Graphs / Customer360",
     summary:
       " Neo4j-powered consumer identity graphs enable Discover to identify, unify, and engage both prospects and existing customers across multiple products and channels.",
-    tech: ["Graph DB","Neo4j", "Customer360", "Identity Resolution", "Omni-Channel Tracking", "Personalization", "Next Best Action"],
+    tech: ["Knowledge Graphs", "Neo4j", "Customer360", "Identity Resolution", "Omni-Channel Tracking", "Personalization", "Next Best Action"],
     imageUrl: "/images/blog/identity/identity-hero.jpg" // Example placeholder path
   },
 ];

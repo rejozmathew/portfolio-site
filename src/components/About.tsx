@@ -71,10 +71,6 @@ const About: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }} // Trigger once when 30% visible
           >
             <motion.li variants={itemVariants}>
-              Building sophisticated enterprise control environments and
-              exception management systems.
-            </motion.li>
-            <motion.li variants={itemVariants}>
               Developing enterprise-scale Identity Graphs and Customer360 MDM
               platforms.
             </motion.li>
@@ -89,6 +85,10 @@ const About: React.FC = () => {
             <motion.li variants={itemVariants}>
               Leading the development of self-service BI capabilities across
               multiple business units.
+            </motion.li>
+            <motion.li variants={itemVariants}>
+              Building sophisticated enterprise control environments and
+              exception management systems.
             </motion.li>
           </motion.ul>
           <p>
