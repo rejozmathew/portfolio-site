@@ -71,7 +71,7 @@ const About: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }} // Trigger once when 30% visible
           >
             <motion.li variants={itemVariants}>
-              Developing enterprise-scale Identity Graphs and Customer360 MDM
+              Developing enterprise-scale Identity/Knowledge Graphs and Customer360 MDM
               platforms.
             </motion.li>
             <motion.li variants={itemVariants}>
