@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow2" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79" opacity="0.5"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-reverse">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="440" fill="#f9fafb" rx="12"/>
+  <text x="450" y="34" text-anchor="middle" font-size="18" font-weight="700" fill="#1F4E79">Network &amp; Security Architecture</text>
+
+  <!-- Internet / External -->
+  <rect x="30" y="54" width="160" height="120" rx="10" fill="#fff" filter="url(#shadow2)" stroke="#e5e7eb" stroke-width="0.5"/>
+  <circle cx="110" cy="88" r="20" fill="#1F4E79" opacity="0.1"/>
+  <text x="110" y="93" text-anchor="middle" font-size="18">🌐</text>
+  <text x="110" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#1F4E79">Internet</text>
+  <text x="110" y="140" text-anchor="middle" font-size="9" fill="#6B7280">Users &amp; Devices</text>
+  <text x="110" y="155" text-anchor="middle" font-size="9" fill="#6B7280">Mobile · Desktop · Web</text>
+
+  <!-- Arrow: Internet -> Cloudflare -->
+  <line x1="190" y1="114" x2="230" y2="114" stroke="#1F4E79" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrow)"/>
+
+  <!-- Cloudflare -->
+  <rect x="240" y="54" width="180" height="120" rx="10" fill="#fff" filter="url(#shadow2)" stroke="#e5e7eb" stroke-width="0.5"/>
+  <rect x="260" y="68" width="140" height="24" rx="4" fill="#F6821F" opacity="0.12"/>
+  <text x="330" y="85" text-anchor="middle" font-size="11" font-weight="700" fill="#E5751F">Cloudflare</text>
+  <text x="330" y="108" text-anchor="middle" font-size="9.5" fill="#2C3E50">DNS Management</text>
+  <text x="330" y="122" text-anchor="middle" font-size="9.5" fill="#2C3E50">DDNS Auto-Update</text>
+  <text x="330" y="136" text-anchor="middle" font-size="9.5" fill="#2C3E50">DDoS Protection</text>
+  <text x="330" y="150" text-anchor="middle" font-size="9.5" fill="#2C3E50">SSL/TLS (Full Strict)</text>
+  <text x="330" y="164" text-anchor="middle" font-size="9.5" fill="#2C3E50">DNSSEC Enabled</text>
+
+  <!-- Two paths from Cloudflare -->
+  <!-- Path 1: Traditional (ports 80/443) -->
+  <line x1="420" y1="95" x2="470" y2="95" stroke="#1F4E79" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrow)"/>
+  <text x="445" y="88" text-anchor="middle" font-size="7.5" fill="#6B7280">Ports</text>
+  <text x="445" y="97" text-anchor="middle" font-size="7.5" fill="#6B7280">80/443</text>
+
+  <!-- Path 2: Zero Trust Tunnel -->
+  <line x1="420" y1="140" x2="470" y2="140" stroke="#2A7F62" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowGreen)"/>
+  <text x="445" y="133" text-anchor="middle" font-size="7.5" fill="#2A7F62">Zero Trust</text>
+  <text x="445" y="152" text-anchor="middle" font-size="7.5" fill="#2A7F62">Tunnel</text>
+
+  <!-- Router / Firewall -->
+  <rect x="480" y="58" width="130" height="52" rx="8" fill="#fff" filter="url(#shadow2)" stroke="#e5e7eb" stroke-width="0.5"/>
+  <text x="545" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#2C3E50">Router</text>
+  <text x="545" y="96" text-anchor="middle" font-size="9" fill="#6B7280">Port Forwarding</text>
+
+  <!-- Cloudflared -->
+  <rect x="480" y="118" width="130" height="52" rx="8" fill="#2A7F62" opacity="0.08" stroke="#2A7F62" stroke-width="0.8" stroke-opacity="0.3"/>
+  <text x="545" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#2A7F62">Cloudflared</text>
+  <text x="545" y="157" text-anchor="middle" font-size="9" fill="#6B7280">No open ports needed</text>
+
+  <!-- Arrows to NPM -->
+  <line x1="610" y1="84" x2="650" y2="108" stroke="#1F4E79" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrow)"/>
+  <line x1="610" y1="144" x2="650" y2="120" stroke="#2A7F62" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Nginx Proxy Manager -->
+  <rect x="655" y="70" width="220" height="90" rx="10" fill="#1F4E79" opacity="0.07" stroke="#1F4E79" stroke-width="1" stroke-opacity="0.25"/>
+  <text x="765" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#1F4E79">Nginx Proxy Manager</text>
+  <text x="765" y="114" text-anchor="middle" font-size="9.5" fill="#2C3E50">Reverse Proxy &amp; SSL Termination</text>
+  <text x="765" y="128" text-anchor="middle" font-size="9.5" fill="#2C3E50">Let's Encrypt Auto-Renewal</text>
+  <text x="765" y="142" text-anchor="middle" font-size="9.5" fill="#2C3E50">Origin Certificates via Cloudflare</text>
+
+  <!-- Authentik SSO Layer -->
+  <rect x="240" y="200" width="250" height="80" rx="10" fill="#fff" filter="url(#shadow2)" stroke="#2A7F62" stroke-width="1" stroke-opacity="0.3"/>
+  <rect x="260" y="212" width="90" height="20" rx="3" fill="#2A7F62" opacity="0.12"/>
+  <text x="305" y="227" text-anchor="middle" font-size="10" font-weight="700" fill="#2A7F62">Authentik SSO</text>
+  <text x="365" y="238" text-anchor="middle" font-size="9.5" fill="#2C3E50">Identity Provider &amp; Single Sign-On</text>
+  <text x="365" y="254" text-anchor="middle" font-size="9.5" fill="#2C3E50">Google OAuth · Proxy Authentication</text>
+  <text x="365" y="270" text-anchor="middle" font-size="9.5" fill="#2C3E50">Postgres + Redis Backend</text>
+
+  <!-- Arrow from NPM to Authentik -->
+  <line x1="765" y1="160" x2="765" y2="195" stroke="#1F4E79" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,3"/>
+  <line x1="765" y1="195" x2="500" y2="230" stroke="#1F4E79" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+  <text x="650" y="200" font-size="8" fill="#6B7280">Auth Check</text>
+
+  <!-- WireGuard -->
+  <rect x="30" y="210" width="180" height="60" rx="10" fill="#fff" filter="url(#shadow2)" stroke="#e5e7eb" stroke-width="0.5"/>
+  <text x="120" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#1F4E79">WireGuard VPN</text>
+  <text x="120" y="255" text-anchor="middle" font-size="9.5" fill="#6B7280">Remote tunneled access</text>
+
+  <!-- Services row -->
+  <rect x="30" y="310" width="840" height="116" rx="10" fill="#1F4E79" opacity="0.04" stroke="#1F4E79" stroke-width="0.5" stroke-opacity="0.15"/>
+  <text x="50" y="334" font-size="11" font-weight="700" fill="#1F4E79" letter-spacing="1">INTERNAL SERVICES</text>
+
+  <!-- Services boxes -->
+  <rect x="50" y="346" width="90" height="34" rx="5" fill="#1F4E79" opacity="0.85"/>
+  <text x="95" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Nextcloud</text>
+
+  <rect x="148" y="346" width="75" height="34" rx="5" fill="#1F4E79" opacity="0.85"/>
+  <text x="185" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Immich</text>
+
+  <rect x="231" y="346" width="65" height="34" rx="5" fill="#1F4E79" opacity="0.85"/>
+  <text x="263" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Plex</text>
+
+  <rect x="304" y="346" width="95" height="34" rx="5" fill="#2A7F62" opacity="0.85"/>
+  <text x="351" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Home Asst.</text>
+
+  <rect x="407" y="346" width="75" height="34" rx="5" fill="#2A7F62" opacity="0.85"/>
+  <text x="444" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Moodle</text>
+
+  <rect x="490" y="346" width="75" height="34" rx="5" fill="#2C3E50" opacity="0.8"/>
+  <text x="527" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Grafana</text>
+
+  <rect x="573" y="346" width="75" height="34" rx="5" fill="#2C3E50" opacity="0.8"/>
+  <text x="610" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Shinobi</text>
+
+  <rect x="656" y="346" width="90" height="34" rx="5" fill="#2C3E50" opacity="0.8"/>
+  <text x="701" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">Personal Site</text>
+
+  <rect x="754" y="346" width="58" height="34" rx="5" fill="#2C3E50" opacity="0.6"/>
+  <text x="783" y="367" text-anchor="middle" font-size="10" fill="#fff" font-weight="500">+ more</text>
+
+  <!-- Pi-hole DNS -->
+  <rect x="560" y="210" width="180" height="60" rx="10" fill="#fff" filter="url(#shadow2)" stroke="#e5e7eb" stroke-width="0.5"/>
+  <text x="650" y="235" text-anchor="middle" font-size="11" font-weight="600" fill="#1F4E79">Pi-hole DNS</text>
+  <text x="650" y="255" text-anchor="middle" font-size="9.5" fill="#6B7280">Network-wide ad blocking</text>
+
+  <!-- Arrows from NPM to services -->
+  <line x1="765" y1="160" x2="450" y2="340" stroke="#1F4E79" stroke-width="1" stroke-opacity="0.2" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <text x="50" y="410" font-size="9" fill="#6B7280">
+    <tspan font-weight="600" fill="#1F4E79">━━</tspan> Traditional port forwarding
+    <tspan dx="16" font-weight="600" fill="#2A7F62">━━</tspan> Zero Trust tunnel (no open ports)
+    <tspan dx="16" font-weight="600" fill="#6B7280">╌╌</tspan> Auth verification flow
+  </text>
+</svg>

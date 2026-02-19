@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="sh2" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arNavy" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <marker id="arTeal" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2A7F62"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="440" fill="#f9fafb" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700">Automated Validation Framework</text>
+
+  <rect x="40" y="65" width="170" height="55" rx="8" fill="#1F4E79" filter="url(#sh2)"/>
+  <text x="125" y="88" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Original Query</text>
+  <text x="125" y="104" text-anchor="middle" fill="#e0e7ff" font-size="9">Legacy SQL</text>
+
+  <line x1="125" y1="120" x2="125" y2="150" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arNavy)"/>
+
+  <rect x="40" y="155" width="170" height="45" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="125" y="178" text-anchor="middle" fill="#2C3E50" font-size="10">Execute on Snowflake</text>
+  <text x="125" y="193" text-anchor="middle" fill="#1F4E79" font-size="9">→ Result Set A</text>
+
+  <rect x="690" y="65" width="170" height="55" rx="8" fill="#2A7F62" filter="url(#sh2)"/>
+  <text x="775" y="88" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">LLM-Rewritten Query</text>
+  <text x="775" y="104" text-anchor="middle" fill="#f0fdf4" font-size="9">Modernized SQL</text>
+
+  <line x1="775" y1="120" x2="775" y2="150" stroke="#2A7F62" stroke-width="1.5" marker-end="url(#arTeal)"/>
+
+  <rect x="690" y="155" width="170" height="45" rx="8" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="775" y="178" text-anchor="middle" fill="#2C3E50" font-size="10">Execute on Snowflake</text>
+  <text x="775" y="193" text-anchor="middle" fill="#2A7F62" font-size="9">→ Result Set B</text>
+
+  <line x1="125" y1="200" x2="125" y2="230" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arNavy)"/>
+  <line x1="775" y1="200" x2="775" y2="230" stroke="#2A7F62" stroke-width="1.5" marker-end="url(#arTeal)"/>
+
+  <rect x="40" y="238" width="170" height="70" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="125" y="260" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">CHECK 1</text>
+  <text x="125" y="278" text-anchor="middle" fill="#2C3E50" font-size="10">Row Count Match</text>
+  <text x="125" y="296" text-anchor="middle" fill="#64748b" font-size="8">COUNT(*) comparison</text>
+
+  <rect x="260" y="238" width="170" height="70" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="345" y="260" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">CHECK 2</text>
+  <text x="345" y="278" text-anchor="middle" fill="#2C3E50" font-size="10">Column Value Match</text>
+  <text x="345" y="296" text-anchor="middle" fill="#64748b" font-size="8">Per-column hash comparison</text>
+
+  <rect x="480" y="238" width="170" height="70" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="565" y="260" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">CHECK 3</text>
+  <text x="565" y="278" text-anchor="middle" fill="#2C3E50" font-size="10">Sample Record Diff</text>
+  <text x="565" y="296" text-anchor="middle" fill="#64748b" font-size="8">Random sample deep check</text>
+
+  <rect x="700" y="238" width="170" height="70" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="785" y="260" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">CHECK 4</text>
+  <text x="785" y="278" text-anchor="middle" fill="#2C3E50" font-size="10">Schema Validation</text>
+  <text x="785" y="296" text-anchor="middle" fill="#64748b" font-size="8">Column names &amp; types</text>
+
+  <line x1="125" y1="308" x2="125" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="345" y1="308" x2="345" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="565" y1="308" x2="565" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="785" y1="308" x2="785" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="125" y1="340" x2="785" y2="340" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,2"/>
+  <line x1="450" y1="340" x2="450" y2="365" stroke="#2C3E50" stroke-width="1.5" marker-end="url(#arNavy)"/>
+
+  <polygon points="450,370 530,400 450,430 370,400" fill="#ffffff" stroke="#2C3E50" stroke-width="1.5" filter="url(#sh2)"/>
+  <text x="450" y="403" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="600">All Pass?</text>
+
+  <line x1="530" y1="400" x2="620" y2="400" stroke="#2A7F62" stroke-width="2"/>
+  <rect x="625" y="382" width="100" height="36" rx="6" fill="#2A7F62" filter="url(#sh2)"/>
+  <text x="675" y="404" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">✓ ACCEPT</text>
+  <text x="578" y="393" fill="#2A7F62" font-size="9" font-weight="600">YES</text>
+
+  <line x1="370" y1="400" x2="280" y2="400" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="140" y="382" width="140" height="36" rx="6" fill="#1F4E79" filter="url(#sh2)"/>
+  <text x="210" y="404" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">⚠ HUMAN REVIEW</text>
+  <text x="323" y="393" fill="#1F4E79" font-size="9" font-weight="600">NO</text>
+</svg>

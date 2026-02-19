@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowCharcoal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <filter id="shadowLight" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="1100" height="520" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">LLM-Powered Legacy SQL Modernization Pipeline</text>
+  <line x1="350" y1="48" x2="750" y2="48" stroke="#1F4E79" stroke-width="2" opacity="0.3"/>
+
+  <rect x="30" y="80" width="170" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="115" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">① LEGACY SQL</text>
+  <text x="115" y="126" text-anchor="middle" fill="#e0e7ff" font-size="9">3,000+ unstructured</text>
+  <text x="115" y="140" text-anchor="middle" fill="#e0e7ff" font-size="9">queries, no aliases,</text>
+  <text x="115" y="154" text-anchor="middle" fill="#e0e7ff" font-size="9">poor documentation</text>
+  <text x="115" y="172" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">avg 500-3000 lines each</text>
+
+  <line x1="200" y1="130" x2="240" y2="130" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <rect x="250" y="80" width="170" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="335" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">② EXPLAIN JSON</text>
+  <text x="335" y="126" text-anchor="middle" fill="#e0e7ff" font-size="9">Run EXPLAIN against</text>
+  <text x="335" y="140" text-anchor="middle" fill="#e0e7ff" font-size="9">Snowflake to extract</text>
+  <text x="335" y="154" text-anchor="middle" fill="#e0e7ff" font-size="9">execution plan, tables,</text>
+  <text x="335" y="168" text-anchor="middle" fill="#e0e7ff" font-size="9">joins &amp; column refs</text>
+
+  <line x1="420" y1="130" x2="460" y2="130" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <rect x="470" y="65" width="200" height="130" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="570" y="93" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">③ LLM REWRITE</text>
+  <line x1="490" y1="100" x2="650" y2="100" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="570" y="116" text-anchor="middle" fill="#f0fdf4" font-size="9">Inputs: Original SQL +</text>
+  <text x="570" y="130" text-anchor="middle" fill="#f0fdf4" font-size="9">EXPLAIN JSON + Prompt</text>
+  <line x1="490" y1="138" x2="650" y2="138" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="570" y="154" text-anchor="middle" fill="#f0fdf4" font-size="9">Output: Clean SQL with</text>
+  <text x="570" y="168" text-anchor="middle" fill="#f0fdf4" font-size="9">aliases, docs, optimization</text>
+  <text x="570" y="184" text-anchor="middle" fill="#bcf0da" font-size="8" font-style="italic">+ change summary</text>
+
+  <line x1="670" y1="130" x2="710" y2="130" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <rect x="720" y="70" width="180" height="120" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="810" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">④ VALIDATION</text>
+  <line x1="740" y1="105" x2="880" y2="105" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="810" y="122" text-anchor="middle" fill="#f1f5f9" font-size="9">Run both queries</text>
+  <text x="810" y="136" text-anchor="middle" fill="#f1f5f9" font-size="9">Compare: row counts,</text>
+  <text x="810" y="150" text-anchor="middle" fill="#f1f5f9" font-size="9">column values, sample</text>
+  <text x="810" y="164" text-anchor="middle" fill="#f1f5f9" font-size="9">record checksums</text>
+  <text x="810" y="180" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">deterministic validation</text>
+
+  <line x1="900" y1="100" x2="960" y2="100" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#arrowTeal)"/>
+  <text x="930" y="92" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">PASS ✓</text>
+
+  <rect x="970" y="70" width="110" height="60" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="2" filter="url(#shadowLight)"/>
+  <text x="1025" y="96" text-anchor="middle" fill="#2A7F62" font-size="11" font-weight="700">⑤ APPROVED</text>
+  <text x="1025" y="114" text-anchor="middle" fill="#2C3E50" font-size="9">→ Downstream</text>
+  <text x="1025" y="126" text-anchor="middle" fill="#2C3E50" font-size="9">processing</text>
+
+  <line x1="810" y1="190" x2="810" y2="240" stroke="#1F4E79" stroke-width="2.5" marker-end="url(#arrowNavy)"/>
+  <text x="840" y="220" fill="#1F4E79" font-size="10" font-weight="700">FAIL ✗</text>
+
+  <rect x="700" y="250" width="220" height="110" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="810" y="278" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">⑥ HUMAN IN THE LOOP</text>
+  <line x1="720" y1="285" x2="900" y2="285" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="810" y="302" text-anchor="middle" fill="#e0e7ff" font-size="9">SME reviews mismatches</text>
+  <text x="810" y="316" text-anchor="middle" fill="#e0e7ff" font-size="9">Corrects edge cases &amp;</text>
+  <text x="810" y="330" text-anchor="middle" fill="#e0e7ff" font-size="9">complex business logic</text>
+  <text x="810" y="350" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">feeds corrections back to LLM</text>
+
+  <path d="M700,305 L570,305 L570,195" fill="none" stroke="#2C3E50" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowCharcoal)"/>
+  <text x="620" y="298" fill="#2C3E50" font-size="8" font-weight="600">RE-PROCESS</text>
+
+  <rect x="30" y="240" width="280" height="110" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#shadowLight)"/>
+  <text x="170" y="265" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700" letter-spacing="1">COST COMPARISON</text>
+  <line x1="50" y1="275" x2="290" y2="275" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="60" y="295" fill="#2C3E50" font-size="10">Manual: ~1 week/query × $200/day</text>
+  <text x="60" y="312" fill="#2C3E50" font-size="10">3,000 queries ≈ $3M+ / multi-year</text>
+  <line x1="50" y1="322" x2="290" y2="322" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="60" y="340" fill="#2A7F62" font-size="10" font-weight="700">LLM: ~minutes/query + validation</text>
+
+  <rect x="30" y="400" width="550" height="100" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="50" y="425" fill="#1F4E79" font-size="10" font-weight="700" letter-spacing="1">PYTHON ORCHESTRATION LAYER</text>
+  <line x1="50" y1="433" x2="560" y2="433" stroke="#1F4E79" stroke-width="0.5" opacity="0.2"/>
+  <rect x="50" y="445" width="100" height="40" rx="5" fill="#f1f5f9" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="100" y="464" text-anchor="middle" fill="#2C3E50" font-size="9">Snowflake</text>
+  <text x="100" y="476" text-anchor="middle" fill="#1F4E79" font-size="8">Connector</text>
+  <rect x="170" y="445" width="100" height="40" rx="5" fill="#f1f5f9" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="220" y="464" text-anchor="middle" fill="#2C3E50" font-size="9">EXPLAIN</text>
+  <text x="220" y="476" text-anchor="middle" fill="#1F4E79" font-size="8">Parser</text>
+  <rect x="290" y="445" width="100" height="40" rx="5" fill="#f1f5f9" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="340" y="464" text-anchor="middle" fill="#2C3E50" font-size="9">LLM API</text>
+  <text x="340" y="476" text-anchor="middle" fill="#1F4E79" font-size="8">Client</text>
+  <rect x="410" y="445" width="120" height="40" rx="5" fill="#f1f5f9" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="470" y="464" text-anchor="middle" fill="#2C3E50" font-size="9">Validation</text>
+  <text x="470" y="476" text-anchor="middle" fill="#1F4E79" font-size="8">Engine</text>
+</svg>

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="320" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">RECOMMENDED SERVER ARCHITECTURE</text>
+
+  <!-- LEFT: On-Prem -->
+  <rect x="30" y="52" width="355" height="246" rx="10" fill="url(#navyG)" filter="url(#ds)"/>
+
+  <!-- Server icon -->
+  <rect x="52" y="72" width="20" height="24" rx="3" fill="#fff" opacity="0.2"/>
+  <line x1="56" y1="80" x2="68" y2="80" stroke="#fff" stroke-width="1" opacity="0.5"/>
+  <line x1="56" y1="85" x2="68" y2="85" stroke="#fff" stroke-width="1" opacity="0.5"/>
+  <line x1="56" y1="90" x2="68" y2="90" stroke="#fff" stroke-width="1" opacity="0.5"/>
+
+  <text x="82" y="82" fill="#fff" font-size="13" font-weight="700">On-Premises Server</text>
+  <text x="82" y="98" fill="#fff" font-size="10" opacity="0.6">Behind corporate firewall</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="112" x2="366" y2="112" stroke="#fff" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Domain cards -->
+  <text x="50" y="134" fill="#fff" font-size="10" font-weight="600" letter-spacing="1" opacity="0.6">SENSITIVE DOMAINS</text>
+
+  <rect x="50" y="148" width="140" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="54" y="161" fill="#fff" font-size="10" opacity="0.5">🔒</text>
+  <text x="72" y="162" fill="#fff" font-size="11">HR &amp; Compensation</text>
+  <text x="72" y="176" fill="#fff" font-size="9" opacity="0.5">Row-level security enforced</text>
+
+  <rect x="200" y="148" width="160" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="204" y="161" fill="#fff" font-size="10" opacity="0.5">🔒</text>
+  <text x="222" y="162" fill="#fff" font-size="11">Finance &amp; Accounting</text>
+  <text x="222" y="176" fill="#fff" font-size="9" opacity="0.5">SOX compliance required</text>
+
+  <rect x="50" y="194" width="140" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="54" y="207" fill="#fff" font-size="10" opacity="0.5">🔒</text>
+  <text x="72" y="208" fill="#fff" font-size="11">Legal &amp; Compliance</text>
+  <text x="72" y="222" fill="#fff" font-size="9" opacity="0.5">Restricted access only</text>
+
+  <rect x="200" y="194" width="160" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="204" y="207" fill="#fff" font-size="10" opacity="0.5">🔒</text>
+  <text x="222" y="208" fill="#fff" font-size="11">Executive Reporting</text>
+  <text x="222" y="222" fill="#fff" font-size="9" opacity="0.5">Board-level data</text>
+
+  <!-- Features -->
+  <rect x="50" y="248" width="310" height="32" rx="6" fill="#fff" opacity="0.08"/>
+  <text x="205" y="269" text-anchor="middle" fill="#fff" font-size="10" opacity="0.7">Strict access controls  ·  VPN required  ·  Audit logging</text>
+
+  <!-- RIGHT: Cloud -->
+  <rect x="415" y="52" width="355" height="246" rx="10" fill="url(#slateG)" filter="url(#ds)"/>
+
+  <!-- Cloud icon -->
+  <ellipse cx="447" cy="80" rx="14" ry="9" fill="#fff" opacity="0.2"/>
+  <ellipse cx="440" cy="84" rx="8" ry="6" fill="#fff" opacity="0.2"/>
+  <ellipse cx="455" cy="84" rx="8" ry="6" fill="#fff" opacity="0.2"/>
+
+  <text x="472" y="82" fill="#fff" font-size="13" font-weight="700">Cloud Server</text>
+  <text x="472" y="98" fill="#fff" font-size="10" opacity="0.6">Accessible to remote teams &amp; partners</text>
+
+  <!-- Divider -->
+  <line x1="435" y1="112" x2="751" y2="112" stroke="#fff" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Domain cards -->
+  <text x="435" y="134" fill="#fff" font-size="10" font-weight="600" letter-spacing="1" opacity="0.6">BROAD-ACCESS DOMAINS</text>
+
+  <rect x="435" y="148" width="140" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="439" y="161" fill="#fff" font-size="10" opacity="0.5">📊</text>
+  <text x="457" y="162" fill="#fff" font-size="11">Marketing Analytics</text>
+  <text x="457" y="176" fill="#fff" font-size="9" opacity="0.5">Campaign performance</text>
+
+  <rect x="585" y="148" width="160" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="589" y="161" fill="#fff" font-size="10" opacity="0.5">📊</text>
+  <text x="607" y="162" fill="#fff" font-size="11">Product Metrics</text>
+  <text x="607" y="176" fill="#fff" font-size="9" opacity="0.5">Engagement &amp; retention</text>
+
+  <rect x="435" y="194" width="140" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="439" y="207" fill="#fff" font-size="10" opacity="0.5">📊</text>
+  <text x="457" y="208" fill="#fff" font-size="11">Sales Dashboards</text>
+  <text x="457" y="222" fill="#fff" font-size="9" opacity="0.5">Pipeline &amp; forecasting</text>
+
+  <rect x="585" y="194" width="160" height="36" rx="6" fill="#fff" opacity="0.1"/>
+  <text x="589" y="207" fill="#fff" font-size="10" opacity="0.5">📊</text>
+  <text x="607" y="208" fill="#fff" font-size="11">Public Dashboards</text>
+  <text x="607" y="222" fill="#fff" font-size="9" opacity="0.5">Partner &amp; customer portals</text>
+
+  <!-- Features -->
+  <rect x="435" y="248" width="310" height="32" rx="6" fill="#fff" opacity="0.08"/>
+  <text x="590" y="269" text-anchor="middle" fill="#fff" font-size="10" opacity="0.7">SSO integration  ·  Multi-site isolation  ·  Elastic scaling</text>
+</svg>

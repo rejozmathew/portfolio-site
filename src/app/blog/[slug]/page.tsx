@@ -93,7 +93,7 @@ export default async function BlogPostPage({
           >
             &larr; Back to Blog
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
             {post.frontmatter.title}
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400">

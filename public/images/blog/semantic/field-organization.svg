@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="300" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">SEMANTIC LAYER FIELD ORGANIZATION</text>
+
+  <!-- Column 1: Time Dimensions -->
+  <rect x="24" y="48" width="178" height="232" rx="8" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+  <rect x="24" y="48" width="178" height="38" rx="8" fill="#1F4E79"/>
+  <rect x="24" y="68" width="178" height="18" fill="#1F4E79"/>
+  <text x="40" y="62" fill="#F0C75E" font-size="13">📁</text>
+  <text x="58" y="72" fill="#fff" font-size="12" font-weight="600">Time Dimensions</text>
+
+  <text x="44" y="108" fill="#2C3E50" font-size="11">Order Date</text>
+  <text x="44" y="130" fill="#2C3E50" font-size="11">Year</text>
+  <text x="44" y="152" fill="#2C3E50" font-size="11">Quarter</text>
+  <text x="44" y="174" fill="#2C3E50" font-size="11">Month</text>
+  <text x="44" y="196" fill="#2C3E50" font-size="11">Week</text>
+  <text x="44" y="218" fill="#2C3E50" font-size="11">Day</text>
+  <!-- Type badges -->
+  <rect x="140" y="96" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="107" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">DATE</text>
+  <rect x="140" y="118" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="129" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">INT</text>
+  <rect x="140" y="140" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="151" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+  <rect x="140" y="162" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="173" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+  <rect x="140" y="184" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="195" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">INT</text>
+  <rect x="140" y="206" width="44" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="162" y="217" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">DATE</text>
+
+  <!-- Column 2: Customer Attributes -->
+  <rect x="218" y="48" width="178" height="232" rx="8" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+  <rect x="218" y="48" width="178" height="38" rx="8" fill="#1F4E79"/>
+  <rect x="218" y="68" width="178" height="18" fill="#1F4E79"/>
+  <text x="234" y="62" fill="#F0C75E" font-size="13">📁</text>
+  <text x="252" y="72" fill="#fff" font-size="12" font-weight="600">Customer Attributes</text>
+
+  <text x="238" y="108" fill="#2C3E50" font-size="11">Customer ID</text>
+  <text x="238" y="130" fill="#2C3E50" font-size="11">Customer Name</text>
+  <text x="238" y="152" fill="#2C3E50" font-size="11">Segment</text>
+  <text x="238" y="174" fill="#2C3E50" font-size="11">Region</text>
+  <text x="238" y="196" fill="#2C3E50" font-size="11">Acquisition Channel</text>
+
+  <rect x="349" y="96" width="30" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="364" y="107" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">ID</text>
+  <rect x="349" y="118" width="30" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="364" y="129" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+  <rect x="349" y="140" width="30" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="364" y="151" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+  <rect x="349" y="162" width="30" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="364" y="173" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+  <rect x="349" y="184" width="30" height="16" rx="8" fill="#E8F0F8"/>
+  <text x="364" y="195" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">STR</text>
+
+  <!-- Column 3: Sales Metrics -->
+  <rect x="412" y="48" width="178" height="232" rx="8" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+  <rect x="412" y="48" width="178" height="38" rx="8" fill="#2A7F62"/>
+  <rect x="412" y="68" width="178" height="18" fill="#2A7F62"/>
+  <text x="428" y="62" fill="#F0C75E" font-size="13">📁</text>
+  <text x="446" y="72" fill="#fff" font-size="12" font-weight="600">Sales Metrics</text>
+
+  <text x="432" y="108" fill="#2C3E50" font-size="11">Revenue</text>
+  <text x="432" y="130" fill="#2C3E50" font-size="11">Order Count</text>
+  <text x="432" y="152" fill="#2C3E50" font-size="11">Average Order Value</text>
+  <text x="432" y="174" fill="#2C3E50" font-size="11">Cost of Goods</text>
+  <text x="432" y="196" fill="#2C3E50" font-size="11">Gross Profit</text>
+
+  <rect x="541" y="96" width="32" height="16" rx="8" fill="#F0F9F5"/>
+  <text x="557" y="107" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">$</text>
+  <rect x="541" y="118" width="32" height="16" rx="8" fill="#F0F9F5"/>
+  <text x="557" y="129" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">#</text>
+  <rect x="541" y="140" width="32" height="16" rx="8" fill="#F0F9F5"/>
+  <text x="557" y="151" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">$</text>
+  <rect x="541" y="162" width="32" height="16" rx="8" fill="#F0F9F5"/>
+  <text x="557" y="173" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">$</text>
+  <rect x="541" y="184" width="32" height="16" rx="8" fill="#F0F9F5"/>
+  <text x="557" y="195" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">$</text>
+
+  <!-- Column 4: Indicators -->
+  <rect x="606" y="48" width="172" height="232" rx="8" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+  <rect x="606" y="48" width="172" height="38" rx="8" fill="#8B6B3D"/>
+  <rect x="606" y="68" width="172" height="18" fill="#8B6B3D"/>
+  <text x="622" y="62" fill="#F0C75E" font-size="13">📁</text>
+  <text x="640" y="72" fill="#fff" font-size="12" font-weight="600">Indicators</text>
+
+  <text x="626" y="108" fill="#2C3E50" font-size="11">Is High Value Order</text>
+  <text x="626" y="130" fill="#2C3E50" font-size="11">Is Repeat Customer</text>
+  <text x="626" y="152" fill="#2C3E50" font-size="11">Is First Purchase</text>
+  <text x="626" y="174" fill="#2C3E50" font-size="11">Is Churned</text>
+
+  <rect x="738" y="96" width="22" height="16" rx="8" fill="#FDF5E8"/>
+  <text x="749" y="107" text-anchor="middle" fill="#8B6B3D" font-size="8" font-weight="600">0/1</text>
+  <rect x="738" y="118" width="22" height="16" rx="8" fill="#FDF5E8"/>
+  <text x="749" y="129" text-anchor="middle" fill="#8B6B3D" font-size="8" font-weight="600">0/1</text>
+  <rect x="738" y="140" width="22" height="16" rx="8" fill="#FDF5E8"/>
+  <text x="749" y="151" text-anchor="middle" fill="#8B6B3D" font-size="8" font-weight="600">0/1</text>
+  <rect x="738" y="162" width="22" height="16" rx="8" fill="#FDF5E8"/>
+  <text x="749" y="173" text-anchor="middle" fill="#8B6B3D" font-size="8" font-weight="600">0/1</text>
+
+  <!-- Legend -->
+  <rect x="219" y="258" width="8" height="8" rx="2" fill="#1F4E79"/>
+  <text x="232" y="266" fill="#5A6A7A" font-size="9">Dimensions</text>
+  <rect x="308" y="258" width="8" height="8" rx="2" fill="#2A7F62"/>
+  <text x="321" y="266" fill="#5A6A7A" font-size="9">Measures</text>
+  <rect x="389" y="258" width="8" height="8" rx="2" fill="#8B6B3D"/>
+  <text x="402" y="266" fill="#5A6A7A" font-size="9">Boolean Flags</text>
+</svg>

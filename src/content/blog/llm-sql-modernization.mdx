@@ -1,0 +1,496 @@
+---
+title: "From Lift-and-Shift to Modernized: A Responsible AI LLM + HITL Pattern for Enterprise SQL"
+date: "2025-10-15"
+description: "How a Fortune 500 financial services company used LLMs combined with Snowflake's EXPLAIN plans and automated validation to modernize thousands of legacy SQL queries — cutting costs by over 80% while maintaining correctness through a human-in-the-loop approach."
+---
+
+{/* Hero section */}
+
+### The Legacy Code Problem Nobody Talks About
+
+Every enterprise that has been through a cloud migration knows the dirty secret: the migration doesn't end when the data lands in the cloud. For many organizations, the initial move from on-premise systems — Teradata, Oracle, Netezza — to modern cloud warehouses like Snowflake was a **lift-and-shift**. The data moved, but the mess came with it.
+
+At our Fortune 500 financial services company, we lived this reality. We had successfully migrated from a Teradata environment to Snowflake, but what we inherited was a sprawling landscape of legacy consumption patterns — thousands of SQL queries, scripts, and pseudo-ETL processes built over a decade or more by analysts, data engineers, and business teams across the enterprise.
+
+These weren't just simple SELECT statements. We're talking about queries that were 500 to 3,000+ lines long, with nested subqueries five levels deep, single-letter aliases, no comments, no documentation, and business logic buried in CASE statements that nobody remembered writing. Many of them were scheduled on cron jobs, producing sandbox tables that fed downstream reports, with zero data governance rigor.
+
+When we embarked on a modernization initiative — reorganizing data by business domains to reduce redundancy, enforce data quality, and apply proper governance — we realized we needed to rewrite **all** of these consumption patterns. Every query. Every script. Every scheduled job.
+
+The estimate? Roughly **3,000 SQL queries** across the enterprise.
+
+### Why Traditional Approaches Don't Scale
+
+Our first instinct was the standard playbook: bring in consultants. We engaged several firms and quickly realized the economics were brutal. Each query required a skilled SQL developer to reverse-engineer the logic (since there was no documentation), understand the business context, map it to the new domain-organized data model, and rewrite it — all while ensuring the output remained identical.
+
+The math was straightforward and sobering:
+
+- **~1 week per query** per developer (for complex queries)
+- **$1,500–$2,000/week** per developer
+- **3,000 queries** across the enterprise
+- **Estimated cost: $3M+ over multiple years**
+
+And that's before accounting for the knowledge transfer, ramp-up time, and inevitable rework cycles. We needed a fundamentally different approach.
+
+### The Insight: LLMs + Deterministic Validation = Scalable Modernization
+
+The breakthrough came from a simple observation: **SQL modernization is one of the rare LLM use cases where hallucination is fully detectable.** Unlike summarization or content generation, a rewritten SQL query either produces the same output as the original or it doesn't. This binary verifiability makes it an ideal candidate for AI-assisted automation with a human safety net.
+
+The approach we developed has three core stages:
+
+1. **Extract**: Pull the legacy query and its Snowflake EXPLAIN plan (which reveals the actual execution graph — tables, joins, filters, and column references)
+2. **Transform**: Feed both the original SQL and the EXPLAIN JSON to an LLM with a carefully engineered prompt, asking it to produce a clean, modernized version
+3. **Validate**: Execute both queries and compare outputs — if they match, auto-approve; if not, route to a human reviewer
+
+<img src="/images/blog/llm-modernize/pipeline-architecture.svg" alt="LLM-Powered Legacy SQL Modernization Pipeline" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 1: End-to-end pipeline architecture. Legacy SQL and its EXPLAIN plan feed into the LLM, which produces a modernized query. Automated validation compares outputs, routing mismatches to human reviewers.
+</span>
+
+This architecture turns the problem from "pay a consultant to spend a week on each query" into "let an LLM draft it in minutes, then verify automatically." The human-in-the-loop catches edge cases, but the volume of queries requiring manual intervention drops dramatically.
+
+### Implementation Deep Dive
+
+The pipeline is orchestrated by Python and has four distinct phases. Let's walk through each one.
+
+#### Phase 1: Query Extraction and EXPLAIN Generation
+
+The first step is capturing the legacy SQL and generating its Snowflake execution plan. The EXPLAIN output is critical — it's the Rosetta Stone that maps ambiguous aliases back to actual table and column names.
+
+```python
+import snowflake.connector
+import json
+
+def get_query_and_explain(conn, query_id: str, query_sql: str) -> dict:
+    """
+    Retrieve the original SQL and its EXPLAIN JSON from Snowflake.
+    The EXPLAIN plan reveals the actual execution graph — tables,
+    joins, filters, and column references — which helps the LLM
+    resolve ambiguous aliases and understand query intent.
+    """
+    cursor = conn.cursor()
+
+    # Generate the EXPLAIN plan in JSON format
+    explain_sql = f"EXPLAIN USING JSON {query_sql}"
+    cursor.execute(explain_sql)
+    explain_json = cursor.fetchone()[0]
+
+    return {
+        "query_id": query_id,
+        "original_sql": query_sql,
+        "explain_json": json.loads(explain_json),
+    }
+
+
+# Example usage
+conn = snowflake.connector.connect(
+    account="your_account",
+    user="your_user",
+    authenticator="externalbrowser",
+    warehouse="ANALYTICS_WH",
+    database="ENTERPRISE_DB",
+    schema="CONSUMPTION_LAYER",
+)
+
+# Load a legacy query from the registry
+legacy_sql = open("queries/RPT_CUSTOMER_RISK_0042.sql").read()
+package = get_query_and_explain(conn, "RPT_0042", legacy_sql)
+```
+
+The EXPLAIN JSON contains a rich execution graph. Here's a simplified snippet showing what the LLM receives — notice how it resolves the original query's vague alias `a` back to the actual table `CUSTOMER_ACCOUNTS`:
+
+```json
+{
+  "Operations": [
+    {
+      "id": 0,
+      "operation": "Result",
+      "expressions": [
+        "CUSTOMER_ACCOUNTS.ACCT_ID",
+        "CUSTOMER_ACCOUNTS.CUST_ID",
+        "CASE LOAN_DETAIL.STATUS WHEN 'A' THEN 'Active' ..."
+      ]
+    },
+    {
+      "id": 3,
+      "operation": "InnerJoin",
+      "expressions": [
+        "joinKey: (LOAN_DETAIL.ACCT_ID = CUSTOMER_ACCOUNTS.ACCT_ID)"
+      ]
+    },
+    {
+      "id": 7,
+      "operation": "TableScan",
+      "objects": ["ENTERPRISE_DB.RISK.LOAN_DETAIL"],
+      "expressions": ["PROC_DT", "ACCT_ID", "STATUS", "DEL_FLG"]
+    }
+  ]
+}
+```
+&nbsp;
+#### Phase 2: LLM Prompt Engineering
+
+The prompt is the engine of the whole pipeline. Through extensive iteration, we landed on a prompt structure that consistently produces high-quality rewrites. The key design principles are: give the LLM both the original SQL *and* the EXPLAIN plan, be explicit about coding standards, and ask for a change summary for auditability.
+
+```python
+def build_rewrite_prompt(original_sql: str, explain_json: dict) -> str:
+    """
+    Construct the LLM prompt for query modernization.
+
+    Key prompt design principles:
+    - Provide BOTH original SQL and EXPLAIN JSON as dual context
+    - Be prescriptive about naming conventions and style
+    - Require a change summary for audit trail
+    - Prohibit SELECT * to force column-level awareness
+    """
+    return f"""I have an EXPLAIN JSON output from Snowflake for a complex
+query. Recreate the query from it with these requirements:
+
+**Naming & Aliasing:**
+- All columns must be fully qualified (table_alias.column_name)
+- Use descriptive aliases for all tables, CTEs, and subqueries
+  (e.g., LoanDetail instead of 'l' or 'ld')
+- Avoid single-letter or lowercase-only aliases
+- Name CTEs after their primary source table or business purpose
+
+**Optimization:**
+- Eliminate unnecessary CTEs and nested subqueries
+- Replace SELECT * with explicit column lists
+- If CTE.* or TABLE.* appears in a SELECT, expand to all
+  individual columns from the corresponding source
+- Ensure QUALIFY and window functions are used efficiently
+
+**View Handling:**
+- If views appear in the original query (names starting with v_),
+  replace raw table references with the corresponding view
+
+**Output Requirements:**
+- Provide the complete rewritten SQL
+- End with a summary of ALL changes made vs. the original
+
+---
+EXPLAIN JSON:
+{json.dumps(explain_json, indent=2)}
+
+---
+ORIGINAL SQL (for logical reference — preserve all conditions,
+joins, and qualifications):
+{original_sql}
+"""
+```
+
+Here's how we call the LLM(claude indicated her but can work with any local or cloud LLM. SLMs not advised):
+
+```python
+import anthropic
+
+def rewrite_query(original_sql: str, explain_json: dict) -> dict:
+    """Send the query package to the LLM and parse the response."""
+    client = anthropic.Anthropic()
+
+    prompt = build_rewrite_prompt(original_sql, explain_json)
+
+    response = client.messages.create(
+        model="claude-sonnet-4-5-20250514",
+        max_tokens=8096,
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+    )
+
+    response_text = response.content[0].text
+
+    # Parse out the SQL and summary sections
+    rewritten_sql = extract_sql_block(response_text)
+    change_summary = extract_summary(response_text)
+
+    return {
+        "rewritten_sql": rewritten_sql,
+        "change_summary": change_summary,
+        "raw_response": response_text,
+    }
+```
+
+#### What the LLM Actually Produces
+
+To illustrate the transformation, consider a typical legacy query — a customer risk report pulling from multiple tables with nested subqueries, cryptic aliases, and no documentation:
+
+<img src="/images/blog/llm-modernize/before-after-sql.svg" alt="Before and After SQL Comparison" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 2: Side-by-side comparison of a legacy query (left) and the LLM-modernized version (right). Note the descriptive CTEs, qualified columns, explicit SELECT lists, and added comments.
+</span>
+
+**Before — the legacy query:**
+
+```sql
+SELECT *
+FROM db.schema.customers a
+JOIN db.schema.accounts b ON a.id = b.cust_id
+JOIN (
+    SELECT *
+    FROM db.schema.transactions
+    WHERE del_flg <> 'Y'
+    QUALIFY RANK() OVER (
+        PARTITION BY acct_id ORDER BY proc_dt DESC
+    ) = 1
+) c ON b.acct_id = c.acct_id
+LEFT JOIN (
+    SELECT *
+    FROM db.schema.cases
+    WHERE type = 'Escalation'
+      AND org_key IS NOT NULL
+    QUALIFY RANK() OVER (
+        PARTITION BY org_key ORDER BY proc_dt DESC
+    ) = 1
+) d ON a.cif_id = d.org_key
+WHERE d.start_dt < c.end_dt
+ORDER BY a.open_dt DESC
+```
+
+**After — LLM-modernized version:**
+
+```sql
+-- Customer risk report: active accounts with escalation case overlay
+-- Surfaces latest transaction per account joined against most recent
+-- escalation cases, filtered to cases opened before transaction end date.
+
+WITH LatestTransactions AS (
+    SELECT
+        Transactions.acct_id,
+        Transactions.txn_amount,
+        Transactions.txn_status,
+        Transactions.end_dt,
+        Transactions.proc_dt
+    FROM db.schema.transactions AS Transactions
+    WHERE Transactions.del_flg <> 'Y'
+    QUALIFY RANK() OVER (
+        PARTITION BY Transactions.acct_id
+        ORDER BY Transactions.proc_dt DESC
+    ) = 1
+),
+
+LatestEscalations AS (
+    SELECT
+        Cases.case_id,
+        Cases.org_key,
+        Cases.case_type,
+        Cases.start_dt,
+        Cases.status,
+        Cases.assigned_to
+    FROM db.schema.cases AS Cases
+    WHERE Cases.type = 'Escalation'
+      AND Cases.org_key IS NOT NULL
+    QUALIFY RANK() OVER (
+        PARTITION BY Cases.org_key
+        ORDER BY Cases.proc_dt DESC
+    ) = 1
+)
+
+SELECT
+    Customers.cust_id,
+    Customers.cif_id,
+    Customers.full_name,
+    Accounts.acct_id,
+    Accounts.acct_type,
+    LatestTransactions.txn_amount,
+    LatestTransactions.txn_status,
+    LatestEscalations.case_id,
+    LatestEscalations.status       AS escalation_status,
+    LatestEscalations.start_dt     AS escalation_start_dt
+FROM db.schema.customers AS Customers
+INNER JOIN db.schema.accounts AS Accounts
+    ON Customers.id = Accounts.cust_id
+INNER JOIN LatestTransactions
+    ON Accounts.acct_id = LatestTransactions.acct_id
+LEFT JOIN LatestEscalations
+    ON Customers.cif_id = LatestEscalations.org_key
+WHERE LatestEscalations.start_dt < LatestTransactions.end_dt
+ORDER BY Customers.open_dt DESC;
+```
+
+The LLM also produces a change summary documenting every modification — invaluable for audit and review:
+
+> **Change Summary:**
+> 1. Replaced all `SELECT *` with explicit column lists
+> 2. Converted nested subqueries to named CTEs (`LatestTransactions`, `LatestEscalations`)
+> 3. Replaced single-letter aliases (`a`, `b`, `c`, `d`) with descriptive names
+> 4. Fully qualified all column references
+> 5. Added header comments explaining query purpose
+> 6. Preserved all original join conditions and filter logic
+
+&nbsp;
+#### Phase 3: Automated Validation
+
+This is where the architecture shines. Because SQL output is deterministic, we can validate LLM rewrites with mathematical certainty. The validation runs a multi-layered comparison:
+
+<img src="/images/blog/llm-modernize/validation-framework.svg" alt="Automated Validation Framework" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 3: The four-check validation framework. Both original and rewritten queries are executed, then compared across row counts, column values, sample records, and schema structure.
+</span>
+
+```python
+import hashlib
+import pandas as pd
+
+def validate_rewrite(
+    conn,
+    original_sql: str,
+    rewritten_sql: str,
+    sample_size: int = 1000,
+) -> dict:
+    """
+    Multi-layered validation comparing original and rewritten query outputs.
+
+    Returns a validation report with pass/fail for each check:
+      1. Row count match
+      2. Column-level hash comparison
+      3. Random sample record diff
+      4. Schema (column names and types) match
+    """
+    cursor = conn.cursor()
+
+    # ── Check 1: Row Count ──
+    count_original = _get_row_count(cursor, original_sql)
+    count_rewritten = _get_row_count(cursor, rewritten_sql)
+    count_match = count_original == count_rewritten
+
+    # ── Check 2: Column-Level Hash ──
+    # Hash each column's sorted values to detect value-level differences
+    hash_original = _column_hashes(cursor, original_sql)
+    hash_rewritten = _column_hashes(cursor, rewritten_sql)
+    hash_match = hash_original == hash_rewritten
+
+    # ── Check 3: Sample Record Comparison ──
+    df_orig = pd.read_sql(
+        f"SELECT * FROM ({original_sql}) LIMIT {sample_size}", conn
+    )
+    df_new = pd.read_sql(
+        f"SELECT * FROM ({rewritten_sql}) LIMIT {sample_size}", conn
+    )
+    sample_match = df_orig.equals(df_new)
+
+    # ── Check 4: Schema Validation ──
+    schema_orig = _get_result_schema(cursor, original_sql)
+    schema_new = _get_result_schema(cursor, rewritten_sql)
+    schema_match = schema_orig == schema_new
+
+    all_passed = all([count_match, hash_match, sample_match, schema_match])
+
+    return {
+        "status": "PASS" if all_passed else "FAIL",
+        "checks": {
+            "row_count": {
+                "passed": count_match,
+                "original": count_original,
+                "rewritten": count_rewritten,
+            },
+            "column_hash": {"passed": hash_match},
+            "sample_records": {"passed": sample_match},
+            "schema": {"passed": schema_match},
+        },
+    }
+
+
+def _get_row_count(cursor, sql: str) -> int:
+    cursor.execute(f"SELECT COUNT(*) FROM ({sql})")
+    return cursor.fetchone()[0]
+
+
+def _column_hashes(cursor, sql: str) -> dict:
+    """Generate a hash fingerprint per column for comparison."""
+    cursor.execute(f"SELECT * FROM ({sql}) LIMIT 0")
+    columns = [desc[0] for desc in cursor.description]
+
+    hashes = {}
+    for col in columns:
+        cursor.execute(
+            f"SELECT HASH_AGG({col}) FROM ({sql})"
+        )
+        hashes[col] = cursor.fetchone()[0]
+    return hashes
+
+
+def _get_result_schema(cursor, sql: str) -> list:
+    cursor.execute(f"SELECT * FROM ({sql}) LIMIT 0")
+    return [(desc[0], desc[1]) for desc in cursor.description]
+```
+&nbsp;
+#### Phase 4: Human-in-the-Loop Review
+
+When validation fails, the query package — original SQL, LLM output, EXPLAIN plan, and the specific validation failures — is routed to a subject matter expert. This is not "start from scratch" review; the SME has the LLM's best attempt plus a precise diagnosis of what went wrong.
+
+```python
+def orchestrate_pipeline(conn, query_registry: list[dict]):
+    """
+    Main pipeline orchestrator. Processes each legacy query through
+    the LLM rewrite → validate → approve/escalate workflow.
+    """
+    results = {"auto_approved": [], "needs_review": [], "errors": []}
+
+    for entry in query_registry:
+        query_id = entry["query_id"]
+        original_sql = entry["sql"]
+
+        try:
+            # Step 1: Get EXPLAIN plan
+            package = get_query_and_explain(conn, query_id, original_sql)
+
+            # Step 2: LLM rewrite
+            rewrite = rewrite_query(
+                package["original_sql"], package["explain_json"]
+            )
+
+            # Step 3: Validate
+            validation = validate_rewrite(
+                conn, original_sql, rewrite["rewritten_sql"]
+            )
+
+            if validation["status"] == "PASS":
+                results["auto_approved"].append({
+                    "query_id": query_id,
+                    "rewritten_sql": rewrite["rewritten_sql"],
+                    "change_summary": rewrite["change_summary"],
+                })
+            else:
+                # Route to human review with full context
+                results["needs_review"].append({
+                    "query_id": query_id,
+                    "original_sql": original_sql,
+                    "llm_attempt": rewrite["rewritten_sql"],
+                    "validation_report": validation,
+                    "change_summary": rewrite["change_summary"],
+                })
+
+        except Exception as exc:
+            results["errors"].append({
+                "query_id": query_id,
+                "error": str(exc),
+            })
+
+    return results
+```
+
+In practice, queries that fail validation typically involve edge cases like: parameterized date variables that the LLM misinterprets, implicit type conversions in the original that need to be made explicit, or business logic embedded in obscure column naming conventions. The human reviewer corrects these, and importantly, the corrections feed back into prompt refinement — making the next batch better.
+
+### Why This Works: The Virtuous Cycle
+
+The power of this approach lies in the feedback loop. As human reviewers correct LLM mistakes, those corrections inform prompt engineering improvements. Over successive batches, the auto-approval rate climbs as the prompt becomes more attuned to the specific patterns and conventions of the enterprise's SQL codebase.
+
+Early batches might see 60–70% auto-approval. After prompt refinement from human corrections on the first few hundred queries, approval rates can climb to 85%+ for the remaining queries. The LLM doesn't learn in the traditional sense — but the *system* learns through better prompts, more examples in the prompt template, and tighter validation heuristics.
+
+### Key Takeaways
+
+**Start with deterministic validation.** The entire approach hinges on the fact that SQL outputs are verifiable. Before building the LLM pipeline, invest in robust, multi-layered validation. If you can't verify, you can't automate.
+
+**The EXPLAIN plan is the secret weapon.** Feeding the LLM both the original SQL and its execution plan gives it vastly more context than the query alone. The EXPLAIN resolves ambiguous aliases, reveals actual table names, and exposes the join graph — all of which the LLM uses to produce higher-quality rewrites.
+
+**Human-in-the-loop is a feature, not a fallback.** The goal isn't 100% automation — it's shifting the human effort from *writing* queries to *reviewing* them. Reviewing a well-structured LLM draft with a clear change summary is an order of magnitude faster than reverse-engineering a 2,000-line legacy query from scratch.
+
+**Prompt engineering is iterative.** Our first prompt produced mediocre results. It took dozens of iterations — informed by human reviewer feedback — to reach a prompt that consistently handles window functions, parameterized dates, view references, and complex join hierarchies.
+
+**Cost reduction is dramatic.** What was estimated at $3M+ over multiple years was reduced to a fraction of that — primarily the cost of LLM API calls (pennies per query) plus focused human review time for the subset that fails validation.
+
+### Conclusion
+
+Legacy SQL modernization is a problem that exists in virtually every enterprise that has gone through a cloud migration. The traditional approach — hiring armies of consultants to manually reverse-engineer and rewrite thousands of queries — is slow, expensive, and doesn't scale. By combining LLMs with Snowflake's EXPLAIN plans and automated output validation, we built a pipeline that modernizes queries in minutes instead of days, while maintaining correctness through deterministic checks and human oversight.
+
+The human-in-the-loop isn't an admission that the AI isn't good enough. It's a recognition that in regulated financial services, *verifiability matters more than speed*. The LLM handles the heavy lifting; the human ensures nothing slips through. Together, they form a system that's both fast and trustworthy — exactly what enterprise modernization demands.

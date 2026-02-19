@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="340" fill="#f9fafb"/>
+
+  <!-- LEFT: Live Connection -->
+  <rect x="20" y="16" width="370" height="308" rx="10" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+
+  <!-- Header -->
+  <rect x="20" y="16" width="370" height="46" rx="10" fill="#E8F0F8"/>
+  <rect x="20" y="42" width="370" height="20" fill="#E8F0F8"/>
+  <!-- Live pulse icon -->
+  <circle cx="44" cy="39" r="6" fill="none" stroke="#1F4E79" stroke-width="1.5"/>
+  <circle cx="44" cy="39" r="2.5" fill="#1F4E79"/>
+  <text x="60" y="44" fill="#1F4E79" font-size="14" font-weight="700">Live Connection</text>
+
+  <!-- Pros -->
+  <text x="40" y="84" fill="#2C3E50" font-size="10" font-weight="600" letter-spacing="1">ADVANTAGES</text>
+  <line x1="40" y1="90" x2="185" y2="90" stroke="#B8CCE0" stroke-width="0.5"/>
+
+  <text x="40" y="110" fill="#1F4E79" font-size="11">✓</text>
+  <text x="58" y="110" fill="#2C3E50" font-size="11">Real-time data — no staleness</text>
+  <text x="40" y="132" fill="#1F4E79" font-size="11">✓</text>
+  <text x="58" y="132" fill="#2C3E50" font-size="11">Zero refresh management</text>
+  <text x="40" y="154" fill="#1F4E79" font-size="11">✓</text>
+  <text x="58" y="154" fill="#2C3E50" font-size="11">Simple operational model</text>
+
+  <!-- Cons -->
+  <text x="40" y="188" fill="#2C3E50" font-size="10" font-weight="600" letter-spacing="1">TRADE-OFFS</text>
+  <line x1="40" y1="194" x2="185" y2="194" stroke="#B8CCE0" stroke-width="0.5"/>
+
+  <text x="40" y="214" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="58" y="214" fill="#5A6A7A" font-size="11">Performance depends on warehouse</text>
+  <text x="40" y="236" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="58" y="236" fill="#5A6A7A" font-size="11">Every interaction = a query</text>
+  <text x="40" y="258" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="58" y="258" fill="#5A6A7A" font-size="11">Can strain shared resources</text>
+
+  <!-- Best for -->
+  <rect x="40" y="280" width="330" height="28" rx="6" fill="#E8F0F8"/>
+  <text x="205" y="299" text-anchor="middle" fill="#1F4E79" font-size="10.5" font-weight="600">Best for: Small datasets, real-time SLAs, strong warehouses</text>
+
+  <!-- RIGHT: Extract -->
+  <rect x="410" y="16" width="370" height="308" rx="10" fill="#fff" filter="url(#ds)" stroke="#B8CCE0" stroke-width="1"/>
+
+  <!-- Header -->
+  <rect x="410" y="16" width="370" height="46" rx="10" fill="#E8F0F8"/>
+  <rect x="410" y="42" width="370" height="20" fill="#E8F0F8"/>
+  <!-- Extract/snapshot icon -->
+  <rect x="432" y="32" width="12" height="14" rx="2" fill="none" stroke="#1F4E79" stroke-width="1.5"/>
+  <line x1="435" y1="36" x2="441" y2="36" stroke="#1F4E79" stroke-width="1"/>
+  <line x1="435" y1="40" x2="441" y2="40" stroke="#1F4E79" stroke-width="1"/>
+  <text x="454" y="44" fill="#1F4E79" font-size="14" font-weight="700">Extract</text>
+  <!-- Recommended badge -->
+  <rect x="504" y="30" width="90" height="20" rx="10" fill="#2A7F62"/>
+  <text x="549" y="44" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">RECOMMENDED</text>
+
+  <!-- Pros -->
+  <text x="430" y="84" fill="#2C3E50" font-size="10" font-weight="600" letter-spacing="1">ADVANTAGES</text>
+  <line x1="430" y1="90" x2="575" y2="90" stroke="#B8CCE0" stroke-width="0.5"/>
+
+  <text x="430" y="110" fill="#2A7F62" font-size="11">✓</text>
+  <text x="448" y="110" fill="#2C3E50" font-size="11">Fast, consistent performance</text>
+  <text x="430" y="132" fill="#2A7F62" font-size="11">✓</text>
+  <text x="448" y="132" fill="#2C3E50" font-size="11">Tableau's in-memory engine</text>
+  <text x="430" y="154" fill="#2A7F62" font-size="11">✓</text>
+  <text x="448" y="154" fill="#2C3E50" font-size="11">Works offline / reduces warehouse load</text>
+
+  <!-- Cons -->
+  <text x="430" y="188" fill="#2C3E50" font-size="10" font-weight="600" letter-spacing="1">TRADE-OFFS</text>
+  <line x1="430" y1="194" x2="575" y2="194" stroke="#B8CCE0" stroke-width="0.5"/>
+
+  <text x="430" y="214" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="448" y="214" fill="#5A6A7A" font-size="11">Data freshness limited by refresh</text>
+  <text x="430" y="236" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="448" y="236" fill="#5A6A7A" font-size="11">Requires scheduling &amp; monitoring</text>
+  <text x="430" y="258" fill="#8B6B5A" font-size="11">✗</text>
+  <text x="448" y="258" fill="#5A6A7A" font-size="11">Storage overhead for large extracts</text>
+
+  <!-- Best for -->
+  <rect x="430" y="280" width="330" height="28" rx="6" fill="#E8F0F8"/>
+  <text x="595" y="299" text-anchor="middle" fill="#1F4E79" font-size="10.5" font-weight="600">Best for: Large datasets, complex calcs, dashboard-heavy orgs</text>
+</svg>

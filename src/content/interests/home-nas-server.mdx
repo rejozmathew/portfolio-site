@@ -1,73 +1,244 @@
+
+My home server started as a simple NAS for storing files. Four years and dozens of Docker containers later, it has quietly replaced most of the cloud services I used to pay for — file storage, photo management, media streaming, website hosting, home security, smart home control, and even a learning management system. All running on a single machine in my basement, under my control, with no monthly subscriptions.
+
+This article walks through the full setup: the hardware I chose and why, how Unraid ties it all together, and the ecosystem of services that make this box the most useful thing in my house.
+
+## Why Build a Home Server?
+
+Every cloud service you use is someone else's computer. That's fine — until the price goes up, the terms change, or the service shuts down. A home server flips the model. You own the hardware, you own the data, and you decide what runs on it.
+
+Beyond the philosophical argument, the practical benefits are real. A single Unraid box can replace a surprising number of paid subscriptions while giving you things that cloud services simply can't offer — like unlimited storage without tiered pricing, true privacy for your family's photos, and a media library that never loses titles due to licensing changes.
+
+![What a Homeserver Replaces](/images/DIY/home-nas-server/cloud-replacement.svg)
+
+The total cost of hardware amortized over a few years ends up being significantly less than the combined monthly subscriptions it replaces. And once the infrastructure is in place, adding new services is as simple as installing a Docker container.
+
+
 ## Hardware Overview
 
-### CPU & Motherboard
-For a NAS that also runs VMs and Docker, a multi-core, low-power processor is ideal. Many hobbyist builds opt for an Intel Core i3-12100T (~35 W TDP) paired with an ATX motherboard offering at least eight SATA ports or an LSI HBA for expansion.
+A home server that doubles as a NAS, media streamer, VM host, and Docker platform needs to balance performance with power efficiency. This isn't a gaming rig — it runs 24/7, so every watt matters.
 
+### CPU & Motherboard
+
+The Intel Core i3-12100T hits a sweet spot: four cores with hyperthreading at just 35W TDP. It handles multiple Docker containers, a couple of VMs, and occasional Plex transcodes without breaking a sweat. The "T" suffix matters here — it's the low-power variant designed for always-on systems.
+
+The motherboard needs to support enough SATA ports for your drives (at least eight, or pair it with an LSI HBA card for expansion) and have a PCIe slot for the GPU.
 
 ![Components](/images/DIY/home-nas-server/components.jpg)
 
 ### Memory
-While Unraid doesn’t strictly require ECC RAM, running VMs and containers benefits from ample memory. A baseline of 16 GB DDR4 is common, with plans to expand to 32 GB if you host multiple Ubuntu VMs or memory-intensive services.
+
+I started with 16 GB DDR4 and quickly moved to 32 GB. Between Unraid's overhead, Docker containers storing appdata in RAM-backed caches, and Ubuntu VMs running Moodle and BigBlueButton, memory fills up faster than you'd expect. If you plan to run VMs, start at 32 GB and save yourself the upgrade hassle.
 
 ### Storage: Parity, Data & Cache
-Data Drives: Use NAS-rated HDDs (e.g., Seagate IronWolf) in a parity-protected array to guard against drive failures.
 
-Parity Drive: At least one parity disk—ideally the largest size in your array—to protect your data.
+Unraid's storage model is one of its biggest strengths — and it's fundamentally different from traditional RAID.
 
-Cache Pool: A pair of NVMe SSDs configured in RAID 1 serves as the cache pool, accelerating writes and supporting Docker image storage.
+![Unraid Storage Architecture](/images/DIY/home-nas-server/storage-architecture.svg)
+
+**Data Drives** are independent — you can mix and match sizes, and each disk is a standalone filesystem. If a non-parity drive fails without a parity rebuild needed, you can still read every other drive. I use NAS-rated Seagate IronWolf HDDs, which are designed for the vibration and thermal profiles of multi-drive enclosures.
+
+**The Parity Drive** must be at least as large as the biggest data drive. It uses XOR-based parity so that if any single drive fails, Unraid can reconstruct its contents from the remaining drives plus parity. Think of it as insurance — you lose one drive's worth of raw capacity to protect the rest.
+
+**The Cache Pool** is a pair of NVMe SSDs in RAID 1 (mirrored). Every write hits the SSDs first for speed, and Unraid's "mover" daemon shifts cold data to the array on a schedule. Docker appdata, VM images, and database files live permanently on the cache for fast I/O.
 
 ![Drive Layout](/images/DIY/home-nas-server/drive-layout.png)
 
 ### Power Supply & Cooling
-A high-efficiency (80 Plus Gold) PSU around 650–750 W (e.g., Corsair RM750x) provides ample headroom. Ensure good case airflow with at least two intake and one exhaust fan; dust filters help keep drives healthy.
+
+An 80 Plus Gold PSU (I use a Corsair RM750x) provides clean, efficient power with enough headroom for GPU transcoding spikes. Good airflow matters more than raw fan count — two intake fans with dust filters and one exhaust keeps drives cool and healthy. A UPS is non-negotiable; I monitor mine with InfluxDB and Grafana to track power draw and battery health in real time.
 
 ### Networking
-While 1 GbE suffices for backups and light use, consider adding a 2.5 GbE or 10 GbE NIC for faster local transfers, especially if streaming high-bitrate media or running multiple VMs.
 
-## Software Setup
+I've added a 2.5 GbE NIC, which makes a noticeable difference when transferring large media files or pulling backups from Nextcloud. If you stream 4K remuxes to multiple clients simultaneously, 10 GbE becomes worth considering.
 
-### Unraid OS & Array Configuration
-Install Unraid OS on a USB flash drive and boot your machine into it.
 
-Assign array disks—select your parity and data drives, then start the array.
+## The Operating System: Unraid
 
-Configure the cache pool in Settings → Cache Devices, pairing your SSDs in mirrored mode for write cache.
-
-Enable user shares, choosing “Prefer” or “Only” to store certain shares on the cache for performance.
+Unraid is the glue that holds everything together. It boots from a USB flash drive, leaving all your SATA and NVMe slots free for storage. The web-based dashboard gives you a single pane of glass for managing the array, Docker containers, VMs, shares, and plugins.
 
 ![Unraid Dashboard Screenshot](/images/DIY/home-nas-server/unraid-dashboard.png)
 
-### Docker Containers
-Unraid’s built-in Docker support lets you deploy containers via the Community Applications plugin. Common services:
+What makes Unraid particularly well-suited for a home server (versus TrueNAS or bare Proxmox) is the combination of flexible storage with first-class Docker and VM support. You don't have to choose between being a NAS and being a compute platform — it does both natively.
 
-*   Plex Media Server for streaming.
-*   Nextcloud for private cloud file syncing and collaboration.
-*   Pi-Hole or AdGuard Home for network-wide ad blocking.
+The **Community Applications plugin** is essentially Unraid's app store. It makes deploying any of the services described in this article a matter of searching, clicking Install, mapping a few paths, and starting the container. Under the hood it's just Docker, so you retain full control to customize configurations, but the UI removes the friction that keeps most people from self-hosting.
 
-Each container stores its appdata on the SSD cache for fast I/O and moves data to the HDD array on idle.
 
-### Ubuntu Virtual Machines
-Use Unraid’s KVM manager to spin up Ubuntu VMs:
+## Server Architecture
 
-*   Create VM with 2+ vCPUs and 4–8 GB RAM for light services, more if needed.
-*   Attach virtual disks—store VMs on cache for performance or directly on the array for larger storage.
-*   Pass-through devices (e.g., GPU for transcoding) as required.
+Before diving into individual services, here's how everything fits together:
 
-Ubuntu VMs can run specialized workloads like self-hosted code repositories, CI runners, or backup services.
+![Homeserver Architecture Overview](/images/DIY/home-nas-server/architecture-overview.svg)
 
-## Home Automation & Private Cloud
+The hardware layer provides compute, storage, and networking. Unraid sits on top, managing the drive array, exposing user shares, and providing both a Docker engine and a KVM hypervisor. Docker containers handle most workloads — media, cloud storage, networking, security, monitoring — while VMs run anything that needs a full OS, like my Ubuntu servers or a bare-metal Windows passthrough.
 
-### Home Assistant Integration
-Run Home Assistant in Docker or VM to manage your Ecobee thermostat and other IoT devices. Store state databases on the cache pool and backup configurations regularly to a Nextcloud share.
+
+## Networking & Remote Access
+
+Getting services accessible from outside your home network while keeping things secure is arguably the trickiest part of a home server setup. I've evolved through several approaches over the years.
+
+![Network & Security Architecture](/images/DIY/home-nas-server/network-architecture.svg)
+
+### DNS & Domain Management
+
+I use a custom domain managed through **Cloudflare**, with DDNS keeping the A record pointed at my home IP. The **Cloudflare DDNS Docker** container handles this automatically — every few minutes, it checks my public IP and updates Cloudflare if it's changed. DNSSEC is enabled for an extra layer of DNS security.
+
+Setting up a new domain involves buying it (I use Namecheap), pointing its nameservers to Cloudflare, adding DNS records, enabling DNSSEC, and configuring SSL/TLS to Full (Strict) mode with an origin certificate.
+
+### Nginx Proxy Manager
+
+**Nginx Proxy Manager (NPM)** is the central traffic router. Every service that needs to be accessible externally gets a subdomain (e.g., `photos.mydomain.com`, `cloud.mydomain.com`), and NPM routes incoming HTTPS traffic to the correct internal Docker container or VM. TLS certificates are managed automatically via Let's Encrypt, and I also use Cloudflare origin certificates for services behind Cloudflare's proxy.
+
+Port forwarding on the router maps external ports 80 and 443 to NPM's internal ports, and NPM handles everything from there.
+
+### Cloudflare Zero Trust Tunnels
+
+For services where I don't want to open any ports at all, **Cloudflare Zero Trust Tunnels** are a game-changer. The `cloudflared` Docker container creates an outbound-only encrypted tunnel to Cloudflare's edge network. Traffic flows from the internet through Cloudflare, through the tunnel, and to my services — without a single inbound port open on my router.
+
+You only need one tunnel per machine, and you can route as many hostnames through it as you want. It's significantly easier to set up than traditional port forwarding and arguably more secure.
+
+### WireGuard VPN
+
+For direct network access when I'm away from home, **WireGuard** is built into Unraid. I have peer configurations for each device — phone, laptop, etc. — with remote tunneled access so all traffic routes through my home network. This also means Pi-hole filtering works when I'm on the go.
+
+One quirk I've noticed: WireGuard works flawlessly on Verizon connections and mobile data but can be finicky on certain public WiFi networks (Xfinity hotspots in particular gave me grief on Windows but worked fine on Android).
+
+### Pi-hole
+
+**Pi-hole** runs as a Docker container and serves as the DNS resolver for my entire network. Every device gets network-wide ad blocking without needing browser extensions. The only caveat: if the Unraid box goes down, DNS resolution stops for the whole house — so keep a note of your ISP's DNS or Google's 8.8.8.8 as a fallback.
+
+
+## Security & Identity: Authentik
+
+Once you have more than a handful of services, managing separate logins for each one becomes tedious and insecure. **Authentik** solves this by providing a centralized identity provider with single sign-on (SSO).
+
+Authentik runs alongside **Postgres** (its database) and **Redis** (for caching/sessions). I've configured it as a proxy provider in front of Nginx Proxy Manager so that when you visit any of my services, you first hit an Authentik login page. One authentication gets you into everything.
+
+I've also set up **Google OAuth** as a federated source, so I can sign in with my Google account, which then maps to my Authentik identity. The setup involves creating OAuth credentials in Google Cloud Console and connecting them as a source in Authentik — the official docs walk through it well.
+
+For services like Immich that support OIDC natively, Authentik acts as the identity provider directly. For services that don't support SSO, Authentik's forward-auth proxy in NPM handles authentication transparently.
+
+
+## Media Management
+
+This is probably where my server gets the most daily use. The media stack is a fully automated pipeline from discovery to playback.
+
+![Automated Media Pipeline](/images/DIY/home-nas-server/media-pipeline.svg)
+
+### The ARR Stack
+
+**Radarr** (movies) and **Sonarr** (TV shows) are the brains of the operation. They monitor watchlists, search indexers for the right quality, and send downloads to the torrent client. I've set up detailed quality profiles — for example, a custom format that targets 1080p x265 encodes with 5.1 surround sound under 6 GB, or a separate 4K HDR profile for the big screen.
+
+**DelugeVPN** handles downloads with all traffic routed through a NordVPN tunnel. The VPN integration is critical — it ensures that torrent traffic never leaks outside the encrypted tunnel. If the VPN drops, the container stops all network activity. I've also configured it as a SOCKS5 proxy for other containers that need VPN protection.
+
+Once a download completes, Radarr/Sonarr automatically imports it into the media library with proper naming conventions. **Upgradinatorr** runs periodically to check if better-quality versions have become available and triggers upgrades.
+
+### Plex & Jellyfin
+
+**Plex** is the primary media server, with hardware transcoding via the Nvidia GPU. The GPU plugin in Unraid passes the card through to the Docker container, and GPUstats monitors utilization. **Jellyfin** runs as a secondary/backup server — it's fully open-source and handles some edge cases where Plex's transcoding decisions aren't ideal.
+
+### Kometa (Plex Meta Manager)
+
+**Kometa** enriches the Plex library with custom collections, overlays (resolution badges, audio format indicators), and metadata. It runs on a schedule and I can also trigger manual runs for specific libraries. The configuration files for collections, overlays, and metadata live in appdata and are customized for my library structure.
+
+### IPTV & Music
+
+**Xsteve** provides IPTV proxy capabilities, and I use **MusicBrainz Picard** for tagging music files with proper metadata before they hit the music library.
+
+
+## Private Cloud: Nextcloud & Immich
+
+### Nextcloud
+
+**Nextcloud** is the centerpiece of my private cloud — it replaces Google Drive, Google Docs, Google Calendar, and Google Contacts. Files sync across all my devices, and with apps like ONLYOFFICE, I can edit documents collaboratively in the browser.
+
+The setup runs with **MariaDB** as the backend database (instead of Nextcloud's default SQLite) for better performance. Key apps I've installed include Mail, Contacts, Calendar, Talk (video calls), Passwords (password manager), and server-side encryption. The Nextcloud share on Unraid stores all synced files on the HDD array, while appdata lives on the SSD cache.
+
+One of the most useful aspects is the ability to share files externally — recipients don't need a Nextcloud account to download, unlike Dropbox or Google Drive's more restrictive sharing.
+
+### Immich
+
+**Immich** is a self-hosted Google Photos alternative, and it's remarkable. AI-powered face recognition and object search, automatic mobile backups, timeline browsing, album sharing — it does everything Google Photos does, but your photos never leave your network.
+
+I migrated my entire Google Photos library using **immich-go**, which can import directly from Google Takeout zip files. After import, I ran the duplicate detection tool to clean up, then emptied the trash. Immich integrates with Authentik via OIDC for authentication.
+
+
+## Home Automation & Monitoring
+
+### Home Assistant
+
+**Home Assistant** runs in a VM (rather than Docker) for better hardware access and stability. It manages my Ecobee thermostat and various IoT devices around the house. State databases are stored on the SSD cache, and I back up configurations regularly to a Nextcloud share.
 
 ![Placeholder: Home Assistant UI](/images/DIY/home-nas-server/home-assistant.png)
 
-### Secure Remote Access & Web Hosting
-Reverse Proxy: Use Nginx Proxy Manager in Docker to route external traffic to services (Nextcloud, WordPress, etc.) behind dynamic DNS.
+### CCTV with Shinobi
 
-TLS Certificates: Automate Let’s Encrypt issuance for secure HTTPS.
+**Shinobi** receives RTSP streams from Reolink cameras around the house and records to the CCTV share on the array. Motion detection is enabled per camera, and hardware acceleration via the Nvidia GPU keeps CPU usage low even with multiple streams. It's a complete replacement for Ring or Nest — no cloud subscription required, and recordings stay local.
 
-Firewall & VPN: Employ Unraid’s built-in firewall rules and/or WireGuard plugin for secure remote VPN access.
+### UPS Monitoring with Grafana
 
-## Conclusion
-Building a home NAS server on Unraid combines the flexibility of Docker and VMs with robust, parity-protected storage and SSD caching. Whether you’re streaming media via Plex, syncing files with Nextcloud, automating your home with Home Assistant, or self-hosting web services, this setup delivers performance, expandability, and reliability—while keeping everything under your control.
+An uninterruptible power supply is essential for a server that protects your data. I monitor mine with a stack of **apcupsd-influxdb-exporter** → **InfluxDB 1.8** → **Grafana**. The Grafana dashboard (community template #10615) shows real-time power draw, battery status, estimated runtime, and historical trends. It's both practical and satisfying to watch.
+
+
+## Web Hosting
+
+My personal website (the one you're reading right now) is hosted directly on the home server. **Nginx** serves the static files from the appdata directory, and traffic is routed through either Nginx Proxy Manager or Cloudflare Zero Trust Tunnel.
+
+I've hosted multiple domains this way. The process for adding a new one is: buy the domain, register it in Cloudflare, configure DNS records, set SSL/TLS to Full (Strict), generate an origin server certificate, upload it to NPM, and add the proxy host. Or — skip most of those steps and just add a public hostname in the Cloudflare Zero Trust tunnel, which auto-creates the DNS records.
+
+
+## Virtual Machines
+
+Unraid's KVM-based VM manager handles anything that needs a full operating system rather than a container.
+
+### Ubuntu Server VM
+
+My primary VM runs Ubuntu Server and hosts **Moodle** (a learning management system) with **Apache** and a separate **MariaDB** database connection back to the main Unraid host. It also ran **BigBlueButton** for video conferencing at one point. The VM has 4+ vCPUs and 8 GB RAM, with the virtual disk stored on the SSD cache for performance.
+
+One gotcha with Ubuntu Server on Unraid: the default LVM partition only allocates about 10 GB regardless of the virtual disk size. You need to manually extend it with `lvextend` and `resize2fs` after installation.
+
+### Windows VM with GPU Passthrough
+
+Unraid supports bare-metal passthrough of PCIe devices to VMs. I have a Windows VM that can receive the GPU directly, essentially turning it into a full Windows workstation running on the same hardware. The trick is using your motherboard's actual UUID in the VM configuration to avoid Windows licensing issues. IOMMU grouping (set to "Downstream" in VM Manager) makes device passthrough work cleanly.
+
+### SSH & Remote Access
+
+All VMs and the Unraid host are accessible via SSH with **ed25519 key-based authentication**. Password authentication is disabled for security. I use SSH port forwarding for accessing internal services during development and testing.
+
+
+## Backup Strategy
+
+Data that isn't backed up doesn't exist. I use a layered approach:
+
+**Duplicati** handles encrypted, compressed backups to external drives. It supports scheduling, deduplication, and versioning. For local backups, I set the remote volume size to 1 GB; for any future cloud backup targets, 50-100 MB would be more appropriate.
+
+**Krusader** provides a dual-pane file manager for manual synchronization tasks — particularly useful for one-way asymmetric syncs where you want to remove deleted files from the backup without risking the source. I prefer running these manually to ensure accidental deletions in the source don't propagate automatically.
+
+**Nextcloud** itself serves as a backup target for configurations from Home Assistant and other services.
+
+The Unraid flash drive (which contains the OS and configuration) is backed up via the Community Applications plugin on a schedule.
+
+
+## Lessons Learned
+
+After four-plus years of running this setup, a few things stand out:
+
+**Start with what you'll use daily.** Plex and Nextcloud justified the hardware cost within the first month. Everything else grew organically from there.
+
+**SSDs for appdata are non-negotiable.** Docker containers with their databases on spinning rust are painfully slow. The NVMe cache pool was the single biggest quality-of-life upgrade.
+
+**Authentik pays for itself in sanity.** Once you have more than five services, centralized SSO stops being a nice-to-have and becomes essential.
+
+**Cloudflare Zero Trust Tunnels simplified everything.** I spent hours debugging port forwarding and certificate issues before switching. The tunnel approach is more secure and dramatically easier to set up.
+
+**Document everything as you go.** My setup notes (which informed this article) have saved me dozens of hours during rebuilds and troubleshooting. When a Docker container breaks at 11 PM, you'll be glad you wrote down what you did the first time.
+
+**Expect to break things.** That's half the fun. The homelab community is full of people who've hit the same walls, and the Unraid forums are particularly helpful.
+
+
+## What's Next
+
+The home server continues to evolve. On my radar: experimenting with local AI models on the GPU, and exploring Guacamole for browser-based remote desktop access. The beauty of this platform is that adding a new capability is just another Docker container away.
+
+If you're on the fence about building one — start small. A basic Unraid box with Plex and Nextcloud will teach you 80% of what you need to know, and the rabbit hole only gets more interesting from there.
+

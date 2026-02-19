@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="460" fill="#f9fafb"/>
+
+  <!-- LEFT PANEL: Without -->
+  <rect x="20" y="16" width="370" height="428" rx="10" fill="#fff" filter="url(#ds)" stroke="#D4A0A0" stroke-width="1"/>
+
+  <!-- Header bar -->
+  <rect x="20" y="16" width="370" height="48" rx="10" fill="#FDF2F2"/>
+  <rect x="20" y="44" width="370" height="20" fill="#FDF2F2"/>
+  <circle cx="46" cy="40" r="10" fill="#C0392B" opacity="0.15"/>
+  <line x1="42" y1="36" x2="50" y2="44" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="50" y1="36" x2="42" y2="44" stroke="#C0392B" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="66" y="46" fill="#6B2020" font-size="14" font-weight="700">Without a Semantic Layer</text>
+
+  <!-- Analyst boxes -->
+  <rect x="42" y="84" width="130" height="36" rx="6" fill="#FDF2F2" stroke="#E8C4C4" stroke-width="1"/>
+  <text x="107" y="107" text-anchor="middle" fill="#6B2020" font-size="11" font-weight="600">Analyst A</text>
+
+  <rect x="238" y="84" width="130" height="36" rx="6" fill="#FDF2F2" stroke="#E8C4C4" stroke-width="1"/>
+  <text x="303" y="107" text-anchor="middle" fill="#6B2020" font-size="11" font-weight="600">Analyst B</text>
+
+  <!-- Arrows down -->
+  <line x1="107" y1="120" x2="107" y2="148" stroke="#C0392B" stroke-width="1.2" opacity="0.6"/>
+  <polygon points="103,145 107,154 111,145" fill="#C0392B" opacity="0.6"/>
+  <line x1="303" y1="120" x2="303" y2="148" stroke="#C0392B" stroke-width="1.2" opacity="0.6"/>
+  <polygon points="299,145 303,154 307,145" fill="#C0392B" opacity="0.6"/>
+
+  <!-- SQL blocks -->
+  <rect x="42" y="156" width="130" height="60" rx="5" fill="#2C3E50"/>
+  <text x="107" y="175" text-anchor="middle" fill="#8899A6" font-size="8.5" font-family="'SF Mono','Fira Code',monospace">SUM(order_total)</text>
+  <text x="107" y="190" text-anchor="middle" fill="#8899A6" font-size="8.5" font-family="'SF Mono','Fira Code',monospace">WHERE status='done'</text>
+  <text x="107" y="208" text-anchor="middle" fill="#E74C3C" font-size="10" font-weight="600">$1.2M</text>
+
+  <rect x="238" y="156" width="130" height="60" rx="5" fill="#2C3E50"/>
+  <text x="303" y="175" text-anchor="middle" fill="#8899A6" font-size="8.5" font-family="'SF Mono','Fira Code',monospace">SUM(amount)</text>
+  <text x="303" y="190" text-anchor="middle" fill="#8899A6" font-size="8.5" font-family="'SF Mono','Fira Code',monospace">WHERE type='sale'</text>
+  <text x="303" y="208" text-anchor="middle" fill="#E74C3C" font-size="10" font-weight="600">$1.4M</text>
+
+  <!-- Conflict indicator -->
+  <circle cx="205" cy="186" r="12" fill="#C0392B" opacity="0.1"/>
+  <text x="205" y="191" text-anchor="middle" fill="#C0392B" font-size="16" font-weight="700">≠</text>
+
+  <!-- Problem items -->
+  <circle cx="54" cy="250" r="3.5" fill="#E8C4C4"/>
+  <text x="66" y="254" fill="#6B2020" font-size="11">Different SQL = different numbers</text>
+  <circle cx="54" cy="276" r="3.5" fill="#E8C4C4"/>
+  <text x="66" y="280" fill="#6B2020" font-size="11">No reuse across teams</text>
+  <circle cx="54" cy="302" r="3.5" fill="#E8C4C4"/>
+  <text x="66" y="306" fill="#6B2020" font-size="11">Tribal knowledge required</text>
+  <circle cx="54" cy="328" r="3.5" fill="#E8C4C4"/>
+  <text x="66" y="332" fill="#6B2020" font-size="11">Errors caught late — or never</text>
+
+  <!-- Bottom summary -->
+  <rect x="42" y="364" width="326" height="56" rx="8" fill="#FDF2F2"/>
+  <text x="205" y="388" text-anchor="middle" fill="#6B2020" font-size="13" font-weight="700">Every report is a new risk.</text>
+  <text x="205" y="406" text-anchor="middle" fill="#8B4040" font-size="11">Numbers don't match, trust erodes.</text>
+
+  <!-- RIGHT PANEL: With -->
+  <rect x="410" y="16" width="370" height="428" rx="10" fill="#fff" filter="url(#ds)" stroke="#A0C4B8" stroke-width="1"/>
+
+  <!-- Header bar -->
+  <rect x="410" y="16" width="370" height="48" rx="10" fill="#F0F9F5"/>
+  <rect x="410" y="44" width="370" height="20" fill="#F0F9F5"/>
+  <circle cx="436" cy="40" r="10" fill="#2A7F62" opacity="0.15"/>
+  <polyline points="431,40 435,44 443,36" fill="none" stroke="#2A7F62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="456" y="46" fill="#1A4D3A" font-size="14" font-weight="700">With a Semantic Layer</text>
+
+  <!-- Semantic Layer block -->
+  <rect x="464" y="84" width="252" height="44" rx="8" fill="#2A7F62"/>
+  <text x="590" y="103" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Semantic Layer</text>
+  <text x="590" y="119" text-anchor="middle" fill="#fff" font-size="10" opacity="0.8">Revenue — defined once, used everywhere</text>
+
+  <!-- Branching arrows -->
+  <line x1="590" y1="128" x2="590" y2="148" stroke="#2A7F62" stroke-width="1.5"/>
+  <!-- Horizontal line -->
+  <line x1="470" y1="148" x2="714" y2="148" stroke="#2A7F62" stroke-width="1.5"/>
+  <!-- Vertical drops -->
+  <line x1="470" y1="148" x2="470" y2="168" stroke="#2A7F62" stroke-width="1.2"/>
+  <polygon points="466,165 470,174 474,165" fill="#2A7F62"/>
+  <line x1="530" y1="148" x2="530" y2="168" stroke="#2A7F62" stroke-width="1.2"/>
+  <polygon points="526,165 530,174 534,165" fill="#2A7F62"/>
+  <line x1="652" y1="148" x2="652" y2="168" stroke="#2A7F62" stroke-width="1.2"/>
+  <polygon points="648,165 652,174 656,165" fill="#2A7F62"/>
+  <line x1="714" y1="148" x2="714" y2="168" stroke="#2A7F62" stroke-width="1.2"/>
+  <polygon points="710,165 714,174 718,165" fill="#2A7F62"/>
+
+  <!-- Dashboard cards -->
+  <rect x="438" y="178" width="68" height="52" rx="6" fill="#F0F9F5" stroke="#C8E6D8" stroke-width="1"/>
+  <text x="472" y="198" text-anchor="middle" fill="#1A4D3A" font-size="9" font-weight="600">Dashboard</text>
+  <text x="472" y="212" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">$1.2M</text>
+  <text x="472" y="224" text-anchor="middle" fill="#5A8A7A" font-size="8">A</text>
+
+  <rect x="512" y="178" width="68" height="52" rx="6" fill="#F0F9F5" stroke="#C8E6D8" stroke-width="1"/>
+  <text x="546" y="198" text-anchor="middle" fill="#1A4D3A" font-size="9" font-weight="600">Dashboard</text>
+  <text x="546" y="212" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">$1.2M</text>
+  <text x="546" y="224" text-anchor="middle" fill="#5A8A7A" font-size="8">B</text>
+
+  <rect x="620" y="178" width="68" height="52" rx="6" fill="#F0F9F5" stroke="#C8E6D8" stroke-width="1"/>
+  <text x="654" y="198" text-anchor="middle" fill="#1A4D3A" font-size="9" font-weight="600">Ad-hoc</text>
+  <text x="654" y="212" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">$1.2M</text>
+  <text x="654" y="224" text-anchor="middle" fill="#5A8A7A" font-size="8">Query</text>
+
+  <rect x="694" y="178" width="68" height="52" rx="6" fill="#F0F9F5" stroke="#C8E6D8" stroke-width="1"/>
+  <text x="728" y="198" text-anchor="middle" fill="#1A4D3A" font-size="9" font-weight="600">Embedded</text>
+  <text x="728" y="212" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">$1.2M</text>
+  <text x="728" y="224" text-anchor="middle" fill="#5A8A7A" font-size="8">Report</text>
+
+  <!-- Benefit items -->
+  <circle cx="444" cy="264" r="3.5" fill="#C8E6D8"/>
+  <text x="456" y="268" fill="#1A4D3A" font-size="11">One definition — infinite reuse</text>
+  <circle cx="444" cy="290" r="3.5" fill="#C8E6D8"/>
+  <text x="456" y="294" fill="#1A4D3A" font-size="11">Every consumer gets the same number</text>
+  <circle cx="444" cy="316" r="3.5" fill="#C8E6D8"/>
+  <text x="456" y="320" fill="#1A4D3A" font-size="11">Changes propagate automatically</text>
+  <circle cx="444" cy="342" r="3.5" fill="#C8E6D8"/>
+  <text x="456" y="346" fill="#1A4D3A" font-size="11">Zero metric drift over time</text>
+
+  <!-- Bottom summary -->
+  <rect x="432" y="364" width="326" height="56" rx="8" fill="#F0F9F5"/>
+  <text x="595" y="388" text-anchor="middle" fill="#1A4D3A" font-size="13" font-weight="700">Define once. Trust everywhere.</text>
+  <text x="595" y="406" text-anchor="middle" fill="#4A7A6A" font-size="11">Consistency is the foundation of trust.</text>
+</svg>
