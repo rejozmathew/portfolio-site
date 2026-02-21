@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="420" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Model Performance — KS Statistic &amp; Top 5% Capture Rate by Month</text>
+  <line x1="270" y1="48" x2="830" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Chart area -->
+  <rect x="80" y="70" width="640" height="310" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Y-axis labels -->
+  <text x="70" y="95" text-anchor="end" fill="#94a3b8" font-size="9">100%</text>
+  <text x="70" y="157" text-anchor="end" fill="#94a3b8" font-size="9">95%</text>
+  <text x="70" y="219" text-anchor="end" fill="#94a3b8" font-size="9">90%</text>
+  <text x="70" y="281" text-anchor="end" fill="#94a3b8" font-size="9">85%</text>
+  <text x="70" y="343" text-anchor="end" fill="#94a3b8" font-size="9">80%</text>
+
+  <!-- Grid lines -->
+  <line x1="85" y1="90" x2="715" y2="90" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="85" y1="152" x2="715" y2="152" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="85" y1="214" x2="715" y2="214" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="85" y1="276" x2="715" y2="276" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="85" y1="338" x2="715" y2="338" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="85" y1="370" x2="715" y2="370" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- KS Bars (navy) -->
+  <!-- Jul: 91.31% → bar height = (91.31-80)/20 * 280 = 158.3 from bottom (370) -->
+  <rect x="120" y="211" width="45" height="159" rx="4" fill="#1F4E79" opacity="0.85"/>
+  <text x="142" y="203" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">91.3%</text>
+
+  <!-- Aug: 91.48% -->
+  <rect x="240" y="209" width="45" height="161" rx="4" fill="#1F4E79" opacity="0.85"/>
+  <text x="262" y="201" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">91.5%</text>
+
+  <!-- Sep: 98.74% -->
+  <rect x="360" y="107" width="45" height="263" rx="4" fill="#1F4E79" opacity="0.85"/>
+  <text x="382" y="100" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">98.7%</text>
+
+  <!-- Oct: 94.79% -->
+  <rect x="480" y="163" width="45" height="207" rx="4" fill="#1F4E79" opacity="0.85"/>
+  <text x="502" y="156" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">94.8%</text>
+
+  <!-- Nov: 98.85% -->
+  <rect x="600" y="105" width="45" height="265" rx="4" fill="#1F4E79" opacity="0.85"/>
+  <text x="622" y="98" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">98.9%</text>
+
+  <!-- Top5% Capture Bars (teal) -->
+  <!-- Jul: 92.16% -->
+  <rect x="170" y="199" width="45" height="171" rx="4" fill="#2A7F62" opacity="0.85"/>
+  <text x="192" y="192" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">92.2%</text>
+
+  <!-- Aug: 86.89% -->
+  <rect x="290" y="273" width="45" height="97" rx="4" fill="#2A7F62" opacity="0.85"/>
+  <text x="312" y="266" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">86.9%</text>
+
+  <!-- Sep: 99.03% -->
+  <rect x="410" y="96" width="45" height="274" rx="4" fill="#2A7F62" opacity="0.85"/>
+  <text x="432" y="89" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">99.0%</text>
+
+  <!-- Oct: 86.43% -->
+  <rect x="530" y="280" width="45" height="90" rx="4" fill="#2A7F62" opacity="0.85"/>
+  <text x="552" y="273" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">86.4%</text>
+
+  <!-- Nov: 100% -->
+  <rect x="650" y="90" width="45" height="280" rx="4" fill="#2A7F62" opacity="0.85"/>
+  <text x="672" y="84" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">100%</text>
+
+  <!-- X-axis labels -->
+  <text x="167" y="390" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Jul</text>
+  <text x="287" y="390" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Aug</text>
+  <text x="407" y="390" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Sep</text>
+  <text x="527" y="390" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Oct</text>
+  <text x="647" y="390" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Nov</text>
+
+  <!-- Legend and summary -->
+  <rect x="770" y="80" width="290" height="300" rx="10" fill="#f0f4f8" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="915" y="110" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="700">Model Metrics</text>
+  <line x1="800" y1="120" x2="1030" y2="120" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Legend items -->
+  <rect x="800" y="140" width="16" height="16" rx="3" fill="#1F4E79"/>
+  <text x="825" y="153" fill="#2C3E50" font-size="10">KS Statistic</text>
+  <rect x="800" y="170" width="16" height="16" rx="3" fill="#2A7F62"/>
+  <text x="825" y="183" fill="#2C3E50" font-size="10">Top 5% Capture Rate</text>
+
+  <line x1="800" y1="200" x2="1030" y2="200" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Key Metrics -->
+  <text x="800" y="225" fill="#1F4E79" font-size="11" font-weight="700">Avg. KS:</text>
+  <text x="900" y="225" fill="#2C3E50" font-size="11">95.03%</text>
+
+  <text x="800" y="250" fill="#2A7F62" font-size="11" font-weight="700">Avg. Capture:</text>
+  <text x="920" y="250" fill="#2C3E50" font-size="11">92.90%</text>
+
+  <text x="800" y="275" fill="#2C3E50" font-size="11" font-weight="700">Algorithm:</text>
+  <text x="900" y="275" fill="#2C3E50" font-size="11">Random Forest</text>
+
+  <text x="800" y="300" fill="#2C3E50" font-size="11" font-weight="700">AUC (Test):</text>
+  <text x="915" y="300" fill="#2C3E50" font-size="11">0.89</text>
+
+  <text x="800" y="325" fill="#2C3E50" font-size="11" font-weight="700">Agent Recall:</text>
+  <text x="920" y="325" fill="#2C3E50" font-size="11">76%</text>
+
+  <line x1="800" y1="340" x2="1030" y2="340" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="800" y="363" fill="#94a3b8" font-size="9" font-style="italic">Nov OOT validation shows</text>
+  <text x="800" y="376" fill="#94a3b8" font-size="9" font-style="italic">strongest performance — 100%</text>
+</svg>

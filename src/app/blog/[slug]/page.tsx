@@ -10,15 +10,18 @@ import type { Metadata } from 'next';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'content', 'blog');
 
-// Read all .mdx filenames and strip the extension
 function getAllPostSlugs(): string[] {
   return fs
     .readdirSync(postsDirectory)
     .filter((name) => name.endsWith('.mdx'))
+    .filter((name) => {
+      const fullPath = path.join(postsDirectory, name);
+      const { data } = matter(fs.readFileSync(fullPath, 'utf8'));
+      return data.hidden !== true;
+    })
     .map((name) => name.replace(/\.mdx$/, ''));
 }
 
-// Read and parse a single MDX file by slug
 function getPostBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   try {
@@ -33,6 +36,9 @@ function getPostBySlug(slug: string) {
         date: string;
         description: string;
         tags?: string | string[];
+        contentType?: string;
+        traits?: string[];
+        hidden?: boolean;
       },
       content,
       readingTime: stats.text,
@@ -43,13 +49,42 @@ function getPostBySlug(slug: string) {
   }
 }
 
-// Tell Next.js which slugs to generate at build time
+function normalizeTags(raw: string | string[] | undefined): string[] {
+  if (Array.isArray(raw)) return raw.map((t) => t.trim());
+  if (typeof raw === 'string') return raw.split(',').map((t) => t.trim());
+  return [];
+}
+
+function formatContentType(ct: string): string {
+  if (ct === 'technical') return 'Technical Deep Dive';
+  if (ct === 'strategy') return 'Strategy';
+  return ct;
+}
+
+function formatTrait(trait: string): string {
+  const labels: Record<string, string> = {
+    code: 'Code',
+    architecture: 'Architecture',
+    framework: 'Framework',
+    'case-study': 'Case Study',
+    strategy: 'Strategy',
+    implementation: 'Implementation',
+    data: 'Data',
+  };
+  return labels[trait] ?? trait;
+}
+
+function contentTypeBadgeClass(ct: string): string {
+  if (ct === 'technical') return 'bg-teal-100 text-teal-700';
+  if (ct === 'strategy') return 'bg-violet-100 text-violet-700';
+  return 'bg-gray-100 text-gray-600';
+}
+
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
-// Build page metadata (head tags) dynamically per slug
 export async function generateMetadata({
   params,
 }: {
@@ -59,10 +94,7 @@ export async function generateMetadata({
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return {
-      title: 'Post Not Found',
-      description: '',
-    };
+    return { title: 'Post Not Found', description: '' };
   }
 
   return {
@@ -71,7 +103,6 @@ export async function generateMetadata({
   };
 }
 
-// The main page component for /blog/[slug]
 export default async function BlogPostPage({
   params,
 }: {
@@ -80,9 +111,13 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
-  if (!post) {
+  if (!post || post.frontmatter.hidden === true) {
     notFound();
   }
+
+  const tags = normalizeTags(post.frontmatter.tags);
+  const traits = Array.isArray(post.frontmatter.traits) ? post.frontmatter.traits : [];
+  const contentType = post.frontmatter.contentType ?? '';
 
   return (
     <div className="container mx-auto px-4 py-12 bg-white min-h-screen">
@@ -94,34 +129,49 @@ export default async function BlogPostPage({
           >
             &larr; Back to Blog
           </Link>
+
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
             {post.frontmatter.title}
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+
+          <p className="text-sm text-gray-400 mb-3">
             Published on{' '}
             {new Date(post.frontmatter.date).toLocaleDateString()} |{' '}
             {post.readingTime}
           </p>
-          {(() => {
-            let tags: string[] = [];
-            if (Array.isArray(post.frontmatter.tags)) {
-              tags = post.frontmatter.tags.map((t: string) => t.trim());
-            } else if (typeof post.frontmatter.tags === 'string') {
-              tags = post.frontmatter.tags.split(',').map((t: string) => t.trim());
-            }
-            return tags.length > 0 ? (
-              <div className="flex flex-wrap gap-2 mt-3">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-block bg-gray-50 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            ) : null;
-          })()}
+
+          {/* Content type + traits */}
+          {contentType && (
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span
+                className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded ${contentTypeBadgeClass(contentType)}`}
+              >
+                {formatContentType(contentType)}
+              </span>
+              {traits.map((trait) => (
+                <span
+                  key={trait}
+                  className="inline-block bg-white/10 text-white/80 text-xs font-medium px-2 py-0.5 rounded"
+                >
+                  {formatTrait(trait)}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Topic tags */}
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-block bg-white/10 text-white/70 text-xs font-medium px-2.5 py-0.5 rounded"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
 
         <div className="prose prose-lg max-w-none">

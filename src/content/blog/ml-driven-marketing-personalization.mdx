@@ -3,6 +3,8 @@ title: "How Machine Learning Transformed Enterprise Marketing Personalization"
 date: "2025-02-20"
 description: "A deep dive into how a hybrid GBDT + Deep Neural Network architecture — inspired by Facebook's seminal 2014 research — replaced rules-based segmentation with intelligent, real-time offer personalization at enterprise scale."
 tags: ["Machine Learning", "Personalization", "MarTech", "Neural Networks", "Gradient Boosting"]
+contentType: "strategy"
+traits: ["architecture", "case-study"]
 image: "/images/blog/ml-personalization/gbdt-dnn-architecture.svg"
 ---
 
@@ -44,7 +46,7 @@ The personalization model architecture went through three distinct generations, 
 
 **Generation 3: ML 2.0 — Hybrid GBDT + DNN (2024+).** The current architecture consolidates the 25 individual models into three multi-label deep neural network classifiers that jointly produce all 25 propensity scores. A gradient-boosted decision tree ensemble sits upstream, acting as a learned feature transformation layer. This design, inspired directly by Facebook's 2014 research, delivers better predictions with a more maintainable architecture.
 
-## The Core Innovation: GBDT as a Feature Engineering Engine
+## The Core Innovation in ML 2.0 : GBDT as a Feature Engineering Engine
 
 The key insight from the Facebook paper — *"Practical Lessons from Predicting Clicks on Ads at Facebook"* (He et al., 2014, ADKDD) — is that gradient-boosted decision trees are not just good classifiers. They are excellent automated feature engineers.
 

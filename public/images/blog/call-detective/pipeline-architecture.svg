@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowCharcoal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <filter id="shadowLight" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="620" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Call Detective — End-to-End Pipeline Architecture</text>
+  <line x1="300" y1="48" x2="800" y2="48" stroke="url(#headerGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Phase Labels -->
+  <text x="155" y="78" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">DATA INGESTION</text>
+  <text x="440" y="78" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">PREPROCESSING</text>
+  <text x="720" y="78" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">ML SCORING</text>
+  <text x="980" y="78" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">REVIEW &amp; ACTION</text>
+
+  <!-- Verint Platform -->
+  <rect x="30" y="100" width="150" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="105" y="128" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">VERINT</text>
+  <text x="105" y="144" text-anchor="middle" fill="#e0e7ff" font-size="9">Call Recording</text>
+  <text x="105" y="158" text-anchor="middle" fill="#e0e7ff" font-size="9">Platform</text>
+  <text x="105" y="178" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">speech → text</text>
+
+  <!-- Arrow -->
+  <line x1="180" y1="150" x2="220" y2="150" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Call Transcripts -->
+  <rect x="225" y="100" width="150" height="100" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="300" y="128" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">CALL TRANSCRIPTS</text>
+  <text x="300" y="146" text-anchor="middle" fill="#e0e7ff" font-size="9">JSON format</text>
+  <text x="300" y="160" text-anchor="middle" fill="#e0e7ff" font-size="9">Jul 2020 – Nov 2020</text>
+  <text x="300" y="178" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">verint_id, call_time, text</text>
+
+  <!-- Arrow -->
+  <line x1="375" y1="150" x2="415" y2="150" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowCharcoal)"/>
+
+  <!-- PII Tokenization -->
+  <rect x="420" y="95" width="160" height="110" rx="10" fill="#D4380D" opacity="0.85" filter="url(#shadowLight)"/>
+  <text x="500" y="118" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">🔒 PII TOKENIZATION</text>
+  <text x="500" y="136" text-anchor="middle" fill="#ffe0d0" font-size="9">SSN → [TOKEN_SSN]</text>
+  <text x="500" y="150" text-anchor="middle" fill="#ffe0d0" font-size="9">DOB → [TOKEN_DOB]</text>
+  <text x="500" y="164" text-anchor="middle" fill="#ffe0d0" font-size="9">Card# → [TOKEN_CARD]</text>
+  <text x="500" y="184" text-anchor="middle" fill="#ffc8b0" font-size="8" font-style="italic">irreversible for model</text>
+
+  <!-- Arrow down from tokenization -->
+  <line x1="500" y1="205" x2="500" y2="245" stroke="#D4380D" stroke-width="2" marker-end="url(#arrowCharcoal)"/>
+
+  <!-- NLP Preprocessing -->
+  <rect x="420" y="250" width="160" height="110" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="500" y="275" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">NLP PREPROCESSING</text>
+  <text x="500" y="295" text-anchor="middle" fill="#d0f0e0" font-size="9">Stopword removal</text>
+  <text x="500" y="310" text-anchor="middle" fill="#d0f0e0" font-size="9">Lemmatization</text>
+  <text x="500" y="325" text-anchor="middle" fill="#d0f0e0" font-size="9">Synonym normalization</text>
+  <text x="500" y="342" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">Boolean Adjusted TF-IDF</text>
+
+  <!-- Arrow right -->
+  <line x1="580" y1="305" x2="620" y2="305" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+  <!-- DCC Cases (top right area) -->
+  <rect x="30" y="250" width="150" height="90" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="105" y="275" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">DCC CASES</text>
+  <text x="105" y="293" text-anchor="middle" fill="#e0e7ff" font-size="9">Confirmed complaints</text>
+  <text x="105" y="307" text-anchor="middle" fill="#e0e7ff" font-size="9">&amp; feedback cases</text>
+  <text x="105" y="325" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">5,948 cases → 2,810 matched</text>
+
+  <!-- Arrow from DCC to labeling -->
+  <line x1="180" y1="295" x2="220" y2="295" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Labeling -->
+  <rect x="225" y="255" width="150" height="80" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="300" y="280" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">LABELING</text>
+  <text x="300" y="298" text-anchor="middle" fill="#e0e7ff" font-size="9">Label 1: Complaint</text>
+  <text x="300" y="312" text-anchor="middle" fill="#e0e7ff" font-size="9">Label 0: Non-complaint</text>
+
+  <!-- Arrow from labeling to preprocessing -->
+  <line x1="375" y1="295" x2="415" y2="300" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowCharcoal)"/>
+
+  <!-- Feature Selection -->
+  <rect x="625" y="250" width="160" height="110" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="705" y="275" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">FEATURE SELECTION</text>
+  <text x="705" y="295" text-anchor="middle" fill="#e0e7ff" font-size="9">Top 1,000 features</text>
+  <text x="705" y="310" text-anchor="middle" fill="#e0e7ff" font-size="9">Chi-squared test</text>
+  <line x1="655" y1="328" x2="755" y2="328" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="705" y="345" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="600">RANDOM FOREST</text>
+
+  <!-- Arrow -->
+  <line x1="785" y1="305" x2="825" y2="305" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Scoring -->
+  <rect x="830" y="250" width="150" height="110" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="905" y="275" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">DAILY SCORING</text>
+  <text x="905" y="295" text-anchor="middle" fill="#d0f0e0" font-size="9">Batch execution</text>
+  <text x="905" y="310" text-anchor="middle" fill="#d0f0e0" font-size="9">3-day lag delivery</text>
+  <text x="905" y="325" text-anchor="middle" fill="#d0f0e0" font-size="9">Top scored calls</text>
+  <text x="905" y="345" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">→ QMS queue</text>
+
+  <!-- Arrow down to review -->
+  <line x1="905" y1="360" x2="905" y2="400" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+  <!-- Agent Review -->
+  <rect x="830" y="405" width="150" height="100" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="905" y="430" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">AGENT REVIEW</text>
+  <text x="905" y="450" text-anchor="middle" fill="#e0e7ff" font-size="9">Human-in-the-loop</text>
+  <text x="905" y="464" text-anchor="middle" fill="#e0e7ff" font-size="9">Label verification</text>
+  <text x="905" y="478" text-anchor="middle" fill="#e0e7ff" font-size="9">Agent notes</text>
+  <text x="905" y="494" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">76% recall validated</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M 830 480 L 500 480 L 500 365" stroke="#D4380D" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#arrowCharcoal)"/>
+  <text x="660" y="474" text-anchor="middle" fill="#D4380D" font-size="8" font-weight="600">FEEDBACK LOOP — Retraining Signal</text>
+
+  <!-- Tableau Dashboard -->
+  <rect x="625" y="405" width="160" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="705" y="430" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">TABLEAU TRACKING</text>
+  <text x="705" y="450" text-anchor="middle" fill="#e0e7ff" font-size="9">Missed complaints: 2</text>
+  <text x="705" y="464" text-anchor="middle" fill="#e0e7ff" font-size="9">Missed feedback: 28</text>
+  <text x="705" y="478" text-anchor="middle" fill="#e0e7ff" font-size="9">63% reviewed rate</text>
+  <text x="705" y="494" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">daily review dashboard</text>
+
+  <!-- Arrow from review to dashboard -->
+  <line x1="830" y1="455" x2="790" y2="455" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowCharcoal)"/>
+
+  <!-- Bottom legend -->
+  <rect x="30" y="560" width="1040" height="45" rx="8" fill="#f0f4f8" stroke="#e2e8f0" stroke-width="1"/>
+  <circle cx="60" cy="582" r="6" fill="#1F4E79"/>
+  <text x="75" y="586" fill="#2C3E50" font-size="9">Data Sources</text>
+  <circle cx="180" cy="582" r="6" fill="#2C3E50"/>
+  <text x="195" y="586" fill="#2C3E50" font-size="9">Transformation</text>
+  <circle cx="310" cy="582" r="6" fill="#2A7F62"/>
+  <text x="325" y="586" fill="#2C3E50" font-size="9">ML &amp; Scoring</text>
+  <circle cx="430" cy="582" r="6" fill="#D4380D"/>
+  <text x="445" y="586" fill="#2C3E50" font-size="9">Privacy / Feedback</text>
+  <line x1="560" y1="582" x2="590" y2="582" stroke="#D4380D" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="600" y="586" fill="#2C3E50" font-size="9">Retraining loop</text>
+</svg>

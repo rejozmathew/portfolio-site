@@ -1,0 +1,187 @@
+---
+title: "Building ML-Powered Monitoring Controls in a Financial Services Call Center"
+date: "2025-07-05"
+description: "How we implemented a dual-track intelligence layer over call transcripts — traditional ML for regulatory-grade complaint detection and GenAI for coaching, summarization, and knowledge gap analysis — and the framework for deciding which approach fits which use case."
+tags: ["Machine Learning", "NLP", "Compliance", "GenAI", "LLM", "Call Center", "HITL", "RAG"]
+contentType: "strategy"
+traits: ["framework", "architecture", "case-study"]
+---
+
+{/* Hero section */}
+
+### "How Do You Know You're Catching Every Complaint?"
+
+That was the question. Not from a business leader. Not from an internal auditor. From a **regulator**.
+
+In financial services, customer complaints aren't just feedback — they're a regulatory obligation. The CFPB, OCC, and state regulators expect institutions to capture, track, and resolve every complaint. Missing one isn't a customer service failure. It's a compliance failure — one that can lead to consent orders, fines, and the kind of reputational damage that no amount of marketing can fix.
+
+The existing process was straightforward: agents receive calls, and when they recognize a complaint, they manually log it in the complaint management system. This works well when a customer says "I want to file a formal complaint." But complaints aren't always explicit. A customer frustrated about a payment issue might vent their frustration, have it resolved by a skilled agent, and hang up satisfied — and nobody ever logs it. The agent handled the call well; they just didn't *classify* it correctly.
+
+That gap between what agents perceive as a complaint and what regulators define as one is where risk lives. And when the regulator asks "how do you know?", "our agents are well-trained" isn't a sufficient answer. You need a **detective control** — a systematic, auditable mechanism that retrospectively identifies calls that should have been flagged but weren't.
+
+That was the gensis of this initiative: an ML-powered monitoring layer that sits on top of call transcripts and ensures no complaint goes undetected. But as we built it, we discovered that the infrastructure for complaint detection also unlocked an entirely different set of capabilities — coaching, summarization, knowledge gap analysis — that required a fundamentally different kind of AI. The story of how we built both, and the framework for deciding which approach to use where, is what this article is about.
+
+### The First Decision: Traditional ML or GenAI?
+
+Before diving into implementation, the most important architectural decision is which AI approach to apply to which problem. This isn't a theoretical question — it has direct implications for regulatory defensibility, cost, and operational complexity.
+
+We found that the choice comes down to one question: **does the output of this model need to be explained to a regulator?**
+
+If yes, you want traditional ML. If no, you want GenAI. Here's why.
+
+![Side-by-side comparison of Traditional ML and Generative AI approaches across explainability, determinism, cost, and comprehension dimensions](/images/blog/call-detective/ml-vs-genai.svg)
+
+**Explainability.** When a regulator asks "why was this call flagged?", a Random Forest model can point to specific feature importances — the words "escalate," "frustrated," and "supervisor" drove the score. The reasoning is transparent and auditable. An LLM can provide a natural-language explanation, but that explanation is itself generated — a post-hoc rationalization, not a trace of the actual computation. In a regulatory examination, that distinction matters.
+
+**Determinism.** Feed the same transcript into a traditional classifier twice, you get the same score. Feed it into an LLM twice, you might get different results — different confidence levels, sometimes even different classifications. This stochasticity is fine for internal analytics but problematic for compliance, where audit trails demand reproducibility.
+
+**Output calibration.** Traditional ML models produce numeric scores that can be thresholded, ranked, and monitored with standard statistical methods. Drift detection, performance monitoring, and alerting are well-understood problems with established tooling. LLM outputs are harder to monitor — how do you measure drift in a generated explanation?
+
+**But — and this is the critical counterpoint — traditional ML can't *understand* a call.** It can classify. It can score. It cannot summarize a 45-minute conversation, identify that an agent gave incorrect policy information, or detect that a customer's frustration stemmed from a systemic issue with payment processing. Moreover, traditional ML performance is heavily dependent quality of transcript. The deep language comprehension that only LLMs provide becomes very useful here.
+
+The pragmatic answer is a **dual-track architecture**: traditional ML for regulatory-facing classification (complaint detection, risk scoring — anything that needs to be explained, reproduced, and audited), and GenAI for internal-facing intelligence (summarization, coaching, document retrieval — anything that needs comprehension and flexibility).
+
+Both tracks operate on the same data pipeline. The difference is the inference layer and the accountability standard applied to the output.
+
+### The Shared Foundation: From Call Recording to Clean Transcript
+
+Regardless of whether a transcript feeds a classifier or an LLM, it starts in the same place: a call recording platform that converts speech to text. In our case, we used Verint, but the same pattern applies whether you're using NICE, AWS Transcribe, Google Speech-to-Text, or any other platform. The output is a text transcript with metadata — a call identifier, timestamp, and the full conversation as text.
+
+Before that transcript touches any model — traditional or generative — it goes through **PII tokenization**. This is a non-negotiable step in financial services.
+
+![Privacy tokenization pipeline showing how PII is replaced with tokens before reaching any model](/images/blog/call-detective/privacy-tokenization.svg)
+
+Call transcripts are among the most sensitive data in any financial institution. A single conversation might include a customer's name, Social Security number, date of birth, and card numbers — all spoken aloud and faithfully captured by the transcription engine. Our tokenization layer scans for these patterns using regex matching and named entity recognition, replacing them with opaque tokens: `[TOKEN_SSN]`, `[TOKEN_DOB]`, `[TOKEN_CARD]`.
+
+The key design principle: **neither model track needs PII to do its job.** Complaint detection depends on sentiment-bearing words like "upset" and "escalate," not on customer identifiers. Call summarization needs to understand the *issue*, not the customer's Social Security number. By tokenizing upstream of everything, we simplified the entire downstream architecture — fewer access controls, simpler retention policies, and a reduced blast radius for any potential data incident.
+
+This tokenization is one-way at the model layer. Even if a model were compromised, no sensitive data could be extracted.
+
+### The Full Architecture: Two Tracks, One Pipeline
+
+With clean, PII-safe transcripts in hand, the pipeline forks into two parallel tracks.
+
+![Dual-track pipeline showing Traditional ML for compliance and GenAI for internal intelligence branching from the same clean transcript source](/images/blog/call-detective/dual-track-pipeline.svg)
+
+**Track 1 (Traditional ML)** handles complaint classification — the regulatory-facing detective control. Transcripts flow through an NLP preprocessing pipeline, into a trained Random Forest classifier, and out the other side as scored, ranked predictions that are delivered to a human review team.
+
+**Track 2 (GenAI / LLM)** handles internal intelligence — summarization, coaching analysis, knowledge gap detection, and trend analysis. The same tokenized transcripts are processed by an LLM (directly or with RAG-augmented context), generating insights that feed into agent training programs and operational dashboards.
+
+Both tracks feed into shared downstream monitoring — compliance dashboards, operations insights, and model health metrics. Let's walk through each.
+
+### Track 1: Traditional ML for Complaint Detection
+
+The ML track is built on a classic NLP classification pipeline, with a few domain-specific innovations that made a significant difference.
+
+**NLP Preprocessing.** Raw transcripts are noisy — conversational, full of filler, and highly variable in structure. The preprocessing pipeline applies four transformations in sequence:
+
+First, **stopword removal** using a custom dictionary. We went well beyond the standard English stopword list, adding hundreds of call-center-specific filler terms ("um," "alright," "basically," "okay") that dilute the feature space without carrying complaint signal.
+
+Second, **lemmatization** reduces inflected words to their base forms — "payments" to "payment," "frustrated" to "frustrate" — so different versions of the same concept map to a single feature.
+
+Third, and most impactful, **synonym normalization**. We built manual dictionaries that collapsed complaint-signal words into canonical forms. "Disappointed," "frustrating," "dissatisfied," and "upset" all mapped to the same root. "Talk to manager," "speak to supervisor," and "escalate" converged to a single feature. This domain-specific normalization mattered more than any algorithm choice — customers express dissatisfaction in dozens of ways, and without it, the model treats each variant as an independent signal.
+
+Finally, **Boolean Adjusted TF-IDF vectorization**. We chose boolean adjustment over raw term frequency because in long call transcripts, word repetition reflects the nature of conversation, not the intensity of complaint. A customer might say "payment" thirty times because the call is *about* a payment — not because their complaint is thirty times more severe. Boolean TF-IDF treats term presence as binary, then applies standard inverse document frequency weighting. This reduced noise dramatically.
+
+From the resulting feature matrix, we selected the top features using a chi-squared statistical test — keeping the model focused on the words most correlated with complaint versus non-complaint labels.
+
+![NLP preprocessing pipeline from raw transcript through stopword removal, lemmatization, synonym normalization, TF-IDF vectorization, and feature selection](/images/blog/call-detective/nlp-preprocessing.svg)
+
+**The Classifier.** We benchmarked over a dozen algorithms — Naive Bayes variants, SVMs, ridge classifiers, and ensemble methods. Random Forest won, not because it had the highest AUC (some linear models edged it out), but because it offered the best combination of **score separation** (the ability to clearly rank complaints at the top of the distribution) and **stability** across time periods.
+
+This stability point is worth emphasizing. In a compliance context, a model that gives consistent scores week over week is more valuable than one that fluctuates with each retraining cycle. We intentionally built this as a stable, one-time model rather than a continuously retrained one — refitting only when drift monitoring indicated meaningful degradation. The refitting cost was low, and the predictability dividend was high.
+
+**Handling Class Imbalance.** Complaint calls represent a tiny fraction of total volume — under 2%. A naive classifier would learn to predict "not a complaint" for everything and appear accurate while being useless. We addressed this through stratified resampling, varying sampling rates by month and call characteristics to achieve a balanced training set that preserved the natural distribution of complaint language.
+
+We also made a deliberate labeling choice: *feedback* cases — where a customer expressed a concern that didn't meet the regulatory definition of a complaint — were labeled as non-complaint. This ensured the model learned the specific distinction that regulators care about, not just "was the customer unhappy?"
+
+**Deployment: Batch with a Lag.** This is a detective control, not a real-time prevention system. The pipeline runs daily as a batch job: pull the latest transcripts, preprocess, score, rank. There's an intentional multi-day lag between a call occurring and its score being delivered, accounting for transcription processing time and ensuring data completeness.
+
+The scored output — a ranked list of calls most likely to be missed complaints — is automatically routed to the quality management system, where human reviewers pick it up.
+
+### The Human-in-the-Loop: Why It's a Feature, Not a Weakness
+
+A model score is a recommendation, not a verdict. The human review process is what turns predictions into compliance outcomes.
+
+Reviewers listen to flagged calls, read transcripts, and assign a verified label: *complaint* (the model was right — this should have been logged), *feedback* (flagged but not a complaint), or *false positive*. Each reviewed call receives agent notes documenting the assessment, creating the audit trail regulators expect.
+
+![Human-in-the-loop QA review cycle showing model scoring, agent review, outcome classification, and feedback loop for retraining](/images/blog/call-detective/hitl-review-loop.svg)
+
+This loop serves three purposes simultaneously:
+
+**Compliance remediation.** When the model surfaces a genuine missed complaint, it gets logged, addressed, and tracked — closing the gap before it becomes a regulatory finding.
+
+**Model improvement.** False positives and missed complaints flow back as labeled data for future retraining decisions. The QA team effectively becomes a continuous labeling function, keeping the model honest over time.
+
+**Operational visibility.** A Tableau tracking dashboard provides daily metrics — how many calls were flagged, how many reviewed, how many were true positives. Leadership gets visibility they never had before into the gap between agent behavior and regulatory expectations.
+
+One of our biggest learnings: the review process wasn't a bottleneck to be optimized away — it was one of the most valuable parts of the system. The qualitative context in agent notes, the nuanced judgment calls about what constitutes a complaint versus feedback — these are things no model, traditional or generative, can fully replicate. The model's job is to narrow the haystack. The human's job is to make the final call.
+
+### Track 2: GenAI for Internal Intelligence
+
+With the complaint detection pipeline running, we had infrastructure that processed every call transcript daily, clean, tokenized, and ready for analysis. This created an opportunity to layer on generative AI capabilities for a completely different set of use cases — ones that require comprehension rather than classification.
+
+![Detailed view of LLM-powered use cases including summarization, coaching, document RAG, and trend analysis](/images/blog/call-detective/llm-use-cases-detail.svg)
+
+**Call Summarization.** The most immediate win. Supervisors and QA reviewers spend enormous time listening to or reading full call recordings to understand what happened. An LLM can process a tokenized transcript and produce a concise summary in seconds — the customer's issue, the resolution provided, and the overall sentiment. This doesn't replace listening to the call when deep review is needed, but it dramatically accelerates triage. Reviewers can scan summaries to prioritize which calls warrant full attention, cutting review time significantly.
+
+These summaries also feed directly into the complaint detection review workflow. When the ML classifier flags a call as a potential missed complaint, the reviewer now sees both the model's score and an LLM-generated summary — giving them context before they invest time in a full review.
+
+**Agent Coaching and Knowledge Gap Detection.** This is where things get interesting. An LLM can evaluate a transcript against a coaching rubric: Did the agent demonstrate empathy? Did they follow de-escalation procedures? Did they provide accurate policy information? Did they offer appropriate resolutions?
+
+By analyzing transcripts in aggregate across an agent's calls over weeks or months, the system can identify patterns: an agent who consistently struggles with payment dispute procedures, a team that frequently escalates calls that could have been resolved at first contact, a cohort of new hires who aren't citing the correct grace period policy.
+
+The real power emerges when you combine coaching analysis with **Document RAG** (Retrieval-Augmented Generation). The LLM doesn't just assess whether the agent sounded confident — it cross-references what the agent told the customer against the *actual current policy*. Here's how:
+
+Internal documents — policies, standard operating procedures, job aids, training materials, FAQ databases — are chunked, embedded, and indexed in a vector store. When the coaching system analyzes a transcript, it retrieves the relevant policy sections and compares them against what the agent communicated. If there's a discrepancy — the agent quoted a 15-day grace period when the policy says 10 days — the system flags it as a **knowledge gap** and can recommend specific training.
+
+This closes a loop that previously required manual QA: identify the mistake, figure out which policy applies, determine the correct information, and create a coaching recommendation. The LLM does all of this automatically, generating targeted, actionable coaching summaries that training teams can act on.
+
+**Why RAG Matters for This Use Case.** Policies change frequently in financial services. A base LLM trained on last year's data might confidently reference procedures that have since been updated. RAG ensures the model always grounds its answers in the latest version of the truth — the current policy documents, not its training data. For an industry where giving a customer the wrong information can itself become a compliance issue, this grounding is essential.
+
+**Trend and Theme Analysis.** Beyond individual call reviews, LLMs can be used to extract structured signals from unstructured transcripts at scale — such as complaint themes, customer intent, sentiment drivers, and likely root-cause cues. Those outputs can then feed traditional ML and analytics pipelines for classification, trending, and monitoring.
+
+For example, a rise in mentions of “late fee” across call centers may indicate a billing or processing issue. A growing cluster of “app login” complaints may align with a recent software release. Regional differences in escalation language may point to a location-specific training or process gap.
+
+Traditional analytics and ML can absolutely handle trend detection, complaint classification, and root-cause analysis — but only after the relevant signals are captured in structured form. LLMs improve this front-end extraction step by reading how customers and agents actually describe issues, including variations in wording that may not map cleanly to predefined categories.
+
+In that sense, LLMs do not replace traditional analytics; they make it more effective by converting transcript language into richer, more usable features for downstream models and dashboards.
+
+
+### Where the Two Tracks Reinforce Each Other
+
+The dual-track architecture isn't just about separation of concerns — the tracks actively make each other better.
+
+LLM-generated summaries **speed up the HITL review process** for the ML track. Reviewers who previously needed 10-15 minutes per flagged call can now triage in 2-3 minutes using the summary, reserving full-listen time for borderline cases.
+
+ML complaint scores **prioritize the LLM coaching pipeline**. Rather than analyzing every call for coaching opportunities (expensive at LLM token rates), you can focus the coaching analysis on calls the classifier flagged — the ones most likely to involve agent performance issues.
+
+RAG-powered knowledge gap detection **feeds back into the ML model's context**. If the system identifies that a specific policy is being frequently misunderstood, that context can inform how analysts interpret the ML model's complaint predictions — "this agent's calls are being flagged because they're giving incorrect hardship program information, not because they're rude."
+
+The compound effect of both tracks operating on shared infrastructure is greater than either in isolation.
+
+
+
+### Deployment Considerations: Batch, Streaming, or Hybrid
+
+Our implementation ran as a fully batch pipeline — daily processing with a multi-day lag. This was appropriate for a detective control, which by definition operates retrospectively. But a more modern architecture might consider where real-time or near-real-time processing adds value.
+
+**Complaint classification stays batch.** The use case doesn't require real-time scoring. Calls that happened yesterday get reviewed tomorrow. The simplicity of batch — no streaming infrastructure, no real-time model serving, no latency requirements — is a significant advantage for a team that needs to focus on model quality and compliance, not infrastructure complexity.
+
+**Summarization could go near-real-time.** If summaries are available minutes after a call ends rather than the next day, supervisors can use them for immediate coaching conversations. This requires a streaming or micro-batch architecture for the transcript processing and LLM inference, but the payoff in operational responsiveness may justify the complexity.
+
+**RAG-powered document lookup can be real-time.** If agents can query the RAG system during a call — "what's the hardship program eligibility?" — it becomes a real-time support tool rather than a post-hoc analysis tool. This is a different deployment pattern (API-served, low-latency, session-aware) but operates on the same document index.
+
+A realistic enterprise evolution would start with batch for everything, prove the value, then selectively move use cases toward real-time as the operational need justifies the infrastructure investment.
+
+### Where This Is Going: The Future of Call Center Intelligence
+
+The architecture we've described — shared transcript pipeline, dual-track inference, human-in-the-loop validation — is a starting point. Here's where we see it heading.
+
+**Predictive complaint detection.** Today's model identifies complaints after they happen. Tomorrow's might identify calls *likely to result in complaints* based on early conversation signals — enabling real-time intervention before a customer reaches the point of filing a formal complaint.
+
+**Multi-modal analysis.** Speech-to-text transcription loses information — tone of voice, speaking pace, pauses, overlapping speech. Future systems will analyze the audio directly, combining acoustic sentiment analysis with text-based classification for a richer signal.
+
+**Continuous coaching loops.** Rather than quarterly training refreshers, imagine a system where every agent receives a personalized weekly coaching brief — generated from their actual calls, referencing the actual policies they got wrong, with specific recommendations for improvement. The infrastructure described in this article makes that achievable.
+
+The common thread is that **call data is an underutilized gold mine of enterprise intelligence.** Every conversation is a signal — about customer experience, about product issues, about agent performance, about emerging risks. The question isn't whether to extract that intelligence. It's whether you're doing it in a way that's defensible (for regulatory-facing use cases) and impactful (for operational ones). The dual-track approach — traditional ML where you need to explain, GenAI where you need to understand — is how you get both.

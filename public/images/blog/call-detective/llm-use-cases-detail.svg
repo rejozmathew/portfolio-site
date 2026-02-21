@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowT" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowN" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="620" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">LLM-Powered Call Intelligence — Internal Use Cases in Detail</text>
+  <line x1="270" y1="45" x2="830" y2="45" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- ─── USE CASE 1: CALL SUMMARIZATION ─── -->
+  <rect x="30" y="65" width="510" height="240" rx="12" fill="#ffffff" stroke="#2A7F62" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="30" y="65" width="510" height="36" rx="12" fill="#2A7F62"/>
+  <rect x="30" y="85" width="510" height="16" fill="#2A7F62"/>
+  <text x="50" y="88" fill="#ffffff" font-size="13" font-weight="700">📝  CALL SUMMARIZATION</text>
+
+  <text x="50" y="125" fill="#1F4E79" font-size="10" font-weight="700">INPUT</text>
+  <text x="50" y="142" fill="#2C3E50" font-size="9.5">Full tokenized transcript (often 20-60 min of conversation)</text>
+
+  <text x="50" y="165" fill="#1F4E79" font-size="10" font-weight="700">LLM TASK</text>
+  <text x="50" y="182" fill="#2C3E50" font-size="9.5">Distill into 3-5 sentence summary: issue, resolution, sentiment</text>
+
+  <text x="50" y="205" fill="#1F4E79" font-size="10" font-weight="700">OUTPUT EXAMPLE</text>
+  <rect x="50" y="215" width="470" height="75" rx="6" fill="#f0f7f4"/>
+  <text x="65" y="233" fill="#2C3E50" font-size="9" font-style="italic">"Customer called regarding a past-due payment notice received</text>
+  <text x="65" y="247" fill="#2C3E50" font-size="9" font-style="italic">in error after already making the payment. Agent verified the</text>
+  <text x="65" y="261" fill="#2C3E50" font-size="9" font-style="italic">payment posted on 7/12, apologized for the system delay, and</text>
+  <text x="65" y="275" fill="#2C3E50" font-size="9" font-style="italic">offered to suppress further notices. Customer satisfied at close."</text>
+
+  <!-- ─── USE CASE 2: COACHING & KNOWLEDGE GAP DETECTION ─── -->
+  <rect x="560" y="65" width="510" height="240" rx="12" fill="#ffffff" stroke="#2A7F62" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="560" y="65" width="510" height="36" rx="12" fill="#2A7F62"/>
+  <rect x="560" y="85" width="510" height="16" fill="#2A7F62"/>
+  <text x="580" y="88" fill="#ffffff" font-size="13" font-weight="700">🎓  COACHING &amp; KNOWLEDGE GAP DETECTION</text>
+
+  <text x="580" y="125" fill="#1F4E79" font-size="10" font-weight="700">HOW IT WORKS</text>
+  <text x="580" y="142" fill="#2C3E50" font-size="9.5">LLM evaluates transcript against a coaching rubric — empathy,</text>
+  <text x="580" y="157" fill="#2C3E50" font-size="9.5">de-escalation, policy accuracy, resolution quality</text>
+
+  <text x="580" y="180" fill="#1F4E79" font-size="10" font-weight="700">KNOWLEDGE GAP SIGNAL</text>
+  <text x="580" y="197" fill="#2C3E50" font-size="9.5">When the LLM cross-references agent responses with the RAG-indexed</text>
+  <text x="580" y="212" fill="#2C3E50" font-size="9.5">policy docs and finds discrepancies, it flags a knowledge gap</text>
+
+  <text x="580" y="235" fill="#1F4E79" font-size="10" font-weight="700">OUTPUT</text>
+  <rect x="580" y="245" width="470" height="48" rx="6" fill="#f0f7f4"/>
+  <text x="595" y="263" fill="#2C3E50" font-size="9" font-style="italic">"Agent did not inform the customer about the 10-day grace period</text>
+  <text x="595" y="277" fill="#2C3E50" font-size="9" font-style="italic">per Policy §4.2.1. Recommend: Late Fee &amp; Grace Period refresher."</text>
+
+  <!-- ─── USE CASE 3: DOCUMENT RAG ─── -->
+  <rect x="30" y="325" width="510" height="265" rx="12" fill="#ffffff" stroke="#1F4E79" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="30" y="325" width="510" height="36" rx="12" fill="#1F4E79"/>
+  <rect x="30" y="345" width="510" height="16" fill="#1F4E79"/>
+  <text x="50" y="348" fill="#ffffff" font-size="13" font-weight="700">📚  DOCUMENT RAG — Policy &amp; Job Aid Retrieval</text>
+
+  <!-- RAG Flow inside the box -->
+  <rect x="55" y="375" width="120" height="55" rx="8" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="115" y="398" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">KNOWLEDGE BASE</text>
+  <text x="115" y="415" text-anchor="middle" fill="#2C3E50" font-size="8">Policies, SOPs,</text>
+  <text x="115" y="425" text-anchor="middle" fill="#2C3E50" font-size="8">job aids, FAQs</text>
+
+  <line x1="175" y1="402" x2="200" y2="402" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowN)"/>
+
+  <rect x="205" y="375" width="100" height="55" rx="8" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="255" y="398" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">EMBED</text>
+  <text x="255" y="415" text-anchor="middle" fill="#2C3E50" font-size="8">Chunk &amp; vectorize</text>
+  <text x="255" y="425" text-anchor="middle" fill="#2C3E50" font-size="8">into vector store</text>
+
+  <line x1="305" y1="402" x2="330" y2="402" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowN)"/>
+
+  <rect x="335" y="375" width="100" height="55" rx="8" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="385" y="398" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">RETRIEVE</text>
+  <text x="385" y="415" text-anchor="middle" fill="#2C3E50" font-size="8">Semantic search</text>
+  <text x="385" y="425" text-anchor="middle" fill="#2C3E50" font-size="8">top-k matches</text>
+
+  <line x1="435" y1="402" x2="460" y2="402" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowN)"/>
+
+  <rect x="465" y="375" width="60" height="55" rx="8" fill="#2A7F62"/>
+  <text x="495" y="398" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">LLM</text>
+  <text x="495" y="415" text-anchor="middle" fill="#d0f0e0" font-size="8">Generate</text>
+  <text x="495" y="425" text-anchor="middle" fill="#d0f0e0" font-size="8">answer</text>
+
+  <text x="50" y="457" fill="#1F4E79" font-size="10" font-weight="700">USE CASES</text>
+  <text x="55" y="475" fill="#2C3E50" font-size="9.5">→ Agent asks: "What's the grace period policy for auto loans?"</text>
+  <text x="55" y="492" fill="#2C3E50" font-size="9.5">→ Coaching system cross-checks: "Did agent cite the right policy?"</text>
+  <text x="55" y="509" fill="#2C3E50" font-size="9.5">→ Training team asks: "Which policies cause the most confusion?"</text>
+
+  <text x="50" y="535" fill="#1F4E79" font-size="10" font-weight="700">WHY RAG MATTERS HERE</text>
+  <text x="55" y="553" fill="#2C3E50" font-size="9.5">Policies change frequently. RAG ensures the LLM always references</text>
+  <text x="55" y="570" fill="#2C3E50" font-size="9.5">the latest version rather than relying on training data that may</text>
+  <text x="55" y="582" fill="#2C3E50" font-size="9.5">contain outdated procedures. This is critical in regulated industries.</text>
+
+  <!-- ─── USE CASE 4: TREND & THEME ANALYSIS ─── -->
+  <rect x="560" y="325" width="510" height="265" rx="12" fill="#ffffff" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="560" y="325" width="510" height="36" rx="12" fill="#2C3E50"/>
+  <rect x="560" y="345" width="510" height="16" fill="#2C3E50"/>
+  <text x="580" y="348" fill="#ffffff" font-size="13" font-weight="700">📊  TREND &amp; THEME ANALYSIS — Emerging Issue Detection</text>
+
+  <text x="580" y="385" fill="#1F4E79" font-size="10" font-weight="700">HOW IT WORKS</text>
+  <text x="585" y="402" fill="#2C3E50" font-size="9.5">LLMs extract themes from batches of transcripts — not one at a</text>
+  <text x="585" y="417" fill="#2C3E50" font-size="9.5">time, but aggregated across days or weeks. The model identifies</text>
+  <text x="585" y="432" fill="#2C3E50" font-size="9.5">recurring complaint patterns that might signal systemic issues.</text>
+
+  <text x="580" y="458" fill="#1F4E79" font-size="10" font-weight="700">EXAMPLES</text>
+
+  <rect x="585" y="468" width="230" height="50" rx="6" fill="#f0f4f8"/>
+  <text x="595" y="487" fill="#2C3E50" font-size="9" font-weight="600">Spike in "late fee" mentions</text>
+  <text x="595" y="505" fill="#94a3b8" font-size="8" font-style="italic">→ system processing delay?</text>
+
+  <rect x="825" y="468" width="230" height="50" rx="6" fill="#f0f4f8"/>
+  <text x="835" y="487" fill="#2C3E50" font-size="9" font-weight="600">New "app login" complaints</text>
+  <text x="835" y="505" fill="#94a3b8" font-size="8" font-style="italic">→ recent software update issue?</text>
+
+  <rect x="585" y="525" width="230" height="50" rx="6" fill="#f0f4f8"/>
+  <text x="595" y="544" fill="#2C3E50" font-size="9" font-weight="600">Cluster: "payment confusion"</text>
+  <text x="595" y="562" fill="#94a3b8" font-size="8" font-style="italic">→ form redesign opportunity</text>
+
+  <rect x="825" y="525" width="230" height="50" rx="6" fill="#f0f4f8"/>
+  <text x="835" y="544" fill="#2C3E50" font-size="9" font-weight="600">Regional escalation pattern</text>
+  <text x="835" y="562" fill="#94a3b8" font-size="8" font-style="italic">→ local training needed?</text>
+</svg>

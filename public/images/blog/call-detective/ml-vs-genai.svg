@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="560" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Traditional ML vs. Generative AI — Choosing the Right Tool</text>
+  <line x1="280" y1="48" x2="820" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Left Column Header: Traditional ML -->
+  <rect x="40" y="70" width="490" height="50" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="285" y="100" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">TRADITIONAL ML (Random Forest, XGBoost)</text>
+
+  <!-- Right Column Header: GenAI / LLM -->
+  <rect x="570" y="70" width="490" height="50" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="815" y="100" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">GENERATIVE AI (LLMs)</text>
+
+  <!-- Row labels -->
+  <!-- Row 1: Explainability -->
+  <rect x="40" y="135" width="490" height="60" rx="8" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="60" y="158" fill="#1F4E79" font-size="11" font-weight="700">✓ EXPLAINABILITY</text>
+  <text x="60" y="178" fill="#2C3E50" font-size="10">Feature importance is transparent — regulators can audit</text>
+  <text x="60" y="188" fill="#2C3E50" font-size="10">exactly which words triggered a complaint prediction.</text>
+
+  <rect x="570" y="135" width="490" height="60" rx="8" fill="#f0f0f0" filter="url(#shadow)"/>
+  <text x="590" y="158" fill="#D4380D" font-size="11" font-weight="700">✗ BLACK BOX</text>
+  <text x="590" y="178" fill="#2C3E50" font-size="10">Transformer reasoning is opaque. Hard to explain why a</text>
+  <text x="590" y="188" fill="#2C3E50" font-size="10">specific call was flagged — regulatory risk in compliance.</text>
+
+  <!-- Row 2: Consistency -->
+  <rect x="40" y="210" width="490" height="60" rx="8" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="60" y="233" fill="#1F4E79" font-size="11" font-weight="700">✓ DETERMINISTIC OUTPUT</text>
+  <text x="60" y="253" fill="#2C3E50" font-size="10">Same input always produces same prediction. Essential for</text>
+  <text x="60" y="263" fill="#2C3E50" font-size="10">audit trails and reproducible compliance decisions.</text>
+
+  <rect x="570" y="210" width="490" height="60" rx="8" fill="#f0f0f0" filter="url(#shadow)"/>
+  <text x="590" y="233" fill="#D4380D" font-size="11" font-weight="700">✗ STOCHASTIC</text>
+  <text x="590" y="253" fill="#2C3E50" font-size="10">Output varies between runs. Temperature, prompt phrasing,</text>
+  <text x="590" y="263" fill="#2C3E50" font-size="10">and model versions all affect classification results.</text>
+
+  <!-- Row 3: Cost -->
+  <rect x="40" y="285" width="490" height="60" rx="8" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="60" y="308" fill="#1F4E79" font-size="11" font-weight="700">✓ LOW INFERENCE COST</text>
+  <text x="60" y="328" fill="#2C3E50" font-size="10">Lightweight models score thousands of calls per minute.</text>
+  <text x="60" y="338" fill="#2C3E50" font-size="10">Negligible marginal cost per prediction in batch mode.</text>
+
+  <rect x="570" y="285" width="490" height="60" rx="8" fill="#f0f0f0" filter="url(#shadow)"/>
+  <text x="590" y="308" fill="#D4380D" font-size="11" font-weight="700">✗ HIGHER TOKEN COST</text>
+  <text x="590" y="328" fill="#2C3E50" font-size="10">Long transcripts = high token count. Processing thousands</text>
+  <text x="590" y="338" fill="#2C3E50" font-size="10">of calls daily at LLM rates adds up quickly.</text>
+
+  <!-- Row 4: Where GenAI wins -->
+  <rect x="40" y="360" width="490" height="60" rx="8" fill="#f0f0f0" filter="url(#shadow)"/>
+  <text x="60" y="383" fill="#94a3b8" font-size="11" font-weight="700">✗ LIMITED UNDERSTANDING</text>
+  <text x="60" y="403" fill="#2C3E50" font-size="10">Can't summarize, extract nuance, or generate actionable</text>
+  <text x="60" y="413" fill="#2C3E50" font-size="10">coaching insights from unstructured conversations.</text>
+
+  <rect x="570" y="360" width="490" height="60" rx="8" fill="#e0f5ec" filter="url(#shadow)"/>
+  <text x="590" y="383" fill="#2A7F62" font-size="11" font-weight="700">✓ RICH COMPREHENSION</text>
+  <text x="590" y="403" fill="#2C3E50" font-size="10">Summarize calls, extract themes, identify agent coaching</text>
+  <text x="590" y="413" fill="#2C3E50" font-size="10">opportunities, and answer questions about transcripts.</text>
+
+  <!-- Use Case Summary Boxes -->
+  <rect x="40" y="440" width="490" height="95" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="285" y="465" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">BEST FOR: REGULATORY COMPLIANCE</text>
+  <line x1="120" y1="475" x2="450" y2="475" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="285" y="495" text-anchor="middle" fill="#e0e7ff" font-size="10">• Complaint classification (regulatory-facing)</text>
+  <text x="285" y="512" text-anchor="middle" fill="#e0e7ff" font-size="10">• Risk scoring with audit trail requirements</text>
+  <text x="285" y="529" text-anchor="middle" fill="#e0e7ff" font-size="10">• Any use case requiring deterministic, explainable output</text>
+
+  <rect x="570" y="440" width="490" height="95" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="815" y="465" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">BEST FOR: INTERNAL INTELLIGENCE</text>
+  <line x1="650" y1="475" x2="980" y2="475" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="815" y="495" text-anchor="middle" fill="#d0f0e0" font-size="10">• Call summarization &amp; document lookup</text>
+  <text x="815" y="512" text-anchor="middle" fill="#d0f0e0" font-size="10">• Agent coaching &amp; training gap analysis</text>
+  <text x="815" y="529" text-anchor="middle" fill="#d0f0e0" font-size="10">• Internal knowledge retrieval (RAG-powered)</text>
+</svg>

@@ -1,21 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import Link from 'next/link';
 import readingTime from 'reading-time';
+import BlogContent, { type PostMetadata } from './BlogContent';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'content', 'blog');
 
-interface PostMetadata {
-  slug: string;
-  title: string;
-  date: string;
-  description: string;
-  readingTime: string;
-  tags: string[];
+function normalizeTags(raw: unknown): string[] {
+  if (Array.isArray(raw)) return raw.map((t: string) => t.trim());
+  if (typeof raw === 'string') return raw.split(',').map((t) => t.trim());
+  return [];
 }
 
-// Function to get metadata for all posts
 function getAllPostsMetadata(): PostMetadata[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
@@ -28,19 +24,16 @@ function getAllPostsMetadata(): PostMetadata[] {
         const { data, content } = matter(fileContents);
         const stats = readingTime(content);
 
-        // Basic validation for frontmatter
-        if (typeof data.title !== 'string' || typeof data.date !== 'string' || typeof data.description !== 'string') {
+        if (
+          typeof data.title !== 'string' ||
+          typeof data.date !== 'string' ||
+          typeof data.description !== 'string'
+        ) {
           console.warn(`Skipping post "${fileName}": Missing or invalid frontmatter.`);
           return null;
         }
 
-        // Normalize tags: accept string[], comma-separated string, or undefined
-        let tags: string[] = [];
-        if (Array.isArray(data.tags)) {
-          tags = data.tags.map((t: string) => t.trim());
-        } else if (typeof data.tags === 'string') {
-          tags = data.tags.split(',').map((t: string) => t.trim());
-        }
+        if (data.hidden === true) return null;
 
         return {
           slug,
@@ -48,7 +41,9 @@ function getAllPostsMetadata(): PostMetadata[] {
           date: data.date,
           description: data.description,
           readingTime: stats.text,
-          tags,
+          tags: normalizeTags(data.tags),
+          contentType: typeof data.contentType === 'string' ? data.contentType : '',
+          traits: normalizeTags(data.traits),
         };
       } catch (err) {
         console.error(`Error reading metadata for post ${slug}:`, err);
@@ -56,13 +51,9 @@ function getAllPostsMetadata(): PostMetadata[] {
       }
     });
 
-  // Filter out null values (posts that failed validation or reading)
   const validPosts = allPostsData.filter((post): post is PostMetadata => post !== null);
-
-  // Sort posts by date in descending order
   return validPosts.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 }
-
 
 export const metadata = {
   title: 'Blog | My Portfolio',
@@ -71,45 +62,10 @@ export const metadata = {
 
 export default function BlogIndexPage() {
   const posts = getAllPostsMetadata();
-
   return (
     <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8 max-w-4xl">
       <h1 className="text-4xl font-bold mb-8">Blog</h1>
-      <div className="space-y-8">
-        {posts.map((post) => (
-          <article key={post.slug} className="border-b border-gray-200 dark:border-gray-700 pb-6">
-            <Link href={`/blog/${post.slug}`} className="group">
-              <h2 className="text-2xl font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 mb-2">
-                {post.title}
-              </h2>
-            </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              {new Date(post.date).toLocaleDateString()} | {post.readingTime}
-            </p>
-            <p className="text-gray-800 dark:text-gray-700 mb-4 leading-relaxed">
-              {post.description}
-            </p>
-            {post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-block bg-green-25 text-green-700 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-            <Link href={`/blog/${post.slug}`} className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-              Read more &rarr;
-            </Link>
-          </article>
-        ))}
-        {posts.length === 0 && (
-          <p>No blog posts found.</p>
-        )}
-      </div>
+      <BlogContent posts={posts} />
     </div>
   );
 }

@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowCharcoal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#D4380D"/>
+    </marker>
+    <filter id="shadowLight" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="680" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">Dual-Track Call Intelligence — Traditional ML + LLM on a Shared Pipeline</text>
+  <line x1="250" y1="45" x2="850" y2="45" stroke="url(#headerGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- ─── SHARED UPSTREAM ─── -->
+  <text x="80" y="75" fill="#94a3b8" font-size="10" font-weight="700" letter-spacing="1.5">SHARED UPSTREAM</text>
+  <line x1="80" y1="82" x2="260" y2="82" stroke="#94a3b8" stroke-width="0.5"/>
+
+  <!-- Verint -->
+  <rect x="40" y="95" width="160" height="85" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="120" y="120" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">CALL RECORDING</text>
+  <text x="120" y="137" text-anchor="middle" fill="#e0e7ff" font-size="9">Speech-to-Text Platform</text>
+  <text x="120" y="155" text-anchor="middle" fill="#e0e7ff" font-size="9">(e.g. Verint, NICE, AWS)</text>
+  <text x="120" y="172" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">daily batch transcription</text>
+
+  <line x1="200" y1="137" x2="240" y2="137" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- PII Tokenization -->
+  <rect x="245" y="90" width="175" height="95" rx="10" fill="#D4380D" opacity="0.88" filter="url(#shadowLight)"/>
+  <text x="332" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">🔒 PII TOKENIZATION</text>
+  <line x1="265" y1="124" x2="400" y2="124" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="332" y="140" text-anchor="middle" fill="#ffe0d0" font-size="9">SSN, DOB, Card# → tokens</text>
+  <text x="332" y="155" text-anchor="middle" fill="#ffe0d0" font-size="9">One-way, irreversible</text>
+  <text x="332" y="172" text-anchor="middle" fill="#ffc8b0" font-size="8" font-style="italic">privacy preserved upstream</text>
+
+  <line x1="420" y1="137" x2="460" y2="137" stroke="#D4380D" stroke-width="2" marker-end="url(#arrowRed)"/>
+
+  <!-- Clean Transcripts (shared source) -->
+  <rect x="465" y="90" width="190" height="95" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="560" y="115" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">CLEAN TRANSCRIPTS</text>
+  <line x1="485" y1="124" x2="635" y2="124" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="560" y="142" text-anchor="middle" fill="#e0e7ff" font-size="10">PII-safe, full conversation</text>
+  <text x="560" y="160" text-anchor="middle" fill="#e0e7ff" font-size="10">text with metadata</text>
+  <text x="560" y="178" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">single source → two tracks</text>
+
+  <!-- ─── FORK ─── -->
+  <!-- Upper fork line to Traditional ML -->
+  <path d="M 560 185 L 560 220 L 270 220 L 270 248" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <!-- Lower fork line to LLM -->
+  <path d="M 560 185 L 560 220 L 850 220 L 850 248" stroke="#2A7F62" stroke-width="2.5" fill="none" marker-end="url(#arrowTeal)"/>
+
+  <!-- Fork label -->
+  <rect x="520" y="208" width="80" height="22" rx="11" fill="#2C3E50"/>
+  <text x="560" y="223" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="700">FORK</text>
+
+  <!-- ─── TRACK 1: TRADITIONAL ML (LEFT) ─── -->
+  <rect x="38" y="245" width="465" height="22" rx="4" fill="#1F4E79" opacity="0.12"/>
+  <text x="270" y="260" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700" letter-spacing="1.5">TRACK 1 — TRADITIONAL ML  (Regulatory-Facing, Explainable)</text>
+
+  <!-- NLP Preprocessing -->
+  <rect x="55" y="280" width="155" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="132" y="303" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">NLP PREPROCESSING</text>
+  <line x1="70" y1="312" x2="195" y2="312" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="132" y="328" text-anchor="middle" fill="#e0e7ff" font-size="9">Stopwords, Lemmatize</text>
+  <text x="132" y="343" text-anchor="middle" fill="#e0e7ff" font-size="9">Synonym Normalization</text>
+  <text x="132" y="358" text-anchor="middle" fill="#e0e7ff" font-size="9">TF-IDF Vectorization</text>
+  <text x="132" y="373" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">feature engineering</text>
+
+  <line x1="210" y1="330" x2="240" y2="330" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Random Forest Scoring -->
+  <rect x="245" y="280" width="155" height="100" rx="10" fill="#1F4E79" filter="url(#shadowLight)"/>
+  <text x="322" y="303" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">ML CLASSIFIER</text>
+  <line x1="260" y1="312" x2="385" y2="312" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="322" y="328" text-anchor="middle" fill="#e0e7ff" font-size="9">Random Forest</text>
+  <text x="322" y="343" text-anchor="middle" fill="#e0e7ff" font-size="9">Complaint Score</text>
+  <text x="322" y="358" text-anchor="middle" fill="#e0e7ff" font-size="9">Ranked Output</text>
+  <text x="322" y="373" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">deterministic, auditable</text>
+
+  <line x1="400" y1="330" x2="430" y2="330" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- HITL Review -->
+  <rect x="435" y="280" width="155" height="100" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="512" y="303" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">HITL QA REVIEW</text>
+  <line x1="450" y1="312" x2="575" y2="312" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="512" y="328" text-anchor="middle" fill="#e0e7ff" font-size="9">Agent verification</text>
+  <text x="512" y="343" text-anchor="middle" fill="#e0e7ff" font-size="9">Label correction</text>
+  <text x="512" y="358" text-anchor="middle" fill="#e0e7ff" font-size="9">Compliance evidence</text>
+  <text x="512" y="373" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">→ regulatory reporting</text>
+
+  <!-- Feedback loop -->
+  <path d="M 512 380 L 512 410 L 132 410 L 132 385" stroke="#D4380D" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowRed)"/>
+  <text x="320" y="405" text-anchor="middle" fill="#D4380D" font-size="8" font-weight="600">Retraining feedback loop</text>
+
+  <!-- ─── TRACK 2: LLM / GenAI (RIGHT) ─── -->
+  <rect x="598" y="245" width="465" height="22" rx="4" fill="#2A7F62" opacity="0.12"/>
+  <text x="830" y="260" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700" letter-spacing="1.5">TRACK 2 — GENERATIVE AI  (Internal Intelligence, Flexible)</text>
+
+  <!-- Call Summarization -->
+  <rect x="625" y="280" width="175" height="90" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="712" y="303" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">📝 SUMMARIZATION</text>
+  <line x1="640" y1="312" x2="790" y2="312" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="712" y="328" text-anchor="middle" fill="#d0f0e0" font-size="9">Auto call summaries</text>
+  <text x="712" y="343" text-anchor="middle" fill="#d0f0e0" font-size="9">Speeds up QA review</text>
+  <text x="712" y="358" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">replaces manual note-taking</text>
+
+  <!-- Coaching / Training -->
+  <rect x="820" y="280" width="175" height="90" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="907" y="303" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">🎓 COACHING</text>
+  <line x1="835" y1="312" x2="985" y2="312" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="907" y="328" text-anchor="middle" fill="#d0f0e0" font-size="9">Training gap analysis</text>
+  <text x="907" y="343" text-anchor="middle" fill="#d0f0e0" font-size="9">Agent performance</text>
+  <text x="907" y="358" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">knowledge gap detection</text>
+
+  <!-- RAG / Document Lookup -->
+  <rect x="625" y="385" width="175" height="90" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="712" y="408" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">📚 DOCUMENT RAG</text>
+  <line x1="640" y1="417" x2="790" y2="417" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="712" y="433" text-anchor="middle" fill="#d0f0e0" font-size="9">Policies, job aids, SOPs</text>
+  <text x="712" y="448" text-anchor="middle" fill="#d0f0e0" font-size="9">Retrieval-augmented</text>
+  <text x="712" y="463" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">grounds answers in docs</text>
+
+  <!-- Trend Analysis -->
+  <rect x="820" y="385" width="175" height="90" rx="10" fill="#2A7F62" filter="url(#shadowLight)"/>
+  <text x="907" y="408" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">📊 TREND ANALYSIS</text>
+  <line x1="835" y1="417" x2="985" y2="417" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="907" y="433" text-anchor="middle" fill="#d0f0e0" font-size="9">Complaint clustering</text>
+  <text x="907" y="448" text-anchor="middle" fill="#d0f0e0" font-size="9">Root cause themes</text>
+  <text x="907" y="463" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">emerging issue detection</text>
+
+  <!-- Arrows linking LLM boxes -->
+  <line x1="712" y1="370" x2="712" y2="383" stroke="#2A7F62" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+  <line x1="907" y1="370" x2="907" y2="383" stroke="#2A7F62" stroke-width="1.5" marker-end="url(#arrowTeal)"/>
+
+  <!-- ─── SHARED DOWNSTREAM ─── -->
+  <rect x="38" y="500" width="1024" height="22" rx="4" fill="#2C3E50" opacity="0.08"/>
+  <text x="550" y="515" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700" letter-spacing="1.5">SHARED DOWNSTREAM — MONITORING &amp; REPORTING</text>
+
+  <!-- Monitoring Dashboard -->
+  <rect x="130" y="535" width="260" height="75" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="260" y="558" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">COMPLIANCE DASHBOARD</text>
+  <line x1="150" y1="567" x2="370" y2="567" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="260" y="585" text-anchor="middle" fill="#e0e7ff" font-size="9">Missed complaints, review rates</text>
+  <text x="260" y="600" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">regulatory-grade audit trail</text>
+
+  <!-- Model Health -->
+  <rect x="440" y="535" width="260" height="75" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="570" y="558" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">MODEL HEALTH</text>
+  <line x1="460" y1="567" x2="680" y2="567" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="570" y="585" text-anchor="middle" fill="#e0e7ff" font-size="9">Drift detection, false positive rate</text>
+  <text x="570" y="600" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">retraining trigger monitoring</text>
+
+  <!-- Operations Dashboard -->
+  <rect x="750" y="535" width="260" height="75" rx="10" fill="#2C3E50" filter="url(#shadowLight)"/>
+  <text x="880" y="558" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">OPERATIONS INSIGHTS</text>
+  <line x1="770" y1="567" x2="990" y2="567" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="880" y="585" text-anchor="middle" fill="#e0e7ff" font-size="9">Coaching scores, training needs</text>
+  <text x="880" y="600" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">continuous improvement signal</text>
+
+  <!-- Arrows from tracks down to dashboards -->
+  <line x1="270" y1="410" x2="270" y2="533" stroke="#1F4E79" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="910" y1="475" x2="910" y2="533" stroke="#2A7F62" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="543" y1="380" x2="543" y2="533" stroke="#2C3E50" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- Bottom legend -->
+  <rect x="80" y="635" width="940" height="32" rx="8" fill="#f0f4f8" stroke="#e2e8f0" stroke-width="1"/>
+  <circle cx="110" cy="651" r="5" fill="#1F4E79"/>
+  <text x="122" y="655" fill="#2C3E50" font-size="9">Traditional ML</text>
+  <circle cx="230" cy="651" r="5" fill="#2A7F62"/>
+  <text x="242" y="655" fill="#2C3E50" font-size="9">Generative AI / LLM</text>
+  <circle cx="370" cy="651" r="5" fill="#2C3E50"/>
+  <text x="382" y="655" fill="#2C3E50" font-size="9">Shared Infrastructure</text>
+  <circle cx="520" cy="651" r="5" fill="#D4380D"/>
+  <text x="532" y="655" fill="#2C3E50" font-size="9">Privacy / Feedback</text>
+  <line x1="650" y1="651" x2="680" y2="651" stroke="#D4380D" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="690" y="655" fill="#2C3E50" font-size="9">Feedback loop</text>
+</svg>

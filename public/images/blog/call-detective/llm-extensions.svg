@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowT" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="520" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Extending with LLMs — Call Intelligence Beyond Classification</text>
+  <line x1="270" y1="48" x2="830" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Central: Tokenized Transcripts -->
+  <rect x="400" y="75" width="300" height="80" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="550" y="105" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="700">TOKENIZED CALL TRANSCRIPTS</text>
+  <text x="550" y="125" text-anchor="middle" fill="#e0e7ff" font-size="10">PII-safe transcripts from Verint pipeline</text>
+  <text x="550" y="142" text-anchor="middle" fill="#94a3b8" font-size="9" font-style="italic">same data source, different downstream uses</text>
+
+  <!-- Branch 1: Traditional ML (left) -->
+  <line x1="450" y1="155" x2="160" y2="200" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="30" y="205" width="260" height="100" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="160" y="230" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">🎯 COMPLAINT CLASSIFIER</text>
+  <text x="160" y="248" text-anchor="middle" fill="#ffffff" font-size="10">(Traditional ML)</text>
+  <line x1="50" y1="258" x2="270" y2="258" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="160" y="278" text-anchor="middle" fill="#e0e7ff" font-size="9">Random Forest + TF-IDF</text>
+  <text x="160" y="293" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">Regulatory-grade, explainable, deterministic</text>
+
+  <!-- Branch 2: LLM Uses (right) -->
+  <line x1="650" y1="155" x2="850" y2="200" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowT)"/>
+
+  <rect x="720" y="205" width="340" height="45" rx="8" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="890" y="233" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">🤖 LLM-POWERED INTELLIGENCE (Internal Use)</text>
+
+  <!-- LLM Use Case 1: Call Summarization -->
+  <rect x="720" y="265" width="340" height="65" rx="8" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="740" y="288" fill="#2A7F62" font-size="11" font-weight="700">📝 Call Summarization</text>
+  <text x="740" y="305" fill="#2C3E50" font-size="9">Auto-generate concise summaries of each call</text>
+  <text x="740" y="318" fill="#2C3E50" font-size="9">for quick review. Replaces manual note-taking.</text>
+
+  <!-- LLM Use Case 2: Coaching -->
+  <rect x="720" y="340" width="340" height="65" rx="8" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="740" y="363" fill="#2A7F62" font-size="11" font-weight="700">🎓 Agent Coaching Summaries</text>
+  <text x="740" y="380" fill="#2C3E50" font-size="9">Identify training opportunities — empathy gaps,</text>
+  <text x="740" y="393" fill="#2C3E50" font-size="9">policy knowledge gaps, de-escalation patterns.</text>
+
+  <!-- LLM Use Case 3: Knowledge -->
+  <rect x="720" y="415" width="340" height="65" rx="8" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="740" y="438" fill="#2A7F62" font-size="11" font-weight="700">📚 Document Lookup (RAG)</text>
+  <text x="740" y="455" fill="#2C3E50" font-size="9">Agents query internal policies during calls.</text>
+  <text x="740" y="468" fill="#2C3E50" font-size="9">LLM retrieves relevant SOPs in real-time.</text>
+
+  <!-- Traditional ML outputs (left side) -->
+  <line x1="160" y1="305" x2="160" y2="340" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <rect x="30" y="345" width="260" height="55" rx="8" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="50" y="368" fill="#1F4E79" font-size="11" font-weight="700">📊 Regulatory Reporting</text>
+  <text x="50" y="385" fill="#2C3E50" font-size="9">DCC case tracking, audit-ready complaint counts</text>
+
+  <rect x="30" y="410" width="260" height="55" rx="8" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="50" y="433" fill="#1F4E79" font-size="11" font-weight="700">⚖ Compliance Evidence</text>
+  <text x="50" y="450" fill="#2C3E50" font-size="9">Feature importance logs, model decision audit trail</text>
+
+  <!-- Connecting line between columns -->
+  <line x1="350" y1="260" x2="350" y2="490" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="360" y="490" fill="#94a3b8" font-size="8" font-style="italic">same data — different inference layer</text>
+</svg>
