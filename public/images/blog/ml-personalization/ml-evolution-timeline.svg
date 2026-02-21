@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2A7F62;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="340" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">Model Architecture Evolution</text>
+
+  <!-- Timeline arrow -->
+  <line x1="60" y1="170" x2="840" y2="170" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="840,170 828,163 828,177" fill="#CBD5E1"/>
+
+  <!-- Phase 1: Rules-Based Segmentation -->
+  <rect x="70" y="80" width="200" height="120" rx="10" fill="white" stroke="#94A3B8" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="70" y="80" width="200" height="36" rx="10" fill="#94A3B8"/>
+  <rect x="70" y="106" width="200" height="4" fill="#94A3B8"/>
+  <text x="170" y="104" text-anchor="middle" font-size="13" font-weight="600" fill="white">Rules &amp; Segmentation</text>
+  <text x="170" y="132" text-anchor="middle" font-size="11" fill="#64748B">Logistic Regression</text>
+  <text x="170" y="150" text-anchor="middle" font-size="11" fill="#64748B">Static customer segments</text>
+  <text x="170" y="168" text-anchor="middle" font-size="11" fill="#64748B">Monthly batch refresh</text>
+  <text x="170" y="186" text-anchor="middle" font-size="11" fill="#64748B">Manual feature curation</text>
+
+  <!-- Phase 2: ML 1.0 -->
+  <rect x="310" y="80" width="220" height="120" rx="10" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="310" y="80" width="220" height="36" rx="10" fill="#1F4E79"/>
+  <rect x="310" y="106" width="220" height="4" fill="#1F4E79"/>
+  <text x="420" y="104" text-anchor="middle" font-size="13" font-weight="600" fill="white">ML 1.0 — Individual Models</text>
+  <text x="420" y="132" text-anchor="middle" font-size="11" fill="#2C3E50">GBDT, Random Forest, Trees</text>
+  <text x="420" y="150" text-anchor="middle" font-size="11" fill="#2C3E50">1 model per product (25+)</text>
+  <text x="420" y="168" text-anchor="middle" font-size="11" fill="#2C3E50">Ad-hoc refresh cycles</text>
+  <text x="420" y="186" text-anchor="middle" font-size="11" fill="#2C3E50">Long maintenance windows</text>
+
+  <!-- Phase 3: ML 2.0 -->
+  <rect x="570" y="80" width="250" height="120" rx="10" fill="white" stroke="#2A7F62" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="570" y="80" width="250" height="36" rx="10" fill="#2A7F62"/>
+  <rect x="570" y="106" width="250" height="4" fill="#2A7F62"/>
+  <text x="695" y="104" text-anchor="middle" font-size="13" font-weight="600" fill="white">ML 2.0 — Hybrid GBDT + DNN</text>
+  <text x="695" y="132" text-anchor="middle" font-size="11" fill="#2C3E50">GBDT feature transform → DNN</text>
+  <text x="695" y="150" text-anchor="middle" font-size="11" fill="#2C3E50">3 shared classifiers, 25 scores</text>
+  <text x="695" y="168" text-anchor="middle" font-size="11" fill="#2C3E50">Quarterly automated refresh</text>
+  <text x="695" y="186" text-anchor="middle" font-size="11" fill="#2C3E50">Faster processing &amp; QA checks</text>
+
+  <!-- Arrows between phases -->
+  <path d="M270,140 Q290,140 310,140" fill="none" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <path d="M530,140 Q550,140 570,140" fill="none" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1F4E79"/></marker>
+    <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2A7F62"/></marker>
+  </defs>
+
+  <!-- Timeline labels -->
+  <text x="170" y="230" text-anchor="middle" font-size="12" font-weight="600" fill="#94A3B8">2018–2020</text>
+  <text x="420" y="230" text-anchor="middle" font-size="12" font-weight="600" fill="#1F4E79">2021–2024</text>
+  <text x="695" y="230" text-anchor="middle" font-size="12" font-weight="600" fill="#2A7F62">2024+</text>
+
+  <!-- Impact annotations -->
+  <rect x="330" y="252" width="100" height="28" rx="14" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1"/>
+  <text x="380" y="271" text-anchor="middle" font-size="11" font-weight="600" fill="#1F4E79">+4% PBT lift</text>
+  <rect x="620" y="252" width="140" height="28" rx="14" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="690" y="271" text-anchor="middle" font-size="11" font-weight="600" fill="#2A7F62">+3% additional lift</text>
+
+  <!-- Bottom note -->
+  <text x="450" y="320" text-anchor="middle" font-size="10" fill="#94A3B8" font-style="italic">Each generation improved prediction accuracy while reducing operational overhead</text>
+</svg>

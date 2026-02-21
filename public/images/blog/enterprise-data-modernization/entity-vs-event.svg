@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds5" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="380" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="900" height="50" fill="url(#hg6)" rx="12"/>
+  <rect x="0" y="25" width="900" height="25" fill="url(#hg6)"/>
+  <text x="450" y="33" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">Domain Structure Types: Entities vs. Events</text>
+
+  <!-- ENTITY side -->
+  <g filter="url(#ds5)">
+    <rect x="30" y="70" width="400" height="290" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="30" y="70" width="400" height="40" rx="10" fill="#1F4E79"/>
+    <rect x="30" y="90" width="400" height="20" fill="#1F4E79"/>
+  </g>
+  <text x="230" y="96" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">Entity Domains</text>
+  <text x="230" y="130" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">State data — one row per entity instance</text>
+
+  <!-- Entity example table -->
+  <rect x="55" y="148" width="350" height="24" rx="0" fill="#1F4E79" opacity="0.08"/>
+  <text x="105" y="164" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">account_id</text>
+  <text x="195" y="164" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">balance</text>
+  <text x="280" y="164" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">status</text>
+  <text x="365" y="164" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">open_date</text>
+
+  <line x1="55" y1="172" x2="405" y2="172" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="105" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">1001</text>
+  <text x="195" y="187" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">$12,450</text>
+  <text x="280" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">Active</text>
+  <text x="365" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">2021-03-15</text>
+
+  <line x1="55" y1="194" x2="405" y2="194" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="105" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">1002</text>
+  <text x="195" y="209" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">$8,220</text>
+  <text x="280" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">Closed</text>
+  <text x="365" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">2019-11-01</text>
+
+  <!-- Entity characteristics -->
+  <text x="230" y="245" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Characteristics:</text>
+  <text x="230" y="265" text-anchor="middle" fill="#2C3E50" font-size="9.5">
+    <tspan x="230" dy="0">• Represents objects (accounts, customers)</tspan>
+    <tspan x="230" dy="16">• Changes over time — tracks current state</tspan>
+    <tspan x="230" dy="16">• Original + cumulative + current attributes</tspan>
+    <tspan x="230" dy="16">• Semi-additive measures (point-in-time)</tspan>
+  </text>
+
+  <!-- EVENT side -->
+  <g filter="url(#ds5)">
+    <rect x="470" y="70" width="400" height="290" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+    <rect x="470" y="70" width="400" height="40" rx="10" fill="#2A7F62"/>
+    <rect x="470" y="90" width="400" height="20" fill="#2A7F62"/>
+  </g>
+  <text x="670" y="96" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">Event Domains</text>
+  <text x="670" y="130" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Discrete activity — one row per transaction</text>
+
+  <!-- Event example table -->
+  <rect x="495" y="148" width="350" height="24" rx="0" fill="#2A7F62" opacity="0.08"/>
+  <text x="540" y="164" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">txn_id</text>
+  <text x="620" y="164" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">account_id</text>
+  <text x="710" y="164" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">amount</text>
+  <text x="800" y="164" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">txn_date</text>
+
+  <line x1="495" y1="172" x2="845" y2="172" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="540" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">T-5001</text>
+  <text x="620" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">1001</text>
+  <text x="710" y="187" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">$150.00</text>
+  <text x="800" y="187" text-anchor="middle" fill="#2C3E50" font-size="9">2024-01-15</text>
+
+  <line x1="495" y1="194" x2="845" y2="194" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="540" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">T-5002</text>
+  <text x="620" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">1001</text>
+  <text x="710" y="209" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">$75.00</text>
+  <text x="800" y="209" text-anchor="middle" fill="#2C3E50" font-size="9">2024-01-16</text>
+
+  <!-- Event characteristics -->
+  <text x="670" y="245" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Characteristics:</text>
+  <text x="670" y="265" text-anchor="middle" fill="#2C3E50" font-size="9.5">
+    <tspan x="670" dy="0">• Represents actions (payments, trades)</tspan>
+    <tspan x="670" dy="16">• Immutable once written — append only</tspan>
+    <tspan x="670" dy="16">• All contextual attributes per event</tspan>
+    <tspan x="670" dy="16">• Fully additive measures (summable)</tspan>
+  </text>
+</svg>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds2" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="400" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="900" height="50" fill="url(#hg3)" rx="12"/>
+  <rect x="0" y="25" width="900" height="25" fill="url(#hg3)"/>
+  <text x="450" y="33" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700">The Semantic Layer Advantage</text>
+
+  <!-- LEFT SIDE: Without -->
+  <rect x="25" y="65" width="410" height="315" rx="10" fill="#ffffff" stroke="#c0392b" stroke-width="1.5" filter="url(#ds2)"/>
+  <rect x="25" y="65" width="410" height="38" rx="10" fill="#c0392b"/>
+  <rect x="25" y="85" width="410" height="18" fill="#c0392b"/>
+  <text x="230" y="90" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">✗  Without Semantic Layer</text>
+
+  <!-- Users on left -->
+  <g transform="translate(50, 120)">
+    <circle cx="25" cy="20" r="14" fill="#fde8e8" stroke="#c0392b" stroke-width="1.2"/>
+    <text x="25" y="24" text-anchor="middle" fill="#c0392b" font-size="10">👤</text>
+    <text x="25" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Analyst A</text>
+
+    <circle cx="100" cy="20" r="14" fill="#fde8e8" stroke="#c0392b" stroke-width="1.2"/>
+    <text x="100" y="24" text-anchor="middle" fill="#c0392b" font-size="10">👤</text>
+    <text x="100" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Analyst B</text>
+
+    <circle cx="175" cy="20" r="14" fill="#fde8e8" stroke="#c0392b" stroke-width="1.2"/>
+    <text x="175" y="24" text-anchor="middle" fill="#c0392b" font-size="10">👤</text>
+    <text x="175" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Data Sci</text>
+  </g>
+
+  <!-- Tangled lines from users to raw data -->
+  <g stroke="#c0392b" stroke-width="1" fill="none" opacity="0.5">
+    <path d="M75,192 C75,220 120,215 130,240"/>
+    <path d="M75,192 C100,210 200,205 250,240"/>
+    <path d="M75,192 C90,230 300,210 350,240"/>
+    <path d="M150,192 C150,215 130,225 130,240"/>
+    <path d="M150,192 C170,210 250,220 250,240"/>
+    <path d="M225,192 C225,215 250,225 250,240"/>
+    <path d="M225,192 C240,210 350,220 350,240"/>
+  </g>
+
+  <!-- Raw data blocks -->
+  <rect x="80" y="242" width="90" height="28" rx="4" fill="#fff5f5" stroke="#c0392b" stroke-width="1"/>
+  <text x="125" y="260" text-anchor="middle" fill="#c0392b" font-size="9">Raw Table A</text>
+  <rect x="185" y="242" width="90" height="28" rx="4" fill="#fff5f5" stroke="#c0392b" stroke-width="1"/>
+  <text x="230" y="260" text-anchor="middle" fill="#c0392b" font-size="9">Raw Table B</text>
+  <rect x="290" y="242" width="90" height="28" rx="4" fill="#fff5f5" stroke="#c0392b" stroke-width="1"/>
+  <text x="335" y="260" text-anchor="middle" fill="#c0392b" font-size="9">Raw Table C</text>
+
+  <!-- Pain points -->
+  <text x="230" y="300" text-anchor="middle" fill="#c0392b" font-size="10" font-weight="600">
+    <tspan x="230" dy="0">• Each user writes custom queries</tspan>
+    <tspan x="230" dy="16">• Tribal knowledge required</tspan>
+    <tspan x="230" dy="16">• Conflicting results across teams</tspan>
+    <tspan x="230" dy="16">• Maintenance nightmare</tspan>
+  </text>
+
+  <!-- RIGHT SIDE: With -->
+  <rect x="465" y="65" width="410" height="315" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5" filter="url(#ds2)"/>
+  <rect x="465" y="65" width="410" height="38" rx="10" fill="#2A7F62"/>
+  <rect x="465" y="85" width="410" height="18" fill="#2A7F62"/>
+  <text x="670" y="90" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">✓  With Semantic Layer</text>
+
+  <!-- Users on right -->
+  <g transform="translate(490, 120)">
+    <circle cx="25" cy="20" r="14" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1.2"/>
+    <text x="25" y="24" text-anchor="middle" fill="#2A7F62" font-size="10">👤</text>
+    <text x="25" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Analyst A</text>
+
+    <circle cx="100" cy="20" r="14" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1.2"/>
+    <text x="100" y="24" text-anchor="middle" fill="#2A7F62" font-size="10">👤</text>
+    <text x="100" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Analyst B</text>
+
+    <circle cx="175" cy="20" r="14" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1.2"/>
+    <text x="175" y="24" text-anchor="middle" fill="#2A7F62" font-size="10">👤</text>
+    <text x="175" y="50" text-anchor="middle" fill="#2C3E50" font-size="9">Data Sci</text>
+  </g>
+
+  <!-- Clean lines from users to semantic layer -->
+  <g stroke="#2A7F62" stroke-width="1.5" fill="none">
+    <line x1="515" y1="192" x2="615" y2="220"/>
+    <line x1="590" y1="192" x2="670" y2="220"/>
+    <line x1="665" y1="192" x2="720" y2="220"/>
+  </g>
+
+  <!-- Semantic Layer box -->
+  <rect x="530" y="222" width="250" height="40" rx="8" fill="#2A7F62" opacity="0.12" stroke="#2A7F62" stroke-width="2"/>
+  <text x="655" y="247" text-anchor="middle" fill="#2A7F62" font-size="13" font-weight="700">🏛 Semantic Layer / Feature Store</text>
+
+  <!-- Clean lines from semantic to curated data -->
+  <line x1="655" y1="262" x2="655" y2="282" stroke="#2A7F62" stroke-width="1.5"/>
+
+  <!-- Curated data blocks -->
+  <rect x="560" y="284" width="190" height="28" rx="4" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="655" y="302" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Curated Domain Structures</text>
+
+  <!-- Benefits -->
+  <text x="670" y="336" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">
+    <tspan x="670" dy="0">• Centralized, governed metrics</tspan>
+    <tspan x="670" dy="16">• Business-friendly terminology</tspan>
+    <tspan x="670" dy="16">• Single source of truth</tspan>
+  </text>
+
+  <!-- VS divider -->
+  <circle cx="450" cy="222" r="18" fill="#1F4E79"/>
+  <text x="450" y="227" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">VS</text>
+</svg>

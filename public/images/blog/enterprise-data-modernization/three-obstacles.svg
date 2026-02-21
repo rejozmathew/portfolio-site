@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow1" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4f8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="64" fill="url(#headerGrad)" rx="12"/>
+  <rect x="0" y="32" width="900" height="32" fill="url(#headerGrad)"/>
+  <text x="450" y="40" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="700" letter-spacing="0.5">Why Enterprise Analytics Environments Underperform</text>
+
+  <!-- Obstacle 1 -->
+  <g filter="url(#shadow1)">
+    <rect x="30" y="90" width="260" height="400" rx="10" fill="url(#cardGrad1)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="30" y="90" width="260" height="52" rx="10" fill="#1F4E79"/>
+    <rect x="30" y="122" width="260" height="20" fill="#1F4E79"/>
+    <!-- Icon -->
+    <circle cx="60" cy="116" r="16" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="60" y="122" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700">1</text>
+    <text x="160" y="121" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Inconsistent Metrics</text>
+  </g>
+  <!-- Obstacle 1 content -->
+  <text x="160" y="170" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">Redundant KPI Calculations</text>
+  <line x1="80" y1="180" x2="240" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Mini diagram: scattered users -->
+  <g transform="translate(60, 195)">
+    <!-- Users calculating independently -->
+    <rect x="0" y="0" width="50" height="30" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="25" y="20" text-anchor="middle" fill="#1F4E79" font-size="9">User A</text>
+    <rect x="70" y="0" width="50" height="30" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="95" y="20" text-anchor="middle" fill="#1F4E79" font-size="9">User B</text>
+    <rect x="140" y="0" width="50" height="30" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="165" y="20" text-anchor="middle" fill="#1F4E79" font-size="9">User C</text>
+    <!-- Arrows to different results -->
+    <line x1="25" y1="30" x2="25" y2="55" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+    <line x1="95" y1="30" x2="95" y2="55" stroke="#c0392b" stroke-width="1.5"/>
+    <line x1="165" y1="30" x2="165" y2="55" stroke="#c0392b" stroke-width="1.5"/>
+    <rect x="0" y="56" width="50" height="24" rx="3" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+    <text x="25" y="72" text-anchor="middle" fill="#c0392b" font-size="9">$1.2M</text>
+    <rect x="70" y="56" width="50" height="24" rx="3" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+    <text x="95" y="72" text-anchor="middle" fill="#c0392b" font-size="9">$1.4M</text>
+    <rect x="140" y="56" width="50" height="24" rx="3" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+    <text x="165" y="72" text-anchor="middle" fill="#c0392b" font-size="9">$1.1M</text>
+    <!-- X marks -->
+    <text x="95" y="100" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="700">✗ Multiple "truths"</text>
+  </g>
+
+  <text x="160" y="330" text-anchor="middle" fill="#2C3E50" font-size="10.5">
+    <tspan x="160" dy="0">Each user independently</tspan>
+    <tspan x="160" dy="15">calculates KPIs using different</tspan>
+    <tspan x="160" dy="15">logic, sources, and filters —</tspan>
+    <tspan x="160" dy="15">producing conflicting results</tspan>
+    <tspan x="160" dy="15">that erode organizational trust.</tspan>
+  </text>
+
+  <!-- Obstacle 2 -->
+  <g filter="url(#shadow1)">
+    <rect x="320" y="90" width="260" height="400" rx="10" fill="url(#cardGrad1)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="320" y="90" width="260" height="52" rx="10" fill="#1F4E79"/>
+    <rect x="320" y="122" width="260" height="20" fill="#1F4E79"/>
+    <circle cx="350" cy="116" r="16" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="350" y="122" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700">2</text>
+    <text x="450" y="121" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Unvalidated Data</text>
+  </g>
+  <!-- Obstacle 2 content -->
+  <text x="450" y="170" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">Raw, Untransformed Sources</text>
+  <line x1="370" y1="180" x2="530" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Mini diagram: tangled data -->
+  <g transform="translate(345, 195)">
+    <rect x="0" y="0" width="60" height="26" rx="3" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+    <text x="30" y="17" text-anchor="middle" fill="#e67e22" font-size="8.5">Volatile</text>
+    <rect x="70" y="0" width="60" height="26" rx="3" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+    <text x="100" y="17" text-anchor="middle" fill="#e67e22" font-size="8.5">Opaque</text>
+    <rect x="140" y="0" width="60" height="26" rx="3" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+    <text x="170" y="17" text-anchor="middle" fill="#e67e22" font-size="8.5">Complex</text>
+
+    <!-- Tangled lines representing messy relationships -->
+    <path d="M30,26 C30,50 100,35 100,55" stroke="#e67e22" stroke-width="1.2" fill="none" stroke-dasharray="3,2"/>
+    <path d="M100,26 C100,40 170,45 170,55" stroke="#e67e22" stroke-width="1.2" fill="none" stroke-dasharray="3,2"/>
+    <path d="M170,26 C170,40 30,50 30,55" stroke="#e67e22" stroke-width="1.2" fill="none" stroke-dasharray="3,2"/>
+
+    <rect x="30" y="58" width="140" height="28" rx="4" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+    <text x="100" y="76" text-anchor="middle" fill="#c0392b" font-size="10">⚠ Quality Unknown</text>
+  </g>
+
+  <text x="450" y="330" text-anchor="middle" fill="#2C3E50" font-size="10.5">
+    <tspan x="450" dy="0">Source data is often volatile,</tspan>
+    <tspan x="450" dy="15">poorly documented, and spans</tspan>
+    <tspan x="450" dy="15">hundreds of structures with</tspan>
+    <tspan x="450" dy="15">opaque relationships — making</tspan>
+    <tspan x="450" dy="15">reliable analysis nearly impossible.</tspan>
+  </text>
+
+  <!-- Obstacle 3 -->
+  <g filter="url(#shadow1)">
+    <rect x="610" y="90" width="260" height="400" rx="10" fill="url(#cardGrad1)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="610" y="90" width="260" height="52" rx="10" fill="#1F4E79"/>
+    <rect x="610" y="122" width="260" height="20" fill="#1F4E79"/>
+    <circle cx="640" cy="116" r="16" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="640" y="122" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700">3</text>
+    <text x="740" y="121" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Unknown Provenance</text>
+  </g>
+  <!-- Obstacle 3 content -->
+  <text x="740" y="170" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">Data Lineage Gaps</text>
+  <line x1="660" y1="180" x2="820" y2="180" stroke="#e2e8f0" stroke-width="1"/>
+  <!-- Mini diagram: question marks and scattered sources -->
+  <g transform="translate(640, 195)">
+    <rect x="0" y="0" width="45" height="24" rx="3" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="22" y="16" text-anchor="middle" fill="#1F4E79" font-size="8">Sys A</text>
+    <rect x="55" y="0" width="45" height="24" rx="3" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="77" y="16" text-anchor="middle" fill="#1F4E79" font-size="8">Sys B</text>
+    <rect x="110" y="0" width="45" height="24" rx="3" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+    <text x="132" y="16" text-anchor="middle" fill="#1F4E79" font-size="8">Sys C</text>
+    <rect x="165" y="0" width="25" height="24" rx="3" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="177" y="16" text-anchor="middle" fill="#9ca3af" font-size="8">?</text>
+
+    <!-- Arrows going to question -->
+    <path d="M22,24 L80,50" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+    <path d="M77,24 L80,50" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+    <path d="M132,24 L80,50" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+
+    <circle cx="80" cy="65" r="18" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="80" y="71" text-anchor="middle" fill="#f59e0b" font-size="20" font-weight="700">?</text>
+  </g>
+
+  <text x="740" y="330" text-anchor="middle" fill="#2C3E50" font-size="10.5">
+    <tspan x="740" dy="0">Without a reliable, historically</tspan>
+    <tspan x="740" dy="15">tracked source of record,</tspan>
+    <tspan x="740" dy="15">analysts cannot confidently</tspan>
+    <tspan x="740" dy="15">trace data origins or trust</tspan>
+    <tspan x="740" dy="15">the content they consume.</tspan>
+  </text>
+</svg>

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1F4E79"/></marker>
+    <marker id="arrT" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2A7F62"/></marker>
+  </defs>
+
+  <rect width="920" height="520" fill="#f9fafb" rx="8"/>
+  <text x="460" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">Hybrid GBDT + Deep Neural Network Architecture</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#94A3B8" font-style="italic">Inspired by Facebook's 2014 research on predicting ad clicks</text>
+
+  <rect x="20" y="80" width="140" height="340" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="90" y="104" text-anchor="middle" font-size="12" font-weight="600" fill="#2C3E50">Raw Features</text>
+  <text x="90" y="122" text-anchor="middle" font-size="10" fill="#64748B">7,000+ variables</text>
+
+  <rect x="32" y="138" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="155" text-anchor="middle" font-size="9" fill="#1F4E79">Account Activity</text>
+  <rect x="32" y="168" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="185" text-anchor="middle" font-size="9" fill="#1F4E79">Transaction Data</text>
+  <rect x="32" y="198" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="215" text-anchor="middle" font-size="9" fill="#1F4E79">Digital Behavior</text>
+  <rect x="32" y="228" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="245" text-anchor="middle" font-size="9" fill="#1F4E79">Risk Indicators</text>
+  <rect x="32" y="258" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="275" text-anchor="middle" font-size="9" fill="#1F4E79">Marketing History</text>
+  <rect x="32" y="288" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="305" text-anchor="middle" font-size="9" fill="#1F4E79">Time Series (CIMS)</text>
+  <rect x="32" y="318" width="116" height="24" rx="4" fill="#E8F4FD"/><text x="90" y="335" text-anchor="middle" font-size="9" fill="#1F4E79">Offer Responses</text>
+  <text x="90" y="368" text-anchor="middle" font-size="9" fill="#94A3B8">+ LOB-prescribed</text>
+  <text x="90" y="383" text-anchor="middle" font-size="9" fill="#94A3B8">variables</text>
+
+  <line x1="160" y1="250" x2="188" y2="250" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="190" y="80" width="250" height="340" rx="8" fill="white" stroke="#1F4E79" stroke-width="2" filter="url(#ds)"/>
+  <rect x="190" y="80" width="250" height="36" rx="8" fill="#1F4E79"/>
+  <rect x="190" y="106" width="250" height="4" fill="#1F4E79"/>
+  <text x="315" y="104" text-anchor="middle" font-size="13" font-weight="600" fill="white">GBDT Feature Transformation</text>
+
+  <g transform="translate(210, 130)">
+    <circle cx="30" cy="10" r="6" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1.2"/>
+    <line x1="24" y1="16" x2="18" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <line x1="36" y1="16" x2="42" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <circle cx="18" cy="33" r="5" fill="#1F4E79" opacity="0.3"/>
+    <circle cx="42" cy="33" r="5" fill="#1F4E79"/>
+    <text x="30" y="55" text-anchor="middle" font-size="8" fill="#64748B">Offer₁</text>
+
+    <circle cx="90" cy="10" r="6" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1.2"/>
+    <line x1="84" y1="16" x2="78" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <line x1="96" y1="16" x2="102" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <circle cx="78" cy="33" r="5" fill="#1F4E79"/>
+    <circle cx="102" cy="33" r="5" fill="#1F4E79" opacity="0.3"/>
+    <text x="90" y="55" text-anchor="middle" font-size="8" fill="#64748B">Offer₂</text>
+
+    <text x="135" y="22" font-size="14" fill="#94A3B8">. . .</text>
+
+    <circle cx="185" cy="10" r="6" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1.2"/>
+    <line x1="179" y1="16" x2="173" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <line x1="191" y1="16" x2="197" y2="30" stroke="#1F4E79" stroke-width="1"/>
+    <circle cx="173" cy="33" r="5" fill="#1F4E79" opacity="0.3"/>
+    <circle cx="197" cy="33" r="5" fill="#1F4E79"/>
+    <text x="185" y="55" text-anchor="middle" font-size="8" fill="#64748B">Offer_N</text>
+  </g>
+
+  <text x="315" y="210" text-anchor="middle" font-size="10" fill="#2C3E50">20 boosted trees per offer</text>
+  <text x="315" y="226" text-anchor="middle" font-size="10" fill="#2C3E50">21 GBDTs (20 offers + none)</text>
+
+  <rect x="210" y="244" width="210" height="70" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="315" y="262" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Leaf Node Encoding</text>
+  <text x="315" y="280" text-anchor="middle" font-size="9" fill="#64748B">Each account → leaf index per tree</text>
+  <text x="315" y="295" text-anchor="middle" font-size="9" font-family="monospace" fill="#1F4E79">[1,0,0, 0,0,1,0, ... 0,1,0,0]</text>
+
+  <rect x="220" y="326" width="190" height="32" rx="6" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="315" y="347" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">~1,600 transformed features</text>
+
+  <text x="315" y="392" text-anchor="middle" font-size="9" fill="#94A3B8">Binary flags capture nonlinear</text>
+  <text x="315" y="406" text-anchor="middle" font-size="9" fill="#94A3B8">feature interactions automatically</text>
+
+  <line x1="440" y1="250" x2="468" y2="250" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrT)"/>
+
+  <text x="454" y="290" text-anchor="middle" font-size="8" fill="#94A3B8" transform="rotate(-90 454 290)">+ 20 LOB features</text>
+
+  <rect x="470" y="80" width="240" height="340" rx="8" fill="white" stroke="#2A7F62" stroke-width="2" filter="url(#ds)"/>
+  <rect x="470" y="80" width="240" height="36" rx="8" fill="#2A7F62"/>
+  <rect x="470" y="106" width="240" height="4" fill="#2A7F62"/>
+  <text x="590" y="104" text-anchor="middle" font-size="13" font-weight="600" fill="white">Deep Neural Network</text>
+
+  <g transform="translate(490, 132)">
+    <text x="100" y="0" text-anchor="middle" font-size="9" fill="#64748B">~130 relevant features</text>
+    <circle cx="20" cy="20" r="5" fill="#2A7F62" opacity="0.6"/><circle cx="44" cy="20" r="5" fill="#2A7F62" opacity="0.7"/>
+    <circle cx="68" cy="20" r="5" fill="#2A7F62" opacity="0.5"/><circle cx="92" cy="20" r="5" fill="#2A7F62" opacity="0.8"/>
+    <circle cx="116" cy="20" r="5" fill="#2A7F62" opacity="0.4"/><circle cx="140" cy="20" r="5" fill="#2A7F62" opacity="0.6"/>
+    <circle cx="164" cy="20" r="5" fill="#2A7F62" opacity="0.7"/><circle cx="188" cy="20" r="5" fill="#2A7F62" opacity="0.5"/>
+
+    <circle cx="30" cy="60" r="5" fill="#1F4E79" opacity="0.5"/><circle cx="58" cy="60" r="5" fill="#1F4E79" opacity="0.7"/>
+    <circle cx="86" cy="60" r="5" fill="#1F4E79" opacity="0.6"/><circle cx="114" cy="60" r="5" fill="#1F4E79" opacity="0.8"/>
+    <circle cx="142" cy="60" r="5" fill="#1F4E79" opacity="0.4"/><circle cx="170" cy="60" r="5" fill="#1F4E79" opacity="0.6"/>
+
+    <circle cx="40" cy="100" r="5" fill="#1F4E79" opacity="0.6"/><circle cx="72" cy="100" r="5" fill="#1F4E79" opacity="0.8"/>
+    <circle cx="104" cy="100" r="5" fill="#1F4E79" opacity="0.5"/><circle cx="136" cy="100" r="5" fill="#1F4E79" opacity="0.7"/>
+    <circle cx="168" cy="100" r="5" fill="#1F4E79" opacity="0.4"/>
+
+    <circle cx="50" cy="140" r="5" fill="#1F4E79" opacity="0.7"/><circle cx="86" cy="140" r="5" fill="#1F4E79" opacity="0.5"/>
+    <circle cx="122" cy="140" r="5" fill="#1F4E79" opacity="0.8"/><circle cx="158" cy="140" r="5" fill="#1F4E79" opacity="0.6"/>
+
+    <line x1="20" y1="25" x2="30" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="44" y1="25" x2="58" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="68" y1="25" x2="86" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="92" y1="25" x2="114" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="116" y1="25" x2="142" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="140" y1="25" x2="170" y2="55" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="30" y1="65" x2="40" y2="95" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="58" y1="65" x2="72" y2="95" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="86" y1="65" x2="104" y2="95" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="114" y1="65" x2="136" y2="95" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="40" y1="105" x2="50" y2="135" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="72" y1="105" x2="86" y2="135" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="104" y1="105" x2="122" y2="135" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+    <line x1="136" y1="105" x2="158" y2="135" stroke="#1F4E79" stroke-width="0.3" opacity="0.3"/>
+  </g>
+
+  <text x="590" y="310" text-anchor="middle" font-size="10" fill="#2C3E50">Multi-label classification</text>
+  <text x="590" y="326" text-anchor="middle" font-size="10" fill="#2C3E50">Minimizes sum of Log Loss</text>
+  <text x="590" y="342" text-anchor="middle" font-size="10" fill="#2C3E50">across all offers jointly</text>
+
+  <rect x="500" y="360" width="180" height="24" rx="6" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="590" y="377" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Shared input layer → efficiency</text>
+
+  <rect x="740" y="100" width="150" height="280" rx="8" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="815" y="128" text-anchor="middle" font-size="12" font-weight="600" fill="#1F4E79">Propensity Scores</text>
+
+  <rect x="755" y="142" width="120" height="20" rx="4" fill="#1F4E79" opacity="0.9"/>
+  <text x="815" y="157" text-anchor="middle" font-size="9" fill="white">Balance Transfer</text>
+  <rect x="755" y="168" width="95" height="20" rx="4" fill="#1F4E79" opacity="0.75"/>
+  <text x="803" y="183" text-anchor="middle" font-size="9" fill="white">Identity Protect</text>
+  <rect x="755" y="194" width="82" height="20" rx="4" fill="#1F4E79" opacity="0.6"/>
+  <text x="796" y="209" text-anchor="middle" font-size="9" fill="white">Personal Loan</text>
+  <rect x="755" y="220" width="68" height="20" rx="4" fill="#1F4E79" opacity="0.5"/>
+  <text x="789" y="235" text-anchor="middle" font-size="9" fill="white">Paperless</text>
+  <rect x="755" y="246" width="55" height="20" rx="4" fill="#1F4E79" opacity="0.4"/>
+  <text x="782" y="261" text-anchor="middle" font-size="9" fill="white">Refer</text>
+  <text x="815" y="290" text-anchor="middle" font-size="10" fill="#94A3B8">. . .</text>
+  <rect x="755" y="300" width="40" height="20" rx="4" fill="#1F4E79" opacity="0.25"/>
+  <text x="775" y="315" text-anchor="middle" font-size="9" fill="white">Offer_N</text>
+
+  <text x="815" y="348" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">25 scores per</text>
+  <text x="815" y="363" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">customer</text>
+
+  <line x1="710" y1="250" x2="738" y2="250" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="180" y="440" width="560" height="56" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="460" y="462" text-anchor="middle" font-size="11" font-weight="600" fill="#1F4E79">Key Insight: GBDT as Feature Engineering Engine</text>
+  <text x="460" y="480" text-anchor="middle" font-size="10" fill="#64748B">Trees automatically discover nonlinear feature interactions. Leaf indices serve as a learned, compact</text>
+  <text x="460" y="494" text-anchor="middle" font-size="10" fill="#64748B">feature representation — fed into the DNN which jointly optimizes across all offers simultaneously.</text>
+</svg>

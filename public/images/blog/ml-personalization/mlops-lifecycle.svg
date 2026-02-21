@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="s4" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="a4" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="#1F4E79"/></marker>
+  </defs>
+
+  <rect width="900" height="380" fill="#f9fafb" rx="8"/>
+  <text x="450" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">MLOps Lifecycle for Personalization Models</text>
+
+  <!-- Circular flow - positioned as a left-to-right pipeline with feedback loop -->
+
+  <!-- Step 1: Data -->
+  <rect x="20" y="80" width="130" height="90" rx="10" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="20" y="80" width="130" height="28" rx="10" fill="#1F4E79"/>
+  <text x="85" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="white">Data Pipeline</text>
+  <text x="85" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">Feature engineering</text>
+  <text x="85" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">Sampling strategy</text>
+  <text x="85" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">Class rebalancing</text>
+
+  <line x1="150" y1="125" x2="172" y2="125" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <!-- Step 2: Training -->
+  <rect x="175" y="80" width="130" height="90" rx="10" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="175" y="80" width="130" height="28" rx="10" fill="#1F4E79"/>
+  <text x="240" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="white">Model Training</text>
+  <text x="240" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">GBDT feature extract</text>
+  <text x="240" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">DNN multi-label train</text>
+  <text x="240" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">Hyperparameter tune</text>
+
+  <line x1="305" y1="125" x2="327" y2="125" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <!-- Step 3: Validation -->
+  <rect x="330" y="80" width="130" height="90" rx="10" fill="white" stroke="#2A7F62" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="330" y="80" width="130" height="28" rx="10" fill="#2A7F62"/>
+  <text x="395" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="white">Validation</text>
+  <text x="395" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">OOT capture rate</text>
+  <text x="395" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">K-S score analysis</text>
+  <text x="395" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">PSI stability check</text>
+
+  <line x1="460" y1="125" x2="482" y2="125" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <!-- Step 4: Governance -->
+  <rect x="485" y="80" width="130" height="90" rx="10" fill="white" stroke="#7C3AED" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="485" y="80" width="130" height="28" rx="10" fill="#7C3AED"/>
+  <text x="550" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="white">Governance</text>
+  <text x="550" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">Fair banking review</text>
+  <text x="550" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">Legal compliance</text>
+  <text x="550" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">Model risk audit</text>
+
+  <line x1="615" y1="125" x2="637" y2="125" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <!-- Step 5: Deployment -->
+  <rect x="640" y="80" width="130" height="90" rx="10" fill="white" stroke="#E97451" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="640" y="80" width="130" height="28" rx="10" fill="#E97451"/>
+  <text x="705" y="100" text-anchor="middle" font-size="11" font-weight="600" fill="white">Deployment</text>
+  <text x="705" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">A/B test (50/50)</text>
+  <text x="705" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">Phased rollout</text>
+  <text x="705" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">Score integration</text>
+
+  <line x1="770" y1="125" x2="792" y2="125" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+
+  <!-- Step 6: Monitoring -->
+  <rect x="795" y="80" width="85" height="90" rx="10" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#s4)"/>
+  <rect x="795" y="80" width="85" height="28" rx="10" fill="#1F4E79"/>
+  <text x="838" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="white">Monitor</text>
+  <text x="838" y="126" text-anchor="middle" font-size="9" fill="#2C3E50">PSI drift</text>
+  <text x="838" y="140" text-anchor="middle" font-size="9" fill="#2C3E50">Anomaly</text>
+  <text x="838" y="154" text-anchor="middle" font-size="9" fill="#2C3E50">alerts</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M838,170 L838,210 Q838,220 828,220 L95,220 Q85,220 85,210 L85,175" fill="none" stroke="#2A7F62" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="85,175 79,185 91,185" fill="#2A7F62"/>
+  <text x="460" y="215" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Quarterly Automated Retraining Cycle</text>
+
+  <!-- Lower section: Monitoring details -->
+  <rect x="20" y="245" width="860" height="115" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="450" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#1F4E79">Continuous Monitoring &amp; Controls</text>
+
+  <!-- Monitoring categories -->
+  <rect x="40" y="282" width="190" height="60" rx="6" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1"/>
+  <text x="135" y="300" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Score Stability (PSI)</text>
+  <text x="135" y="316" text-anchor="middle" font-size="9" fill="#64748B">Monthly score distribution drift</text>
+  <text x="135" y="330" text-anchor="middle" font-size="9" fill="#64748B">alerts on significant shifts</text>
+
+  <rect x="245" y="282" width="190" height="60" rx="6" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="340" y="300" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Capture Rate Monitoring</text>
+  <text x="340" y="316" text-anchor="middle" font-size="9" fill="#64748B">Rank-ordering accuracy tracked</text>
+  <text x="340" y="330" text-anchor="middle" font-size="9" fill="#64748B">via Tableau dashboards</text>
+
+  <rect x="450" y="282" width="190" height="60" rx="6" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="545" y="300" text-anchor="middle" font-size="10" font-weight="600" fill="#7C3AED">Fair Banking &amp; Compliance</text>
+  <text x="545" y="316" text-anchor="middle" font-size="9" fill="#64748B">Attribute-level bias review</text>
+  <text x="545" y="330" text-anchor="middle" font-size="9" fill="#64748B">Ongoing legal assessment</text>
+
+  <rect x="655" y="282" width="210" height="60" rx="6" fill="#FFF7ED" stroke="#E97451" stroke-width="1"/>
+  <text x="760" y="300" text-anchor="middle" font-size="10" font-weight="600" fill="#E97451">A/B Test Result Monitoring</text>
+  <text x="760" y="316" text-anchor="middle" font-size="9" fill="#64748B">Conversion lift by product &amp; channel</text>
+  <text x="760" y="330" text-anchor="middle" font-size="9" fill="#64748B">Statistical significance checks</text>
+</svg>

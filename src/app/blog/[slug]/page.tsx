@@ -32,6 +32,7 @@ function getPostBySlug(slug: string) {
         title: string;
         date: string;
         description: string;
+        tags?: string | string[];
       },
       content,
       readingTime: stats.text,
@@ -101,6 +102,26 @@ export default async function BlogPostPage({
             {new Date(post.frontmatter.date).toLocaleDateString()} |{' '}
             {post.readingTime}
           </p>
+          {(() => {
+            let tags: string[] = [];
+            if (Array.isArray(post.frontmatter.tags)) {
+              tags = post.frontmatter.tags.map((t: string) => t.trim());
+            } else if (typeof post.frontmatter.tags === 'string') {
+              tags = post.frontmatter.tags.split(',').map((t: string) => t.trim());
+            }
+            return tags.length > 0 ? (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-block bg-gray-50 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null;
+          })()}
         </header>
 
         <div className="prose prose-lg max-w-none">

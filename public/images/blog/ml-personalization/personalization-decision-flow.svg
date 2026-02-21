@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="s2" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1F4E79"/></marker>
+    <marker id="a2t" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2A7F62"/></marker>
+  </defs>
+
+  <rect width="900" height="400" fill="#f9fafb" rx="8"/>
+  <text x="450" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">Personalization Decision Flow</text>
+
+  <!-- Customer Triggers -->
+  <rect x="20" y="60" width="160" height="300" rx="8" fill="white" stroke="#E97451" stroke-width="2" filter="url(#s2)"/>
+  <rect x="20" y="60" width="160" height="32" rx="8" fill="#E97451"/>
+  <rect x="20" y="84" width="160" height="4" fill="#E97451"/>
+  <text x="100" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="white">Behavioral Triggers</text>
+
+  <!-- Trigger items -->
+  <g fill="#2C3E50" font-size="10">
+    <circle cx="42" cy="110" r="10" fill="#FFF2ED" stroke="#E97451" stroke-width="1"/><text x="42" y="114" text-anchor="middle" font-size="8" font-weight="700" fill="#E97451">1</text>
+    <text x="58" y="114">Critical Services</text>
+    <text x="42" y="130" font-size="9" fill="#94A3B8">Card activation, alerts</text>
+
+    <circle cx="42" cy="160" r="10" fill="#FFF2ED" stroke="#E97451" stroke-width="1"/><text x="42" y="164" text-anchor="middle" font-size="8" font-weight="700" fill="#E97451">2</text>
+    <text x="58" y="164">Abandoners</text>
+    <text x="42" y="180" font-size="9" fill="#94A3B8">Application drop-offs</text>
+
+    <circle cx="42" cy="210" r="10" fill="#FFF2ED" stroke="#E97451" stroke-width="1"/><text x="42" y="214" text-anchor="middle" font-size="8" font-weight="700" fill="#E97451">3</text>
+    <text x="58" y="214">Intent Signals</text>
+    <text x="42" y="230" font-size="9" fill="#94A3B8">Search, FAQ, page visit</text>
+
+    <circle cx="42" cy="260" r="10" fill="#FFF2ED" stroke="#E97451" stroke-width="1"/><text x="42" y="264" text-anchor="middle" font-size="8" font-weight="700" fill="#E97451">4</text>
+    <text x="58" y="264">ML Model Scores</text>
+    <text x="42" y="280" font-size="9" fill="#94A3B8">Propensity predictions</text>
+  </g>
+
+  <text x="100" y="320" text-anchor="middle" font-size="9" fill="#64748B">~1.6M accounts/month</text>
+  <text x="100" y="336" text-anchor="middle" font-size="9" fill="#64748B">exhibit trigger signals</text>
+
+  <!-- Arrow -->
+  <line x1="180" y1="200" x2="215" y2="200" stroke="#1F4E79" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- Decisioning Engine -->
+  <rect x="220" y="60" width="280" height="300" rx="8" fill="white" stroke="#1F4E79" stroke-width="2" filter="url(#s2)"/>
+  <rect x="220" y="60" width="280" height="32" rx="8" fill="#1F4E79"/>
+  <rect x="220" y="84" width="280" height="4" fill="#1F4E79"/>
+  <text x="360" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="white">ML Decisioning Engine</text>
+
+  <!-- Engine components -->
+  <rect x="236" y="100" width="248" height="40" rx="6" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1"/>
+  <text x="360" y="117" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Credit Eligibility &amp; Business Rules</text>
+  <text x="360" y="131" text-anchor="middle" font-size="9" fill="#64748B">Compliance, risk boundaries, legal checks</text>
+
+  <line x1="360" y1="140" x2="360" y2="150" stroke="#CBD5E1" stroke-width="1"/>
+
+  <rect x="236" y="150" width="248" height="40" rx="6" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1"/>
+  <text x="360" y="167" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Response Rate Prediction (ML 2.0)</text>
+  <text x="360" y="181" text-anchor="middle" font-size="9" fill="#64748B">GBDT + DNN propensity scoring</text>
+
+  <line x1="360" y1="190" x2="360" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+
+  <rect x="236" y="200" width="248" height="40" rx="6" fill="#FFF7ED" stroke="#E97451" stroke-width="1"/>
+  <text x="360" y="217" text-anchor="middle" font-size="10" font-weight="600" fill="#E97451">Expected Value Calculation</text>
+  <text x="360" y="231" text-anchor="middle" font-size="9" fill="#64748B">Response Rate × Value per Conversion</text>
+
+  <line x1="360" y1="240" x2="360" y2="250" stroke="#CBD5E1" stroke-width="1"/>
+
+  <rect x="236" y="250" width="248" height="40" rx="6" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1"/>
+  <text x="360" y="267" text-anchor="middle" font-size="10" font-weight="600" fill="#2C3E50">Frequency &amp; Sequencing Logic</text>
+  <text x="360" y="281" text-anchor="middle" font-size="9" fill="#64748B">Impression cap, cross-region dedup</text>
+
+  <line x1="360" y1="290" x2="360" y2="300" stroke="#CBD5E1" stroke-width="1"/>
+
+  <rect x="236" y="300" width="248" height="40" rx="6" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="360" y="317" text-anchor="middle" font-size="10" font-weight="600" fill="#7C3AED">Calibration &amp; Seasonality Adjustment</text>
+  <text x="360" y="331" text-anchor="middle" font-size="9" fill="#64748B">Seasonal response rate normalization</text>
+
+  <!-- Arrow to offer sequence -->
+  <line x1="500" y1="200" x2="535" y2="200" stroke="#2A7F62" stroke-width="2" marker-end="url(#a2t)"/>
+
+  <!-- Offer Sequence -->
+  <rect x="540" y="110" width="170" height="200" rx="8" fill="white" stroke="#2A7F62" stroke-width="2" filter="url(#s2)"/>
+  <rect x="540" y="110" width="170" height="32" rx="8" fill="#2A7F62"/>
+  <rect x="540" y="134" width="170" height="4" fill="#2A7F62"/>
+  <text x="625" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="white">Ranked Offers</text>
+
+  <!-- Ranked offer boxes -->
+  <rect x="556" y="150" width="138" height="26" rx="5" fill="#2A7F62" opacity="0.9"/>
+  <text x="625" y="168" text-anchor="middle" font-size="10" fill="white" font-weight="600">1. Balance Transfer</text>
+  <rect x="556" y="182" width="138" height="26" rx="5" fill="#2A7F62" opacity="0.7"/>
+  <text x="625" y="200" text-anchor="middle" font-size="10" fill="white">2. Identity Protection</text>
+  <rect x="556" y="214" width="138" height="26" rx="5" fill="#2A7F62" opacity="0.5"/>
+  <text x="625" y="232" text-anchor="middle" font-size="10" fill="white">3. Refer-a-Friend</text>
+  <rect x="556" y="246" width="138" height="26" rx="5" fill="#2A7F62" opacity="0.3"/>
+  <text x="625" y="264" text-anchor="middle" font-size="10" fill="white">4. Personal Loan</text>
+  <text x="625" y="293" text-anchor="middle" font-size="9" fill="#94A3B8" font-style="italic">On conversion → next offer</text>
+
+  <!-- Arrow to channels -->
+  <line x1="710" y1="200" x2="738" y2="200" stroke="#1F4E79" stroke-width="2" marker-end="url(#a2)"/>
+
+  <!-- Channels -->
+  <rect x="742" y="80" width="138" height="270" rx="8" fill="white" stroke="#1F4E79" stroke-width="1.5" filter="url(#s2)"/>
+  <rect x="742" y="80" width="138" height="32" rx="8" fill="#1F4E79"/>
+  <rect x="742" y="104" width="138" height="4" fill="#1F4E79"/>
+  <text x="811" y="102" text-anchor="middle" font-size="12" font-weight="600" fill="white">Channels</text>
+
+  <!-- Channel icons/labels -->
+  <rect x="758" y="122" width="106" height="30" rx="6" fill="#E8F4FD"/><text x="811" y="142" text-anchor="middle" font-size="10" fill="#1F4E79">🌐 Website</text>
+  <rect x="758" y="160" width="106" height="30" rx="6" fill="#E8F4FD"/><text x="811" y="180" text-anchor="middle" font-size="10" fill="#1F4E79">📱 Mobile App</text>
+  <rect x="758" y="198" width="106" height="30" rx="6" fill="#E8F4FD"/><text x="811" y="218" text-anchor="middle" font-size="10" fill="#1F4E79">📧 Email</text>
+  <rect x="758" y="236" width="106" height="30" rx="6" fill="#E8F4FD"/><text x="811" y="256" text-anchor="middle" font-size="10" fill="#1F4E79">📄 Statements</text>
+
+  <text x="811" y="296" text-anchor="middle" font-size="9" fill="#2A7F62" font-weight="600">95%+ coverage</text>
+  <text x="811" y="312" text-anchor="middle" font-size="9" fill="#64748B">across placements</text>
+
+  <!-- Bottom annotation -->
+  <text x="450" y="388" text-anchor="middle" font-size="10" fill="#94A3B8" font-style="italic">Right product → Right customer → Right channel → Right time</text>
+</svg>

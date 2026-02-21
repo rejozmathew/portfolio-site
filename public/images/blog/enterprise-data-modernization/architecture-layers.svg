@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <marker id="arrowNav" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2A7F62"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="940" height="480" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="940" height="56" fill="url(#hg2)" rx="12"/>
+  <rect x="0" y="28" width="940" height="28" fill="url(#hg2)"/>
+  <text x="470" y="36" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">Domain-Centric Data Architecture — End-to-End Flow</text>
+
+  <!-- Layer labels at top -->
+  <text x="95" y="84" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1" text-transform="uppercase">OPERATIONAL</text>
+  <text x="95" y="97" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">SYSTEMS</text>
+
+  <text x="275" y="84" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">SOURCE DATA</text>
+  <text x="275" y="97" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">WAREHOUSE</text>
+
+  <text x="470" y="84" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">DOMAIN</text>
+  <text x="470" y="97" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">INTEGRATION</text>
+
+  <text x="665" y="84" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">CONSUMPTION</text>
+  <text x="665" y="97" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">PREPARATION</text>
+
+  <text x="845" y="84" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">SEMANTIC</text>
+  <text x="845" y="97" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">LAYER</text>
+
+  <!-- Dotted vertical dividers -->
+  <line x1="185" y1="70" x2="185" y2="460" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="370" y1="70" x2="370" y2="460" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="565" y1="70" x2="565" y2="460" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="755" y1="70" x2="755" y2="460" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- === LAYER 1: Operational Systems === -->
+  <g filter="url(#ds)">
+    <rect x="30" y="115" width="130" height="42" rx="6" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="95" y="141" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">CRM System</text>
+  </g>
+  <g filter="url(#ds)">
+    <rect x="30" y="170" width="130" height="42" rx="6" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="95" y="196" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">ERP / Finance</text>
+  </g>
+  <g filter="url(#ds)">
+    <rect x="30" y="225" width="130" height="42" rx="6" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="95" y="251" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">Core Banking</text>
+  </g>
+  <g filter="url(#ds)">
+    <rect x="30" y="280" width="130" height="42" rx="6" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="95" y="306" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">External Feeds</text>
+  </g>
+
+  <!-- Arrows: Ops → SDW -->
+  <line x1="160" y1="136" x2="200" y2="200" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowNav)"/>
+  <line x1="160" y1="191" x2="200" y2="200" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowNav)"/>
+  <line x1="160" y1="246" x2="200" y2="230" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowNav)"/>
+  <line x1="160" y1="301" x2="200" y2="260" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arrowNav)"/>
+
+  <!-- === LAYER 2: Source Data Warehouse === -->
+  <g filter="url(#ds)">
+    <rect x="205" y="130" width="140" height="190" rx="8" fill="#e8f4f8" stroke="#1F4E79" stroke-width="2"/>
+    <rect x="205" y="130" width="140" height="36" rx="8" fill="#1F4E79"/>
+    <rect x="205" y="150" width="140" height="16" fill="#1F4E79"/>
+    <text x="275" y="153" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">SDW</text>
+  </g>
+  <!-- SDW sub-layers -->
+  <rect x="218" y="178" width="114" height="30" rx="4" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="275" y="197" text-anchor="middle" fill="#2C3E50" font-size="9.5">Ingestion Layer</text>
+  <rect x="218" y="216" width="114" height="30" rx="4" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="275" y="235" text-anchor="middle" fill="#2C3E50" font-size="9.5">Mastering Layer</text>
+  <rect x="218" y="254" width="114" height="30" rx="4" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="275" y="273" text-anchor="middle" fill="#2C3E50" font-size="9.5">Surrogate Keys</text>
+
+  <!-- SDW description -->
+  <text x="275" y="345" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">
+    <tspan x="275" dy="0">Raw data stored in</tspan>
+    <tspan x="275" dy="13">natural form with</tspan>
+    <tspan x="275" dy="13">light validation</tspan>
+  </text>
+
+  <!-- Arrow: SDW → Domain Integration -->
+  <line x1="345" y1="220" x2="388" y2="220" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNav)"/>
+
+  <!-- === LAYER 3: Domain Integration === -->
+  <g filter="url(#ds)">
+    <rect x="393" y="115" width="155" height="220" rx="8" fill="#e6f5f0" stroke="#2A7F62" stroke-width="2"/>
+    <rect x="393" y="115" width="155" height="36" rx="8" fill="#2A7F62"/>
+    <rect x="393" y="135" width="155" height="16" fill="#2A7F62"/>
+    <text x="470" y="138" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Domain Structures</text>
+  </g>
+  <!-- Domain sub-components -->
+  <rect x="406" y="160" width="129" height="26" rx="4" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="470" y="177" text-anchor="middle" fill="#2C3E50" font-size="9.5">Source Qualifier</text>
+  <rect x="406" y="192" width="129" height="26" rx="4" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="470" y="209" text-anchor="middle" fill="#2C3E50" font-size="9.5">Content Validation</text>
+  <rect x="406" y="224" width="129" height="26" rx="4" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="470" y="241" text-anchor="middle" fill="#2C3E50" font-size="9.5">Transformations</text>
+  <rect x="406" y="256" width="129" height="26" rx="4" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="470" y="273" text-anchor="middle" fill="#2C3E50" font-size="9.5">Quality Logging</text>
+  <rect x="406" y="288" width="129" height="26" rx="4" fill="#ffffff" stroke="#2A7F62" stroke-width="1"/>
+  <text x="470" y="305" text-anchor="middle" fill="#2C3E50" font-size="9.5">Primary Key Check</text>
+
+  <!-- Domain description -->
+  <text x="470" y="345" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">
+    <tspan x="470" dy="0">Cleansed, validated,</tspan>
+    <tspan x="470" dy="13">elemental "source</tspan>
+    <tspan x="470" dy="13">of truth" structures</tspan>
+  </text>
+
+  <!-- Arrow: Domain → Consumption -->
+  <line x1="548" y1="220" x2="585" y2="220" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+  <!-- === LAYER 4: Consumption Preparation === -->
+  <g filter="url(#ds)">
+    <rect x="590" y="130" width="150" height="190" rx="8" fill="#fef9e7" stroke="#d4a017" stroke-width="1.5"/>
+    <rect x="590" y="130" width="150" height="36" rx="8" fill="#d4a017"/>
+    <rect x="590" y="150" width="150" height="16" fill="#d4a017"/>
+    <text x="665" y="153" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Consumption Prep</text>
+  </g>
+  <rect x="603" y="178" width="124" height="30" rx="4" fill="#ffffff" stroke="#d4a017" stroke-width="1"/>
+  <text x="665" y="197" text-anchor="middle" fill="#2C3E50" font-size="9.5">Time Windows</text>
+  <rect x="603" y="216" width="124" height="30" rx="4" fill="#ffffff" stroke="#d4a017" stroke-width="1"/>
+  <text x="665" y="235" text-anchor="middle" fill="#2C3E50" font-size="9.5">Aggregates</text>
+  <rect x="603" y="254" width="124" height="30" rx="4" fill="#ffffff" stroke="#d4a017" stroke-width="1"/>
+  <text x="665" y="273" text-anchor="middle" fill="#2C3E50" font-size="9.5">Optimized Views</text>
+
+  <!-- Consumption description -->
+  <text x="665" y="345" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">
+    <tspan x="665" dy="0">Analysis-ready,</tspan>
+    <tspan x="665" dy="13">time-windowed</tspan>
+    <tspan x="665" dy="13">structures</tspan>
+  </text>
+
+  <!-- Arrow: Consumption → Semantic -->
+  <line x1="740" y1="220" x2="775" y2="220" stroke="#d4a017" stroke-width="2" marker-end="url(#arrowNav)"/>
+
+  <!-- === LAYER 5: Semantic Layer === -->
+  <g filter="url(#ds)">
+    <rect x="780" y="140" width="130" height="170" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="780" y="140" width="130" height="36" rx="8" fill="#7c3aed"/>
+    <rect x="780" y="160" width="130" height="16" fill="#7c3aed"/>
+    <text x="845" y="163" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Semantic Layer</text>
+  </g>
+  <rect x="793" y="188" width="104" height="28" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="845" y="206" text-anchor="middle" fill="#2C3E50" font-size="9.5">Business Views</text>
+  <rect x="793" y="224" width="104" height="28" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="845" y="242" text-anchor="middle" fill="#2C3E50" font-size="9.5">Feature Stores</text>
+  <rect x="793" y="260" width="104" height="28" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="845" y="278" text-anchor="middle" fill="#2C3E50" font-size="9.5">KPI Catalog</text>
+
+  <!-- Semantic description -->
+  <text x="845" y="345" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">
+    <tspan x="845" dy="0">Business-friendly</tspan>
+    <tspan x="845" dy="13">metrics hub for</tspan>
+    <tspan x="845" dy="13">self-service BI</tspan>
+  </text>
+
+  <!-- Bottom summary bar -->
+  <rect x="30" y="400" width="880" height="60" rx="8" fill="#1F4E79" opacity="0.06"/>
+  <text x="470" y="425" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700">DATA QUALITY &amp; GOVERNANCE APPLIED PROGRESSIVELY AT EACH LAYER</text>
+  <text x="470" y="445" text-anchor="middle" fill="#64748b" font-size="10">Raw ingestion → Metadata-driven validation → Elemental domain structures → Consumption-optimized views → Centralized KPIs</text>
+</svg>

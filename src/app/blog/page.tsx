@@ -12,6 +12,7 @@ interface PostMetadata {
   date: string;
   description: string;
   readingTime: string;
+  tags: string[];
 }
 
 // Function to get metadata for all posts
@@ -33,12 +34,21 @@ function getAllPostsMetadata(): PostMetadata[] {
           return null;
         }
 
+        // Normalize tags: accept string[], comma-separated string, or undefined
+        let tags: string[] = [];
+        if (Array.isArray(data.tags)) {
+          tags = data.tags.map((t: string) => t.trim());
+        } else if (typeof data.tags === 'string') {
+          tags = data.tags.split(',').map((t: string) => t.trim());
+        }
+
         return {
           slug,
           title: data.title,
           date: data.date,
           description: data.description,
           readingTime: stats.text,
+          tags,
         };
       } catch (err) {
         console.error(`Error reading metadata for post ${slug}:`, err);
@@ -63,7 +73,7 @@ export default function BlogIndexPage() {
   const posts = getAllPostsMetadata();
 
   return (
-    <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8 max-w-3xl">
+    <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8 max-w-4xl">
       <h1 className="text-4xl font-bold mb-8">Blog</h1>
       <div className="space-y-8">
         {posts.map((post) => (
@@ -79,6 +89,18 @@ export default function BlogIndexPage() {
             <p className="text-gray-800 dark:text-gray-700 mb-4 leading-relaxed">
               {post.description}
             </p>
+            {post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-block bg-green-25 text-green-700 text-xs font-medium px-2.5 py-0.5 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
             <Link href={`/blog/${post.slug}`} className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
               Read more &rarr;
             </Link>
