@@ -1,0 +1,177 @@
+---
+title: "Mathematical Optimization for Team Scheduling: How We Matched Mortgage Bankers to Inbound Leads in Real Time"
+date: "2025-02-20"
+description: "A deep dive into building an Excel-based optimization model that scheduled mortgage banking teams across time zones, licensing constraints, and fluctuating lead volumes — using evolutionary solver to minimize wait times and maximize conversions."
+tags: ["Operations Research", "Mathematical Optimization", "Excel Solver", "Workforce Scheduling", "Mortgage Banking"]
+contentType: "technical"
+traits: ["implementation", "code"]
+---
+
+In the home loans business, speed kills — in a good way. Research consistently shows that connecting with a potential borrower within **seven seconds** of their online inquiry dramatically increases the likelihood of conversion. The customer just entered their information on a lead aggregator site (think LendingTree, Bankrate, or Zillow), they're engaged, they're ready to talk, and the clock is ticking. Every second of delay erodes intent.
+
+The business was purchasing thousands of leads daily from these aggregators and routing them through an auto-dialer to mortgage bankers (MBs). Simple enough in concept. In practice, the scheduling problem behind it was anything but simple.
+
+## The Problem: Five Challenges, One Objective
+
+When a lead comes in, the auto-dialer needs to route it to a mortgage banker who is *available right now* and *licensed to operate in the customer's state*. If no one matches, the call goes to voicemail — an overflow event that effectively kills the conversion opportunity.
+
+The question we needed to answer every month was: **which teams should be scheduled during which hours of the day to minimize overflow and balance workload?**
+
+![Speed to Contact Problem](/images/blog/mots/speed-to-contact.svg)
+
+This sounds like it should be straightforward workforce scheduling. It isn't, because of five intersecting challenges that turn it into a genuinely hard combinatorial optimization problem.
+
+### Challenge 1: FTC Calling Hours
+
+Federal Trade Commission regulations dictate when you can make outbound calls to consumers. The rules are simple — typically 8 AM to 9 PM *in the customer's local time zone* — but the implications for a centralized operation running on Pacific time are anything but. A lead from New York becomes callable at 5 AM PST. A lead from California doesn't open until 8 AM PST. At any given hour, the set of callable states is different, which means the effective lead volume shifts dramatically through the day.
+
+![FTC Time Zone Windows](/images/blog/mots/ftc-time-zones.svg)
+
+The model had to convert all 52 state-level calling windows into a unified PST timeline and compute the *adjusted lead flow* — the actual volume of callable leads per hour, accounting for which states are open.
+
+### Challenge 2: State Licensing
+
+Mortgage bankers are individually licensed by state. A banker licensed in California, Texas, and Florida cannot legally take a call from a New York customer. These licenses are held at the individual level, but since we schedule by *team*, the relevant number is the aggregate license count per team per state.
+
+This creates an availability matrix: for each time slot and each team, how many licenses does that team hold for states that are actually callable in that hour? Some team–hour combinations have hundreds of effective licenses. Others have zero — meaning that team literally cannot service any of the leads arriving at that time.
+
+### Challenge 3: Team-Level Scheduling
+
+We didn't schedule individuals — we scheduled teams. Six teams in total, split between East and West regions, each with different sizes and license portfolios. When a team is "on," every banker on that team is available. When they're "off," none of them are. This discrete, all-or-nothing nature of the decision is what makes the problem combinatorial rather than continuous.
+
+The teams varied significantly in size and geographic coverage:
+
+| Team | Region | Agents | License Breadth |
+|------|--------|--------|-----------------|
+| Howard | East | 32 | Heavy East Coast + some Mountain |
+| Smithers | East | 30 | Broad national coverage |
+| Elite | West | 20 | Strong Western states |
+| Franchise | West | 18 | Balanced national mix |
+| Market Makers | West | 16 | Moderate national coverage |
+| The Commissioners | West | 18 | East Coast + Pacific |
+
+### Challenge 4: Maximum Hours Per Team
+
+No team could be scheduled for more than **four hours per day**, and at least one team had to be scheduled during *every* hour of the 16-hour calling window (5 AM to 9 PM PST). With six teams each working four hours, we had exactly 24 team-hours to distribute across 16 time slots — tight enough that every assignment mattered.
+
+### Challenge 5: Massive Intraday Volume Variability
+
+Lead flow wasn't evenly distributed — it swung wildly through the day. The volume ranged from roughly 500 leads per hour in the early morning and late evening to over 4,400 at the 9–10 AM peak. That's a **9:1 peak-to-trough ratio** within a single day. A schedule that worked well at 10 AM would massively overstaff at 8 PM, and vice versa. The optimization had to account for this variability, matching team coverage to a demand curve that changed shape hourly rather than gradually.
+
+## The Model: MOTS
+
+We called it **MOTS** — Mathematical Optimization Model for Team Scheduling. It was built entirely in Excel, using the Evolutionary Solver engine, and ran monthly to produce the next period's schedule. You can explore the complete model in the [MOTS GitHub repository](https://github.com/rejozmathew/mots).
+
+![Model Architecture](/images/blog/mots/model-architecture.svg)
+
+### Data Inputs
+
+The model ingested five primary data sets, all derived from 20 business days of historical data:
+
+**Hourly Lead Flow by State** was the foundation — a matrix of 52 states × 16 hourly time slots showing how many leads arrived from each state in each hour. California alone generated over 500 leads in a single peak hour. Florida, New York, and New Jersey were other high-volume states. The distribution was heavily right-skewed, with a sharp morning ramp and a long afternoon tail.
+
+**License Profile by Team** captured how many bankers on each team held active licenses for each state. This was essentially a 6 × 52 matrix. Team Howard, for example, had 28 California licenses and 20 Florida licenses, but only 2 New Mexico licenses. This asymmetry is what made some team–hour pairings much more valuable than others.
+
+**FTC Calling Windows** translated federal regulations into a PST-normalized schedule. Each state had a start time and end time in local time, a UTC offset, and the resulting PST window. The model used this to build a binary *availability mask*: for each state and each PST hour, is it legal to call?
+
+**Team Size** determined capacity. When a team is scheduled, the total number of available bankers equals the team headcount. More agents means more simultaneous calls, but only for states where they hold licenses.
+
+**Non-FTC Lead Distribution** handled leads that arrived outside any state's calling window. These leads were redistributed into the last three FTC hours (6 PM, 7 PM, 8 PM) with a 30/40/30 percent split. This ensured no lead was simply discarded — they were queued for the next available window.
+
+### Decision Variables
+
+The core of the model was a **binary decision matrix**: for each of the 6 teams and 16 hourly time slots, should this team be scheduled (1) or not (0)?
+
+```
+X[team, hour] ∈ {0, 1}
+```
+
+That's 96 binary variables. The search space is 2⁹⁶ — roughly 7.9 × 10²⁸ possible schedules. Obviously, brute force is not an option.
+
+### The Objective Function
+
+The model minimized the **average of leads per license per hour** across all time slots. For each hour, this metric was computed as:
+
+```
+Leads/License/Hr(h) = Total Callable Leads in hour h
+                      ────────────────────────────────
+                      Σ (licenses from scheduled teams
+                         for callable states in hour h)
+```
+
+The *minimization matrix* — the heart of the model — calculated this ratio for every state–hour pair. For each state in each hour, it divided the lead volume by the number of licenses from *scheduled* teams that covered that state. The model then averaged these ratios across all active hours.
+
+Minimizing this value meant distributing team assignments so that no single time slot was overwhelmed — no hour had too many leads chasing too few licensed bankers. The optimal solution achieved an average of **4.79 leads per license per hour**, with reasonably balanced workloads of ~14 leads per MB per day across all six teams.
+
+### Why Evolutionary Solver
+
+This isn't a linear programming problem. The objective function is a ratio of sums — nonlinear. The decision variables are binary — combinatorial. Standard LP Simplex can't touch it. GRG Nonlinear could handle the nonlinearity but struggles with binary variables at this scale.
+
+![Evolutionary Solver Approach](/images/blog/mots/evolutionary-solver.svg)
+
+The Evolutionary Solver (Excel's implementation of a genetic algorithm) was the right fit. It works by maintaining a population of candidate solutions, evaluating each one's fitness (the objective value), selecting the best performers, combining them through crossover, and introducing random mutations to avoid local minima.
+
+The solver parameters were tuned for this specific problem:
+
+- **Population Size: 1,000** — large enough to explore the space well, given 96 binary variables
+- **Mutation Rate: 7.5%** — aggressive enough to escape local optima but not so high as to destroy good solutions
+- **Convergence: 0.0001** — tight enough for meaningful optimization
+- **Maximum Time Without Improvement: 3,000 seconds** — a generous stopping criterion that allowed thorough exploration
+- **Random Seed: 100** — for reproducibility across monthly runs
+
+### Constraint Implementation
+
+In Excel Solver, constraints were expressed as cell range comparisons:
+
+```
+$C$5:$D$18  = binary          → Team assignment cells are 0 or 1
+$E$7:$H$20  = binary          → (continued for West teams)
+$C$24:$H$24 <= $C$26:$H$26   → Hours per team ≤ 4
+$L$5:$L$20  >= $N$5:$N$20    → Teams per hour ≥ 1
+```
+
+The FTC and licensing constraints weren't expressed as explicit solver constraints — they were *baked into the data*. The availability matrix zeroed out any team–state–hour combination where the team had no licenses or the state wasn't callable. This meant the solver could freely flip binary variables without ever producing an FTC-violating or license-violating schedule.
+
+## The Output: What the Optimizer Found
+
+The optimized schedule revealed patterns that would have been difficult for a human scheduler to discover. Service level coverage improved to **over 95%** during all FTC calling hours — a significant jump from the manual scheduling approach.
+
+![Optimized Schedule Matrix](/images/blog/mots/optimized-matrix.svg)
+
+**East teams dominated early morning.** Team Howard (32 agents, heavy East Coast licenses) was consistently scheduled during 5 AM, 7 AM, 9 AM, and 1 PM — hours when Eastern time zone leads peaked. Team Smithers covered 6 AM, 8 AM, 10 AM, and 2 PM, providing complementary coverage.
+
+**West teams covered the afternoon and evening.** Elite and Franchise teams, with stronger Pacific and Mountain state licenses, picked up the 4 PM through 9 PM slots when Western leads were still flowing but Eastern states had closed.
+
+**Maximum coverage was two teams per hour.** Even at the peak of daily lead volume — over 4,300 leads across all states — the solver found that two teams provided sufficient license coverage without over-allocating scarce team-hours. This was a non-obvious result: intuition might suggest piling on more teams during peaks, but the solver correctly identified that spreading coverage across more hours produced a better global outcome.
+
+**The workload was remarkably balanced.** Despite different team sizes and license portfolios, every team ended up handling approximately 14 leads per MB per day. This wasn't an explicit constraint — it emerged naturally from the minimization objective.
+
+### Coverage Gaps
+
+The model also surfaced 10 hourly time slots across the 16-hour day(and states, so basically 10 out of 16 x 50) that had *no coverage at all* — the pre-dawn and late-night windows where no state's FTC hours were open and no teams were needed. This confirmed that the 16-hour active window was correctly calibrated to the actual lead flow.
+
+![Lead Flow vs Team Assignment](/images/blog/mots/lead-flow-curve.svg)
+
+The lead flow curve shows the characteristic pattern: a sharp ramp starting at 7 AM PST (when Eastern states open and California wakes up), a peak around 9–10 AM, a gradual decline through the afternoon, and a second smaller bump in the evening as non-FTC leads get redistributed. The team assignments track this curve — heavier coverage during peak hours, lighter during the tails. The 9:1 peak-to-trough variability is clearly visible, and the optimizer's ability to match staffing to this wildly uneven demand is what drives the >95% service level.
+
+## Lessons from Running This Monthly
+
+**Excel was the right tool.** This might surprise people who default to Python or Julia for optimization work. But the model needed to be maintained by an operations team, not a data science team. Excel made the model transparent — every cell was auditable, every constraint visible. The evolutionary solver was more than sufficient for a problem with 96 binary variables and a handful of constraints.
+
+**The solver parameters mattered more than the formulation.** We spent more time tuning population size and mutation rate than defining the objective function. Too small a population found local minima that looked reasonable but left gaps. Too high a mutation rate prevented convergence. The 1,000/7.5%/3,000s combination was found through experimentation.
+
+**Non-FTC lead redistribution was crucial.** Without it, the model would have ignored leads arriving during off-hours for some states but on-hours for others. The 30/40/30 redistribution into the last three FTC hours ensured these leads were accounted for in scheduling decisions.
+
+**The model exposed licensing gaps.** Some state–team combinations had zero licenses, which meant certain states were only serviceable by one or two teams. This created scheduling fragility — if those teams were needed elsewhere, those states went uncovered. The model's output became an input to a licensing strategy: which bankers should pursue licenses in which additional states.
+
+**Volume variability forced real optimization.** A flat demand curve would make scheduling trivial — just rotate teams evenly. The 9:1 peak-to-trough swing meant the model had to make genuinely difficult tradeoffs about where to concentrate limited team-hours. This is ultimately what justified the optimization approach over manual heuristics.
+
+**Monthly retraining was essential.** Lead patterns shifted seasonally, new team members joined (bringing new licenses), and regulatory windows occasionally changed. Running the model monthly kept the schedule aligned with reality.
+
+## The Broader Pattern
+
+This kind of problem — multi-constraint workforce scheduling with binary decisions and a nonlinear objective — appears everywhere. Call centers routing calls by skill set. Hospital staffing across departments and shifts. Field service teams covering geographic territories. The specifics change, but the structure is the same: you have a demand curve, a supply portfolio with heterogeneous capabilities, and constraints on how that supply can be deployed.
+
+The key insight from MOTS is that you don't need a million-dollar optimization platform to solve these problems. An Excel spreadsheet, a well-formulated objective function, the right solver engine, and clean data will get you remarkably far. The hard part isn't the math — it's understanding the business constraints deeply enough to encode them correctly.
+
+In our case, the difference between an ad-hoc schedule and an optimized one was measurable: service level coverage jumped to over 95%, overflow events dropped significantly, and conversion rates improved. The model paid for itself in the first month. The full model is available in the [MOTS GitHub repository](https://github.com/rejozmathew/mots) for anyone facing a similar scheduling challenge.

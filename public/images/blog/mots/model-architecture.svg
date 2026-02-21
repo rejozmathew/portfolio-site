@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#1F4E79"/><stop offset="100%" style="stop-color:#183D5E"/></linearGradient>
+    <linearGradient id="tealG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#2A7F62"/><stop offset="100%" style="stop-color:#1E6B50"/></linearGradient>
+    <linearGradient id="amberG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#E67E22"/><stop offset="100%" style="stop-color:#D35400"/></linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="108%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/></filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/></marker>
+  </defs>
+  <rect width="820" height="520" fill="#f9fafb"/>
+  <text x="410" y="28" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="700" letter-spacing="1.5">MOTS — MODEL ARCHITECTURE</text>
+
+  <!-- INPUT DATA -->
+  <rect x="20" y="48" width="240" height="280" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="48" width="240" height="35" rx="10" fill="url(#navyG)"/><rect x="20" y="73" width="240" height="10" fill="url(#navyG)"/>
+  <text x="140" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" letter-spacing="1">INPUT DATA</text>
+
+  <rect x="35" y="95" width="210" height="32" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="140" y="111" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Hourly Lead Flow by State</text>
+  <text x="140" y="123" text-anchor="middle" fill="#2C3E50" font-size="8" opacity="0.6">52 states × 16 time slots</text>
+
+  <rect x="35" y="137" width="210" height="32" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="140" y="153" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">License Profile by Team</text>
+  <text x="140" y="165" text-anchor="middle" fill="#2C3E50" font-size="8" opacity="0.6">6 teams × 52 states × # licenses</text>
+
+  <rect x="35" y="179" width="210" height="32" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="140" y="195" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">FTC Calling Windows</text>
+  <text x="140" y="207" text-anchor="middle" fill="#2C3E50" font-size="8" opacity="0.6">State-specific hours → PST offset</text>
+
+  <rect x="35" y="221" width="210" height="32" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="140" y="237" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Team Size &amp; Agent Count</text>
+  <text x="140" y="249" text-anchor="middle" fill="#2C3E50" font-size="8" opacity="0.6">32, 30, 20, 18, 16, 18 agents</text>
+
+  <rect x="35" y="263" width="210" height="32" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="140" y="279" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Non-FTC Lead Distribution</text>
+  <text x="140" y="291" text-anchor="middle" fill="#2C3E50" font-size="8" opacity="0.6">Off-hours overflow → FTC redistribution</text>
+
+  <!-- OPTIMIZATION ENGINE -->
+  <rect x="300" y="48" width="230" height="280" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="300" y="48" width="230" height="35" rx="10" fill="url(#tealG)"/><rect x="300" y="73" width="230" height="10" fill="url(#tealG)"/>
+  <text x="415" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" letter-spacing="1">OPTIMIZATION ENGINE</text>
+
+  <rect x="315" y="95" width="200" height="45" rx="6" fill="#2A7F62" opacity="0.08"/>
+  <text x="415" y="112" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="700">DECISION VARIABLES</text>
+  <text x="415" y="127" text-anchor="middle" fill="#2C3E50" font-size="8.5">X[team, hour] ∈ {0, 1} — binary</text>
+
+  <rect x="315" y="150" width="200" height="45" rx="6" fill="#2A7F62" opacity="0.08"/>
+  <text x="415" y="167" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="700">OBJECTIVE FUNCTION</text>
+  <text x="415" y="182" text-anchor="middle" fill="#2C3E50" font-size="8.5">Minimize avg(Leads / License / Hr)</text>
+
+  <rect x="315" y="205" width="200" height="108" rx="6" fill="#2A7F62" opacity="0.08"/>
+  <text x="415" y="222" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="700">CONSTRAINTS</text>
+  <text x="325" y="240" fill="#2C3E50" font-size="8.5">• Σ hours/team ≤ 4 per day</text>
+  <text x="325" y="256" fill="#2C3E50" font-size="8.5">• Σ teams/hour ≥ 1 (coverage)</text>
+  <text x="325" y="272" fill="#2C3E50" font-size="8.5">• FTC window compliance</text>
+  <text x="325" y="288" fill="#2C3E50" font-size="8.5">• License availability matrix</text>
+  <text x="325" y="304" fill="#2C3E50" font-size="8.5">• Non-negative unconstrained</text>
+
+  <line x1="260" y1="188" x2="298" y2="188" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="330" y="320" width="170" height="22" rx="11" fill="#2A7F62"/>
+  <text x="415" y="335" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="600">Evolutionary Solver · Monthly Run</text>
+
+  <!-- OUTPUTS -->
+  <rect x="570" y="48" width="230" height="280" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="570" y="48" width="230" height="35" rx="10" fill="url(#amberG)"/><rect x="570" y="73" width="230" height="10" fill="url(#amberG)"/>
+  <text x="685" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" letter-spacing="1">OUTPUTS</text>
+
+  <rect x="585" y="95" width="200" height="40" rx="6" fill="#E67E22" opacity="0.07"/>
+  <text x="685" y="112" text-anchor="middle" fill="#D35400" font-size="9.5" font-weight="700">OPTIMIZED SCHEDULE</text>
+  <text x="685" y="127" text-anchor="middle" fill="#2C3E50" font-size="8.5">Binary matrix: Team × Hour</text>
+
+  <rect x="585" y="145" width="200" height="40" rx="6" fill="#E67E22" opacity="0.07"/>
+  <text x="685" y="162" text-anchor="middle" fill="#D35400" font-size="9.5" font-weight="700">LEADS / LICENSE / HOUR</text>
+  <text x="685" y="177" text-anchor="middle" fill="#2C3E50" font-size="8.5">Minimized to ~4.79 avg</text>
+
+  <rect x="585" y="195" width="200" height="40" rx="6" fill="#E67E22" opacity="0.07"/>
+  <text x="685" y="212" text-anchor="middle" fill="#D35400" font-size="9.5" font-weight="700">COVERAGE GAP REPORT</text>
+  <text x="685" y="227" text-anchor="middle" fill="#2C3E50" font-size="8.5">10 uncovered time slots flagged</text>
+
+  <rect x="585" y="245" width="200" height="40" rx="6" fill="#E67E22" opacity="0.07"/>
+  <text x="685" y="262" text-anchor="middle" fill="#D35400" font-size="9.5" font-weight="700">SERVICE LEVEL &gt; 95%</text>
+  <text x="685" y="277" text-anchor="middle" fill="#2C3E50" font-size="8.5">Coverage during all FTC hours</text>
+
+  <rect x="585" y="295" width="200" height="28" rx="6" fill="#E67E22" opacity="0.07"/>
+  <text x="685" y="314" text-anchor="middle" fill="#D35400" font-size="9.5" font-weight="700">TEAM WORKLOAD BALANCE</text>
+
+  <line x1="530" y1="188" x2="568" y2="188" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Bottom formula -->
+  <rect x="20" y="370" width="780" height="130" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="410" y="395" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="700" letter-spacing="1.2">HOW MINIMIZATION WORKS — PER TIME SLOT</text>
+
+  <rect x="40" y="410" width="155" height="70" rx="8" fill="#1F4E79" opacity="0.06"/>
+  <text x="117" y="432" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">LEAD VOLUME</text>
+  <text x="117" y="448" text-anchor="middle" fill="#2C3E50" font-size="8.5">Leads from all states</text>
+  <text x="117" y="462" text-anchor="middle" fill="#2C3E50" font-size="8.5">callable in this hour</text>
+
+  <text x="212" y="448" text-anchor="middle" fill="#1F4E79" font-size="16" font-weight="700">÷</text>
+
+  <rect x="230" y="410" width="155" height="70" rx="8" fill="#2A7F62" opacity="0.06"/>
+  <text x="307" y="432" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">TOTAL LICENSES</text>
+  <text x="307" y="448" text-anchor="middle" fill="#2C3E50" font-size="8.5">Sum of licenses from</text>
+  <text x="307" y="462" text-anchor="middle" fill="#2C3E50" font-size="8.5">scheduled teams × states</text>
+
+  <text x="402" y="448" text-anchor="middle" fill="#1F4E79" font-size="16" font-weight="700">=</text>
+
+  <rect x="420" y="410" width="155" height="70" rx="8" fill="#E67E22" opacity="0.07"/>
+  <text x="497" y="432" text-anchor="middle" fill="#D35400" font-size="9" font-weight="700">LEADS / LICENSE / HR</text>
+  <text x="497" y="448" text-anchor="middle" fill="#2C3E50" font-size="8.5">Workload per banker</text>
+  <text x="497" y="462" text-anchor="middle" fill="#2C3E50" font-size="8.5">for this time slot</text>
+
+  <text x="592" y="440" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">→</text>
+  <text x="592" y="460" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">avg across</text>
+  <text x="592" y="472" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">all hours</text>
+
+  <rect x="630" y="410" width="155" height="70" rx="8" fill="url(#tealG)" filter="url(#shadow)"/>
+  <text x="707" y="432" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">OBJECTIVE VALUE</text>
+  <text x="707" y="452" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">4.79</text>
+  <text x="707" y="470" text-anchor="middle" fill="#fff" font-size="8.5" opacity="0.8">Minimized by solver</text>
+</svg>

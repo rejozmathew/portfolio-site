@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="leadFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#1F4E79;stop-opacity:0.02"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="1" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+  </defs>
+  <rect width="820" height="420" fill="#f9fafb"/>
+  <text x="410" y="26" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="700" letter-spacing="1.5">LEAD FLOW VS. TEAM ASSIGNMENT — INTRADAY PATTERN (PST)</text>
+  <line x1="80" y1="340.0" x2="780" y2="340.0" stroke="#E8ECF0" stroke-width="1"/>
+  <text x="72" y="344.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">0</text>
+  <line x1="80" y1="282.0" x2="780" y2="282.0" stroke="#E8ECF0" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="72" y="286.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">1,000</text>
+  <line x1="80" y1="224.0" x2="780" y2="224.0" stroke="#E8ECF0" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="72" y="228.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">2,000</text>
+  <line x1="80" y1="166.0" x2="780" y2="166.0" stroke="#E8ECF0" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="72" y="170.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">3,000</text>
+  <line x1="80" y1="108.0" x2="780" y2="108.0" stroke="#E8ECF0" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="72" y="112.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">4,000</text>
+  <line x1="80" y1="50.0" x2="780" y2="50.0" stroke="#E8ECF0" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="72" y="54.0" text-anchor="end" fill="#2C3E50" font-size="8" opacity="0.6">5,000</text>
+  <text x="80" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">5am</text>
+  <text x="127" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">6</text>
+  <text x="173" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">7</text>
+  <text x="220" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">8</text>
+  <text x="267" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">9</text>
+  <text x="313" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">10</text>
+  <text x="360" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">11</text>
+  <text x="407" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">12p</text>
+  <text x="453" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">1</text>
+  <text x="500" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">2</text>
+  <text x="547" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">3</text>
+  <text x="593" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">4</text>
+  <text x="640" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">5</text>
+  <text x="687" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">6</text>
+  <text x="733" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">7</text>
+  <text x="780" y="358" text-anchor="middle" fill="#2C3E50" font-size="7.5" opacity="0.6">8</text>
+  <polygon points="80,310 127,204 173,144 220,87 267,85 313,107 360,156 407,187 453,201 500,233 547,231 593,228 640,228 687,251 733,265 780,306 780,340 80,340" fill="url(#leadFill)"/>
+  <polyline points="80,310 127,204 173,144 220,87 267,85 313,107 360,156 407,187 453,201 500,233 547,231 593,228 640,228 687,251 733,265 780,306" fill="none" stroke="#1F4E79" stroke-width="2.5" stroke-linejoin="round" filter="url(#glow)"/>
+  <circle cx="80" cy="310" r="3" fill="#1F4E79"/>
+  <circle cx="127" cy="204" r="3" fill="#1F4E79"/>
+  <circle cx="173" cy="144" r="3" fill="#1F4E79"/>
+  <circle cx="220" cy="87" r="3.5" fill="#1F4E79"/>
+  <circle cx="267" cy="85" r="3.5" fill="#1F4E79"/>
+  <circle cx="313" cy="107" r="3.5" fill="#1F4E79"/>
+  <circle cx="360" cy="156" r="3" fill="#1F4E79"/>
+  <circle cx="407" cy="187" r="3" fill="#1F4E79"/>
+  <circle cx="453" cy="201" r="3" fill="#1F4E79"/>
+  <circle cx="500" cy="233" r="3" fill="#1F4E79"/>
+  <circle cx="547" cy="231" r="3" fill="#1F4E79"/>
+  <circle cx="593" cy="228" r="3" fill="#1F4E79"/>
+  <circle cx="640" cy="228" r="3" fill="#1F4E79"/>
+  <circle cx="687" cy="251" r="3" fill="#1F4E79"/>
+  <circle cx="733" cy="265" r="3" fill="#1F4E79"/>
+  <circle cx="780" cy="306" r="3" fill="#1F4E79"/>
+  <rect x="68" y="321" width="24" height="19" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="80" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">32</text>
+  <rect x="115" y="322" width="24" height="18" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="127" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">30</text>
+  <rect x="161" y="321" width="24" height="19" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="173" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">32</text>
+  <rect x="208" y="311" width="24" height="29" rx="2" fill="#2A7F62" opacity="0.6"/>
+  <text x="220" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">48</text>
+  <rect x="255" y="310" width="24" height="30" rx="2" fill="#2A7F62" opacity="0.6"/>
+  <text x="267" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">50</text>
+  <rect x="301" y="311" width="24" height="29" rx="2" fill="#2A7F62" opacity="0.6"/>
+  <text x="313" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">48</text>
+  <rect x="348" y="318" width="24" height="22" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="360" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">36</text>
+  <rect x="395" y="319" width="24" height="21" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="407" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">34</text>
+  <rect x="441" y="321" width="24" height="19" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="453" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">32</text>
+  <rect x="488" y="322" width="24" height="18" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="500" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">30</text>
+  <rect x="535" y="319" width="24" height="21" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="547" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">34</text>
+  <rect x="581" y="328" width="24" height="12" rx="2" fill="#C0392B" opacity="0.5"/>
+  <text x="593" y="338" text-anchor="middle" fill="#fff" font-size="5.5" font-weight="600">20</text>
+  <rect x="628" y="319" width="24" height="21" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="640" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">34</text>
+  <rect x="675" y="317" width="24" height="23" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="687" y="338" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="600">38</text>
+  <rect x="721" y="328" width="24" height="12" rx="2" fill="#C0392B" opacity="0.5"/>
+  <text x="733" y="338" text-anchor="middle" fill="#fff" font-size="5.5" font-weight="600">20</text>
+  <rect x="768" y="329" width="24" height="11" rx="2" fill="#C0392B" opacity="0.5"/>
+  <text x="780" y="338" text-anchor="middle" fill="#fff" font-size="5.5" font-weight="600">18</text>
+  <line x1="267" y1="85" x2="267" y2="60" stroke="#1F4E79" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <rect x="233" y="52" width="68" height="16" rx="8" fill="#1F4E79"/>
+  <text x="267" y="63" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="600">PEAK: 4,392</text>
+  <rect x="80" y="375" width="700" height="32" rx="6" fill="#fff" stroke="#E0E5EB" stroke-width="1"/>
+  <line x1="100" y1="391" x2="130" y2="391" stroke="#1F4E79" stroke-width="2.5"/>
+  <circle cx="115" cy="391" r="3" fill="#1F4E79"/>
+  <text x="138" y="395" fill="#2C3E50" font-size="9">Lead Volume (20-day total)</text>
+  <rect x="330" y="384" width="18" height="12" rx="2" fill="#E67E22" opacity="0.5"/>
+  <text x="356" y="395" fill="#2C3E50" font-size="9">Agents Assigned (adequate)</text>
+  <rect x="530" y="384" width="18" height="12" rx="2" fill="#C0392B" opacity="0.5"/>
+  <text x="556" y="395" fill="#2C3E50" font-size="9">Agents Assigned (thin coverage)</text>
+  <rect x="700" y="384" width="18" height="12" rx="2" fill="#2A7F62" opacity="0.6"/>
+  <text x="724" y="395" fill="#2C3E50" font-size="9">Peak</text>
+</svg>

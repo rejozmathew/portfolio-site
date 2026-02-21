@@ -46,6 +46,28 @@ header.scrolled a {
   color: var(--link-color-scrolled);
 }
 
+/* Content links inside MDX prose blocks */
+.prose a {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.prose a:hover {
+  color: #1e40af;
+}
+
+.prose a:visited {
+  color: #1e3a8a;
+}
+
+.prose a:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* Base Typography */
 h1 { @apply mb-6 text-4xl font-bold tracking-tight sm:text-5xl; }
 h2 { @apply mb-5 text-3xl font-semibold tracking-tight sm:text-4xl; }

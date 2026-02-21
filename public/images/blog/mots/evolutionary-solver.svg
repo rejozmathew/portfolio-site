@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 300" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="ng" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#1F4E79"/><stop offset="100%" style="stop-color:#183D5E"/></linearGradient>
+    <linearGradient id="tg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#2A7F62"/><stop offset="100%" style="stop-color:#1E6B50"/></linearGradient>
+    <filter id="s3" x="-2%" y="-3%" width="104%" height="110%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/></filter>
+    <marker id="a3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/></marker>
+  </defs>
+  <rect width="820" height="300" fill="#f9fafb"/>
+  <text x="410" y="24" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="700" letter-spacing="1.5">WHY EVOLUTIONARY SOLVER — AND HOW IT RUNS</text>
+  <rect x="20" y="45" width="140" height="85" rx="8" fill="url(#ng)" filter="url(#s3)"/>
+  <text x="90" y="68" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">GENERATE</text>
+  <text x="90" y="82" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">POPULATION</text>
+  <text x="90" y="100" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">1,000 random</text>
+  <text x="90" y="112" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">binary schedules</text>
+  <line x1="160" y1="87" x2="185" y2="87" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a3)"/>
+  <rect x="190" y="45" width="140" height="85" rx="8" fill="url(#ng)" filter="url(#s3)"/>
+  <text x="260" y="68" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">EVALUATE</text>
+  <text x="260" y="82" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">FITNESS</text>
+  <text x="260" y="100" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">Compute objective</text>
+  <text x="260" y="112" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">for each candidate</text>
+  <line x1="330" y1="87" x2="355" y2="87" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a3)"/>
+  <rect x="360" y="45" width="140" height="85" rx="8" fill="url(#ng)" filter="url(#s3)"/>
+  <text x="430" y="68" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">SELECT &amp;</text>
+  <text x="430" y="82" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">CROSSOVER</text>
+  <text x="430" y="100" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">Keep best, combine</text>
+  <text x="430" y="112" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">top solutions</text>
+  <line x1="500" y1="87" x2="525" y2="87" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a3)"/>
+  <rect x="530" y="45" width="120" height="85" rx="8" fill="url(#ng)" filter="url(#s3)"/>
+  <text x="590" y="68" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">MUTATE</text>
+  <text x="590" y="100" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">Flip bits at</text>
+  <text x="590" y="112" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">7.5% rate to escape</text>
+  <line x1="650" y1="87" x2="675" y2="87" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a3)"/>
+  <rect x="680" y="45" width="120" height="85" rx="8" fill="url(#tg)" filter="url(#s3)"/>
+  <text x="740" y="68" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" letter-spacing="0.5">CONVERGE</text>
+  <text x="740" y="86" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">Stop when no</text>
+  <text x="740" y="98" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">improvement for</text>
+  <text x="740" y="110" text-anchor="middle" fill="#fff" font-size="8" opacity="0.7">3,000 seconds</text>
+
+  <path d="M 680 130 Q 430 155, 190 130" fill="none" stroke="#5D7FA3" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#a3)"/>
+  <text x="430" y="152" text-anchor="middle" fill="#5D7FA3" font-size="7.5" font-style="italic">Iterate until convergence threshold (0.0001) met</text>
+
+  <rect x="20" y="170" width="380" height="115" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#s3)"/>
+  <text x="210" y="192" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700" letter-spacing="1">WHY NOT LP SIMPLEX?</text>
+  <text x="35" y="214" fill="#2C3E50" font-size="9">The objective function is <tspan font-weight="700" fill="#1F4E79">non-linear</tspan> — it's an average of</text>
+  <text x="35" y="228" fill="#2C3E50" font-size="9">ratios (leads ÷ licenses), not a simple linear sum.</text>
+  <text x="35" y="248" fill="#2C3E50" font-size="9">Binary decision variables (0/1) make the search space</text>
+  <text x="35" y="262" fill="#2C3E50" font-size="9"><tspan font-weight="700" fill="#1F4E79">combinatorial</tspan>: 2⁹⁶ possible schedules (6 teams × 16 hrs).</text>
+  <text x="35" y="278" fill="#2C3E50" font-size="9">Evolutionary solver handles both via population-based search.</text>
+
+  <rect x="420" y="170" width="380" height="115" rx="10" fill="#fff" stroke="#E0E5EB" stroke-width="1.5" filter="url(#s3)"/>
+  <text x="610" y="192" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700" letter-spacing="1">SOLVER PARAMETERS</text>
+  <text x="440" y="214" fill="#2C3E50" font-size="9">Population Size</text>
+  <text x="690" y="214" text-anchor="end" fill="#1F4E79" font-size="9" font-weight="700">1,000</text>
+  <line x1="440" y1="222" x2="690" y2="222" stroke="#E8ECF0" stroke-width="0.5"/>
+  <text x="440" y="236" fill="#2C3E50" font-size="9">Mutation Rate</text>
+  <text x="690" y="236" text-anchor="end" fill="#1F4E79" font-size="9" font-weight="700">7.5%</text>
+  <line x1="440" y1="244" x2="690" y2="244" stroke="#E8ECF0" stroke-width="0.5"/>
+  <text x="440" y="258" fill="#2C3E50" font-size="9">Convergence Threshold</text>
+  <text x="690" y="258" text-anchor="end" fill="#1F4E79" font-size="9" font-weight="700">0.0001</text>
+  <line x1="440" y1="266" x2="690" y2="266" stroke="#E8ECF0" stroke-width="0.5"/>
+  <text x="440" y="280" fill="#2C3E50" font-size="9">Max Time w/o Improvement</text>
+  <text x="690" y="280" text-anchor="end" fill="#1F4E79" font-size="9" font-weight="700">3,000 seconds</text>
+</svg>
