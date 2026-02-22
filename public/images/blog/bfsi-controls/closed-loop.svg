@@ -39,8 +39,8 @@
   <text x="730" y="230" text-anchor="middle" fill="#d0e7ff" font-size="9">Detect breakdowns</text>
   <text x="730" y="244" text-anchor="middle" fill="#d0e7ff" font-size="9">and deviations</text>
   <!-- Team badge -->
-  <rect x="645" y="260" width="170" height="20" rx="4" fill="#2A7F62" opacity="0.9"/>
-  <text x="730" y="274" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ ENTERPRISE CAPABILITY — MY TEAM</text>
+  <rect x="645" y="260" width="170" height="20" rx="4" fill="#786F80" opacity="0.9"/>
+  <text x="730" y="274" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ MONITORING PLATFORM - MY TEAM</text>
 
   <!-- ===== PILLAR 3: Incident Management (bottom right) — WITH TEAM BADGE ===== -->
   <rect x="590" y="370" width="210" height="68" rx="10" fill="#D4380D" opacity="0.85" filter="url(#shadow)"/>
@@ -48,8 +48,8 @@
   <text x="695" y="412" text-anchor="middle" fill="#ffe0d0" font-size="9">Assess impact on</text>
   <text x="695" y="426" text-anchor="middle" fill="#ffe0d0" font-size="9">customers &amp; business</text>
   <!-- Team badge -->
-  <rect x="610" y="442" width="170" height="20" rx="4" fill="#2A7F62" opacity="0.9"/>
-  <text x="695" y="456" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ ENTERPRISE CAPABILITY — MY TEAM</text>
+  <rect x="610" y="442" width="170" height="20" rx="4" fill="#786F80" opacity="0.9"/>
+  <text x="695" y="456" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ INCIDENT REPORTING — MY TEAM</text>
 
   <!-- ===== Remediation (bottom left) ===== -->
   <rect x="80" y="370" width="210" height="68" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
@@ -67,24 +67,24 @@
   <!-- ===== CONNECTING ARROWS (clockwise) ===== -->
 
   <!-- Control Design → Monitoring -->
-  <path d="M 540 105 Q 620 130 625 210" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
-  <text x="595" y="148" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(32, 595, 148)">implement &amp; monitor</text>
+  <path d="M 540 95 Q 630 90 725 190" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="595" y="95" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(32, 595, 148)">implement &amp; monitor</text>
 
   <!-- Monitoring → Incident Management -->
   <path d="M 745 280 Q 755 330 720 370" stroke="#2C3E50" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
-  <text x="770" y="330" fill="#94a3b8" font-size="8" font-style="italic">exception triggers</text>
+  <text x="750" y="330" fill="#94a3b8" font-size="8" font-style="italic">exception triggers</text>
 
   <!-- Incident Management → Remediation -->
-  <path d="M 590 410 Q 440 480 290 410" stroke="#D4380D" stroke-width="2.5" fill="none" marker-end="url(#arrowTeal)"/>
+  <path d="M 590 430 Q 440 500 290 430" stroke="#D4380D" stroke-width="2.5" fill="none" marker-end="url(#arrowTeal)"/>
   <text x="440" y="478" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">root cause → fix deployed</text>
 
   <!-- Remediation → Assessment & Improvement -->
-  <path d="M 130 370 Q 110 310 120 256" stroke="#2A7F62" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
-  <text x="68" y="318" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(-90, 68, 318)">lessons learned</text>
+  <path d="M 180 370 Q 130 310 155 256" stroke="#2A7F62" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="85" y="318" fill="#94a3b8" font-size="8" font-style="italic" >lessons learned</text>
 
   <!-- Assessment → Control Design -->
   <path d="M 180 188 Q 230 130 340 100" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
-  <text x="240" y="132" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(-22, 240, 132)">improve or retire/replace</text>
+  <text x="190" y="132" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(-30, 240, 132)">improve or retire/replace</text>
 
   <!-- ===== FOUR PILLARS LEGEND ===== -->
   <rect x="170" y="520" width="540" height="56" rx="8" fill="#f0f4f8" stroke="#1F4E79" stroke-width="1" stroke-dasharray="4,3"/>
