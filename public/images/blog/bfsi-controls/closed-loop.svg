@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 600" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="880" height="600" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="440" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">The Closed-Loop Control Operating Model</text>
+  <line x1="220" y1="45" x2="660" y2="45" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Center circle -->
+  <circle cx="440" cy="290" r="62" fill="#f0f4f8" stroke="url(#hGrad)" stroke-width="2" filter="url(#shadow)"/>
+  <text x="440" y="280" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">ENTERPRISE</text>
+  <text x="440" y="294" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">RISK</text>
+  <text x="440" y="308" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">MANAGEMENT</text>
+
+  <!-- ===== PILLAR 1: Control Design (top) ===== -->
+  <rect x="340" y="68" width="200" height="68" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="440" y="92" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">CONTROL DESIGN</text>
+  <text x="440" y="110" text-anchor="middle" fill="#d0e7ff" font-size="9">Create expectations for</text>
+  <text x="440" y="124" text-anchor="middle" fill="#d0e7ff" font-size="9">what must be right</text>
+
+  <!-- ===== PILLAR 2: Monitoring (right) — WITH TEAM BADGE ===== -->
+  <rect x="625" y="188" width="210" height="68" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="730" y="212" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">MONITORING</text>
+  <text x="730" y="230" text-anchor="middle" fill="#d0e7ff" font-size="9">Detect breakdowns</text>
+  <text x="730" y="244" text-anchor="middle" fill="#d0e7ff" font-size="9">and deviations</text>
+  <!-- Team badge -->
+  <rect x="645" y="260" width="170" height="20" rx="4" fill="#2A7F62" opacity="0.9"/>
+  <text x="730" y="274" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ ENTERPRISE CAPABILITY — MY TEAM</text>
+
+  <!-- ===== PILLAR 3: Incident Management (bottom right) — WITH TEAM BADGE ===== -->
+  <rect x="590" y="370" width="210" height="68" rx="10" fill="#D4380D" opacity="0.85" filter="url(#shadow)"/>
+  <text x="695" y="394" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">INCIDENT MANAGEMENT</text>
+  <text x="695" y="412" text-anchor="middle" fill="#ffe0d0" font-size="9">Assess impact on</text>
+  <text x="695" y="426" text-anchor="middle" fill="#ffe0d0" font-size="9">customers &amp; business</text>
+  <!-- Team badge -->
+  <rect x="610" y="442" width="170" height="20" rx="4" fill="#2A7F62" opacity="0.9"/>
+  <text x="695" y="456" text-anchor="middle" fill="#fff" font-size="8" font-weight="600">★ ENTERPRISE CAPABILITY — MY TEAM</text>
+
+  <!-- ===== Remediation (bottom left) ===== -->
+  <rect x="80" y="370" width="210" height="68" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="185" y="394" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">REMEDIATION</text>
+  <text x="185" y="412" text-anchor="middle" fill="#d0f0e0" font-size="9">Fix root causes,</text>
+  <text x="185" y="426" text-anchor="middle" fill="#d0f0e0" font-size="9">issue restitution</text>
+
+  <!-- ===== PILLAR 4: Assessment & Improvement (left) ===== -->
+  <rect x="45" y="188" width="210" height="68" rx="10" fill="#1F4E79" opacity="0.8" filter="url(#shadow)"/>
+  <text x="150" y="208" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">ASSESSMENT &amp;</text>
+  <text x="150" y="223" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">IMPROVEMENT</text>
+  <text x="150" y="244" text-anchor="middle" fill="#d0e7ff" font-size="9">Evaluate, improve, or</text>
+  <text x="150" y="256" text-anchor="middle" fill="#d0e7ff" font-size="9">retire/replace controls</text>
+
+  <!-- ===== CONNECTING ARROWS (clockwise) ===== -->
+
+  <!-- Control Design → Monitoring -->
+  <path d="M 540 105 Q 620 130 625 210" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="595" y="148" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(32, 595, 148)">implement &amp; monitor</text>
+
+  <!-- Monitoring → Incident Management -->
+  <path d="M 745 280 Q 755 330 720 370" stroke="#2C3E50" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="770" y="330" fill="#94a3b8" font-size="8" font-style="italic">exception triggers</text>
+
+  <!-- Incident Management → Remediation -->
+  <path d="M 590 410 Q 440 480 290 410" stroke="#D4380D" stroke-width="2.5" fill="none" marker-end="url(#arrowTeal)"/>
+  <text x="440" y="478" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">root cause → fix deployed</text>
+
+  <!-- Remediation → Assessment & Improvement -->
+  <path d="M 130 370 Q 110 310 120 256" stroke="#2A7F62" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="68" y="318" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(-90, 68, 318)">lessons learned</text>
+
+  <!-- Assessment → Control Design -->
+  <path d="M 180 188 Q 230 130 340 100" stroke="#1F4E79" stroke-width="2.5" fill="none" marker-end="url(#arrowNavy)"/>
+  <text x="240" y="132" fill="#94a3b8" font-size="8" font-style="italic" transform="rotate(-22, 240, 132)">improve or retire/replace</text>
+
+  <!-- ===== FOUR PILLARS LEGEND ===== -->
+  <rect x="170" y="520" width="540" height="56" rx="8" fill="#f0f4f8" stroke="#1F4E79" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="440" y="539" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">FOUR PILLARS OF THE CONTROL OPERATING MODEL</text>
+
+  <rect x="192" y="548" width="10" height="10" rx="2" fill="#1F4E79"/>
+  <text x="208" y="558" fill="#2C3E50" font-size="9">Control Design</text>
+
+  <rect x="312" y="548" width="10" height="10" rx="2" fill="#2C3E50"/>
+  <text x="328" y="558" fill="#2C3E50" font-size="9">Monitoring</text>
+
+  <rect x="412" y="548" width="10" height="10" rx="2" fill="#D4380D"/>
+  <text x="428" y="558" fill="#2C3E50" font-size="9">Incident Mgmt</text>
+
+  <rect x="542" y="548" width="10" height="10" rx="2" fill="#2A7F62"/>
+  <text x="558" y="558" fill="#2C3E50" font-size="9">Remediation → Assessment</text>
+</svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="520" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">ENTITY-CENTRIC FEATURE ARCHITECTURE</text>
+
+  <!-- Dimension Layer -->
+  <text x="68" y="70" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">DIMENSIONS</text>
+  <rect x="200" y="56" width="160" height="40" rx="6" fill="url(#slateGrad)" filter="url(#ds)"/>
+  <text x="280" y="81" text-anchor="middle" fill="#fff" font-size="11" font-weight="500">Product / Portfolio</text>
+  <rect x="440" y="56" width="160" height="40" rx="6" fill="url(#slateGrad)" filter="url(#ds)"/>
+  <text x="520" y="81" text-anchor="middle" fill="#fff" font-size="11" font-weight="500">Time Snapshot</text>
+
+  <!-- Dashed separator -->
+  <line x1="60" y1="112" x2="740" y2="112" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Customer Master -->
+  <rect x="460" y="130" width="180" height="40" rx="6" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="550" y="155" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="600">Customer Master</text>
+
+  <!-- Arrow down from Customer Master -->
+  <line x1="550" y1="170" x2="550" y2="196" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="544,192 550,202 556,192" fill="#B0BEC5"/>
+
+  <!-- Customer-Account Cross-ref -->
+  <rect x="440" y="204" width="220" height="40" rx="6" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="550" y="229" text-anchor="middle" fill="#fff" font-size="11" font-weight="500">Customer–Account Cross-Ref</text>
+
+  <!-- Arrow from cross-ref to Account entity -->
+  <line x1="480" y1="244" x2="340" y2="290" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="335,285 340,296 346,286" fill="#B0BEC5"/>
+
+  <!-- Arrow from cross-ref to Customer entity -->
+  <line x1="600" y1="244" x2="600" y2="290" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="594,286 600,296 606,286" fill="#B0BEC5"/>
+
+  <!-- ACCOUNT entity box -->
+  <rect x="180" y="298" width="260" height="106" rx="8" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="310" y="322" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" letter-spacing="1.2" opacity="0.8">ACCOUNT ENTITY</text>
+  <rect x="196" y="334" width="228" height="58" rx="6" fill="#fff" opacity="0.12"/>
+  <text x="310" y="352" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Balance ∙ Transaction ∙ Payments</text>
+  <text x="310" y="368" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Credit ∙ Fraud ∙ Collections</text>
+  <text x="310" y="384" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Demographics ∙ Acquisition</text>
+
+  <!-- CUSTOMER entity box -->
+  <rect x="480" y="298" width="260" height="106" rx="8" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="610" y="322" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" letter-spacing="1.2" opacity="0.8">CUSTOMER ENTITY</text>
+  <rect x="496" y="334" width="228" height="58" rx="6" fill="#fff" opacity="0.12"/>
+  <text x="610" y="352" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Online Activity ∙ Voice ∙ Disputes</text>
+  <text x="610" y="368" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Product Indicators ∙ DFS Relation</text>
+  <text x="610" y="384" text-anchor="middle" fill="#fff" font-size="10" opacity="0.9">Demographics ∙ Aggregated Counts</text>
+
+  <!-- One-to-many notation -->
+  <text x="385" y="282" text-anchor="middle" fill="#546E7A" font-size="9" font-style="italic">1 : N</text>
+  <text x="610" y="282" text-anchor="middle" fill="#546E7A" font-size="9" font-style="italic">1 : 1</text>
+
+  <!-- Dashed separator -->
+  <line x1="60" y1="424" x2="740" y2="424" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Bottom label -->
+  <text x="68" y="456" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">KEY PRINCIPLE</text>
+  <text x="68" y="478" fill="#546E7A" font-size="11">Every feature is anchored to an entity (Account or Customer) and a time grain.</text>
+  <text x="68" y="496" fill="#546E7A" font-size="11">The Customer–Account cross-reference enables roll-up from account to customer level.</text>
+
+  <!-- Side label -->
+  <text x="34" y="350" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600" transform="rotate(-90, 34, 350)">ENTITIES</text>
+  <text x="34" y="80" text-anchor="middle" fill="#546E7A" font-size="10" font-weight="600" transform="rotate(-90, 34, 80)">DIMS</text>
+</svg>

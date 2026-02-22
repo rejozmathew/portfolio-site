@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="440" fill="#f9fafb"/>
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">TWO CLASSES OF FEATURES</text>
+
+  <!-- Left: Distinct Element Features -->
+  <rect x="40" y="56" width="348" height="36" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="214" y="80" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Distinct Element Features</text>
+
+  <text x="60" y="116" fill="#2C3E50" font-size="10.5" font-weight="600">Static or slowly changing attributes</text>
+  <text x="60" y="134" fill="#546E7A" font-size="10">about the entity itself</text>
+
+  <!-- Example chips -->
+  <rect x="54" y="152" width="160" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="134" y="168" text-anchor="middle" fill="#2A7F62" font-size="9">Direct Deposit Indicator</text>
+
+  <rect x="222" y="152" width="150" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="297" y="168" text-anchor="middle" fill="#2A7F62" font-size="9">Email Exist Indicator</text>
+
+  <rect x="54" y="182" width="148" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="128" y="198" text-anchor="middle" fill="#2A7F62" font-size="9">Zelle Enrollment Ind.</text>
+
+  <rect x="210" y="182" width="168" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="294" y="198" text-anchor="middle" fill="#2A7F62" font-size="9">Branch Account Indicator</text>
+
+  <rect x="54" y="212" width="175" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="141" y="228" text-anchor="middle" fill="#2A7F62" font-size="9">Customer Alert Indicator</text>
+
+  <rect x="237" y="212" width="140" height="24" rx="12" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="307" y="228" text-anchor="middle" fill="#2A7F62" font-size="9">Apple Pay Indicator</text>
+
+  <text x="60" y="262" fill="#546E7A" font-size="9.5" font-style="italic">~105 unique attributes</text>
+  <text x="60" y="278" fill="#546E7A" font-size="9.5">Primarily binary flags and enrollment states</text>
+
+  <!-- Right: Time Series Features -->
+  <rect x="420" y="56" width="348" height="36" rx="6" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="594" y="80" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Time-Series Behavior Features</text>
+
+  <text x="440" y="116" fill="#2C3E50" font-size="10.5" font-weight="600">Dynamic, temporally-transformed signals</text>
+  <text x="440" y="134" fill="#546E7A" font-size="10">tracking entity behavior over windows</text>
+
+  <!-- Example chips -->
+  <rect x="434" y="152" width="145" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="506" y="168" text-anchor="middle" fill="#1F4E79" font-size="9">balance_slope</text>
+
+  <rect x="587" y="152" width="165" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="669" y="168" text-anchor="middle" fill="#1F4E79" font-size="9">credit_txn_count_avg3m</text>
+
+  <rect x="434" y="182" width="165" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="516" y="198" text-anchor="middle" fill="#1F4E79" font-size="9">debit_txn_amt_avg6m</text>
+
+  <rect x="607" y="182" width="148" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="681" y="198" text-anchor="middle" fill="#1F4E79" font-size="9">balance_std_daily</text>
+
+  <rect x="434" y="212" width="155" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="511" y="228" text-anchor="middle" fill="#1F4E79" font-size="9">wire_txn_count_slope</text>
+
+  <rect x="597" y="212" width="152" height="24" rx="12" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="673" y="228" text-anchor="middle" fill="#1F4E79" font-size="9">balance_range_daily</text>
+
+  <text x="440" y="262" fill="#546E7A" font-size="9.5" font-style="italic">500+ generated features</text>
+  <text x="440" y="278" fill="#546E7A" font-size="9.5">Base feature × transformation × time window</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="70" x2="400" y2="288" stroke="#E0E4E8" stroke-width="1"/>
+
+  <!-- ========== Bottom: Why Both ========== -->
+  <line x1="60" y1="306" x2="740" y2="306" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <text x="400" y="336" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">WHY YOU NEED BOTH</text>
+
+  <text x="400" y="362" text-anchor="middle" fill="#2C3E50" font-size="10.5">Distinct elements capture <tspan font-weight="600" fill="#2A7F62">what an entity is</tspan> — time-series features capture <tspan font-weight="600" fill="#1F4E79">how it behaves</tspan>.</text>
+  <text x="400" y="382" text-anchor="middle" fill="#546E7A" font-size="10">Together, they give ML models both the structural context and the temporal dynamics</text>
+  <text x="400" y="398" text-anchor="middle" fill="#546E7A" font-size="10">needed for tasks like churn prediction, fraud detection, and credit decisioning.</text>
+</svg>

@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.10"/>
+    </filter>
+    <marker id="aB" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#1F4E79"/></marker>
+    <marker id="aT" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#2A7F62"/></marker>
+    <marker id="aO" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#d4a843"/></marker>
+    <marker id="aP" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#8e6bb5"/></marker>
+  </defs>
+
+  <rect width="1100" height="600" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="550" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4E79" letter-spacing="0.5">MAD ↔ CDP / Campaign Activation — Interaction Pattern</text>
+  <line x1="340" y1="44" x2="760" y2="44" stroke="#2A7F62" stroke-width="2" opacity="0.4"/>
+
+  <!-- ═══════ LEFT: MAD ═══════ -->
+  <rect x="30" y="70" width="300" height="400" rx="10" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="180" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.8">Marketing Analytical</text>
+  <text x="180" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.8">Database (MAD)</text>
+  <text x="180" y="134" text-anchor="middle" font-size="9" fill="#a8c8e8">Snowflake / Databricks</text>
+
+  <!-- MAD internal boxes -->
+  <rect x="48" y="152" width="264" height="38" rx="5" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="176" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Customer 360 (Identity-Linked)</text>
+
+  <rect x="48" y="198" width="264" height="38" rx="5" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="222" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Curated Models + Scores</text>
+
+  <rect x="48" y="244" width="264" height="38" rx="5" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="268" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Audience Segments + Suppression</text>
+
+  <rect x="48" y="290" width="264" height="38" rx="5" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="314" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Campaign Lists (Eligibility)</text>
+
+  <rect x="48" y="336" width="264" height="38" rx="5" fill="#2A7F62" opacity="0.5"/>
+  <text x="180" y="360" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Attribution + Performance</text>
+
+  <rect x="48" y="382" width="264" height="38" rx="5" fill="#ffffff" opacity="0.12"/>
+  <text x="180" y="406" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Consent + Preferences Registry</text>
+
+  <rect x="48" y="432" width="264" height="24" rx="4" fill="#2A7F62" opacity="0.35"/>
+  <text x="180" y="449" text-anchor="middle" font-size="8.5" fill="#ffffff">Governance · Lineage · PII Controls</text>
+
+  <!-- ═══════ CENTER: CDP ═══════ -->
+  <rect x="420" y="70" width="260" height="280" rx="10" fill="#d4a843" opacity="0.9" filter="url(#ds)"/>
+  <text x="550" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.8">Customer Data</text>
+  <text x="550" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="0.8">Platform (CDP)</text>
+  <text x="550" y="134" text-anchor="middle" font-size="9" fill="#fff8e0">Real-time decisioning engine</text>
+
+  <rect x="438" y="152" width="224" height="34" rx="5" fill="#ffffff" opacity="0.2"/>
+  <text x="550" y="174" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Unified Profiles</text>
+
+  <rect x="438" y="194" width="224" height="34" rx="5" fill="#ffffff" opacity="0.2"/>
+  <text x="550" y="216" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Real-time Event Processing</text>
+
+  <rect x="438" y="236" width="224" height="34" rx="5" fill="#ffffff" opacity="0.2"/>
+  <text x="550" y="258" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">Segment Activation</text>
+
+  <rect x="438" y="278" width="224" height="34" rx="5" fill="#ffffff" opacity="0.2"/>
+  <text x="550" y="300" text-anchor="middle" font-size="10.5" font-weight="600" fill="#ffffff">ID Stitching + Cross-Device</text>
+
+  <!-- ═══════ ARROWS: MAD → CDP ═══════ -->
+  <path d="M330,172 L420,172" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#aO)"/>
+  <text x="375" y="166" text-anchor="middle" font-size="8" fill="#1F4E79" font-weight="600">Profiles</text>
+
+  <path d="M330,218 L420,210" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#aO)"/>
+  <text x="375" y="208" text-anchor="middle" font-size="8" fill="#1F4E79" font-weight="600">Scores</text>
+
+  <path d="M330,264 L420,252" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#aO)"/>
+  <text x="375" y="252" text-anchor="middle" font-size="8" fill="#1F4E79" font-weight="600">Segments</text>
+
+  <!-- ═══════ ARROWS: CDP → MAD (feedback) ═══════ -->
+  <path d="M420,294 L330,350" stroke="#d4a843" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#aB)"/>
+  <text x="368" y="330" text-anchor="middle" font-size="8" fill="#d4a843" font-weight="600">Responses</text>
+
+  <!-- ═══════ RIGHT: ACTIVATION CHANNELS ═══════ -->
+  <rect x="770" y="70" width="300" height="400" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="920" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2A7F62" letter-spacing="0.8">Activation Channels</text>
+  <text x="920" y="116" text-anchor="middle" font-size="9" fill="#2C3E50">Execution layer</text>
+
+  <rect x="790" y="134" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="157" text-anchor="middle" font-size="10.5" fill="#2C3E50">📧  Email (Responsys, SFMC)</text>
+
+  <rect x="790" y="180" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="203" text-anchor="middle" font-size="10.5" fill="#2C3E50">📬  Direct Mail / Print</text>
+
+  <rect x="790" y="226" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="249" text-anchor="middle" font-size="10.5" fill="#2C3E50">📱  SMS / Push Notifications</text>
+
+  <rect x="790" y="272" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="295" text-anchor="middle" font-size="10.5" fill="#2C3E50">🌐  Web / App Personalization</text>
+
+  <rect x="790" y="318" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="341" text-anchor="middle" font-size="10.5" fill="#2C3E50">📺  Paid Media / Display (DSP)</text>
+
+  <rect x="790" y="364" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="387" text-anchor="middle" font-size="10.5" fill="#2C3E50">📞  Contact Center / IVR</text>
+
+  <rect x="790" y="410" width="260" height="36" rx="5" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="920" y="433" text-anchor="middle" font-size="10.5" fill="#2C3E50">🏦  Branch / In-Person</text>
+
+  <!-- ═══════ ARROWS: CDP → Activation ═══════ -->
+  <path d="M680,200 L770,200" stroke="#d4a843" stroke-width="2" fill="none" marker-end="url(#aT)"/>
+  <path d="M680,260 L770,280" stroke="#d4a843" stroke-width="2" fill="none" marker-end="url(#aT)"/>
+
+  <!-- ═══════ DIRECT MAD → Activation (batch campaigns) ═══════ -->
+  <path d="M330,310 C400,310 400,430 770,430" stroke="#1F4E79" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#aT)"/>
+  <text x="520" y="428" text-anchor="middle" font-size="8" fill="#1F4E79" font-weight="600">Batch Campaign Lists (bypasses CDP for offline channels)</text>
+
+  <!-- ═══════ FEEDBACK LOOP (bottom) ═══════ -->
+  <rect x="30" y="490" width="1040" height="90" rx="8" fill="#ffffff" stroke="#e0e4e8" stroke-width="1" filter="url(#ds)"/>
+  <rect x="30" y="490" width="1040" height="4" rx="2" fill="#2A7F62"/>
+
+  <text x="550" y="518" text-anchor="middle" font-size="13" font-weight="700" fill="#1F4E79">Closed-Loop Feedback</text>
+
+  <text x="180" y="542" text-anchor="middle" font-size="10" fill="#2C3E50">Activation channels send</text>
+  <text x="180" y="558" text-anchor="middle" font-size="10" fill="#2C3E50">response + delivery data</text>
+  <path d="M300,550 L400,550" stroke="#7f8c8d" stroke-width="1.2" fill="none" marker-end="url(#aO)"/>
+
+  <text x="550" y="542" text-anchor="middle" font-size="10" fill="#2C3E50">CDP enriches with</text>
+  <text x="550" y="558" text-anchor="middle" font-size="10" fill="#2C3E50">real-time event context</text>
+  <path d="M420,550 L680,550" stroke="#d4a843" stroke-width="1.2" fill="none"/>
+
+  <text x="820" y="542" text-anchor="middle" font-size="10" fill="#2C3E50">MAD ingests for attribution,</text>
+  <text x="820" y="558" text-anchor="middle" font-size="10" fill="#2C3E50">measurement &amp; model retraining</text>
+  <path d="M700,550 L950,550" stroke="#1F4E79" stroke-width="1.2" fill="none" marker-end="url(#aB)"/>
+</svg>

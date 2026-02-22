@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="620" fill="#f9fafb"/>
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">TEMPORAL TRANSFORMATION FRAMEWORK</text>
+  <text x="400" y="50" text-anchor="middle" fill="#546E7A" font-size="10.5">Apply a standardized set of time-series transformations to every base feature</text>
+
+  <!-- ========== Left: Base Features ========== -->
+  <text x="68" y="82" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">BASE FEATURES (EXAMPLES)</text>
+
+  <rect x="68" y="94" width="190" height="30" rx="5" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="163" y="114" text-anchor="middle" fill="#fff" font-size="10">Total Balance</text>
+
+  <rect x="68" y="132" width="190" height="30" rx="5" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="163" y="152" text-anchor="middle" fill="#fff" font-size="10">Credit Transaction Count</text>
+
+  <rect x="68" y="170" width="190" height="30" rx="5" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="163" y="190" text-anchor="middle" fill="#fff" font-size="10">Debit Transaction Amount</text>
+
+  <rect x="68" y="208" width="190" height="30" rx="5" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="163" y="228" text-anchor="middle" fill="#fff" font-size="10">Web Login Count</text>
+
+  <rect x="68" y="246" width="190" height="30" rx="5" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="163" y="266" text-anchor="middle" fill="#fff" font-size="10">Email Click Indicator</text>
+
+  <!-- Arrow right -->
+  <text x="288" y="176" text-anchor="middle" fill="#B0BEC5" font-size="22">→</text>
+  <text x="288" y="196" text-anchor="middle" fill="#546E7A" font-size="8">× each</text>
+  <text x="288" y="206" text-anchor="middle" fill="#546E7A" font-size="8">transform</text>
+
+  <!-- ========== Center: Transformation Matrix ========== -->
+  <text x="340" y="82" fill="#2A7F62" font-size="10" font-weight="600" letter-spacing="1">TRANSFORMATIONS</text>
+
+  <!-- TS-SLOPE row -->
+  <rect x="320" y="94" width="185" height="42" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="412" y="112" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="600">TS-SLOPE</text>
+  <text x="412" y="126" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Current − Previous month</text>
+
+  <!-- TS-AVG3M -->
+  <rect x="320" y="144" width="185" height="42" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="412" y="162" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="600">TS-AVG3M</text>
+  <text x="412" y="176" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Average over past 3 months</text>
+
+  <!-- TS-AVG6M -->
+  <rect x="320" y="194" width="185" height="42" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="412" y="212" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="600">TS-AVG6M</text>
+  <text x="412" y="226" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Average over past 6 months</text>
+
+  <!-- TS-STD -->
+  <rect x="320" y="244" width="185" height="42" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="412" y="262" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="600">TS-STD</text>
+  <text x="412" y="276" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Std deviation of daily values</text>
+
+  <!-- TS-RANGE -->
+  <rect x="320" y="294" width="185" height="42" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="412" y="312" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="600">TS-RANGE</text>
+  <text x="412" y="326" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Max − Min of daily values</text>
+
+  <!-- Arrow right -->
+  <text x="534" y="210" text-anchor="middle" fill="#B0BEC5" font-size="22">→</text>
+
+  <!-- ========== Right: Output ========== -->
+  <text x="574" y="82" fill="#3D4F5F" font-size="10" font-weight="600" letter-spacing="1">OUTPUT: 500+ FEATURES</text>
+
+  <rect x="560" y="94" width="200" height="252" rx="8" fill="url(#slateGrad)" filter="url(#ds)"/>
+
+  <!-- Output examples -->
+  <text x="660" y="118" text-anchor="middle" fill="#fff" font-size="9" font-weight="500" opacity="0.7">SAMPLE GENERATED NAMES</text>
+
+  <rect x="574" y="128" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="143" text-anchor="middle" fill="#fff" font-size="8.5">balance_slope</text>
+
+  <rect x="574" y="156" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="171" text-anchor="middle" fill="#fff" font-size="8.5">balance_avg3m</text>
+
+  <rect x="574" y="184" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="199" text-anchor="middle" fill="#fff" font-size="8.5">credit_txn_count_avg6m</text>
+
+  <rect x="574" y="212" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="227" text-anchor="middle" fill="#fff" font-size="8.5">debit_txn_amt_std</text>
+
+  <rect x="574" y="240" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="255" text-anchor="middle" fill="#fff" font-size="8.5">web_login_range</text>
+
+  <rect x="574" y="268" width="172" height="22" rx="4" fill="#fff" opacity="0.1"/>
+  <text x="660" y="283" text-anchor="middle" fill="#fff" font-size="8.5">email_click_slope</text>
+
+  <text x="660" y="310" text-anchor="middle" fill="#fff" font-size="8.5" opacity="0.6">... and hundreds more</text>
+  <text x="660" y="328" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">5 transforms × 100+ base</text>
+
+  <!-- ========== Bottom: The Multiplier Concept ========== -->
+  <line x1="60" y1="370" x2="740" y2="370" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <text x="400" y="398" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">THE FEATURE MULTIPLIER EFFECT</text>
+
+  <!-- Formula visual -->
+  <rect x="100" y="416" width="150" height="56" rx="8" fill="#E8F0F7" stroke="#1F4E79" stroke-width="1"/>
+  <text x="175" y="440" text-anchor="middle" fill="#1F4E79" font-size="20" font-weight="700">~100</text>
+  <text x="175" y="460" text-anchor="middle" fill="#546E7A" font-size="9">Base features</text>
+
+  <text x="274" y="450" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700">×</text>
+
+  <rect x="298" y="416" width="150" height="56" rx="8" fill="#E6F3EF" stroke="#2A7F62" stroke-width="1"/>
+  <text x="373" y="440" text-anchor="middle" fill="#2A7F62" font-size="20" font-weight="700">5</text>
+  <text x="373" y="460" text-anchor="middle" fill="#546E7A" font-size="9">Transformations</text>
+
+  <text x="472" y="450" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700">=</text>
+
+  <rect x="496" y="416" width="180" height="56" rx="8" fill="url(#slateGrad)" filter="url(#ds)"/>
+  <text x="586" y="440" text-anchor="middle" fill="#fff" font-size="20" font-weight="700">500+</text>
+  <text x="586" y="460" text-anchor="middle" fill="#fff" font-size="9" opacity="0.9">Time-series features</text>
+
+  <text x="400" y="502" text-anchor="middle" fill="#546E7A" font-size="10">Each feature is computed at both the Account and Customer grain,</text>
+  <text x="400" y="518" text-anchor="middle" fill="#546E7A" font-size="10">yielding a comprehensive temporal behavior profile per entity.</text>
+
+  <!-- Additional note -->
+  <rect x="100" y="542" width="600" height="44" rx="6" fill="#F5F7FA" stroke="#E0E4E8" stroke-width="1"/>
+  <text x="130" y="564" fill="#1F4E79" font-size="10" font-weight="600">Naming convention:</text>
+  <text x="248" y="564" fill="#546E7A" font-size="10">{transform}_{source_type}_{base_feature}   e.g.  TS-AVG3M_TRN_Total_credit_transaction_count</text>
+</svg>

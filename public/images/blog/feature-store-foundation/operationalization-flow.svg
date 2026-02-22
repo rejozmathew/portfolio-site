@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C47F17;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A66914;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="380" fill="#f9fafb"/>
+  <text x="400" y="28" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">OPERATIONALIZING THE FOUNDATION</text>
+
+  <!-- Step 1: Data Warehouse -->
+  <rect x="40" y="58" width="150" height="70" rx="8" fill="url(#slateGrad)" filter="url(#ds)"/>
+  <text x="115" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" letter-spacing="0.8">DATA WAREHOUSE</text>
+  <text x="115" y="102" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Feature-ready</text>
+  <text x="115" y="114" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">foundation tables</text>
+
+  <!-- Arrow -->
+  <line x1="190" y1="93" x2="222" y2="93" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="218,88 228,93 218,98" fill="#B0BEC5"/>
+
+  <!-- Step 2: Feature Definitions -->
+  <rect x="230" y="58" width="150" height="70" rx="8" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="305" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" letter-spacing="0.8">FEATURE DEFS</text>
+  <text x="305" y="102" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Feast YAML / Python</text>
+  <text x="305" y="114" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">feature views + entities</text>
+
+  <!-- Arrow -->
+  <line x1="380" y1="93" x2="412" y2="93" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="408,88 418,93 408,98" fill="#B0BEC5"/>
+
+  <!-- Step 3: Materialization -->
+  <rect x="420" y="58" width="150" height="70" rx="8" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="495" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" letter-spacing="0.8">MATERIALIZATION</text>
+  <text x="495" y="102" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Scheduled ingestion</text>
+  <text x="495" y="114" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">into online + offline</text>
+
+  <!-- Arrow -->
+  <line x1="570" y1="93" x2="602" y2="93" stroke="#B0BEC5" stroke-width="1.5"/>
+  <polygon points="598,88 608,93 598,98" fill="#B0BEC5"/>
+
+  <!-- Step 4: Serving -->
+  <rect x="610" y="58" width="150" height="70" rx="8" fill="url(#amberGrad)" filter="url(#ds)"/>
+  <text x="685" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" letter-spacing="0.8">SERVING</text>
+  <text x="685" y="102" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Online: Redis / DynamoDB</text>
+  <text x="685" y="114" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Offline: Warehouse query</text>
+
+  <!-- ========== Detail boxes below ========== -->
+  <line x1="60" y1="152" x2="740" y2="152" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Box 1 -->
+  <rect x="40" y="168" width="170" height="106" rx="6" fill="#F5F7FA" stroke="#E0E4E8" stroke-width="1"/>
+  <text x="125" y="188" text-anchor="middle" fill="#2C3E50" font-size="9.5" font-weight="600">Your Foundation Provides</text>
+  <line x1="58" y1="196" x2="192" y2="196" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="62" y="214" fill="#546E7A" font-size="9">• Entity-keyed tables</text>
+  <text x="62" y="230" fill="#546E7A" font-size="9">• Time-stamped features</text>
+  <text x="62" y="246" fill="#546E7A" font-size="9">• Pre-computed transforms</text>
+  <text x="62" y="262" fill="#546E7A" font-size="9">• Business-validated attrs</text>
+
+  <!-- Box 2 -->
+  <rect x="230" y="168" width="170" height="106" rx="6" fill="#F5F7FA" stroke="#E0E4E8" stroke-width="1"/>
+  <text x="315" y="188" text-anchor="middle" fill="#2C3E50" font-size="9.5" font-weight="600">Feast Registers</text>
+  <line x1="248" y1="196" x2="382" y2="196" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="252" y="214" fill="#546E7A" font-size="9">• Feature view per table</text>
+  <text x="252" y="230" fill="#546E7A" font-size="9">• Entity definitions</text>
+  <text x="252" y="246" fill="#546E7A" font-size="9">• Data source references</text>
+  <text x="252" y="262" fill="#546E7A" font-size="9">• Schema + descriptions</text>
+
+  <!-- Box 3 -->
+  <rect x="420" y="168" width="170" height="106" rx="6" fill="#F5F7FA" stroke="#E0E4E8" stroke-width="1"/>
+  <text x="505" y="188" text-anchor="middle" fill="#2C3E50" font-size="9.5" font-weight="600">Pipeline Handles</text>
+  <line x1="438" y1="196" x2="572" y2="196" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="442" y="214" fill="#546E7A" font-size="9">• Scheduled refreshes</text>
+  <text x="442" y="230" fill="#546E7A" font-size="9">• Backfill operations</text>
+  <text x="442" y="246" fill="#546E7A" font-size="9">• TTL and expiry rules</text>
+  <text x="442" y="262" fill="#546E7A" font-size="9">• Consistency checks</text>
+
+  <!-- Box 4 -->
+  <rect x="610" y="168" width="150" height="106" rx="6" fill="#F5F7FA" stroke="#E0E4E8" stroke-width="1"/>
+  <text x="685" y="188" text-anchor="middle" fill="#2C3E50" font-size="9.5" font-weight="600">Models Consume</text>
+  <line x1="628" y1="196" x2="742" y2="196" stroke="#E0E4E8" stroke-width="0.5"/>
+  <text x="632" y="214" fill="#546E7A" font-size="9">• Batch training sets</text>
+  <text x="632" y="230" fill="#546E7A" font-size="9">• Real-time inference</text>
+  <text x="632" y="246" fill="#546E7A" font-size="9">• Feature vectors</text>
+  <text x="632" y="262" fill="#546E7A" font-size="9">• Drift monitoring</text>
+
+  <!-- Bottom note -->
+  <rect x="120" y="300" width="560" height="48" rx="6" fill="#E6F3EF" stroke="#2A7F62" stroke-width="1"/>
+  <text x="400" y="322" text-anchor="middle" fill="#2A7F62" font-size="10.5" font-weight="600">The foundation makes onboarding into Feast (or any feature store) a configuration exercise,</text>
+  <text x="400" y="338" text-anchor="middle" fill="#546E7A" font-size="10">not a data engineering project — because the hard work of modeling is already done.</text>
+</svg>

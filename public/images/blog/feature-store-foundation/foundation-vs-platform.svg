@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="540" fill="#f9fafb"/>
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">FEATURE-READY FOUNDATION  vs  FEATURE STORE PLATFORM</text>
+
+  <!-- ========== Left Column: Foundation ========== -->
+  <rect x="40" y="56" width="340" height="36" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="210" y="80" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Feature-Ready Data Foundation</text>
+
+  <!-- Foundation items -->
+  <rect x="40" y="104" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="124" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="124" fill="#2C3E50" font-size="10">Entity-centric data model (Account, Customer)</text>
+
+  <rect x="40" y="144" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="164" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="164" fill="#2C3E50" font-size="10">Time-stamped snapshots (daily, monthly, accum.)</text>
+
+  <rect x="40" y="184" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="204" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="204" fill="#2C3E50" font-size="10">Curated, business-validated attributes</text>
+
+  <rect x="40" y="224" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="244" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="244" fill="#2C3E50" font-size="10">Standardized temporal transformations</text>
+
+  <rect x="40" y="264" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="284" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="284" fill="#2C3E50" font-size="10">Reusable feature families (DAPA, MAPA, MCS)</text>
+
+  <rect x="40" y="304" width="340" height="34" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="68" y="324" fill="#2A7F62" font-size="10" font-weight="600">✓</text>
+  <text x="86" y="324" fill="#2C3E50" font-size="10">Point-in-time correctness for training data</text>
+
+  <text x="210" y="366" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">What you build in your warehouse</text>
+
+  <!-- ========== Right Column: Feature Store Platform ========== -->
+  <rect x="420" y="56" width="340" height="36" rx="6" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="590" y="80" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Feature Store Platform</text>
+
+  <rect x="420" y="104" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="124" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="124" fill="#2C3E50" font-size="10">Feature registry with metadata and lineage</text>
+
+  <rect x="420" y="144" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="164" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="164" fill="#2C3E50" font-size="10">Online serving layer (low-latency lookups)</text>
+
+  <rect x="420" y="184" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="204" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="204" fill="#2C3E50" font-size="10">Offline store (batch training data generation)</text>
+
+  <rect x="420" y="224" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="244" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="244" fill="#2C3E50" font-size="10">Materialization pipelines (scheduling, backfill)</text>
+
+  <rect x="420" y="264" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="284" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="284" fill="#2C3E50" font-size="10">Online/offline consistency guarantees</text>
+
+  <rect x="420" y="304" width="340" height="34" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="448" y="324" fill="#1F4E79" font-size="10" font-weight="600">+</text>
+  <text x="466" y="324" fill="#2C3E50" font-size="10">Feature drift monitoring and data quality</text>
+
+  <text x="590" y="366" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">What a tool like Feast / Tecton adds</text>
+
+  <!-- ========== Bottom: Foundation arrow ========== -->
+  <line x1="60" y1="390" x2="740" y2="390" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <rect x="120" y="410" width="560" height="64" rx="8" fill="url(#slateGrad)" filter="url(#ds)"/>
+  <text x="400" y="435" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="600">The foundation is the prerequisite. The platform is the accelerant.</text>
+  <text x="400" y="458" text-anchor="middle" fill="#fff" font-size="10" opacity="0.85">A feature store platform without a well-designed data foundation is just an empty registry.</text>
+
+  <!-- Callout -->
+  <text x="400" y="504" text-anchor="middle" fill="#546E7A" font-size="10" font-style="italic">Most organizations get the most value from investing in the foundation first —</text>
+  <text x="400" y="520" text-anchor="middle" fill="#546E7A" font-size="10" font-style="italic">the platform layer becomes trivial when the data layer is right.</text>
+</svg>

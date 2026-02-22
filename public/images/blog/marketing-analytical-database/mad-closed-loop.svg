@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.10"/>
+    </filter>
+    <marker id="aB" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#1F4E79"/></marker>
+    <marker id="aT" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#2A7F62"/></marker>
+    <marker id="aW" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ffffff"/></marker>
+  </defs>
+
+  <rect width="1100" height="520" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="550" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4E79" letter-spacing="0.5">Closed-Loop Measurement — From Activation to Insight</text>
+  <line x1="350" y1="44" x2="750" y2="44" stroke="#2A7F62" stroke-width="2" opacity="0.4"/>
+
+  <!-- ═══════ CIRCULAR FLOW ═══════ -->
+
+  <!-- Step 1: Audience Build (top-left) -->
+  <rect x="60" y="80" width="220" height="90" rx="10" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="80" y="103" font-size="11" font-weight="700" fill="#2A7F62">①</text>
+  <text x="170" y="103" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Audience Build</text>
+  <text x="170" y="122" text-anchor="middle" font-size="9.5" fill="#a8c8e8">MAD → Segment creation</text>
+  <text x="170" y="137" text-anchor="middle" font-size="9.5" fill="#a8c8e8">Eligibility + Suppression applied</text>
+  <text x="170" y="152" text-anchor="middle" font-size="9.5" fill="#a8c8e8">Propensity scores attached</text>
+
+  <!-- Arrow 1→2 -->
+  <path d="M280,125 L370,125" stroke="#1F4E79" stroke-width="2" fill="none" marker-end="url(#aT)"/>
+  <text x="325" y="118" text-anchor="middle" font-size="8" fill="#2C3E50">Lists / Segments</text>
+
+  <!-- Step 2: Campaign Execution (top-center) -->
+  <rect x="380" y="80" width="220" height="90" rx="10" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="400" y="103" font-size="11" font-weight="700" fill="#1F4E79">②</text>
+  <text x="490" y="103" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Campaign Execution</text>
+  <text x="490" y="122" text-anchor="middle" font-size="9.5" fill="#d0f0e0">CDP / Orchestration tool</text>
+  <text x="490" y="137" text-anchor="middle" font-size="9.5" fill="#d0f0e0">Multi-channel delivery</text>
+  <text x="490" y="152" text-anchor="middle" font-size="9.5" fill="#d0f0e0">Contact history captured</text>
+
+  <!-- Arrow 2→3 -->
+  <path d="M600,125 L690,125" stroke="#2A7F62" stroke-width="2" fill="none" marker-end="url(#aB)"/>
+  <text x="645" y="118" text-anchor="middle" font-size="8" fill="#2C3E50">Delivery Events</text>
+
+  <!-- Step 3: Customer Interaction (top-right) -->
+  <rect x="700" y="80" width="220" height="90" rx="10" fill="#d4a843" opacity="0.9" filter="url(#ds)"/>
+  <text x="720" y="103" font-size="11" font-weight="700" fill="#1F4E79">③</text>
+  <text x="810" y="103" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Customer Interaction</text>
+  <text x="810" y="122" text-anchor="middle" font-size="9.5" fill="#fff8e0">Opens, clicks, visits, calls</text>
+  <text x="810" y="137" text-anchor="middle" font-size="9.5" fill="#fff8e0">Applications, purchases</text>
+  <text x="810" y="152" text-anchor="middle" font-size="9.5" fill="#fff8e0">Opt-outs, complaints</text>
+
+  <!-- Arrow 3→4 (down) -->
+  <path d="M810,170 L810,220" stroke="#d4a843" stroke-width="2" fill="none" marker-end="url(#aB)"/>
+  <text x="825" y="200" font-size="8" fill="#2C3E50">Response Data</text>
+
+  <!-- Step 4: Response Capture (right) -->
+  <rect x="700" y="230" width="220" height="90" rx="10" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="720" y="253" font-size="11" font-weight="700" fill="#2A7F62">④</text>
+  <text x="810" y="253" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Response Capture</text>
+  <text x="810" y="272" text-anchor="middle" font-size="9.5" fill="#a8c8e8">Response entity in MAD</text>
+  <text x="810" y="287" text-anchor="middle" font-size="9.5" fill="#a8c8e8">Event ↔ Campaign key linkage</text>
+  <text x="810" y="302" text-anchor="middle" font-size="9.5" fill="#a8c8e8">Conversion window tracking</text>
+
+  <!-- Arrow 4→5 (left) -->
+  <path d="M700,275 L610,275" stroke="#1F4E79" stroke-width="2" fill="none" marker-end="url(#aT)"/>
+  <text x="655" y="268" text-anchor="middle" font-size="8" fill="#2C3E50">Linked Events</text>
+
+  <!-- Step 5: Attribution & Measurement (center) -->
+  <rect x="380" y="230" width="220" height="90" rx="10" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="400" y="253" font-size="11" font-weight="700" fill="#1F4E79">⑤</text>
+  <text x="490" y="253" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Attribution &amp;</text>
+  <text x="490" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Measurement</text>
+  <text x="490" y="290" text-anchor="middle" font-size="9.5" fill="#d0f0e0">Multi-touch attribution</text>
+  <text x="490" y="305" text-anchor="middle" font-size="9.5" fill="#d0f0e0">Channel / campaign ROI</text>
+
+  <!-- Arrow 5→6 (left) -->
+  <path d="M380,275 L290,275" stroke="#2A7F62" stroke-width="2" fill="none" marker-end="url(#aB)"/>
+  <text x="335" y="268" text-anchor="middle" font-size="8" fill="#2C3E50">Insights</text>
+
+  <!-- Step 6: Model Retraining & Optimization (left) -->
+  <rect x="60" y="230" width="220" height="90" rx="10" fill="#8e6bb5" filter="url(#ds)"/>
+  <text x="80" y="253" font-size="11" font-weight="700" fill="#ffffff">⑥</text>
+  <text x="170" y="253" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Optimize &amp; Retrain</text>
+  <text x="170" y="272" text-anchor="middle" font-size="9.5" fill="#dcc8f0">Refresh propensity models</text>
+  <text x="170" y="287" text-anchor="middle" font-size="9.5" fill="#dcc8f0">Adjust suppression rules</text>
+  <text x="170" y="302" text-anchor="middle" font-size="9.5" fill="#dcc8f0">Update eligibility logic</text>
+
+  <!-- Arrow 6→1 (up, closing the loop) -->
+  <path d="M170,230 L170,170" stroke="#8e6bb5" stroke-width="2" fill="none" marker-end="url(#aB)"/>
+  <text x="155" y="205" font-size="8" fill="#2C3E50">Refined</text>
+  <text x="155" y="215" font-size="8" fill="#2C3E50">Audiences</text>
+
+  <!-- ═══════ METRICS BAR AT BOTTOM ═══════ -->
+  <rect x="60" y="370" width="860" height="130" rx="8" fill="#ffffff" stroke="#e0e4e8" stroke-width="1" filter="url(#ds)"/>
+  <rect x="60" y="370" width="860" height="4" rx="2" fill="#1F4E79"/>
+
+  <text x="490" y="396" text-anchor="middle" font-size="13" font-weight="700" fill="#1F4E79">What Gets Measured at Each Step</text>
+
+  <!-- Metric columns -->
+  <g transform="translate(80,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#1F4E79">① Audience</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Segment size</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• Overlap %</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Suppression rate</text>
+  </g>
+
+  <g transform="translate(220,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#2A7F62">② Execution</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Delivery rate</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• Bounce rate</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Channel mix</text>
+  </g>
+
+  <g transform="translate(360,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#d4a843">③ Interaction</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Open / click rate</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• Visit-through rate</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Call volume</text>
+  </g>
+
+  <g transform="translate(500,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#1F4E79">④ Response</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Conversion rate</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• Application rate</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Revenue lift</text>
+  </g>
+
+  <g transform="translate(640,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#2A7F62">⑤ Attribution</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Channel ROAS</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• Campaign ROI</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Incrementality</text>
+  </g>
+
+  <g transform="translate(780,410)">
+    <text x="0" y="0" font-size="10" font-weight="700" fill="#8e6bb5">⑥ Optimization</text>
+    <text x="0" y="16" font-size="9" fill="#2C3E50">• Model AUC drift</text>
+    <text x="0" y="30" font-size="9" fill="#2C3E50">• List quality score</text>
+    <text x="0" y="44" font-size="9" fill="#2C3E50">• Fatigue signals</text>
+  </g>
+</svg>

@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2A7F62;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.10"/>
+    </filter>
+    <marker id="aB" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#1F4E79"/></marker>
+    <marker id="aT" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#2A7F62"/></marker>
+    <marker id="aG" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#7f8c8d"/></marker>
+    <marker id="aW" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ffffff"/></marker>
+  </defs>
+
+  <rect width="1200" height="780" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4E79" letter-spacing="0.5">MAD Reference Architecture — End-to-End Data Flow</text>
+  <line x1="380" y1="44" x2="820" y2="44" stroke="#2A7F62" stroke-width="2" opacity="0.4"/>
+
+  <!-- ═══════ ROW 1: SOURCE SYSTEMS ═══════ -->
+  <text x="26" y="72" font-size="10" font-weight="700" fill="#1F4E79" letter-spacing="1">SOURCE SYSTEMS</text>
+  <rect x="20" y="80" width="1160" height="80" rx="8" fill="#e8f0f8" stroke="#c4d6e8" stroke-width="1"/>
+
+  <!-- Source boxes -->
+  <rect x="36" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="96" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">EDW /</text>
+  <text x="96" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Data Warehouse</text>
+
+  <rect x="172" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="232" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">CRM /</text>
+  <text x="232" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Customer Master</text>
+
+  <rect x="308" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="368" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Core Banking /</text>
+  <text x="368" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Transactions</text>
+
+  <rect x="444" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="504" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Campaign Mgmt</text>
+  <text x="504" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">(Unica, SFMC…)</text>
+
+  <rect x="580" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="640" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Digital Events</text>
+  <text x="640" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">(Web, App, DCM)</text>
+
+  <rect x="716" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="776" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Credit Bureau /</text>
+  <text x="776" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Risk Scores</text>
+
+  <rect x="852" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="912" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Contact Center</text>
+  <text x="912" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">(Call, Chat)</text>
+
+  <rect x="988" y="92" width="120" height="52" rx="5" fill="#fff" stroke="#1F4E79" stroke-width="1" filter="url(#ds)"/>
+  <text x="1048" y="114" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">3rd Party / DMP</text>
+  <text x="1048" y="128" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">(Neustar, Acxiom)</text>
+
+  <!-- ═══════ ARROWS DOWN ═══════ -->
+  <path d="M600,160 L600,185" stroke="#1F4E79" stroke-width="1.5" fill="none" marker-end="url(#aB)"/>
+
+  <!-- ═══════ ROW 2: INGESTION ═══════ -->
+  <text x="26" y="202" font-size="10" font-weight="700" fill="#1F4E79" letter-spacing="1">INGESTION LAYER</text>
+  <rect x="20" y="210" width="1160" height="56" rx="8" fill="#ffffff" stroke="#c4d6e8" stroke-width="1" filter="url(#ds)"/>
+
+  <rect x="40" y="218" width="160" height="38" rx="5" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="120" y="241" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Batch ELT (Airflow, dbt)</text>
+
+  <rect x="220" y="218" width="160" height="38" rx="5" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="300" y="241" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">CDC / Streaming (Kafka)</text>
+
+  <rect x="400" y="218" width="160" height="38" rx="5" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="480" y="241" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">API / File Ingestion</text>
+
+  <rect x="580" y="218" width="180" height="38" rx="5" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="670" y="241" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Event Streaming (Kinesis)</text>
+
+  <rect x="780" y="218" width="180" height="38" rx="5" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="870" y="234" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">PII Tokenization /</text>
+  <text x="870" y="248" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Quality Checks</text>
+
+  <!-- ═══════ ARROWS DOWN ═══════ -->
+  <path d="M600,266 L600,290" stroke="#1F4E79" stroke-width="1.5" fill="none" marker-end="url(#aB)"/>
+
+  <!-- ═══════ ROW 3: MAD CORE (big block) ═══════ -->
+  <rect x="20" y="296" width="1160" height="260" rx="10" fill="#1F4E79" filter="url(#ds)"/>
+  <rect x="24" y="300" width="1152" height="1" rx="0.5" fill="#ffffff" opacity="0.12"/>
+
+  <text x="600" y="322" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="1.2">MARKETING ANALYTICAL DATABASE  (Snowflake / Databricks / BigQuery)</text>
+
+  <!-- Sub-layers inside MAD -->
+  <!-- Raw / Staging -->
+  <rect x="40" y="340" width="220" height="100" rx="6" fill="#ffffff" opacity="0.10"/>
+  <rect x="42" y="342" width="216" height="96" rx="5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.25"/>
+  <text x="150" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Raw / Staging</text>
+  <text x="150" y="380" text-anchor="middle" font-size="9" fill="#a8c8e8">Source-conformed tables</text>
+  <text x="150" y="394" text-anchor="middle" font-size="9" fill="#a8c8e8">Schema-on-read landing</text>
+  <text x="150" y="408" text-anchor="middle" font-size="9" fill="#a8c8e8">Full history / snapshots</text>
+  <text x="150" y="422" text-anchor="middle" font-size="9" fill="#a8c8e8">Data quality gate</text>
+
+  <!-- Identity Resolution -->
+  <rect x="280" y="340" width="200" height="100" rx="6" fill="#2A7F62" opacity="0.45"/>
+  <rect x="282" y="342" width="196" height="96" rx="5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.35"/>
+  <text x="380" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Identity Resolution</text>
+  <text x="380" y="380" text-anchor="middle" font-size="9" fill="#d0f0e0">Enterprise Consumer Key</text>
+  <text x="380" y="394" text-anchor="middle" font-size="9" fill="#d0f0e0">Party ↔ Prospect linkage</text>
+  <text x="380" y="408" text-anchor="middle" font-size="9" fill="#d0f0e0">Cross-device stitching</text>
+  <text x="380" y="422" text-anchor="middle" font-size="9" fill="#d0f0e0">PII ↔ Digital ID bridging</text>
+
+  <!-- Curated / Conformed -->
+  <rect x="500" y="340" width="240" height="100" rx="6" fill="#ffffff" opacity="0.10"/>
+  <rect x="502" y="342" width="236" height="96" rx="5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.25"/>
+  <text x="620" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Curated / Conformed</text>
+  <text x="620" y="380" text-anchor="middle" font-size="9" fill="#a8c8e8">Customer, Account, Product</text>
+  <text x="620" y="394" text-anchor="middle" font-size="9" fill="#a8c8e8">Campaign, Touchpoint, Journey</text>
+  <text x="620" y="408" text-anchor="middle" font-size="9" fill="#a8c8e8">Preferences, Suppression, Consent</text>
+  <text x="620" y="422" text-anchor="middle" font-size="9" fill="#a8c8e8">Model Scores, Credit Snapshots</text>
+
+  <!-- Activation-Ready -->
+  <rect x="760" y="340" width="200" height="100" rx="6" fill="#ffffff" opacity="0.10"/>
+  <rect x="762" y="342" width="196" height="96" rx="5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.25"/>
+  <text x="860" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Activation-Ready</text>
+  <text x="860" y="380" text-anchor="middle" font-size="9" fill="#a8c8e8">Audience segments</text>
+  <text x="860" y="394" text-anchor="middle" font-size="9" fill="#a8c8e8">Campaign lists + suppression</text>
+  <text x="860" y="408" text-anchor="middle" font-size="9" fill="#a8c8e8">Propensity / eligibility flags</text>
+  <text x="860" y="422" text-anchor="middle" font-size="9" fill="#a8c8e8">Onboarding-ready extracts</text>
+
+  <!-- Analytics / Semantic -->
+  <rect x="980" y="340" width="180" height="100" rx="6" fill="#ffffff" opacity="0.10"/>
+  <rect x="982" y="342" width="176" height="96" rx="5" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.25"/>
+  <text x="1070" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic / BI</text>
+  <text x="1070" y="380" text-anchor="middle" font-size="9" fill="#a8c8e8">Metric definitions</text>
+  <text x="1070" y="394" text-anchor="middle" font-size="9" fill="#a8c8e8">Self-service views</text>
+  <text x="1070" y="408" text-anchor="middle" font-size="9" fill="#a8c8e8">KPI / Reporting marts</text>
+  <text x="1070" y="422" text-anchor="middle" font-size="9" fill="#a8c8e8">Attribution models</text>
+
+  <!-- Governance bar -->
+  <rect x="40" y="456" width="1120" height="32" rx="5" fill="#2A7F62" opacity="0.6"/>
+  <text x="600" y="477" text-anchor="middle" font-size="10" font-weight="600" fill="#ffffff">Governance  ·  Data Catalog  ·  PII Masking  ·  Consent Enforcement  ·  Column-Level Security  ·  Lineage  ·  Audit Trail</text>
+
+  <!-- Feedback ingestion bar -->
+  <rect x="40" y="500" width="1120" height="26" rx="5" fill="#ffffff" opacity="0.08"/>
+  <text x="600" y="518" text-anchor="middle" font-size="9" fill="#a8c8e8">⟲  Closed-Loop Feedback: Response data  ·  Conversion events  ·  Attribution signals  ·  Campaign performance metrics flow back into MAD</text>
+
+  <!-- ═══════ ARROWS DOWN ═══════ -->
+  <path d="M600,556 L600,580" stroke="#2A7F62" stroke-width="1.5" fill="none" marker-end="url(#aT)"/>
+
+  <!-- ═══════ ROW 4: CONSUMERS ═══════ -->
+  <text x="26" y="598" font-size="10" font-weight="700" fill="#2A7F62" letter-spacing="1">CONSUMERS &amp; ACTIVATION</text>
+  <rect x="20" y="606" width="1160" height="80" rx="8" fill="#eaf7f0" stroke="#b8dece" stroke-width="1"/>
+
+  <rect x="36" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="106" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">BI / Dashboards</text>
+  <text x="106" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Tableau, Power BI)</text>
+
+  <rect x="192" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="262" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Data Science</text>
+  <text x="262" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Python, H2O, SAS)</text>
+
+  <rect x="348" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="418" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">CDP</text>
+  <text x="418" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Segments, Profiles)</text>
+
+  <rect x="504" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="574" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Campaign Mgmt</text>
+  <text x="574" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Unica, Braze, SFMC)</text>
+
+  <rect x="660" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="730" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">DMP / Onboarding</text>
+  <text x="730" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Neustar, LiveRamp)</text>
+
+  <rect x="816" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="886" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Email / DM / SMS</text>
+  <text x="886" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Responsys, DMSS)</text>
+
+  <rect x="972" y="618" width="140" height="52" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1" filter="url(#ds)"/>
+  <text x="1042" y="640" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Ad Platforms</text>
+  <text x="1042" y="654" text-anchor="middle" font-size="9" fill="#2C3E50">(Google, Meta, DSPs)</text>
+
+  <!-- Feedback loop arrow going back up -->
+  <path d="M1148,630 L1170,630 L1170,118 L1130,118" stroke="#7f8c8d" stroke-width="1.2" stroke-dasharray="5,3" fill="none" marker-end="url(#aG)"/>
+  <text x="1182" y="400" font-size="9" fill="#7f8c8d" transform="rotate(-90 1182 400)" text-anchor="middle">Response / Conversion Feedback</text>
+
+  <!-- Legend -->
+  <rect x="20" y="700" width="1160" height="62" rx="6" fill="#ffffff" stroke="#e0e4e8" stroke-width="1"/>
+  <text x="40" y="722" font-size="10" font-weight="700" fill="#2C3E50">Legend:</text>
+  <rect x="100" y="712" width="14" height="14" rx="3" fill="#1F4E79"/><text x="120" y="724" font-size="9.5" fill="#2C3E50">MAD Internal Layer</text>
+  <rect x="240" y="712" width="14" height="14" rx="3" fill="#2A7F62" opacity="0.6"/><text x="260" y="724" font-size="9.5" fill="#2C3E50">Identity / Governance</text>
+  <rect x="400" y="712" width="14" height="14" rx="3" fill="#e8f0f8" stroke="#1F4E79" stroke-width="0.8"/><text x="420" y="724" font-size="9.5" fill="#2C3E50">Source / Ingestion</text>
+  <rect x="540" y="712" width="14" height="14" rx="3" fill="#eaf7f0" stroke="#2A7F62" stroke-width="0.8"/><text x="560" y="724" font-size="9.5" fill="#2C3E50">Consumers / Activation</text>
+  <line x1="700" y1="719" x2="730" y2="719" stroke="#7f8c8d" stroke-width="1.2" stroke-dasharray="5,3"/><text x="740" y="724" font-size="9.5" fill="#2C3E50">Feedback Loop</text>
+</svg>

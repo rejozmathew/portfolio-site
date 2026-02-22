@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="640" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Controls Mapped to a Customer Communication Process</text>
+  <line x1="280" y1="48" x2="820" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Phase label -->
+  <text x="550" y="72" text-anchor="middle" fill="#94a3b8" font-size="10" font-style="italic">Each stage has specific control obligations — population, content, and fulfillment</text>
+
+  <!-- ===== PROCESS FLOW (top row) ===== -->
+
+  <!-- Stage 1: System of Record / Trigger -->
+  <rect x="40" y="95" width="220" height="110" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="150" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">SYSTEM OF RECORD</text>
+  <text x="150" y="140" text-anchor="middle" fill="#d0e7ff" font-size="9">Business event triggers</text>
+  <text x="150" y="155" text-anchor="middle" fill="#d0e7ff" font-size="9">communication requirement</text>
+  <text x="150" y="175" text-anchor="middle" fill="#94b8d8" font-size="8" font-style="italic">e.g. adverse action, statement,</text>
+  <text x="150" y="188" text-anchor="middle" fill="#94b8d8" font-size="8" font-style="italic">rate change, dispute resolution</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="260" y1="150" x2="300" y2="150" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Stage 2: Generation -->
+  <rect x="305" y="95" width="220" height="110" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="415" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">DOCUMENT GENERATION</text>
+  <text x="415" y="140" text-anchor="middle" fill="#d0e7ff" font-size="9">Template selected, variable</text>
+  <text x="415" y="155" text-anchor="middle" fill="#d0e7ff" font-size="9">data merged, letter rendered</text>
+  <text x="415" y="175" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">Receives file from SOR,</text>
+  <text x="415" y="188" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">generates for fulfillment</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="525" y1="150" x2="565" y2="150" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Stage 3: Delivery -->
+  <rect x="570" y="95" width="220" height="110" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="680" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">DELIVERY &amp; TRACKING</text>
+  <text x="680" y="140" text-anchor="middle" fill="#d0f0e0" font-size="9">Fulfill via electronic or print</text>
+  <text x="680" y="155" text-anchor="middle" fill="#d0f0e0" font-size="9">channel, track exceptions</text>
+  <text x="680" y="175" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">Returned mail, bouncebacks,</text>
+  <text x="680" y="188" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">eConsent validation</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="790" y1="150" x2="830" y2="150" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+  <!-- Stage 4: Exception Tracking -->
+  <rect x="835" y="95" width="230" height="110" rx="10" fill="#D4380D" opacity="0.85" filter="url(#shadow)"/>
+  <text x="950" y="120" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">EXCEPTION TRACKING</text>
+  <text x="950" y="140" text-anchor="middle" fill="#ffe0d0" font-size="9">Deviations logged, dispositioned</text>
+  <text x="950" y="155" text-anchor="middle" fill="#ffe0d0" font-size="9">and escalated if needed</text>
+  <text x="950" y="175" text-anchor="middle" fill="#ffc8b0" font-size="8" font-style="italic">Feeds into incident reporting</text>
+  <text x="950" y="188" text-anchor="middle" fill="#ffc8b0" font-size="8" font-style="italic">when thresholds are breached</text>
+
+  <!-- ===== CONTROL OVERLAY (bottom section) ===== -->
+
+  <!-- Divider -->
+  <rect x="30" y="225" width="1040" height="3" rx="1" fill="url(#hGrad)" opacity="0.25"/>
+  <text x="550" y="252" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700" letter-spacing="1">CONTROL CATEGORIES</text>
+
+  <!-- Control 1: Population Selection -->
+  <rect x="40" y="272" width="325" height="180" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="272" width="325" height="36" rx="10" fill="#1F4E79"/>
+  <rect x="40" y="292" width="325" height="16" fill="#1F4E79"/>
+  <text x="202" y="296" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">POPULATION SELECTION</text>
+  <text x="60" y="328" fill="#1F4E79" font-size="10" font-weight="600">One control per control point</text>
+  <text x="60" y="348" fill="#2C3E50" font-size="10">✓ Correct population targeted</text>
+  <text x="60" y="366" fill="#2C3E50" font-size="10">✓ Inclusion / exclusion logic verified</text>
+  <text x="60" y="384" fill="#2C3E50" font-size="10">✓ Timing meets regulatory requirements</text>
+  <text x="60" y="402" fill="#2C3E50" font-size="10">✓ Who must receive &amp; who must not</text>
+  <text x="60" y="422" fill="#94a3b8" font-size="9" font-style="italic">e.g. exclude consumers in bankruptcy</text>
+  <text x="60" y="438" fill="#2A7F62" font-size="9" font-weight="600">TYPE: Preventive</text>
+
+  <!-- Control 2: Content Accuracy -->
+  <rect x="388" y="272" width="325" height="180" rx="10" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="388" y="272" width="325" height="36" rx="10" fill="#2A7F62"/>
+  <rect x="388" y="292" width="325" height="16" fill="#2A7F62"/>
+  <text x="550" y="296" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">CONTENT ACCURACY</text>
+  <text x="408" y="328" fill="#2A7F62" font-size="10" font-weight="600">Multiple controls per control point</text>
+  <text x="408" y="348" fill="#2C3E50" font-size="10">✓ Static content matches approved version</text>
+  <text x="408" y="366" fill="#2C3E50" font-size="10">✓ Variable data aligns to SOR at selection</text>
+  <text x="408" y="384" fill="#2C3E50" font-size="10">✓ All required fields populated</text>
+  <text x="408" y="402" fill="#2C3E50" font-size="10">✓ Format validated (dates, currency, text)</text>
+  <text x="408" y="422" fill="#94a3b8" font-size="9" font-style="italic">Template-specific; varies by letter type</text>
+  <text x="408" y="438" fill="#2A7F62" font-size="9" font-weight="600">TYPE: Detective</text>
+
+  <!-- Control 3: Fulfillment / Execution -->
+  <rect x="736" y="272" width="325" height="180" rx="10" fill="#fff" stroke="#D4380D" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="736" y="272" width="325" height="36" rx="10" fill="#D4380D" opacity="0.85"/>
+  <rect x="736" y="292" width="325" height="16" fill="#D4380D" opacity="0.85"/>
+  <text x="898" y="296" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">FULFILLMENT / EXECUTION</text>
+  <text x="756" y="328" fill="#D4380D" font-size="10" font-weight="600">One control per control point</text>
+  <text x="756" y="348" fill="#2C3E50" font-size="10">✓ Volume reconciliation at handoffs</text>
+  <text x="756" y="366" fill="#2C3E50" font-size="10">✓ Electronic channel &amp; eConsent verified</text>
+  <text x="756" y="384" fill="#2C3E50" font-size="10">✓ Print channel volume correct</text>
+  <text x="756" y="402" fill="#2C3E50" font-size="10">✓ Exceptions tracked (returned mail, errors)</text>
+  <text x="756" y="422" fill="#94a3b8" font-size="9" font-style="italic">Timing gates, channel routing, error handling</text>
+  <text x="756" y="438" fill="#D4380D" font-size="9" font-weight="600">TYPE: Detective</text>
+
+  <!-- Connector lines from process to controls -->
+  <line x1="150" y1="205" x2="150" y2="225" stroke="#1F4E79" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="415" y1="205" x2="415" y2="225" stroke="#2A7F62" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="680" y1="205" x2="680" y2="225" stroke="#D4380D" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Bottom insight bar -->
+  <rect x="40" y="475" width="1020" height="50" rx="8" fill="#f0f4f8" stroke="#1F4E79" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="550" y="497" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">KEY INSIGHT</text>
+  <text x="550" y="515" text-anchor="middle" fill="#2C3E50" font-size="10">Controls aren't a checklist. They're an architecture mapped to a process — each one has a specific job tied to a specific risk.</text>
+
+  <!-- Legend -->
+  <text x="40" y="560" fill="#94a3b8" font-size="9" font-weight="600">CONTROL MULTIPLICITY</text>
+  <rect x="40" y="570" width="10" height="10" rx="2" fill="#1F4E79"/>
+  <text x="55" y="580" fill="#2C3E50" font-size="9">Population &amp; Fulfillment: 1 control per point (process-level)</text>
+  <rect x="400" y="570" width="10" height="10" rx="2" fill="#2A7F62"/>
+  <text x="415" y="580" fill="#2C3E50" font-size="9">Content Accuracy: Multiple controls per point (template-level, varies by letter type)</text>
+
+  <!-- Subtle border lines connecting controls to process stages -->
+  <line x1="202" y1="225" x2="202" y2="272" stroke="#1F4E79" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+  <line x1="550" y1="225" x2="550" y2="272" stroke="#2A7F62" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+  <line x1="898" y1="225" x2="898" y2="272" stroke="#D4380D" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+</svg>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="420" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">Enterprise Incident Reporting Architecture</text>
+  <line x1="280" y1="45" x2="820" y2="45" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Ownership labels -->
+  <text x="550" y="68" text-anchor="middle" fill="#94a3b8" font-size="9" font-style="italic">Incident management process owned by dedicated teams · Reporting infrastructure built by my team</text>
+
+  <!-- ===== ROW 1: Source Systems (upstream — not my team) ===== -->
+
+  <!-- eProb / Problem Management -->
+  <rect x="30" y="90" width="185" height="100" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="122" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">PROBLEM MANAGEMENT</text>
+  <text x="122" y="132" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">SYSTEM</text>
+  <line x1="50" y1="140" x2="195" y2="140" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="122" y="158" text-anchor="middle" fill="#d0e7ff" font-size="8">Incident intake, status tracking</text>
+  <text x="122" y="172" text-anchor="middle" fill="#d0e7ff" font-size="8">Issue classification, CIE flags</text>
+  <text x="122" y="186" text-anchor="middle" fill="#94a3b8" font-size="7" font-style="italic">Managed by Incident Mgmt team</text>
+
+  <!-- Supplementary data sources -->
+  <rect x="30" y="205" width="185" height="65" rx="8" fill="#f0f4f8" stroke="#2C3E50" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="122" y="228" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700">SUPPLEMENTARY DATA</text>
+  <text x="122" y="246" text-anchor="middle" fill="#2C3E50" font-size="8">Financial systems, customer data,</text>
+  <text x="122" y="260" text-anchor="middle" fill="#2C3E50" font-size="8">control inventories, regulatory refs</text>
+
+  <!-- Arrow from sources to ETL -->
+  <line x1="215" y1="140" x2="260" y2="155" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowNavy)"/>
+  <line x1="215" y1="237" x2="260" y2="185" stroke="#2C3E50" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowNavy)"/>
+
+  <!-- ===== MY TEAM'S WORK BOUNDARY ===== -->
+  <rect x="250" y="82" width="820" height="218" rx="12" fill="none" stroke="#2A7F62" stroke-width="2" stroke-dasharray="6,4"/>
+  <rect x="270" y="75" width="220" height="18" rx="4" fill="#2A7F62"/>
+  <text x="380" y="88" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">★ MY TEAM'S CONTRIBUTION</text>
+
+  <!-- ETL / Data Integration -->
+  <rect x="265" y="110" width="155" height="100" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="342" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">ETL PIPELINE</text>
+  <line x1="280" y1="143" x2="405" y2="143" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="342" y="161" text-anchor="middle" fill="#d0e7ff" font-size="8">Extract from problem</text>
+  <text x="342" y="175" text-anchor="middle" fill="#d0e7ff" font-size="8">mgmt system into</text>
+  <text x="342" y="189" text-anchor="middle" fill="#d0e7ff" font-size="8">data warehouse</text>
+  <text x="342" y="205" text-anchor="middle" fill="#94b8d8" font-size="7" font-style="italic">Marry with supplementary data</text>
+
+  <!-- Arrow -->
+  <line x1="420" y1="160" x2="460" y2="160" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Data Warehouse -->
+  <rect x="465" y="110" width="145" height="100" rx="10" fill="#1F4E79" opacity="0.85" filter="url(#shadow)"/>
+  <text x="537" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">DATA</text>
+  <text x="537" y="150" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">WAREHOUSE</text>
+  <line x1="480" y1="158" x2="595" y2="158" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="537" y="176" text-anchor="middle" fill="#d0e7ff" font-size="8">Integrated incident data</text>
+  <text x="537" y="190" text-anchor="middle" fill="#d0e7ff" font-size="8">with full context</text>
+  <text x="537" y="205" text-anchor="middle" fill="#94b8d8" font-size="7" font-style="italic">Single source of truth</text>
+
+  <!-- Arrow -->
+  <line x1="610" y1="160" x2="650" y2="160" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNavy)"/>
+
+  <!-- Semantic Layer -->
+  <rect x="655" y="100" width="170" height="120" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="740" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">SEMANTIC LAYER</text>
+  <line x1="670" y1="130" x2="810" y2="130" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="740" y="148" text-anchor="middle" fill="#d0f0e0" font-size="8" font-weight="600">Standardized metrics</text>
+  <text x="740" y="162" text-anchor="middle" fill="#d0f0e0" font-size="8">Incident volume, severity, CIE</text>
+  <text x="740" y="176" text-anchor="middle" fill="#d0f0e0" font-size="8">rate, financial exposure, aging</text>
+  <text x="740" y="194" text-anchor="middle" fill="#d0f0e0" font-size="8" font-weight="600">Standardized dimensions</text>
+  <text x="740" y="208" text-anchor="middle" fill="#d0f0e0" font-size="8">Business line, product, issue type,</text>
+  <text x="740" y="218" text-anchor="middle" fill="#a0d8c0" font-size="7" font-style="italic">regulation, severity, status</text>
+
+  <!-- Arrow -->
+  <line x1="825" y1="160" x2="865" y2="160" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+  <!-- Enterprise Reporting -->
+  <rect x="870" y="100" width="185" height="120" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="962" y="120" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">ENTERPRISE</text>
+  <text x="962" y="135" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">REPORTING</text>
+  <line x1="885" y1="143" x2="1040" y2="143" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <text x="962" y="161" text-anchor="middle" fill="#d0e7ff" font-size="8">Governance dashboards</text>
+  <text x="962" y="175" text-anchor="middle" fill="#d0e7ff" font-size="8">Trend analysis &amp; aging</text>
+  <text x="962" y="189" text-anchor="middle" fill="#d0e7ff" font-size="8">Regulatory-ready views</text>
+  <text x="962" y="203" text-anchor="middle" fill="#d0e7ff" font-size="8">Financial exposure rollups</text>
+  <text x="962" y="216" text-anchor="middle" fill="#94b8d8" font-size="7" font-style="italic">Consumed by Risk, Compliance, Exec</text>
+
+  <!-- ===== BOTTOM: Why Semantic Layer Matters ===== -->
+
+  <rect x="30" y="320" width="1040" height="3" rx="1" fill="url(#hGrad)" opacity="0.25"/>
+
+  <rect x="80" y="340" width="290" height="55" rx="8" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="225" y="361" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">UNIFORMITY</text>
+  <text x="225" y="378" text-anchor="middle" fill="#2C3E50" font-size="9">Every team, report, and dashboard</text>
+  <text x="225" y="391" text-anchor="middle" fill="#2C3E50" font-size="9">uses the same metric definitions</text>
+
+  <rect x="400" y="340" width="290" height="55" rx="8" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="545" y="361" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">GOVERNANCE-READY</text>
+  <text x="545" y="378" text-anchor="middle" fill="#2C3E50" font-size="9">Single version of truth for risk</text>
+  <text x="545" y="391" text-anchor="middle" fill="#2C3E50" font-size="9">committees and regulatory exams</text>
+
+  <rect x="720" y="340" width="290" height="55" rx="8" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="865" y="361" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700">ENTERPRISE SCALE</text>
+  <text x="865" y="378" text-anchor="middle" fill="#2C3E50" font-size="9">Aggregation across business lines</text>
+  <text x="865" y="391" text-anchor="middle" fill="#2C3E50" font-size="9">with drill-down to individual incidents</text>
+</svg>

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1F4E79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#183D5E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A7F62;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E6B50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="slateGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3D4F5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C3E50;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#C47F17;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A66914;stop-opacity:1" />
+    </linearGradient>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="560" fill="#f9fafb"/>
+  <text x="400" y="30" text-anchor="middle" fill="#2C3E50" font-size="14" font-weight="700" letter-spacing="1.5">REUSABLE FEATURE FAMILIES</text>
+  <text x="400" y="50" text-anchor="middle" fill="#546E7A" font-size="10.5">Three complementary asset patterns that cover most analytical use cases</text>
+
+  <!-- ========== Column 1: Daily Account Performance ========== -->
+  <rect x="40" y="72" width="226" height="38" rx="6" fill="url(#navyGrad)" filter="url(#ds)"/>
+  <text x="153" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Daily Account Performance</text>
+
+  <!-- Category cards -->
+  <rect x="40" y="120" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="140" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Account</text>
+
+  <rect x="40" y="158" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="178" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Demographics</text>
+
+  <rect x="40" y="196" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="216" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Acquisitions / Marketing</text>
+
+  <rect x="40" y="234" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="254" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Credit Bureau</text>
+
+  <rect x="40" y="272" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="292" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Fraud Indicators</text>
+
+  <rect x="40" y="310" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="330" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Collections / Bankruptcy</text>
+
+  <rect x="40" y="348" width="226" height="32" rx="5" fill="#E8F0F7" stroke="#1F4E79" stroke-width="0.5"/>
+  <text x="153" y="368" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Payments / Fees</text>
+
+  <text x="153" y="402" text-anchor="middle" fill="#546E7A" font-size="9" font-style="italic">Grain: Account × Day</text>
+
+  <!-- ========== Column 2: Monthly Account Performance ========== -->
+  <rect x="287" y="72" width="226" height="38" rx="6" fill="url(#tealGrad)" filter="url(#ds)"/>
+  <text x="400" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Monthly Account Snapshot</text>
+
+  <rect x="287" y="120" width="226" height="48" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="400" y="140" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Snapshots from Daily</text>
+  <text x="400" y="156" text-anchor="middle" fill="#546E7A" font-size="9">Point-in-time captures at month end</text>
+
+  <rect x="287" y="178" width="226" height="48" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="400" y="198" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Monthly Aggregations</text>
+  <text x="400" y="214" text-anchor="middle" fill="#546E7A" font-size="9">Payments, fees, disbursements summed</text>
+
+  <rect x="287" y="236" width="226" height="48" rx="5" fill="#E6F3EF" stroke="#2A7F62" stroke-width="0.5"/>
+  <text x="400" y="256" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Lifetime Aggregations</text>
+  <text x="400" y="272" text-anchor="middle" fill="#546E7A" font-size="9">Cumulative counts over account life</text>
+
+  <text x="400" y="314" text-anchor="middle" fill="#546E7A" font-size="9" font-style="italic">Grain: Account × Month</text>
+
+  <!-- ========== Column 3: Monthly Customer Snapshot ========== -->
+  <rect x="534" y="72" width="226" height="38" rx="6" fill="url(#amberGrad)" filter="url(#ds)"/>
+  <text x="647" y="96" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Monthly Customer Snapshot</text>
+
+  <rect x="534" y="120" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="140" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">DFS Relationship</text>
+
+  <rect x="534" y="158" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="178" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">Product Indicators</text>
+
+  <rect x="534" y="196" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="216" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">Online Activity</text>
+
+  <rect x="534" y="234" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="254" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">Transaction Activity</text>
+
+  <rect x="534" y="272" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="292" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">Voice / Complaints</text>
+
+  <rect x="534" y="310" width="226" height="32" rx="5" fill="#FDF3E3" stroke="#C47F17" stroke-width="0.5"/>
+  <text x="647" y="330" text-anchor="middle" fill="#A66914" font-size="10" font-weight="600">Lifetime Aggregated Counts</text>
+
+  <text x="647" y="366" text-anchor="middle" fill="#546E7A" font-size="9" font-style="italic">Grain: Customer × Month</text>
+
+  <!-- ========== Bottom: Flow arrows ========== -->
+  <line x1="60" y1="430" x2="740" y2="430" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Flow -->
+  <text x="400" y="456" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600" letter-spacing="1">DESIGN PATTERN</text>
+
+  <rect x="68" y="470" width="190" height="36" rx="6" fill="#1F4E79"/>
+  <text x="163" y="493" text-anchor="middle" fill="#fff" font-size="10">Daily granular capture</text>
+
+  <text x="278" y="493" text-anchor="middle" fill="#B0BEC5" font-size="16">→</text>
+
+  <rect x="296" y="470" width="190" height="36" rx="6" fill="#2A7F62"/>
+  <text x="391" y="493" text-anchor="middle" fill="#fff" font-size="10">Month-end snapshots + aggs</text>
+
+  <text x="506" y="493" text-anchor="middle" fill="#B0BEC5" font-size="16">→</text>
+
+  <rect x="524" y="470" width="215" height="36" rx="6" fill="#C47F17"/>
+  <text x="631" y="493" text-anchor="middle" fill="#fff" font-size="10">Customer-level roll-up</text>
+
+  <text x="400" y="532" text-anchor="middle" fill="#546E7A" font-size="10">Each family is independently queryable, but together they form a 360° view.</text>
+</svg>

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.10"/>
+    </filter>
+    <marker id="rel" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><polygon points="0 0,6 2,0 4" fill="#1F4E79" opacity="0.6"/></marker>
+  </defs>
+
+  <rect width="1200" height="720" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="600" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4E79" letter-spacing="0.5">MAD — High-Level Logical Data Model</text>
+  <line x1="410" y1="44" x2="790" y2="44" stroke="#2A7F62" stroke-width="2" opacity="0.4"/>
+
+  <!-- COLOR LEGEND -->
+  <rect x="20" y="56" width="1160" height="36" rx="6" fill="#ffffff" stroke="#e0e4e8" stroke-width="1"/>
+  <rect x="40" y="66" width="14" height="14" rx="3" fill="#1F4E79"/><text x="60" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Enterprise Dimension</text>
+  <rect x="200" y="66" width="14" height="14" rx="3" fill="#2A7F62"/><text x="220" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Enterprise Fact</text>
+  <rect x="340" y="66" width="14" height="14" rx="3" fill="#d4a843"/><text x="360" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Curated Aggregate / Snapshot</text>
+  <rect x="550" y="66" width="14" height="14" rx="3" fill="#ffffff" stroke="#1F4E79" stroke-width="1"/><text x="570" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Non-Curated / Source-Aligned</text>
+  <rect x="770" y="66" width="14" height="14" rx="3" fill="#8e6bb5"/><text x="790" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Consent &amp; Preferences</text>
+  <rect x="960" y="66" width="14" height="14" rx="3" fill="#c0392b" opacity="0.8"/><text x="980" y="78" font-size="9.5" fill="#2C3E50" font-weight="600">Hierarchy / Reference Dim</text>
+
+  <!-- ═══════ CENTRAL SPINE: PARTY → CUSTOMER → ACCOUNT ═══════ -->
+
+  <!-- Enterprise Individual / Consumer (center top) -->
+  <rect x="440" y="120" width="200" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="540" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Enterprise Individual</text>
+  <text x="540" y="164" text-anchor="middle" font-size="9" fill="#a8c8e8">Enterprise Consumer Key (PK)</text>
+
+  <!-- Enterprise Prospect (left of Individual) -->
+  <rect x="160" y="120" width="180" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="250" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Enterprise Prospect</text>
+  <text x="250" y="164" text-anchor="middle" font-size="9" fill="#a8c8e8">Enterprise Consumer Key (FK)</text>
+
+  <!-- Enterprise Customer (center bottom) -->
+  <rect x="440" y="240" width="200" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="540" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Enterprise Customer</text>
+  <text x="540" y="284" text-anchor="middle" font-size="9" fill="#a8c8e8">Enterprise Customer Key (PK)</text>
+
+  <!-- Enterprise Account -->
+  <rect x="440" y="360" width="200" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="540" y="388" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Enterprise Account</text>
+  <text x="540" y="404" text-anchor="middle" font-size="9" fill="#a8c8e8">Enterprise Account Key (PK)</text>
+
+  <!-- Enterprise Application -->
+  <rect x="740" y="360" width="180" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="830" y="388" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Enterprise Application</text>
+  <text x="830" y="404" text-anchor="middle" font-size="9" fill="#a8c8e8">Enterprise Application Key</text>
+
+  <!-- Relationship lines: Individual → Customer, Customer → Account -->
+  <line x1="540" y1="180" x2="540" y2="240" stroke="#1F4E79" stroke-width="1.5" opacity="0.5" marker-end="url(#rel)"/>
+  <text x="555" y="215" font-size="8" fill="#2C3E50">∞:1</text>
+
+  <line x1="540" y1="300" x2="540" y2="360" stroke="#1F4E79" stroke-width="1.5" opacity="0.5" marker-end="url(#rel)"/>
+  <text x="555" y="335" font-size="8" fill="#2C3E50">1:∞</text>
+
+  <!-- Prospect → Individual -->
+  <line x1="340" y1="150" x2="440" y2="150" stroke="#1F4E79" stroke-width="1.5" opacity="0.5" marker-end="url(#rel)"/>
+  <text x="390" y="145" font-size="8" fill="#2C3E50">∞:1</text>
+
+  <!-- Account → Application -->
+  <line x1="640" y1="390" x2="740" y2="390" stroke="#1F4E79" stroke-width="1.5" opacity="0.5"/>
+  <text x="690" y="385" font-size="8" fill="#2C3E50">1:1</text>
+
+  <!-- ═══════ FACTS (green) ═══════ -->
+
+  <!-- Inbound/Outbound Event -->
+  <rect x="740" y="120" width="180" height="60" rx="8" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="830" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">Inbound / Outbound</text>
+  <text x="830" y="164" text-anchor="middle" font-size="9" fill="#d0f0e0">Event / Touchpoint</text>
+
+  <line x1="640" y1="150" x2="740" y2="150" stroke="#2A7F62" stroke-width="1.2" opacity="0.5"/>
+  <text x="690" y="145" font-size="8" fill="#2C3E50">∞:1</text>
+
+  <!-- Response -->
+  <rect x="740" y="210" width="140" height="50" rx="8" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="810" y="238" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Response</text>
+  <text x="810" y="252" text-anchor="middle" font-size="9" fill="#d0f0e0">Conversion / Action</text>
+
+  <line x1="830" y1="180" x2="810" y2="210" stroke="#2A7F62" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Model Scores -->
+  <rect x="160" y="210" width="160" height="50" rx="8" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="240" y="238" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Model Scores</text>
+  <text x="240" y="252" text-anchor="middle" font-size="9" fill="#d0f0e0">Propensity, Risk, LTV</text>
+
+  <line x1="250" y1="180" x2="450" y2="135" stroke="#2A7F62" stroke-width="1.2" opacity="0.4" stroke-dasharray="4,3"/>
+
+  <!-- ═══════ SNAPSHOTS (gold) ═══════ -->
+
+  <!-- Daily Customer Snapshot -->
+  <rect x="220" y="310" width="170" height="46" rx="7" fill="#d4a843" filter="url(#ds)"/>
+  <text x="305" y="333" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Daily Customer</text>
+  <text x="305" y="347" text-anchor="middle" font-size="9" fill="#fff8e0">Snapshot</text>
+
+  <line x1="440" y1="270" x2="380" y2="310" stroke="#d4a843" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Account Performance Snapshot -->
+  <rect x="220" y="370" width="170" height="46" rx="7" fill="#d4a843" filter="url(#ds)"/>
+  <text x="305" y="393" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Account Performance</text>
+  <text x="305" y="407" text-anchor="middle" font-size="9" fill="#fff8e0">Daily / Monthly / Cycle</text>
+
+  <line x1="440" y1="390" x2="390" y2="393" stroke="#d4a843" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Credit Bureau Snapshot -->
+  <rect x="40" y="310" width="150" height="46" rx="7" fill="#d4a843" filter="url(#ds)"/>
+  <text x="115" y="333" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Credit Bureau</text>
+  <text x="115" y="347" text-anchor="middle" font-size="9" fill="#fff8e0">Snapshot (Monthly)</text>
+
+  <line x1="190" y1="333" x2="220" y2="333" stroke="#d4a843" stroke-width="1" opacity="0.4"/>
+
+  <!-- ═══════ REFERENCE DIMS (red) ═══════ -->
+
+  <!-- Campaign Hierarchy -->
+  <rect x="960" y="100" width="180" height="90" rx="8" fill="#c0392b" opacity="0.85" filter="url(#ds)"/>
+  <text x="1050" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Campaign Hierarchy</text>
+  <text x="1050" y="140" text-anchor="middle" font-size="9" fill="#f5c6c0">Campaign</text>
+  <text x="1050" y="153" text-anchor="middle" font-size="9" fill="#f5c6c0">Channel  ·  Offer</text>
+  <text x="1050" y="166" text-anchor="middle" font-size="9" fill="#f5c6c0">Cell  ·  Promotion</text>
+  <text x="1050" y="179" text-anchor="middle" font-size="9" fill="#f5c6c0">Journey  ·  Touchpoint</text>
+
+  <line x1="920" y1="145" x2="960" y2="145" stroke="#c0392b" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Product Dimension -->
+  <rect x="660" y="460" width="140" height="46" rx="7" fill="#c0392b" opacity="0.85" filter="url(#ds)"/>
+  <text x="730" y="483" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Product Dimension</text>
+  <text x="730" y="497" text-anchor="middle" font-size="9" fill="#f5c6c0">Product Code (PK)</text>
+
+  <line x1="630" y1="420" x2="680" y2="460" stroke="#c0392b" stroke-width="1" opacity="0.4"/>
+
+  <!-- Model Inventory Dimension -->
+  <rect x="40" y="210" width="100" height="50" rx="7" fill="#c0392b" opacity="0.85" filter="url(#ds)"/>
+  <text x="90" y="233" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">Model</text>
+  <text x="90" y="247" text-anchor="middle" font-size="9" fill="#f5c6c0">Inventory Dim</text>
+
+  <line x1="140" y1="235" x2="160" y2="235" stroke="#c0392b" stroke-width="1" opacity="0.4"/>
+
+  <!-- ═══════ LOCATION & CONSENT (purple) ═══════ -->
+
+  <!-- Location Dimension -->
+  <rect x="960" y="220" width="180" height="80" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="1050" y="248" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Location Dimension</text>
+  <text x="1050" y="266" text-anchor="middle" font-size="9" fill="#a8c8e8">Address  ·  Device</text>
+  <text x="1050" y="280" text-anchor="middle" font-size="9" fill="#a8c8e8">Email  ·  Phone</text>
+  <text x="1050" y="294" text-anchor="middle" font-size="9" fill="#a8c8e8">Location Identifier (PK)</text>
+
+  <line x1="640" y1="142" x2="960" y2="250" stroke="#1F4E79" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+
+  <!-- Consent & Preferences -->
+  <rect x="960" y="330" width="180" height="90" rx="8" fill="#8e6bb5" filter="url(#ds)"/>
+  <text x="1050" y="354" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Consumer Preferences</text>
+  <text x="1050" y="370" text-anchor="middle" font-size="10" font-weight="600" fill="#ffffff">&amp; Suppression</text>
+  <text x="1050" y="390" text-anchor="middle" font-size="9" fill="#dcc8f0">Address Suppression</text>
+  <text x="1050" y="403" text-anchor="middle" font-size="9" fill="#dcc8f0">Email / Phone Preference</text>
+  <text x="1050" y="416" text-anchor="middle" font-size="9" fill="#dcc8f0">Household Suppression</text>
+
+  <line x1="640" y1="150" x2="960" y2="370" stroke="#8e6bb5" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+
+  <!-- ═══════ NON-CURATED (white/outlined) ═══════ -->
+  <rect x="40" y="460" width="560" height="56" rx="6" fill="#ffffff" stroke="#1F4E79" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="60" y="480" font-size="10" font-weight="700" fill="#1F4E79">Non-Curated (Source-Aligned):</text>
+  <text x="60" y="500" font-size="9" fill="#2C3E50">Campaign Data  ·  Campaign Metadata  ·  Call Data  ·  Public Site Activity  ·  App Data (Orig. Sys.)  ·  Bureau Data  ·  Preferences (Raw)</text>
+
+  <!-- ═══════ BU-SPECIFIC TABLES (bottom) ═══════ -->
+  <rect x="40" y="536" width="1120" height="50" rx="6" fill="#e8f0f8" stroke="#c4d6e8" stroke-width="1"/>
+  <text x="60" y="558" font-size="10" font-weight="700" fill="#1F4E79">BU-Specific Extensions:</text>
+  <text x="60" y="575" font-size="9" fill="#2C3E50">BU-Specific Application Table  ·  Daily Customer Snapshot  ·  Monthly Account Performance  ·  Cycle Performance Snapshot  ·  BU-Specific Prospect Data  ·  Marketing Event Data (Online + Offline)</text>
+
+  <!-- Key relationships note -->
+  <rect x="40" y="604" width="1120" height="100" rx="6" fill="#ffffff" stroke="#e0e4e8" stroke-width="1"/>
+  <text x="60" y="626" font-size="10" font-weight="700" fill="#1F4E79">Key Relationships &amp; Design Principles</text>
+  <text x="60" y="646" font-size="9.5" fill="#2C3E50">• Enterprise Consumer Key ties Individual ↔ Customer ↔ Prospect ↔ Model Scores ↔ Events ↔ Preferences into a unified graph</text>
+  <text x="60" y="662" font-size="9.5" fill="#2C3E50">• Enterprise Customer Key links Customer ↔ Account ↔ Credit Bureau ↔ Snapshots (supports cross-sell scenarios across products)</text>
+  <text x="60" y="678" font-size="9.5" fill="#2C3E50">• Campaign Hierarchy enables multi-level attribution: Campaign → Channel → Offer → Cell → Touchpoint</text>
+  <text x="60" y="694" font-size="9.5" fill="#2C3E50">• Curated models are derived from non-curated source data through governed transformation pipelines (dbt, Airflow)</text>
+</svg>

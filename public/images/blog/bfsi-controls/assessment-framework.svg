@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="vGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="700" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">Control Assessment Framework — Seven Dimensions</text>
+  <line x1="280" y1="48" x2="820" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+  <text x="550" y="68" text-anchor="middle" fill="#94a3b8" font-size="10" font-style="italic">Evaluating design adequacy AND operating effectiveness across the full control lifecycle</text>
+
+  <!-- Column Headers -->
+  <rect x="260" y="85" width="270" height="32" rx="6" fill="#1F4E79"/>
+  <text x="395" y="106" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">KEY QUESTIONS</text>
+  <rect x="540" y="85" width="290" height="32" rx="6" fill="#2C3E50"/>
+  <text x="685" y="106" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">WHAT IT EVALUATES</text>
+  <rect x="840" y="85" width="230" height="32" rx="6" fill="#2A7F62"/>
+  <text x="955" y="106" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">METRICS</text>
+
+  <!-- Row 1: Control Environment -->
+  <rect x="30" y="125" width="220" height="72" rx="8" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="140" y="151" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1. CONTROL</text>
+  <text x="140" y="168" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">ENVIRONMENT</text>
+  <text x="140" y="186" text-anchor="middle" fill="#d0e7ff" font-size="8" font-style="italic">Foundation</text>
+
+  <rect x="260" y="125" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="148" fill="#2C3E50" font-size="9">Are controls linked to risk statements</text>
+  <text x="275" y="162" fill="#2C3E50" font-size="9">and regulatory requirements? Are risks</text>
+  <text x="275" y="176" fill="#2C3E50" font-size="9">prioritized with mitigation plans?</text>
+  <text x="275" y="190" fill="#2C3E50" font-size="9">Are objectives clearly defined?</text>
+
+  <rect x="540" y="125" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="148" fill="#2C3E50" font-size="9">Risk-to-control linkage completeness</text>
+  <text x="555" y="162" fill="#2C3E50" font-size="9">Control effectiveness in mitigating</text>
+  <text x="555" y="176" fill="#2C3E50" font-size="9">identified risks; alignment to business</text>
+  <text x="555" y="190" fill="#2C3E50" font-size="9">goals and regulatory mandates</text>
+
+  <rect x="840" y="125" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="148" fill="#2A7F62" font-size="9" font-weight="600">% controls linked to risks</text>
+  <text x="855" y="164" fill="#2A7F62" font-size="9" font-weight="600">Effectiveness ratings</text>
+  <text x="855" y="180" fill="#2A7F62" font-size="9" font-weight="600">Mitigation plan completeness</text>
+
+  <!-- Row 2: Control Design -->
+  <rect x="30" y="205" width="220" height="72" rx="8" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="140" y="231" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2. CONTROL</text>
+  <text x="140" y="248" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">DESIGN</text>
+  <text x="140" y="266" text-anchor="middle" fill="#d0e7ff" font-size="8" font-style="italic">Architecture</text>
+
+  <rect x="260" y="205" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="228" fill="#2C3E50" font-size="9">Is documentation complete? Is design</text>
+  <text x="275" y="242" fill="#2C3E50" font-size="9">adequate? Type (preventive/detective)</text>
+  <text x="275" y="256" fill="#2C3E50" font-size="9">identified? Who, what, when, where,</text>
+  <text x="275" y="270" fill="#2C3E50" font-size="9">why, and how documented?</text>
+
+  <rect x="540" y="205" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="228" fill="#2C3E50" font-size="9">Documentation completeness, design</text>
+  <text x="555" y="242" fill="#2C3E50" font-size="9">adequacy for risk mitigation, alignment</text>
+  <text x="555" y="256" fill="#2C3E50" font-size="9">to best practices, classification accuracy</text>
+
+  <rect x="840" y="205" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="228" fill="#2A7F62" font-size="9" font-weight="600">% controls deemed adequate</text>
+  <text x="855" y="244" fill="#2A7F62" font-size="9" font-weight="600"># aligned with best practices</text>
+  <text x="855" y="260" fill="#2A7F62" font-size="9" font-weight="600">Classification accuracy</text>
+
+  <!-- Row 3: Implementation -->
+  <rect x="30" y="285" width="220" height="72" rx="8" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="140" y="316" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">3. IMPLEMENTATION</text>
+  <text x="140" y="346" text-anchor="middle" fill="#d0e7ff" font-size="8" font-style="italic">Deployment</text>
+
+  <rect x="260" y="285" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="308" fill="#2C3E50" font-size="9">Are controls deployed and integrated</text>
+  <text x="275" y="322" fill="#2C3E50" font-size="9">into business processes? Is training</text>
+  <text x="275" y="336" fill="#2C3E50" font-size="9">effective? Are stakeholders equipped?</text>
+
+  <rect x="540" y="285" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="308" fill="#2C3E50" font-size="9">Deployment success rate, integration</text>
+  <text x="555" y="322" fill="#2C3E50" font-size="9">into operational workflows, training</text>
+  <text x="555" y="336" fill="#2C3E50" font-size="9">effectiveness and adoption</text>
+
+  <rect x="840" y="285" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="308" fill="#2A7F62" font-size="9" font-weight="600">% successfully deployed</text>
+  <text x="855" y="324" fill="#2A7F62" font-size="9" font-weight="600">Training completion rates</text>
+  <text x="855" y="340" fill="#2A7F62" font-size="9" font-weight="600">Participant feedback scores</text>
+
+  <!-- Row 4: Operations -->
+  <rect x="30" y="365" width="220" height="72" rx="8" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="140" y="391" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">4. OPERATIONS</text>
+  <text x="140" y="421" text-anchor="middle" fill="#d0f0e0" font-size="8" font-style="italic">Ongoing Execution</text>
+
+  <rect x="260" y="365" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="388" fill="#2C3E50" font-size="9">Manual or automated? Execution at</text>
+  <text x="275" y="402" fill="#2C3E50" font-size="9">required frequency? Dependencies</text>
+  <text x="275" y="416" fill="#2C3E50" font-size="9">mapped? Performance monitored?</text>
+  <text x="275" y="430" fill="#2C3E50" font-size="9">Deviations identified and resolved?</text>
+
+  <rect x="540" y="365" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="388" fill="#2C3E50" font-size="9">Execution reliability, frequency adherence,</text>
+  <text x="555" y="402" fill="#2C3E50" font-size="9">dependency impact assessment,</text>
+  <text x="555" y="416" fill="#2C3E50" font-size="9">continuous monitoring effectiveness,</text>
+  <text x="555" y="430" fill="#2C3E50" font-size="9">issue resolution timeliness</text>
+
+  <rect x="840" y="365" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="388" fill="#2A7F62" font-size="9" font-weight="600">% manual vs. automated</text>
+  <text x="855" y="404" fill="#2A7F62" font-size="9" font-weight="600">Frequency compliance</text>
+  <text x="855" y="420" fill="#2A7F62" font-size="9" font-weight="600">Issue resolution rate</text>
+
+  <!-- Row 5: Testing -->
+  <rect x="30" y="445" width="220" height="72" rx="8" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="140" y="476" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">5. TESTING</text>
+  <text x="140" y="506" text-anchor="middle" fill="#d0f0e0" font-size="8" font-style="italic">Validation</text>
+
+  <rect x="260" y="445" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="468" fill="#2C3E50" font-size="9">Comprehensive test plans developed?</text>
+  <text x="275" y="482" fill="#2C3E50" font-size="9">Walkthroughs, sampling, automated</text>
+  <text x="275" y="496" fill="#2C3E50" font-size="9">tools used? Evidence gathered to</text>
+  <text x="275" y="510" fill="#2C3E50" font-size="9">support effectiveness conclusions?</text>
+
+  <rect x="540" y="445" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="468" fill="#2C3E50" font-size="9">Design adequacy AND operating</text>
+  <text x="555" y="482" fill="#2C3E50" font-size="9">effectiveness through multiple test</text>
+  <text x="555" y="496" fill="#2C3E50" font-size="9">methodologies; evidence quality</text>
+
+  <rect x="840" y="445" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="468" fill="#2A7F62" font-size="9" font-weight="600">Test plan completeness</text>
+  <text x="855" y="484" fill="#2A7F62" font-size="9" font-weight="600"># tests by methodology</text>
+  <text x="855" y="500" fill="#2A7F62" font-size="9" font-weight="600">Evidence quality scores</text>
+
+  <!-- Row 6: Governance -->
+  <rect x="30" y="525" width="220" height="72" rx="8" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="140" y="556" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">6. GOVERNANCE</text>
+  <text x="140" y="586" text-anchor="middle" fill="#d0e7ff" font-size="8" font-style="italic">Oversight</text>
+
+  <rect x="260" y="525" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="548" fill="#2C3E50" font-size="9">Review and approval process for</text>
+  <text x="275" y="562" fill="#2C3E50" font-size="9">changes? Governance structure in</text>
+  <text x="275" y="576" fill="#2C3E50" font-size="9">place? Results reviewed by</text>
+  <text x="275" y="590" fill="#2C3E50" font-size="9">appropriate governance bodies?</text>
+
+  <rect x="540" y="525" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="548" fill="#2C3E50" font-size="9">Governance structure completeness,</text>
+  <text x="555" y="562" fill="#2C3E50" font-size="9">review timeliness, approval workflows,</text>
+  <text x="555" y="576" fill="#2C3E50" font-size="9">change management rigor</text>
+
+  <rect x="840" y="525" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="548" fill="#2A7F62" font-size="9" font-weight="600">% reviewed by governance</text>
+  <text x="855" y="564" fill="#2A7F62" font-size="9" font-weight="600">Approval timeliness</text>
+  <text x="855" y="580" fill="#2A7F62" font-size="9" font-weight="600">Structure effectiveness</text>
+
+  <!-- Row 7: Reporting & Communication -->
+  <rect x="30" y="605" width="220" height="72" rx="8" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="140" y="631" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">7. REPORTING &amp;</text>
+  <text x="140" y="648" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">COMMUNICATION</text>
+  <text x="140" y="668" text-anchor="middle" fill="#d0e7ff" font-size="8" font-style="italic">Transparency</text>
+
+  <rect x="260" y="605" width="270" height="72" rx="6" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="275" y="628" fill="#2C3E50" font-size="9">Detailed reports summarizing</text>
+  <text x="275" y="642" fill="#2C3E50" font-size="9">findings? Results communicated to</text>
+  <text x="275" y="656" fill="#2C3E50" font-size="9">control owners and senior</text>
+  <text x="275" y="670" fill="#2C3E50" font-size="9">management?</text>
+
+  <rect x="540" y="605" width="290" height="72" rx="6" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="555" y="628" fill="#2C3E50" font-size="9">Report completeness, stakeholder</text>
+  <text x="555" y="642" fill="#2C3E50" font-size="9">reach, communication timeliness,</text>
+  <text x="555" y="656" fill="#2C3E50" font-size="9">actionability of findings</text>
+
+  <rect x="840" y="605" width="230" height="72" rx="6" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="855" y="628" fill="#2A7F62" font-size="9" font-weight="600">Report clarity scores</text>
+  <text x="855" y="644" fill="#2A7F62" font-size="9" font-weight="600">Stakeholder communication</text>
+  <text x="855" y="660" fill="#2A7F62" font-size="9" font-weight="600">timeliness</text>
+
+  <!-- Left side progression arrow -->
+  <rect x="12" y="130" width="6" height="540" rx="3" fill="url(#vGrad)" opacity="0.2"/>
+  <text x="16" y="400" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600" transform="rotate(-90, 16, 400)" letter-spacing="2">MATURITY PROGRESSION →</text>
+</svg>

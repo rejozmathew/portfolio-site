@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2C3E50" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1100" height="540" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="550" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1F4E79" letter-spacing="0.5">Latency Tiers — Batch, Near-Real-Time, and Real-Time Patterns</text>
+  <line x1="320" y1="44" x2="780" y2="44" stroke="#2A7F62" stroke-width="2" opacity="0.4"/>
+
+  <!-- Column headers -->
+  <text x="80" y="78" font-size="11" font-weight="700" fill="#2C3E50" letter-spacing="0.5">TIER</text>
+  <text x="220" y="78" font-size="11" font-weight="700" fill="#2C3E50" letter-spacing="0.5">LATENCY</text>
+  <text x="380" y="78" font-size="11" font-weight="700" fill="#2C3E50" letter-spacing="0.5">PATTERN</text>
+  <text x="600" y="78" font-size="11" font-weight="700" fill="#2C3E50" letter-spacing="0.5">USE CASES</text>
+  <text x="900" y="78" font-size="11" font-weight="700" fill="#2C3E50" letter-spacing="0.5">PLATFORM ROLE</text>
+  <line x1="40" y1="88" x2="1060" y2="88" stroke="#e0e4e8" stroke-width="1"/>
+
+  <!-- ═══════ ROW 1: BATCH ═══════ -->
+  <rect x="40" y="100" width="1020" height="130" rx="8" fill="#ffffff" stroke="#e0e4e8" stroke-width="1" filter="url(#ds)"/>
+
+  <!-- Tier badge -->
+  <rect x="56" y="116" width="110" height="34" rx="17" fill="#1F4E79"/>
+  <text x="111" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">BATCH</text>
+  <text x="111" y="168" text-anchor="middle" font-size="9" fill="#2C3E50">~80% of MAD</text>
+  <text x="111" y="180" text-anchor="middle" font-size="9" fill="#2C3E50">workload</text>
+  <rect x="80" y="192" width="62" height="20" rx="4" fill="#1F4E79" opacity="0.1"/>
+  <text x="111" y="206" text-anchor="middle" font-size="9" font-weight="600" fill="#1F4E79">Primary</text>
+
+  <!-- Latency -->
+  <text x="220" y="130" font-size="20" font-weight="700" fill="#1F4E79">T+1</text>
+  <text x="220" y="148" font-size="10" fill="#2C3E50">Daily / Nightly</text>
+  <text x="220" y="164" font-size="10" fill="#2C3E50">scheduled refresh</text>
+  <text x="220" y="184" font-size="9" fill="#7f8c8d">SLA: data by 6am</text>
+
+  <!-- Pattern -->
+  <text x="380" y="128" font-size="10" fill="#2C3E50">• ELT pipelines (dbt + Airflow)</text>
+  <text x="380" y="146" font-size="10" fill="#2C3E50">• Full / incremental table loads</text>
+  <text x="380" y="164" font-size="10" fill="#2C3E50">• Snapshot + SCD Type 2</text>
+  <text x="380" y="182" font-size="10" fill="#2C3E50">• Model score refresh</text>
+  <text x="380" y="200" font-size="10" fill="#2C3E50">• Contact history consolidation</text>
+
+  <!-- Use Cases -->
+  <text x="600" y="128" font-size="10" fill="#2C3E50">• Campaign list generation</text>
+  <text x="600" y="146" font-size="10" fill="#2C3E50">• BI / dashboard refresh</text>
+  <text x="600" y="164" font-size="10" fill="#2C3E50">• Propensity score recalc</text>
+  <text x="600" y="182" font-size="10" fill="#2C3E50">• Credit bureau snapshots</text>
+  <text x="600" y="200" font-size="10" fill="#2C3E50">• Attribution roll-ups</text>
+
+  <!-- Platform Role -->
+  <text x="900" y="135" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">MAD</text>
+  <text x="900" y="155" text-anchor="middle" font-size="9" fill="#2C3E50">Snowflake / Databricks</text>
+  <text x="900" y="175" text-anchor="middle" font-size="9" fill="#2C3E50">dbt models + Airflow</text>
+  <text x="900" y="195" text-anchor="middle" font-size="9" fill="#2C3E50">orchestration</text>
+
+  <!-- ═══════ ROW 2: NEAR-REAL-TIME ═══════ -->
+  <rect x="40" y="244" width="1020" height="130" rx="8" fill="#ffffff" stroke="#e0e4e8" stroke-width="1" filter="url(#ds)"/>
+
+  <!-- Tier badge -->
+  <rect x="56" y="260" width="110" height="34" rx="17" fill="#2A7F62"/>
+  <text x="111" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">NEAR-RT</text>
+  <text x="111" y="312" text-anchor="middle" font-size="9" fill="#2C3E50">~15% of MAD</text>
+  <text x="111" y="324" text-anchor="middle" font-size="9" fill="#2C3E50">workload</text>
+  <rect x="80" y="336" width="62" height="20" rx="4" fill="#2A7F62" opacity="0.1"/>
+  <text x="111" y="350" text-anchor="middle" font-size="9" font-weight="600" fill="#2A7F62">Growing</text>
+
+  <!-- Latency -->
+  <text x="220" y="274" font-size="18" font-weight="700" fill="#2A7F62">Minutes</text>
+  <text x="220" y="292" font-size="10" fill="#2C3E50">to low hours</text>
+  <text x="220" y="310" font-size="10" fill="#2C3E50">Micro-batch /</text>
+  <text x="220" y="326" font-size="10" fill="#2C3E50">streaming ingest</text>
+  <text x="220" y="346" font-size="9" fill="#7f8c8d">SLA: &lt; 15 min</text>
+
+  <!-- Pattern -->
+  <text x="380" y="272" font-size="10" fill="#2C3E50">• CDC from source (Kafka / Debezium)</text>
+  <text x="380" y="290" font-size="10" fill="#2C3E50">• Micro-batch (Snowpipe, Auto Loader)</text>
+  <text x="380" y="308" font-size="10" fill="#2C3E50">• Event stream landing tables</text>
+  <text x="380" y="326" font-size="10" fill="#2C3E50">• Trigger-based model inference</text>
+  <text x="380" y="344" font-size="10" fill="#2C3E50">• Materialized views / Dynamic Tables</text>
+
+  <!-- Use Cases -->
+  <text x="600" y="272" font-size="10" fill="#2C3E50">• Triggered lifecycle campaigns</text>
+  <text x="600" y="290" font-size="10" fill="#2C3E50">• Event-driven suppression</text>
+  <text x="600" y="308" font-size="10" fill="#2C3E50">• Digital event consolidation</text>
+  <text x="600" y="326" font-size="10" fill="#2C3E50">• Intra-day audience refresh</text>
+  <text x="600" y="344" font-size="10" fill="#2C3E50">• Fraud / risk signal feed-in</text>
+
+  <!-- Platform Role -->
+  <text x="900" y="280" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">MAD + CDP</text>
+  <text x="900" y="300" text-anchor="middle" font-size="9" fill="#2C3E50">Kafka / Kinesis →</text>
+  <text x="900" y="316" text-anchor="middle" font-size="9" fill="#2C3E50">MAD staging tables</text>
+  <text x="900" y="336" text-anchor="middle" font-size="9" fill="#2C3E50">CDP processes events</text>
+
+  <!-- ═══════ ROW 3: REAL-TIME ═══════ -->
+  <rect x="40" y="388" width="1020" height="130" rx="8" fill="#ffffff" stroke="#e0e4e8" stroke-width="1" filter="url(#ds)"/>
+
+  <!-- Tier badge -->
+  <rect x="56" y="404" width="110" height="34" rx="17" fill="#d4a843"/>
+  <text x="111" y="426" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">REAL-TIME</text>
+  <text x="111" y="456" text-anchor="middle" font-size="9" fill="#2C3E50">~5% of MAD</text>
+  <text x="111" y="468" text-anchor="middle" font-size="9" fill="#2C3E50">workload</text>
+  <rect x="70" y="480" width="82" height="20" rx="4" fill="#d4a843" opacity="0.15"/>
+  <text x="111" y="494" text-anchor="middle" font-size="9" font-weight="600" fill="#d4a843">CDP-Owned</text>
+
+  <!-- Latency -->
+  <text x="220" y="418" font-size="18" font-weight="700" fill="#d4a843">&lt; 100ms</text>
+  <text x="220" y="436" font-size="10" fill="#2C3E50">Sub-second</text>
+  <text x="220" y="454" font-size="10" fill="#2C3E50">In-session /</text>
+  <text x="220" y="470" font-size="10" fill="#2C3E50">request-response</text>
+  <text x="220" y="490" font-size="9" fill="#7f8c8d">SLA: &lt; 200ms p99</text>
+
+  <!-- Pattern -->
+  <text x="380" y="416" font-size="10" fill="#2C3E50">• API-based profile lookup</text>
+  <text x="380" y="434" font-size="10" fill="#2C3E50">• Edge decisioning (CDP / A/B)</text>
+  <text x="380" y="452" font-size="10" fill="#2C3E50">• In-session personalization</text>
+  <text x="380" y="470" font-size="10" fill="#2C3E50">• Real-time trigger evaluation</text>
+  <text x="380" y="488" font-size="10" fill="#2C3E50">• Event bus → action (Kafka)</text>
+
+  <!-- Use Cases -->
+  <text x="600" y="416" font-size="10" fill="#2C3E50">• Web / app personalization</text>
+  <text x="600" y="434" font-size="10" fill="#2C3E50">• Next-best-action / offer</text>
+  <text x="600" y="452" font-size="10" fill="#2C3E50">• Fraud intercept at checkout</text>
+  <text x="600" y="470" font-size="10" fill="#2C3E50">• Real-time suppression check</text>
+  <text x="600" y="488" font-size="10" fill="#2C3E50">• Consent enforcement on request</text>
+
+  <!-- Platform Role -->
+  <text x="900" y="424" text-anchor="middle" font-size="10" font-weight="600" fill="#d4a843">CDP / ODS</text>
+  <text x="900" y="444" text-anchor="middle" font-size="9" fill="#2C3E50">CDP owns decisioning</text>
+  <text x="900" y="460" text-anchor="middle" font-size="9" fill="#2C3E50">MAD feeds batch state</text>
+  <text x="900" y="476" text-anchor="middle" font-size="9" fill="#2C3E50">Events flow back to</text>
+  <text x="900" y="492" text-anchor="middle" font-size="9" fill="#2C3E50">MAD for analytics</text>
+</svg>

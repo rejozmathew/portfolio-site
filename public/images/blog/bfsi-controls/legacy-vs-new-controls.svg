@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="520" fill="#f9fafb" rx="12"/>
+
+  <!-- Title -->
+  <text x="550" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">Monitoring Control Evolution — Legacy vs. Redesigned Approach</text>
+  <line x1="260" y1="45" x2="840" y2="45" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- ===== LEFT: LEGACY ===== -->
+  <rect x="30" y="60" width="510" height="36" rx="8" fill="#D4380D" opacity="0.8" filter="url(#shadow)"/>
+  <text x="285" y="84" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">LEGACY APPROACH</text>
+
+  <!-- Legacy: Fulfillment -->
+  <rect x="30" y="108" width="245" height="155" rx="8" fill="#fff" stroke="#D4380D" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="30" y="108" width="245" height="30" rx="8" fill="#D4380D" opacity="0.15"/>
+  <rect x="30" y="130" width="245" height="8" fill="#D4380D" opacity="0.15"/>
+  <text x="152" y="128" text-anchor="middle" fill="#D4380D" font-size="10" font-weight="700">FULFILLMENT CONTROL</text>
+  <text x="50" y="158" fill="#2C3E50" font-size="9">✗ Aggregated by template &amp; date</text>
+  <text x="50" y="174" fill="#2C3E50" font-size="9">✗ Cannot track individual letters</text>
+  <text x="50" y="190" fill="#2C3E50" font-size="9">✗ High false-positive rate</text>
+  <text x="50" y="206" fill="#2C3E50" font-size="9">✗ Volume-level checks only</text>
+  <text x="50" y="228" fill="#D4380D" font-size="9" font-weight="600">Inadequate for audit / regulator</text>
+  <text x="50" y="244" fill="#D4380D" font-size="9" font-weight="600">evidence requirements</text>
+
+  <!-- Legacy: Content -->
+  <rect x="295" y="108" width="245" height="155" rx="8" fill="#fff" stroke="#D4380D" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="295" y="108" width="245" height="30" rx="8" fill="#D4380D" opacity="0.15"/>
+  <rect x="295" y="130" width="245" height="8" fill="#D4380D" opacity="0.15"/>
+  <text x="417" y="128" text-anchor="middle" fill="#D4380D" font-size="10" font-weight="700">CONTENT CONTROL (RPA BOT)</text>
+  <text x="315" y="158" fill="#2C3E50" font-size="9">✗ Sample-based (~50K/month)</text>
+  <text x="315" y="174" fill="#2C3E50" font-size="9">✗ Single template approach</text>
+  <text x="315" y="190" fill="#2C3E50" font-size="9">✗ Only ~50% data available to match</text>
+  <text x="315" y="206" fill="#2C3E50" font-size="9">✗ Non-matches ignored / excluded</text>
+  <text x="315" y="228" fill="#D4380D" font-size="9" font-weight="600">Flagged in audit findings for</text>
+  <text x="315" y="244" fill="#D4380D" font-size="9" font-weight="600">limited effectiveness</text>
+
+  <!-- Legacy: Ops Review -->
+  <rect x="30" y="275" width="510" height="48" rx="8" fill="#f0f0f0" filter="url(#shadow)"/>
+  <text x="285" y="296" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700">OPERATIONS REVIEW: MANUAL</text>
+  <text x="285" y="312" text-anchor="middle" fill="#94a3b8" font-size="9">Ops users manually review mismatches in output files — no automated disposition</text>
+
+  <!-- ===== RIGHT: REDESIGNED ===== -->
+  <rect x="560" y="60" width="510" height="36" rx="8" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="815" y="84" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">REDESIGNED APPROACH (MY TEAM)</text>
+
+  <!-- New: Fulfillment -->
+  <rect x="560" y="108" width="245" height="155" rx="8" fill="#fff" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="560" y="108" width="245" height="30" rx="8" fill="#2A7F62" opacity="0.12"/>
+  <rect x="560" y="130" width="245" height="8" fill="#2A7F62" opacity="0.12"/>
+  <text x="682" y="128" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">FULFILLMENT CONTROL</text>
+  <text x="580" y="158" fill="#2C3E50" font-size="9">✓ Detail document tracking</text>
+  <text x="580" y="174" fill="#2C3E50" font-size="9">✓ Individual letter-level traceability</text>
+  <text x="580" y="190" fill="#2C3E50" font-size="9">✓ PDF tied to source system event</text>
+  <text x="580" y="206" fill="#2C3E50" font-size="9">✓ Full data availability</text>
+  <text x="580" y="228" fill="#2A7F62" font-size="9" font-weight="600">Detected 180 undelivered letters</text>
+  <text x="580" y="244" fill="#2A7F62" font-size="9" font-weight="600">in first month of operation</text>
+
+  <!-- New: Content -->
+  <rect x="825" y="108" width="245" height="155" rx="8" fill="#fff" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="825" y="108" width="245" height="30" rx="8" fill="#2A7F62" opacity="0.12"/>
+  <rect x="825" y="130" width="245" height="8" fill="#2A7F62" opacity="0.12"/>
+  <text x="947" y="128" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">CONTENT CONTROL (AUTOMATED)</text>
+  <text x="845" y="158" fill="#2C3E50" font-size="9">✓ 100% coverage — every letter</text>
+  <text x="845" y="174" fill="#2C3E50" font-size="9">✓ Template-specific parsing logic</text>
+  <text x="845" y="190" fill="#2C3E50" font-size="9">✓ PDF scraping → structured data</text>
+  <text x="845" y="206" fill="#2C3E50" font-size="9">✓ Field-by-field SOR comparison</text>
+  <text x="845" y="228" fill="#2A7F62" font-size="9" font-weight="600">Replaces RPA bot — eliminates</text>
+  <text x="845" y="244" fill="#2A7F62" font-size="9" font-weight="600">audit finding on false positives</text>
+
+  <!-- New: Automated Dashboard -->
+  <rect x="560" y="275" width="510" height="48" rx="8" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="815" y="296" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">AUTOMATED EXCEPTIONS DASHBOARD</text>
+  <text x="815" y="312" text-anchor="middle" fill="#2C3E50" font-size="9">User-friendly interface for exception disposition, trend analysis, and escalation to incident mgmt</text>
+
+  <!-- Bottom: Key Outcomes -->
+  <rect x="30" y="345" width="1040" height="3" rx="1" fill="url(#hGrad)" opacity="0.25"/>
+
+  <text x="550" y="375" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="0.5">KEY DESIGN PRINCIPLE</text>
+
+  <rect x="80" y="390" width="300" height="60" rx="8" fill="#e8f0f8" filter="url(#shadow)"/>
+  <text x="230" y="413" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">REUSABLE FRAMEWORK</text>
+  <text x="230" y="430" text-anchor="middle" fill="#2C3E50" font-size="9">Same 3-category control structure</text>
+  <text x="230" y="443" text-anchor="middle" fill="#2C3E50" font-size="9">applies to any communication process</text>
+
+  <rect x="400" y="390" width="300" height="60" rx="8" fill="#e8f8f0" filter="url(#shadow)"/>
+  <text x="550" y="413" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">100% COVERAGE</text>
+  <text x="550" y="430" text-anchor="middle" fill="#2C3E50" font-size="9">Moved from sample-based to</text>
+  <text x="550" y="443" text-anchor="middle" fill="#2C3E50" font-size="9">complete population monitoring</text>
+
+  <rect x="720" y="390" width="300" height="60" rx="8" fill="#f0f4f8" filter="url(#shadow)"/>
+  <text x="870" y="413" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700">EVIDENCE-GRADE OUTPUT</text>
+  <text x="870" y="430" text-anchor="middle" fill="#2C3E50" font-size="9">Audit-ready traceability from</text>
+  <text x="870" y="443" text-anchor="middle" fill="#2C3E50" font-size="9">source event to delivered document</text>
+
+  <!-- Bottom note -->
+  <text x="550" y="485" text-anchor="middle" fill="#94a3b8" font-size="9" font-style="italic">Legacy limitations drove repeated audit findings. The redesigned framework resolved them and became the enterprise standard.</text>
+</svg>
