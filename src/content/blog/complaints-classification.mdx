@@ -28,7 +28,7 @@ The existing complaint workflow was reactive. An agent receives a call, identifi
 
 The gap between *agent perception* and *regulatory definition* of a complaint is where risk lives.
 
-Our model — internally dubbed "Call Detective" — was designed as a **detective control**: it doesn't prevent complaints from being missed in real time (that would require a preventive control), but it retrospectively identifies calls that should have been flagged as complaints, ensuring they get proper attention before they become compliance gaps.
+Our model was designed as a **detective control**: it doesn't prevent complaints from being missed in real time (that would require a preventive control), but it retrospectively identifies calls that should have been flagged as complaints, ensuring they get proper attention before they become compliance gaps.
 
 ### The Data: Marrying DCC Cases with Call Transcripts
 
@@ -199,59 +199,7 @@ The results are tracked through a **Tableau dashboard** that provides daily visi
 
 In July 2022 tracking, the dashboard showed 2 missed complaints and 28 missed feedback cases found out of 307 reviewed calls (from 485 delivered). The 63% review rate highlighted an operational challenge — agent bandwidth for reviewing flagged calls — but the model was successfully surfacing genuine misses that would have otherwise gone undetected.
 
-### Extending the Platform with LLMs: Where Generative AI Adds Value
-
-The Call Detective model solves one specific problem — complaint classification — using traditional ML. But once you have a pipeline that processes call transcripts at scale, you've built the infrastructure for a much broader set of intelligence capabilities. This is where Large Language Models enter the picture.
-
-**Call Summarization.** One of the most immediate wins is automated summarization. Agents and supervisors spend significant time reading or listening to full call recordings to understand what happened. An LLM can process a tokenized transcript and produce a concise summary in seconds:
-
-```python
-import anthropic
-
-client = anthropic.Anthropic()
-
-summary = client.messages.create(
-    model="claude-sonnet-4-5-20250514",
-    max_tokens=500,
-    system="""You are a call center analyst. Summarize the following
-    customer service call transcript in 3-4 sentences. Focus on:
-    the customer's issue, the resolution provided, and the
-    overall sentiment. Do not include any tokenized PII values.""",
-    messages=[{"role": "user", "content": transcript}]
-)
-```
-
-These summaries can feed into the QA review dashboard, giving reviewers a quick overview before they decide whether to listen to the full call — dramatically improving review throughput.
-
-**Agent Coaching and Training Gap Analysis.** Beyond summarization, LLMs can analyze call transcripts to identify training opportunities. Did the agent demonstrate empathy? Did they follow proper de-escalation procedures? Were they able to answer the customer's policy questions, or did they need to escalate?
-
-By prompting an LLM with a rubric of desired agent behaviors, you can generate **coaching summaries** that highlight both strengths and areas for improvement. Aggregate these across an agent's calls over a month, and you can identify **knowledge gaps** — topics where agents consistently struggle or escalate — that should be addressed in training programs.
-
-**Document Lookup and RAG.** Retrieval-Augmented Generation (RAG) enables agents to query internal policy documents, SOPs, and product guides during or after calls. Rather than searching through a knowledge base manually, an agent can ask a natural-language question and receive a contextual answer grounded in the institution's actual documentation. This reduces handle time, improves first-call resolution, and ensures agents are giving accurate, current information.
-
-![LLM-powered extensions showing how the same transcript pipeline branches into traditional ML for compliance and LLM for internal intelligence](/images/blog/call-detective/llm-extensions.svg)
-
-### Traditional ML vs. Generative AI: Choosing the Right Tool for Regulatory Work
-
-Here's where the conversation gets nuanced. Given that LLMs can read, understand, and classify text — and given that complaint classification is fundamentally a text understanding task — why not just use an LLM for the complaint detection itself?
-
-The short answer: **for regulatory-facing compliance use cases, traditional ML still wins.** Here's why.
-
-**Explainability.** When a regulator asks "why was this call flagged as a complaint?", a Random Forest model can point to specific feature importances — the presence of words like "escalate," "frustrated," "supervisor," and "complaint" drove the score. The reasoning is transparent, auditable, and reproducible. An LLM can provide a natural-language explanation, but that explanation is itself generated — it's a post-hoc rationalization, not a trace of the actual computation. In a regulatory examination, the difference matters.
-
-**Determinism.** Feed the same transcript into a Random Forest model twice, and you get the same score. Feed it into an LLM twice, and you might get different results — different confidence levels, different reasoning, sometimes even different classifications. This stochasticity is manageable for internal use cases but problematic for compliance, where audit trails require reproducibility.
-
-**Cost and Latency at Scale.** Processing thousands of call transcripts through an LLM every day is expensive. Long transcripts translate to high token counts, and the per-token cost adds up quickly at enterprise volumes. A trained Random Forest model, by contrast, scores thousands of calls per minute with negligible marginal cost.
-
-**Predictability of Output.** Traditional ML models produce numeric scores that can be thresholded, ranked, and monitored with standard statistical methods. Drift detection, performance monitoring, and alerting are well-understood problems with established tooling. LLM outputs are harder to monitor — how do you measure drift in a generated explanation?
-
-![Side-by-side comparison of Traditional ML and Generative AI approaches across explainability, determinism, cost, and comprehension dimensions](/images/blog/call-detective/ml-vs-genai.svg)
-
-**The hybrid approach is the pragmatic answer.** Use traditional ML for regulatory-facing classification where you need explainability, determinism, and audit-grade reproducibility. Use GenAI for internal-facing intelligence where you need comprehension, summarization, and flexibility — call summaries, coaching insights, document retrieval, and agent training. Both operate on the same underlying data pipeline; the difference is in the inference layer and the accountability standard applied to the output.
-
-This isn't about traditional ML being "better" or LLMs being "better" — it's about matching the tool to the accountability requirements of the use case.
-
-### Lessons Learned and What I Would Do Differently
+### Lessons Learned and What We Would Do Differently
 
 Building Call Detective taught several lessons that apply broadly to ML in regulated environments:
 
@@ -261,12 +209,11 @@ Building Call Detective taught several lessons that apply broadly to ML in regul
 
 **The human loop isn't a weakness — it's a feature.** Some teams view human review as a necessary evil. We found it was one of the most valuable parts of the system. Agent notes provided qualitative context no model could generate. False positive feedback improved the model over time. The QA dashboard gave leadership visibility they never had before.
 
-**Privacy-first architecture pays dividends.** By tokenizing PII upstream of everything else, we simplified the entire downstream architecture. Fewer access controls, simpler data retention policies, and if an LLM provider ever needs to process our data, the transcripts are already de-identified.
+**Privacy-first architecture pays dividends.** By tokenizing PII upstream of everything else, we simplified the entire downstream architecture. Fewer access controls, simpler data retention policies.
 
 **Batch is fine when batch is what you need.** Not every ML model needs to run in real-time. Detective controls by definition operate retrospectively. Our 3-day-lag batch pipeline was perfectly appropriate for the use case — and orders of magnitude simpler to build and maintain than a real-time streaming architecture would have been.
 
 ### Where This Goes Next
 
-The Call Detective platform represents a starting point, not an endpoint. The same transcript pipeline that feeds the complaint classifier can feed increasingly sophisticated analytics: sentiment trending across the customer base, product-specific complaint clustering, root cause analysis of escalation patterns, and predictive models that identify calls likely to result in complaints *before* they happen.
-
-The convergence of traditional ML and generative AI on a shared data foundation — with clear guardrails about which layer handles which accountability level — is, I believe, the right architecture for the next generation of compliance intelligence in financial services. The tools are different, but the goal is the same: ensuring that every customer who calls with a complaint gets heard, gets helped, and gets counted.
+The complaints classification platform represents a starting point, not an endpoint. The same transcript pipeline that feeds the complaint classifier can feed increasingly sophisticated analytics: sentiment trending across the customer base, product-specific complaint clustering, root cause analysis of escalation patterns, and predictive models that identify calls likely to result in complaints *before* they happen.
+The approach can be different, but the goal is the same: ensuring that every customer who calls with a complaint gets heard, gets helped, and gets counted.
