@@ -3,32 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion"; // Import motion
 import Link from "next/link"; // Import Link for CTA
-
-interface Project {
-  title: string;
-  summary: string;
-  tech?: string[]; // Optional: List technologies used
-  imageUrl?: string; // Optional: Placeholder for project image/thumbnail
-}
-
-// Define highlighted projects with placeholder content
-const highlightedProjects: Project[] = [
-  // ... (Keep the existing highlightedProjects array definition) ...
-  {
-    title: "Self-Service BI & Analytics Enablement",
-    summary:
-      "Built self-service semantic layers for KPI standardization, speed-of-delivery and democratizing analytics and reporting",
-    tech: ["Self-Service BI", "Tableau", "AtScale", "KPI standardization"],
-    imageUrl: "/images/blog/semantic/semantic.jpg" // Example placeholder path
-  },
-  {
-    title: "Enterprise Identity Graphs / Customer360",
-    summary:
-      " Neo4j-powered consumer identity graphs enable Discover to identify, unify, and engage both prospects and existing customers across multiple products and channels.",
-    tech: ["Knowledge Graphs", "Neo4j", "Customer360", "Identity Resolution", "Omni-Channel Tracking", "Personalization", "Next Best Action"],
-    imageUrl: "/images/blog/identity/identity-hero.jpg" // Example placeholder path
-  },
-];
+import type { PortfolioProject } from "@/lib/getPortfolioData";
 
 // Animation variants for project cards (similar to Experience)
 const cardAnimationVariants = {
@@ -46,7 +21,11 @@ const cardAnimationVariants = {
   }),
 };
 
-const Portfolio: React.FC = () => {
+interface PortfolioProps {
+  projects: PortfolioProject[];
+}
+
+const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
   return (
     // Light theme: Light gray background, white cards, dark text
     <section id="portfolio" className="bg-gray-100 py-20">
@@ -56,9 +35,9 @@ const Portfolio: React.FC = () => {
           Portfolio & Key Projects
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {highlightedProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={project.blogSlug}
               className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" // Added overflow-hidden
               variants={cardAnimationVariants}
               initial="initial"
@@ -89,10 +68,10 @@ const Portfolio: React.FC = () => {
                 <h3 className="mb-2 text-xl font-semibold text-gray-900">
                   {project.title}
                 </h3>
-                <p className="mb-4 text-sm text-gray-700">{project.summary}</p>
-                {project.tech && (
+                <p className="mb-4 text-sm text-gray-700">{project.description}</p>
+                {project.tags.length > 0 && (
                   <div className="mb-4 flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
+                    {project.tags.map((t) => (
                       // Light blue tags
                       <span
                         key={t}
@@ -105,10 +84,10 @@ const Portfolio: React.FC = () => {
                 )}
                 {/* Blue link */}
                 <Link
-                  href="/blog"
+                  href={`/blog/${project.blogSlug}`}
                   className="text-primary text-sm font-medium hover:underline"
                 >
-                  Learn More (go to Blog)
+                  Read Full Article
                 </Link>
               </div>
             </motion.div>

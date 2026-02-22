@@ -3,6 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import type { PortfolioProject } from "@/lib/getPortfolioData";
 
 // Import Server Components (can be used directly in Client Components)
 import Hero from "@/components/Hero"; // Reverted to standard import
@@ -30,7 +31,11 @@ const sectionVariants = {
   },
 };
 
-const ClientSections: React.FC = () => {
+interface ClientSectionsProps {
+  portfolioProjects: PortfolioProject[];
+}
+
+const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) => {
   return (
     <>
       {/* Render Hero directly, animation will be handled inside Hero */}
@@ -65,7 +70,7 @@ const ClientSections: React.FC = () => {
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
       >
-        <Portfolio />
+        <Portfolio projects={portfolioProjects} />
       </motion.div>
       <motion.div
         initial="hidden"
