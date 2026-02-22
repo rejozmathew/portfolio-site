@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowT" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2C3E50"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="500" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="35" text-anchor="middle" fill="#2C3E50" font-size="17" font-weight="700" letter-spacing="0.5">Enterprise LLM Deployment — Private Inference in a Regulated Environment</text>
+  <line x1="250" y1="45" x2="850" y2="45" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Customer VPC Boundary -->
+  <rect x="30" y="60" width="700" height="410" rx="12" fill="none" stroke="#1F4E79" stroke-width="2" stroke-dasharray="8,4"/>
+  <rect x="40" y="55" width="220" height="22" rx="4" fill="#f9fafb"/>
+  <text x="50" y="71" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">YOUR VPC — DATA NEVER LEAVES</text>
+
+  <!-- Internal Pipeline -->
+  <rect x="55" y="95" width="160" height="80" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="135" y="120" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">TRANSCRIPT</text>
+  <text x="135" y="135" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">PIPELINE</text>
+  <text x="135" y="155" text-anchor="middle" fill="#e0e7ff" font-size="9">PII-tokenized transcripts</text>
+  <text x="135" y="168" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">batch or near-real-time</text>
+
+  <line x1="215" y1="135" x2="260" y2="135" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Orchestration -->
+  <rect x="265" y="90" width="180" height="90" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="355" y="115" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">ORCHESTRATION</text>
+  <line x1="285" y1="124" x2="425" y2="124" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="355" y="142" text-anchor="middle" fill="#e0e7ff" font-size="9">Step Functions / Airflow</text>
+  <text x="355" y="157" text-anchor="middle" fill="#e0e7ff" font-size="9">Prompt management</text>
+  <text x="355" y="172" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">retry, logging, guardrails</text>
+
+  <line x1="445" y1="135" x2="490" y2="135" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- VPC Endpoint -->
+  <rect x="495" y="95" width="140" height="80" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="565" y="118" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">VPC ENDPOINT</text>
+  <line x1="510" y1="128" x2="620" y2="128" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="565" y="145" text-anchor="middle" fill="#d0f0e0" font-size="9">AWS PrivateLink</text>
+  <text x="565" y="160" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">no public internet</text>
+
+  <!-- Arrow across boundary -->
+  <line x1="635" y1="135" x2="765" y2="135" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#arrowT)"/>
+  <rect x="660" y="120" width="85" height="20" rx="4" fill="#f9fafb" stroke="#2A7F62" stroke-width="1"/>
+  <text x="702" y="134" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="700">ENCRYPTED</text>
+
+  <!-- Bedrock / Model Provider -->
+  <rect x="770" y="65" width="300" height="170" rx="12" fill="#ffffff" stroke="#2A7F62" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="770" y="65" width="300" height="35" rx="12" fill="#2A7F62"/>
+  <rect x="770" y="85" width="300" height="15" fill="#2A7F62"/>
+  <text x="920" y="88" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">AWS BEDROCK / VERTEX AI</text>
+
+  <text x="790" y="120" fill="#2C3E50" font-size="10" font-weight="600">Claude (Anthropic)</text>
+  <text x="790" y="138" fill="#2C3E50" font-size="9">• Managed inference endpoint</text>
+  <text x="790" y="155" fill="#2C3E50" font-size="9">• No data retention by provider</text>
+  <text x="790" y="172" fill="#2C3E50" font-size="9">• SOC2, HIPAA eligible</text>
+  <text x="790" y="189" fill="#2C3E50" font-size="9">• Model versioning &amp; pinning</text>
+  <text x="790" y="210" fill="#94a3b8" font-size="8" font-style="italic">Traffic stays within cloud fabric</text>
+
+  <!-- Outputs flowing back -->
+  <path d="M 355 180 L 355 230" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- Output Row -->
+  <rect x="55" y="240" width="200" height="75" rx="10" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="155" y="265" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">📝 SUMMARIES</text>
+  <text x="155" y="282" text-anchor="middle" fill="#2C3E50" font-size="9">Stored in internal DB</text>
+  <text x="155" y="297" text-anchor="middle" fill="#2C3E50" font-size="9">Served to QA reviewers</text>
+
+  <rect x="270" y="240" width="200" height="75" rx="10" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="370" y="265" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">🎓 COACHING</text>
+  <text x="370" y="282" text-anchor="middle" fill="#2C3E50" font-size="9">Agent performance signals</text>
+  <text x="370" y="297" text-anchor="middle" fill="#2C3E50" font-size="9">Knowledge gap flags</text>
+
+  <rect x="485" y="240" width="200" height="75" rx="10" fill="#e0f5ec" stroke="#2A7F62" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="585" y="265" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">📊 THEMES</text>
+  <text x="585" y="282" text-anchor="middle" fill="#2C3E50" font-size="9">Complaint clusters</text>
+  <text x="585" y="297" text-anchor="middle" fill="#2C3E50" font-size="9">Emerging issue signals</text>
+
+  <!-- RAG section -->
+  <rect x="55" y="340" width="630" height="115" rx="10" fill="#f0f4f8" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="75" y="365" fill="#1F4E79" font-size="11" font-weight="700">📚  VECTOR STORE  (RAG Layer)</text>
+  <line x1="75" y1="375" x2="665" y2="375" stroke="#e2e8f0" stroke-width="1"/>
+
+  <rect x="75" y="385" width="140" height="50" rx="6" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="145" y="405" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">Policies &amp; SOPs</text>
+  <text x="145" y="420" text-anchor="middle" fill="#2C3E50" font-size="8">chunked, embedded</text>
+
+  <rect x="230" y="385" width="140" height="50" rx="6" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="300" y="405" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">Job Aids &amp; FAQs</text>
+  <text x="300" y="420" text-anchor="middle" fill="#2C3E50" font-size="8">indexed, versioned</text>
+
+  <rect x="385" y="385" width="140" height="50" rx="6" fill="#e8f0f8" stroke="#1F4E79" stroke-width="1"/>
+  <text x="455" y="405" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">Training Materials</text>
+  <text x="455" y="420" text-anchor="middle" fill="#2C3E50" font-size="8">product updates</text>
+
+  <text x="560" y="405" fill="#94a3b8" font-size="9" font-style="italic">Retrieved context</text>
+  <text x="560" y="420" fill="#94a3b8" font-size="9" font-style="italic">grounds LLM responses</text>
+
+  <!-- Arrow from RAG to orchestration -->
+  <path d="M 370 340 L 370 180" stroke="#1F4E79" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowN)"/>
+  <text x="385" y="270" fill="#1F4E79" font-size="8" font-weight="600">context injection</text>
+
+  <!-- Key callout -->
+  <rect x="770" y="270" width="300" height="190" rx="10" fill="#f0f4f8" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="920" y="295" text-anchor="middle" fill="#2C3E50" font-size="12" font-weight="700">Why This Pattern Works</text>
+  <line x1="800" y1="305" x2="1040" y2="305" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="800" y="328" fill="#2A7F62" font-size="10" font-weight="600">✓ Data sovereignty</text>
+  <text x="800" y="344" fill="#2C3E50" font-size="9">Transcripts never leave your VPC</text>
+  <text x="800" y="367" fill="#2A7F62" font-size="10" font-weight="600">✓ No model training on your data</text>
+  <text x="800" y="383" fill="#2C3E50" font-size="9">Inference-only, zero retention</text>
+  <text x="800" y="406" fill="#2A7F62" font-size="10" font-weight="600">✓ Model pinning</text>
+  <text x="800" y="422" fill="#2C3E50" font-size="9">Lock to a specific model version</text>
+  <text x="800" y="438" fill="#2C3E50" font-size="9">for output consistency</text>
+</svg>

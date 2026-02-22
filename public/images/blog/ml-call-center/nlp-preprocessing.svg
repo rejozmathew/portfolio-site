@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <marker id="arrowN" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowT" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="480" fill="#f9fafb" rx="12"/>
+
+  <text x="550" y="38" text-anchor="middle" fill="#2C3E50" font-size="18" font-weight="700" letter-spacing="0.5">NLP Preprocessing Pipeline — From Raw Transcript to Feature Vector</text>
+  <line x1="250" y1="48" x2="850" y2="48" stroke="url(#hGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Step 1: Raw Text -->
+  <rect x="30" y="80" width="200" height="130" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="130" y="105" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">① RAW TRANSCRIPT</text>
+  <line x1="50" y1="115" x2="210" y2="115" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="130" y="135" text-anchor="middle" fill="#e0e7ff" font-size="9">"Customer called in upset</text>
+  <text x="130" y="149" text-anchor="middle" fill="#e0e7ff" font-size="9">about the payment being</text>
+  <text x="130" y="163" text-anchor="middle" fill="#e0e7ff" font-size="9">past due and wants to</text>
+  <text x="130" y="177" text-anchor="middle" fill="#e0e7ff" font-size="9">speak with a supervisor"</text>
+  <text x="130" y="200" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">full conversation text</text>
+
+  <line x1="230" y1="145" x2="275" y2="145" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Step 2: Stopword Removal -->
+  <rect x="280" y="80" width="200" height="130" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="380" y="105" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">② STOPWORD REMOVAL</text>
+  <line x1="300" y1="115" x2="460" y2="115" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="380" y="135" text-anchor="middle" fill="#e0e7ff" font-size="9">"customer called upset</text>
+  <text x="380" y="149" text-anchor="middle" fill="#e0e7ff" font-size="9">payment past due wants</text>
+  <text x="380" y="163" text-anchor="middle" fill="#e0e7ff" font-size="9">speak supervisor"</text>
+  <text x="380" y="185" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">custom stopwords.txt</text>
+  <text x="380" y="200" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">~350 domain-specific words</text>
+
+  <line x1="480" y1="145" x2="525" y2="145" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Step 3: Lemmatization -->
+  <rect x="530" y="80" width="200" height="130" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="630" y="105" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">③ LEMMATIZATION</text>
+  <line x1="550" y1="115" x2="710" y2="115" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="630" y="135" text-anchor="middle" fill="#d0f0e0" font-size="9">payments → payment</text>
+  <text x="630" y="152" text-anchor="middle" fill="#d0f0e0" font-size="9">called → call</text>
+  <text x="630" y="169" text-anchor="middle" fill="#d0f0e0" font-size="9">wants → want</text>
+  <text x="630" y="195" text-anchor="middle" fill="#a0d8c0" font-size="8" font-style="italic">WordNet nouns &amp; verbs</text>
+
+  <line x1="730" y1="145" x2="775" y2="145" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrowT)"/>
+
+  <!-- Step 4: Synonym Normalization -->
+  <rect x="780" y="80" width="200" height="130" rx="10" fill="#1F4E79" filter="url(#shadow)"/>
+  <text x="880" y="100" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">④ SYNONYM</text>
+  <text x="880" y="114" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">NORMALIZATION</text>
+  <line x1="800" y1="122" x2="960" y2="122" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="880" y="140" text-anchor="middle" fill="#e0e7ff" font-size="9">frustrated → frustrate</text>
+  <text x="880" y="155" text-anchor="middle" fill="#e0e7ff" font-size="9">disappointed → frustrate</text>
+  <text x="880" y="170" text-anchor="middle" fill="#e0e7ff" font-size="9">apologize → apology</text>
+  <text x="880" y="185" text-anchor="middle" fill="#e0e7ff" font-size="9">escalade → escalate</text>
+  <text x="880" y="200" text-anchor="middle" fill="#94a3b8" font-size="8" font-style="italic">manual synonym dictionary</text>
+
+  <!-- Arrow down to vectorization -->
+  <line x1="880" y1="210" x2="880" y2="260" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Vectorization Row -->
+  <rect x="280" y="265" width="700" height="90" rx="10" fill="#2C3E50" filter="url(#shadow)"/>
+  <text x="630" y="290" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">⑤ BOOLEAN ADJUSTED TF-IDF VECTORIZATION</text>
+  <line x1="310" y1="300" x2="950" y2="300" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  <text x="630" y="320" text-anchor="middle" fill="#e0e7ff" font-size="10">Term presence (boolean) × Inverse Document Frequency → sparse feature matrix</text>
+  <text x="630" y="340" text-anchor="middle" fill="#94a3b8" font-size="9" font-style="italic">Reduces noise from repeated terms in long transcripts — emphasizes unique complaint signals</text>
+
+  <!-- Arrow down -->
+  <line x1="630" y1="355" x2="630" y2="395" stroke="#2C3E50" stroke-width="2" marker-end="url(#arrowN)"/>
+
+  <!-- Feature Selection -->
+  <rect x="430" y="400" width="400" height="60" rx="10" fill="#2A7F62" filter="url(#shadow)"/>
+  <text x="630" y="425" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">⑥ CHI-SQUARED FEATURE SELECTION → Top 1,000 Features</text>
+  <text x="630" y="445" text-anchor="middle" fill="#d0f0e0" font-size="9">Statistical test filters features most correlated with complaint labels</text>
+</svg>
