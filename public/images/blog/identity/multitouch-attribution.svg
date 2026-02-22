@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="'Segoe UI', -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgG2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9fafb"/>
+      <stop offset="100%" style="stop-color:#f0f4f8"/>
+    </linearGradient>
+    <filter id="sh2" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#1F4E79" stroke-width="1.2"/>
+    </marker>
+    <marker id="a2t" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#2A7F62" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="400" fill="url(#bgG2)" rx="8"/>
+
+  <!-- Title -->
+  <text x="480" y="30" text-anchor="middle" fill="#1F4E79" font-size="15" font-weight="700" letter-spacing="0.3">Multi-Touch Attribution Across Channels</text>
+
+  <!-- Left: Marketing Channels -->
+  <text x="95" y="62" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">MARKETING CHANNELS</text>
+
+  <!-- Channel: Display Ads -->
+  <rect x="28" y="80" width="134" height="44" rx="6" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <circle cx="52" cy="102" r="12" fill="#1F4E79" fill-opacity="0.1"/>
+  <text x="52" y="106" text-anchor="middle" fill="#1F4E79" font-size="12">📊</text>
+  <text x="108" y="100" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="500">Display Ads</text>
+  <text x="108" y="114" text-anchor="middle" fill="#8899aa" font-size="8">Impression t₁</text>
+
+  <!-- Channel: Email -->
+  <rect x="28" y="138" width="134" height="44" rx="6" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <circle cx="52" cy="160" r="12" fill="#1F4E79" fill-opacity="0.1"/>
+  <text x="52" y="164" text-anchor="middle" fill="#1F4E79" font-size="12">✉️</text>
+  <text x="108" y="158" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="500">Email</text>
+  <text x="108" y="172" text-anchor="middle" fill="#8899aa" font-size="8">Click t₂</text>
+
+  <!-- Channel: Paid Search -->
+  <rect x="28" y="196" width="134" height="44" rx="6" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <circle cx="52" cy="218" r="12" fill="#1F4E79" fill-opacity="0.1"/>
+  <text x="52" y="222" text-anchor="middle" fill="#1F4E79" font-size="12">🔍</text>
+  <text x="108" y="216" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="500">Paid Search</text>
+  <text x="108" y="230" text-anchor="middle" fill="#8899aa" font-size="8">Click t₃</text>
+
+  <!-- Channel: Direct Mail -->
+  <rect x="28" y="254" width="134" height="44" rx="6" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <circle cx="52" cy="276" r="12" fill="#1F4E79" fill-opacity="0.1"/>
+  <text x="52" y="280" text-anchor="middle" fill="#1F4E79" font-size="12">📬</text>
+  <text x="108" y="274" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="500">Direct Mail</text>
+  <text x="108" y="288" text-anchor="middle" fill="#8899aa" font-size="8">Delivered t₀</text>
+
+  <!-- Channel: Mobile App -->
+  <rect x="28" y="312" width="134" height="44" rx="6" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh2)"/>
+  <circle cx="52" cy="334" r="12" fill="#1F4E79" fill-opacity="0.1"/>
+  <text x="52" y="338" text-anchor="middle" fill="#1F4E79" font-size="12">📱</text>
+  <text x="108" y="332" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="500">Mobile App</text>
+  <text x="108" y="346" text-anchor="middle" fill="#8899aa" font-size="8">Session t₄</text>
+
+  <!-- Prospect converts indicator -->
+  <rect x="28" y="370" width="134" height="22" rx="4" fill="#2A7F62" fill-opacity="0.1" stroke="#2A7F62" stroke-width="1"/>
+  <text x="95" y="385" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">Prospect Converts →</text>
+
+  <!-- Arrows to center -->
+  <line x1="164" y1="102" x2="296" y2="180" stroke="#1F4E79" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+  <line x1="164" y1="160" x2="296" y2="195" stroke="#1F4E79" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+  <line x1="164" y1="218" x2="296" y2="210" stroke="#1F4E79" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+  <line x1="164" y1="276" x2="296" y2="225" stroke="#1F4E79" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+  <line x1="164" y1="334" x2="296" y2="240" stroke="#1F4E79" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#a2)"/>
+
+  <!-- Center: Unified Customer Data Store -->
+  <rect x="300" y="130" width="180" height="150" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="2" filter="url(#sh2)"/>
+  <!-- DB icon -->
+  <ellipse cx="390" cy="168" rx="30" ry="10" fill="#1F4E79" fill-opacity="0.15" stroke="#1F4E79" stroke-width="1.2"/>
+  <rect x="360" y="168" width="60" height="25" fill="#1F4E79" fill-opacity="0.08" stroke="none"/>
+  <ellipse cx="390" cy="193" rx="30" ry="10" fill="none" stroke="#1F4E79" stroke-width="1.2"/>
+  <line x1="360" y1="168" x2="360" y2="193" stroke="#1F4E79" stroke-width="1.2"/>
+  <line x1="420" y1="168" x2="420" y2="193" stroke="#1F4E79" stroke-width="1.2"/>
+  <text x="390" y="222" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">UNIFIED CUSTOMER</text>
+  <text x="390" y="236" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">DATA STORE</text>
+  <text x="390" y="256" text-anchor="middle" fill="#2C3E50" font-size="9">Identity Graph</text>
+  <text x="390" y="270" text-anchor="middle" fill="#2C3E50" font-size="9">Event Sequences</text>
+
+  <!-- Label below -->
+  <rect x="310" y="290" width="160" height="24" rx="4" fill="#2A7F62" fill-opacity="0.08"/>
+  <text x="390" y="306" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">Visitor Identified for Attribution</text>
+
+  <!-- Arrow to right -->
+  <line x1="482" y1="205" x2="530" y2="205" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#a2t)"/>
+
+  <!-- Right: Attribution Output -->
+  <text x="730" y="62" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600">ATTRIBUTION INSIGHTS</text>
+
+  <!-- Last-Touch vs Multi-Touch comparison -->
+  <rect x="540" y="80" width="185" height="130" rx="8" fill="#fff" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2" filter="url(#sh2)"/>
+  <text x="632" y="100" text-anchor="middle" fill="#c0392b" font-size="10" font-weight="700">LAST-TOUCH (Before)</text>
+  <rect x="556" y="112" width="153" height="18" rx="3" fill="#c0392b" fill-opacity="0.12"/>
+  <text x="632" y="125" text-anchor="middle" fill="#c0392b" font-size="9">Mobile App → 100% credit</text>
+  <text x="632" y="148" text-anchor="middle" fill="#8899aa" font-size="9">Display, Email, Search, Mail</text>
+  <text x="632" y="162" text-anchor="middle" fill="#8899aa" font-size="9">→ 0% credit each</text>
+  <text x="632" y="200" text-anchor="middle" fill="#c0392b" font-size="9" font-style="italic">⚠ Misleading spend decisions</text>
+
+  <rect x="540" y="222" width="185" height="155" rx="8" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#sh2)"/>
+  <text x="632" y="244" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">MULTI-TOUCH (After)</text>
+  <!-- Attribution bars -->
+  <text x="560" y="268" fill="#2C3E50" font-size="9">Direct Mail</text>
+  <rect x="635" y="258" width="50" height="14" rx="2" fill="#1F4E79" fill-opacity="0.6"/>
+  <text x="695" y="269" fill="#2C3E50" font-size="8">12%</text>
+
+  <text x="560" y="288" fill="#2C3E50" font-size="9">Display</text>
+  <rect x="635" y="278" width="65" height="14" rx="2" fill="#1F4E79" fill-opacity="0.7"/>
+  <text x="710" y="289" fill="#2C3E50" font-size="8">18%</text>
+
+  <text x="560" y="308" fill="#2C3E50" font-size="9">Email</text>
+  <rect x="635" y="298" width="85" height="14" rx="2" fill="#1F4E79" fill-opacity="0.8"/>
+  <text x="730" y="309" fill="#2C3E50" font-size="8">25%</text>
+
+  <text x="560" y="328" fill="#2C3E50" font-size="9">Paid Search</text>
+  <rect x="635" y="318" width="75" height="14" rx="2" fill="#1F4E79" fill-opacity="0.75"/>
+  <text x="720" y="329" fill="#2C3E50" font-size="8">20%</text>
+
+  <text x="560" y="348" fill="#2C3E50" font-size="9">Mobile App</text>
+  <rect x="635" y="338" width="80" height="14" rx="2" fill="#2A7F62"/>
+  <text x="725" y="349" fill="#2C3E50" font-size="8">25%</text>
+
+  <text x="632" y="372" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">✓ Accurate CPA &amp; spend allocation</text>
+
+  <!-- Right-most: Outcome arrow -->
+  <rect x="748" y="80" width="190" height="78" rx="8" fill="#1F4E79" filter="url(#sh2)"/>
+  <text x="843" y="104" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Sequence of Events</text>
+  <text x="843" y="122" text-anchor="middle" fill="#c5d8ea" font-size="9">Graph traversal reconstructs</text>
+  <text x="843" y="136" text-anchor="middle" fill="#c5d8ea" font-size="9">full journey per customer</text>
+
+  <rect x="748" y="172" width="190" height="78" rx="8" fill="#1F4E79" filter="url(#sh2)"/>
+  <text x="843" y="196" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Channel Significance</text>
+  <text x="843" y="214" text-anchor="middle" fill="#c5d8ea" font-size="9">Weighted edges encode</text>
+  <text x="843" y="228" text-anchor="middle" fill="#c5d8ea" font-size="9">recency &amp; interaction depth</text>
+
+  <rect x="748" y="264" width="190" height="78" rx="8" fill="#2A7F62" filter="url(#sh2)"/>
+  <text x="843" y="288" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Spend Optimization</text>
+  <text x="843" y="306" text-anchor="middle" fill="#b5e2d0" font-size="9">CPA by channel informs</text>
+  <text x="843" y="320" text-anchor="middle" fill="#b5e2d0" font-size="9">future budget allocation</text>
+</svg>

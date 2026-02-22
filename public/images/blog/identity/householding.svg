@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 370" font-family="'Segoe UI', -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgG3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9fafb"/>
+      <stop offset="100%" style="stop-color:#f0f4f8"/>
+    </linearGradient>
+    <filter id="sh3" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="a3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#1F4E79" stroke-width="1.2"/>
+    </marker>
+    <marker id="a3t" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#2A7F62" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="370" fill="url(#bgG3)" rx="8"/>
+  <text x="480" y="30" text-anchor="middle" fill="#1F4E79" font-size="15" font-weight="700" letter-spacing="0.3">Household-Level Marketing &amp; Behavior-Based Audiences</text>
+
+  <!-- Left: Unified Customer Data Store with multiple customers -->
+  <rect x="30" y="55" width="220" height="280" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="2" filter="url(#sh3)"/>
+  <rect x="30" y="55" width="220" height="36" rx="10" fill="#1F4E79"/>
+  <rect x="30" y="79" width="220" height="12" fill="#1F4E79"/>
+  <text x="140" y="79" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">UNIFIED CUSTOMER DATA STORE</text>
+
+  <!-- Customer A -->
+  <circle cx="80" cy="130" r="18" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <circle cx="80" cy="124" r="6" fill="#1F4E79" fill-opacity="0.6"/>
+  <path d="M68,140 Q68,132 80,132 Q92,132 92,140" fill="#1F4E79" fill-opacity="0.6"/>
+  <text x="80" y="160" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">Customer A</text>
+  <text x="80" y="172" text-anchor="middle" fill="#8899aa" font-size="7.5">Checking account</text>
+
+  <!-- Customer B -->
+  <circle cx="180" cy="130" r="18" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <circle cx="180" cy="124" r="6" fill="#1F4E79" fill-opacity="0.6"/>
+  <path d="M168,140 Q168,132 180,132 Q192,132 192,140" fill="#1F4E79" fill-opacity="0.6"/>
+  <text x="180" y="160" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">Customer B</text>
+  <text x="180" y="172" text-anchor="middle" fill="#8899aa" font-size="7.5">Card applicant</text>
+
+  <!-- Customer C -->
+  <circle cx="130" cy="210" r="18" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <circle cx="130" cy="204" r="6" fill="#1F4E79" fill-opacity="0.6"/>
+  <path d="M118,220 Q118,212 130,212 Q142,212 142,220" fill="#1F4E79" fill-opacity="0.6"/>
+  <text x="130" y="240" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">Customer C</text>
+  <text x="130" y="252" text-anchor="middle" fill="#8899aa" font-size="7.5">Savings account</text>
+
+  <!-- Shared attributes indicators -->
+  <rect x="45" y="275" width="190" height="50" rx="6" fill="#1F4E79" fill-opacity="0.04" stroke="#1F4E79" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="140" y="293" text-anchor="middle" fill="#1F4E79" font-size="8.5" font-weight="500">Shared: 123 Oak St, Device d7x2</text>
+  <text x="140" y="307" text-anchor="middle" fill="#1F4E79" font-size="8.5" font-weight="500">Partial name: "Mathew" family</text>
+  <text x="140" y="319" text-anchor="middle" fill="#8899aa" font-size="7.5">Different journeys, same household</text>
+
+  <!-- Center: Clustering Process -->
+  <line x1="252" y1="195" x2="310" y2="195" stroke="#1F4E79" stroke-width="2" marker-end="url(#a3)"/>
+
+  <rect x="315" y="95" width="200" height="210" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh3)"/>
+  <text x="415" y="120" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">GRAPH CLUSTERING</text>
+
+  <!-- Cluster visualization -->
+  <!-- Shared address node -->
+  <rect x="370" y="140" width="90" height="24" rx="4" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1"/>
+  <text x="415" y="156" text-anchor="middle" fill="#2A7F62" font-size="8.5" font-weight="500">123 Oak St</text>
+
+  <!-- Shared device node -->
+  <rect x="370" y="175" width="90" height="24" rx="4" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1"/>
+  <text x="415" y="191" text-anchor="middle" fill="#2A7F62" font-size="8.5" font-weight="500">Device d7x2</text>
+
+  <!-- Name similarity -->
+  <rect x="370" y="210" width="90" height="24" rx="4" fill="#1F4E79" fill-opacity="0.08" stroke="#1F4E79" stroke-width="1"/>
+  <text x="415" y="226" text-anchor="middle" fill="#1F4E79" font-size="8.5" font-weight="500">Name ~0.92</text>
+
+  <!-- GDS label -->
+  <text x="415" y="260" text-anchor="middle" fill="#2C3E50" font-size="9">GDS community detection</text>
+  <text x="415" y="276" text-anchor="middle" fill="#2C3E50" font-size="9">+ fuzzy name matching</text>
+  <text x="415" y="295" text-anchor="middle" fill="#1F4E79" font-size="8.5" font-style="italic">Synthetic Household ID assigned</text>
+
+  <!-- Arrow to right -->
+  <line x1="517" y1="195" x2="565" y2="195" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#a3t)"/>
+
+  <!-- Household icon -->
+  <rect x="570" y="90" width="160" height="130" rx="10" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#sh3)"/>
+  <!-- House shape -->
+  <polygon points="650,108 618,130 682,130" fill="none" stroke="#2A7F62" stroke-width="1.5"/>
+  <rect x="630" y="130" width="40" height="30" fill="none" stroke="#2A7F62" stroke-width="1.2"/>
+  <rect x="643" y="142" width="14" height="18" fill="#2A7F62" fill-opacity="0.15" stroke="#2A7F62" stroke-width="0.8"/>
+  <!-- People under roof -->
+  <circle cx="632" cy="176" r="5" fill="#1F4E79" fill-opacity="0.5"/>
+  <circle cx="650" cy="176" r="5" fill="#1F4E79" fill-opacity="0.5"/>
+  <circle cx="668" cy="176" r="5" fill="#1F4E79" fill-opacity="0.5"/>
+  <text x="650" y="200" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">HOUSEHOLD</text>
+  <text x="650" y="215" text-anchor="middle" fill="#2C3E50" font-size="8.5">HH-ID: synth-4821</text>
+
+  <!-- Right: Outcomes -->
+  <rect x="570" y="240" width="160" height="110" rx="8" fill="#1F4E79" fill-opacity="0.04" stroke="#1F4E79" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="650" y="260" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">ENABLES</text>
+  <text x="650" y="282" text-anchor="middle" fill="#2C3E50" font-size="9">• Household behavior analysis</text>
+  <text x="650" y="300" text-anchor="middle" fill="#2C3E50" font-size="9">• Coordinated communications</text>
+  <text x="650" y="318" text-anchor="middle" fill="#2C3E50" font-size="9">• Shared wallet insights</text>
+  <text x="650" y="336" text-anchor="middle" fill="#2C3E50" font-size="9">• Household targeting strategy</text>
+
+  <!-- Far right: Additional use cases panel -->
+  <rect x="755" y="65" width="185" height="290" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#sh3)"/>
+  <rect x="755" y="65" width="185" height="32" rx="10" fill="#1F4E79"/>
+  <rect x="755" y="85" width="185" height="12" fill="#1F4E79"/>
+  <text x="847" y="87" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">SECONDARY USE CASES</text>
+
+  <rect x="770" y="108" width="155" height="52" rx="6" fill="#1F4E79" fill-opacity="0.05" stroke="#1F4E79" stroke-width="0.8"/>
+  <text x="847" y="126" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Re-engagement</text>
+  <text x="847" y="142" text-anchor="middle" fill="#2C3E50" font-size="8">Identify drop-off points, target</text>
+  <text x="847" y="153" text-anchor="middle" fill="#2C3E50" font-size="8">win-back at friction source</text>
+
+  <rect x="770" y="170" width="155" height="52" rx="6" fill="#1F4E79" fill-opacity="0.05" stroke="#1F4E79" stroke-width="0.8"/>
+  <text x="847" y="188" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Partial-Match ID</text>
+  <text x="847" y="204" text-anchor="middle" fill="#2C3E50" font-size="8">Connect prospects with</text>
+  <text x="847" y="215" text-anchor="middle" fill="#2C3E50" font-size="8">incomplete records to profiles</text>
+
+  <rect x="770" y="232" width="155" height="52" rx="6" fill="#1F4E79" fill-opacity="0.05" stroke="#1F4E79" stroke-width="0.8"/>
+  <text x="847" y="250" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Offer Propensity</text>
+  <text x="847" y="266" text-anchor="middle" fill="#2C3E50" font-size="8">ML features from graph</text>
+  <text x="847" y="277" text-anchor="middle" fill="#2C3E50" font-size="8">event sequences</text>
+
+  <rect x="770" y="294" width="155" height="50" rx="6" fill="#2A7F62" fill-opacity="0.08" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="847" y="312" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">CDP / Walled Gardens</text>
+  <text x="847" y="328" text-anchor="middle" fill="#2C3E50" font-size="8">Foundation for look-alike</text>
+  <text x="847" y="339" text-anchor="middle" fill="#2C3E50" font-size="8">modeling &amp; activation</text>
+</svg>
