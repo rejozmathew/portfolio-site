@@ -31,6 +31,9 @@ const sectionVariants = {
   },
 };
 
+const defaultSectionViewport = { once: true, amount: 0.2 } as const;
+const tallSectionViewport = { once: true, amount: 0.05 } as const;
+
 interface ClientSectionsProps {
   portfolioProjects: PortfolioProject[];
 }
@@ -43,7 +46,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <About />
@@ -51,7 +54,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <Expertise />
@@ -59,7 +62,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <Experience />
@@ -67,7 +70,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={tallSectionViewport}
         variants={sectionVariants}
       >
         <Portfolio projects={portfolioProjects} />
@@ -75,7 +78,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <Education />
@@ -83,7 +86,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <Certifications />
@@ -91,7 +94,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) =>
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
         <Contact />
