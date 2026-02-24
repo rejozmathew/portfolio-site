@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
             <strong>Neo4j Graph Summit Chicago 2025</strong> on how enterprise identity
             graphs unlock next-gen analytics, marketing & CX.{" "}
             <a
-              href="https://www.rejozmathew.com/blog/Identity"
+              href="https://www.rejozmathew.com/blog/identity-graph"
               target="_blank"
               rel="noopener noreferrer"
               className="underline font-semibold"
