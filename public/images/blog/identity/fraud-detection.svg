@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="'Segoe UI', -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgF" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9fafb"/>
+      <stop offset="100%" style="stop-color:#f0f4f8"/>
+    </linearGradient>
+    <filter id="shF" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shRed" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#c0392b" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="520" fill="url(#bgF)" rx="8"/>
+  <text x="480" y="28" text-anchor="middle" fill="#1F4E79" font-size="15" font-weight="700">Fraud Detection Patterns Enabled by the Identity Graph</text>
+
+  <!-- ===== SECTION 1: Synthetic Identity Detection ===== -->
+  <rect x="20" y="48" width="300" height="450" rx="10" fill="#fff" stroke="#c0392b" stroke-width="1.5" filter="url(#shRed)"/>
+  <rect x="20" y="48" width="300" height="36" rx="10" fill="#c0392b"/>
+  <rect x="20" y="72" width="300" height="12" fill="#c0392b"/>
+  <text x="170" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">SYNTHETIC IDENTITY DETECTION</text>
+
+  <!-- Synthetic identity anatomy -->
+  <text x="170" y="105" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">How Synthetic Identities Are Constructed</text>
+
+  <!-- Real SSN -->
+  <rect x="40" y="118" width="110" height="32" rx="5" fill="#c0392b" fill-opacity="0.08" stroke="#c0392b" stroke-width="1"/>
+  <text x="95" y="130" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="600">REAL SSN</text>
+  <text x="95" y="143" text-anchor="middle" fill="#c0392b" font-size="7">child / elderly / deceased</text>
+
+  <!-- Fake Name -->
+  <rect x="170" y="118" width="110" height="32" rx="5" fill="#8899aa" fill-opacity="0.12" stroke="#8899aa" stroke-width="1"/>
+  <text x="225" y="130" text-anchor="middle" fill="#666" font-size="8" font-weight="600">FAKE NAME</text>
+  <text x="225" y="143" text-anchor="middle" fill="#8899aa" font-size="7">fabricated identity</text>
+
+  <!-- Manufactured address -->
+  <rect x="40" y="160" width="110" height="32" rx="5" fill="#8899aa" fill-opacity="0.12" stroke="#8899aa" stroke-width="1"/>
+  <text x="95" y="173" text-anchor="middle" fill="#666" font-size="8" font-weight="600">FAKE ADDRESS</text>
+  <text x="95" y="185" text-anchor="middle" fill="#8899aa" font-size="7">manufactured / shared</text>
+
+  <!-- New email -->
+  <rect x="170" y="160" width="110" height="32" rx="5" fill="#8899aa" fill-opacity="0.12" stroke="#8899aa" stroke-width="1"/>
+  <text x="225" y="173" text-anchor="middle" fill="#666" font-size="8" font-weight="600">NEW EMAIL</text>
+  <text x="225" y="185" text-anchor="middle" fill="#8899aa" font-size="7">recently created</text>
+
+  <!-- Arrow down -->
+  <text x="170" y="210" text-anchor="middle" fill="#c0392b" font-size="14">↓</text>
+
+  <!-- Passes individual checks -->
+  <rect x="55" y="218" width="230" height="24" rx="4" fill="#2A7F62" fill-opacity="0.08" stroke="#2A7F62" stroke-width="1"/>
+  <text x="170" y="234" text-anchor="middle" fill="#2A7F62" font-size="9">✓ Passes individual verification checks</text>
+
+  <!-- But graph reveals -->
+  <text x="170" y="262" text-anchor="middle" fill="#c0392b" font-size="10" font-weight="700">Graph Reveals the Pattern</text>
+
+  <!-- Mini graph showing synthetic signature -->
+  <!-- SSN node shared -->
+  <circle cx="105" cy="300" r="18" fill="#c0392b" fill-opacity="0.1" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="105" y="298" text-anchor="middle" fill="#c0392b" font-size="7" font-weight="600">SSN</text>
+  <text x="105" y="308" text-anchor="middle" fill="#c0392b" font-size="6">shared</text>
+
+  <!-- Customer 1 -->
+  <circle cx="60" cy="350" r="14" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1"/>
+  <text x="60" y="353" text-anchor="middle" fill="#1F4E79" font-size="7">C1</text>
+  <line x1="75" y1="342" x2="92" y2="312" stroke="#c0392b" stroke-width="1"/>
+
+  <!-- Customer 2 -->
+  <circle cx="150" cy="350" r="14" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1"/>
+  <text x="150" y="353" text-anchor="middle" fill="#1F4E79" font-size="7">C2</text>
+  <line x1="138" y1="342" x2="118" y2="312" stroke="#c0392b" stroke-width="1"/>
+
+  <!-- Shared address -->
+  <circle cx="235" cy="300" r="18" fill="#c0392b" fill-opacity="0.1" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="235" y="298" text-anchor="middle" fill="#c0392b" font-size="7" font-weight="600">ADDR</text>
+  <text x="235" y="308" text-anchor="middle" fill="#c0392b" font-size="6">shared</text>
+
+  <!-- Customer 3 -->
+  <circle cx="235" cy="350" r="14" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1"/>
+  <text x="235" y="353" text-anchor="middle" fill="#1F4E79" font-size="7">C3</text>
+  <line x1="235" y1="336" x2="235" y2="318" stroke="#c0392b" stroke-width="1"/>
+  <line x1="162" y1="342" x2="220" y2="312" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Different names -->
+  <rect x="40" y="375" width="60" height="18" rx="3" fill="#e67e22" fill-opacity="0.1" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="70" y="387" text-anchor="middle" fill="#e67e22" font-size="6.5">Name: "J. Smith"</text>
+  <rect x="120" y="375" width="65" height="18" rx="3" fill="#e67e22" fill-opacity="0.1" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="152" y="387" text-anchor="middle" fill="#e67e22" font-size="6.5">Name: "K. Jones"</text>
+  <rect x="205" y="375" width="65" height="18" rx="3" fill="#e67e22" fill-opacity="0.1" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="237" y="387" text-anchor="middle" fill="#e67e22" font-size="6.5">Name: "L. Davis"</text>
+
+  <!-- Detection signals -->
+  <rect x="38" y="405" width="245" height="80" rx="6" fill="#c0392b" fill-opacity="0.04" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="160" y="422" text-anchor="middle" fill="#c0392b" font-size="8.5" font-weight="600">Detection Signals</text>
+  <text x="160" y="438" text-anchor="middle" fill="#2C3E50" font-size="8">• SSN → multiple non-overlapping names</text>
+  <text x="160" y="452" text-anchor="middle" fill="#2C3E50" font-size="8">• Address with high app degree centrality</text>
+  <text x="160" y="466" text-anchor="middle" fill="#2C3E50" font-size="8">• No prior transaction history on SSN</text>
+  <text x="160" y="480" text-anchor="middle" fill="#2C3E50" font-size="8">• GDS community detection → tight cluster</text>
+
+  <!-- ===== SECTION 2: Application Fraud Rings ===== -->
+  <rect x="335" y="48" width="290" height="450" rx="10" fill="#fff" stroke="#c0392b" stroke-width="1.5" filter="url(#shRed)"/>
+  <rect x="335" y="48" width="290" height="36" rx="10" fill="#c0392b" fill-opacity="0.85"/>
+  <rect x="335" y="72" width="290" height="12" fill="#c0392b" fill-opacity="0.85"/>
+  <text x="480" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">APPLICATION FRAUD RINGS</text>
+
+  <text x="480" y="105" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">Shared Identifiers Reveal the Ring</text>
+
+  <!-- Ring visualization -->
+  <!-- App nodes -->
+  <circle cx="410" cy="160" r="22" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="410" y="157" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">App</text>
+  <text x="410" y="168" text-anchor="middle" fill="#1F4E79" font-size="7">A-001</text>
+
+  <circle cx="550" cy="145" r="22" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="550" y="142" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">App</text>
+  <text x="550" y="153" text-anchor="middle" fill="#1F4E79" font-size="7">A-002</text>
+
+  <circle cx="490" cy="235" r="22" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="490" y="232" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">App</text>
+  <text x="490" y="243" text-anchor="middle" fill="#1F4E79" font-size="7">A-003</text>
+
+  <circle cx="380" cy="250" r="22" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="380" y="247" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">App</text>
+  <text x="380" y="258" text-anchor="middle" fill="#1F4E79" font-size="7">A-004</text>
+
+  <circle cx="565" cy="240" r="22" fill="#1F4E79" fill-opacity="0.12" stroke="#1F4E79" stroke-width="1.5"/>
+  <text x="565" y="237" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">App</text>
+  <text x="565" y="248" text-anchor="middle" fill="#1F4E79" font-size="7">A-005</text>
+
+  <!-- Shared identifier nodes (center of ring) -->
+  <circle cx="480" cy="180" r="15" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="480" y="183" text-anchor="middle" fill="#c0392b" font-size="7" font-weight="600">Phone</text>
+
+  <circle cx="440" cy="210" r="15" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="440" y="213" text-anchor="middle" fill="#c0392b" font-size="7" font-weight="600">Device</text>
+
+  <circle cx="530" cy="195" r="15" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="530" y="198" text-anchor="middle" fill="#c0392b" font-size="7" font-weight="600">Addr</text>
+
+  <!-- Connection lines (ring structure) -->
+  <line x1="430" y1="167" x2="466" y2="175" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+  <line x1="530" y1="152" x2="494" y2="174" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+  <line x1="475" y1="228" x2="456" y2="218" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+  <line x1="395" y1="237" x2="426" y2="215" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+  <line x1="548" y1="230" x2="540" y2="207" stroke="#c0392b" stroke-width="1" opacity="0.7"/>
+  <line x1="410" y1="175" x2="427" y2="202" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <line x1="550" y1="163" x2="535" y2="183" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+  <line x1="380" y1="235" x2="466" y2="186" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.4"/>
+
+  <!-- Connected component highlight -->
+  <ellipse cx="478" cy="200" rx="120" ry="75" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <text x="478" y="290" text-anchor="middle" fill="#c0392b" font-size="8" font-style="italic">Connected component = fraud ring</text>
+
+  <!-- Detection method -->
+  <rect x="353" y="310" width="255" height="175" rx="6" fill="#1F4E79" fill-opacity="0.03"/>
+  <text x="480" y="330" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">Graph vs. Relational Detection</text>
+
+  <rect x="363" y="342" width="235" height="60" rx="5" fill="#c0392b" fill-opacity="0.04" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="480" y="358" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="600">Relational Approach</text>
+  <text x="480" y="372" text-anchor="middle" fill="#2C3E50" font-size="7.5">Self-joins across App × Phone × Addr ×</text>
+  <text x="480" y="384" text-anchor="middle" fill="#2C3E50" font-size="7.5">Device tables + fuzzy matching = slow, brittle</text>
+
+  <text x="480" y="410" text-anchor="middle" fill="#2C3E50" font-size="10">↓</text>
+
+  <rect x="363" y="418" width="235" height="56" rx="5" fill="#2A7F62" fill-opacity="0.06" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="480" y="434" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">Graph Approach</text>
+  <text x="480" y="448" text-anchor="middle" fill="#2C3E50" font-size="7.5">Connected component algorithm maps</text>
+  <text x="480" y="460" text-anchor="middle" fill="#2C3E50" font-size="7.5">full ring extent in single traversal</text>
+
+  <!-- ===== SECTION 3: AML/KYC Network Analysis ===== -->
+  <rect x="640" y="48" width="300" height="450" rx="10" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#shF)"/>
+  <rect x="640" y="48" width="300" height="36" rx="10" fill="#1F4E79"/>
+  <rect x="640" y="72" width="300" height="12" fill="#1F4E79"/>
+  <text x="790" y="72" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">AML / KYC NETWORK ANALYSIS</text>
+
+  <text x="790" y="105" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="600">Transaction Patterns Across Linked Accounts</text>
+
+  <!-- Layering pattern -->
+  <rect x="658" y="118" width="264" height="110" rx="6" fill="#1F4E79" fill-opacity="0.03"/>
+  <text x="790" y="136" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">Layering Detection</text>
+
+  <!-- Account chain -->
+  <circle cx="700" cy="170" r="16" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1.2"/>
+  <text x="700" y="173" text-anchor="middle" fill="#2A7F62" font-size="7">Acct A</text>
+
+  <circle cx="770" cy="160" r="16" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1.2"/>
+  <text x="770" y="163" text-anchor="middle" fill="#2A7F62" font-size="7">Acct B</text>
+
+  <circle cx="840" cy="170" r="16" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1.2"/>
+  <text x="840" y="173" text-anchor="middle" fill="#2A7F62" font-size="7">Acct C</text>
+
+  <circle cx="900" cy="160" r="16" fill="#c0392b" fill-opacity="0.12" stroke="#c0392b" stroke-width="1.2"/>
+  <text x="900" y="163" text-anchor="middle" fill="#c0392b" font-size="7">Acct D</text>
+
+  <!-- Transfer arrows -->
+  <line x1="716" y1="167" x2="752" y2="163" stroke="#e67e22" stroke-width="1.5" marker-end="url(#a5)"/>
+  <text x="734" y="158" fill="#e67e22" font-size="6.5">$50K</text>
+  <line x1="786" y1="163" x2="822" y2="167" stroke="#e67e22" stroke-width="1.5" marker-end="url(#a5)"/>
+  <text x="804" y="158" fill="#e67e22" font-size="6.5">$49K</text>
+  <line x1="856" y1="167" x2="882" y2="163" stroke="#e67e22" stroke-width="1.5" marker-end="url(#a5)"/>
+  <text x="869" y="158" fill="#e67e22" font-size="6.5">$48K</text>
+
+  <text x="790" y="205" text-anchor="middle" fill="#2C3E50" font-size="7.5">Rapid fund movement across accounts</text>
+  <text x="790" y="217" text-anchor="middle" fill="#c0392b" font-size="7.5" font-weight="500">⚠ Graph reveals shared address between A, B, C</text>
+
+  <!-- Structuring pattern -->
+  <rect x="658" y="236" width="264" height="100" rx="6" fill="#1F4E79" fill-opacity="0.03"/>
+  <text x="790" y="254" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">Structuring Detection</text>
+
+  <!-- Single account, multiple small txns -->
+  <circle cx="720" cy="295" r="16" fill="#2A7F62" fill-opacity="0.12" stroke="#2A7F62" stroke-width="1.2"/>
+  <text x="720" y="298" text-anchor="middle" fill="#2A7F62" font-size="7">Acct</text>
+
+  <rect x="770" y="270" width="55" height="14" rx="3" fill="#e67e22" fill-opacity="0.12" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="798" y="280" text-anchor="middle" fill="#e67e22" font-size="6.5">$9,800</text>
+  <rect x="770" y="288" width="55" height="14" rx="3" fill="#e67e22" fill-opacity="0.12" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="798" y="298" text-anchor="middle" fill="#e67e22" font-size="6.5">$9,500</text>
+  <rect x="770" y="306" width="55" height="14" rx="3" fill="#e67e22" fill-opacity="0.12" stroke="#e67e22" stroke-width="0.8"/>
+  <text x="798" y="316" text-anchor="middle" fill="#e67e22" font-size="6.5">$9,900</text>
+
+  <text x="860" y="290" fill="#c0392b" font-size="7.5" font-weight="500">Below</text>
+  <text x="860" y="302" fill="#c0392b" font-size="7.5" font-weight="500">$10K</text>
+  <text x="860" y="314" fill="#c0392b" font-size="7.5" font-weight="500">threshold</text>
+
+  <!-- KYC / CDD / EDD -->
+  <rect x="658" y="345" width="264" height="140" rx="6" fill="#1F4E79" fill-opacity="0.03"/>
+  <text x="790" y="365" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">KYC / CDD / EDD Support</text>
+
+  <text x="790" y="388" text-anchor="middle" fill="#2C3E50" font-size="8.5">Graph provides a single connected subgraph</text>
+  <text x="790" y="402" text-anchor="middle" fill="#2C3E50" font-size="8.5">for each customer under review:</text>
+
+  <rect x="673" y="414" width="240" height="62" rx="5" fill="#2A7F62" fill-opacity="0.05"/>
+  <text x="693" y="430" fill="#2C3E50" font-size="8">✓ All verified identifiers</text>
+  <text x="693" y="444" fill="#2C3E50" font-size="8">✓ All accounts &amp; transaction patterns</text>
+  <text x="693" y="458" fill="#2C3E50" font-size="8">✓ All relationships &amp; shared attributes</text>
+  <text x="693" y="472" fill="#2C3E50" font-size="8">✓ Risk flags &amp; confidence scores</text>
+
+  <!-- Marker defs for this SVG -->
+  <defs>
+    <marker id="a5" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#e67e22"/>
+    </marker>
+  </defs>
+</svg>

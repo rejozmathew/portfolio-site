@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" font-family="'Segoe UI', -apple-system, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bgP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9fafb"/>
+      <stop offset="100%" style="stop-color:#f0f4f8"/>
+    </linearGradient>
+    <filter id="shP" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shGreen" x="-4%" y="-4%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#2A7F62" flood-opacity="0.15"/>
+    </filter>
+    <marker id="aP" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#1F4E79"/>
+    </marker>
+    <marker id="aPt" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#2A7F62"/>
+    </marker>
+    <marker id="aPr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="480" fill="url(#bgP)" rx="8"/>
+  <text x="480" y="28" text-anchor="middle" fill="#1F4E79" font-size="15" font-weight="700">Privacy &amp; Regulatory Compliance Through the Identity Graph</text>
+
+  <!-- ===== LEFT: Traditional Architecture (Problem) ===== -->
+  <rect x="20" y="48" width="280" height="410" rx="10" fill="#fff" stroke="#c0392b" stroke-width="1.5" filter="url(#shP)"/>
+  <rect x="20" y="48" width="280" height="34" rx="10" fill="#c0392b" fill-opacity="0.85"/>
+  <rect x="20" y="70" width="280" height="12" fill="#c0392b" fill-opacity="0.85"/>
+  <text x="160" y="71" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">TRADITIONAL: SCATTERED PII</text>
+
+  <!-- Scattered systems -->
+  <rect x="38" y="95" width="100" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="88" y="110" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">CRM</text>
+  <text x="88" y="122" text-anchor="middle" fill="#8899aa" font-size="7">name, email, phone</text>
+
+  <rect x="158" y="95" width="125" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="220" y="110" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">Marketing Platform</text>
+  <text x="220" y="122" text-anchor="middle" fill="#8899aa" font-size="7">email, cookies, device</text>
+
+  <rect x="38" y="142" width="100" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="88" y="157" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">Data Warehouse</text>
+  <text x="88" y="169" text-anchor="middle" fill="#8899aa" font-size="7">SSN, name, address</text>
+
+  <rect x="158" y="142" width="125" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="220" y="157" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">3rd Party Vendors</text>
+  <text x="220" y="169" text-anchor="middle" fill="#8899aa" font-size="7">email, phone, ID</text>
+
+  <rect x="38" y="189" width="100" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="88" y="204" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">Flat Files</text>
+  <text x="88" y="216" text-anchor="middle" fill="#8899aa" font-size="7">legacy exports</text>
+
+  <rect x="158" y="189" width="125" height="36" rx="5" fill="#c0392b" fill-opacity="0.06" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="220" y="204" text-anchor="middle" fill="#2C3E50" font-size="8" font-weight="600">App Database</text>
+  <text x="220" y="216" text-anchor="middle" fill="#8899aa" font-size="7">SSN, name, acct</text>
+
+  <!-- DSAR pain -->
+  <rect x="38" y="240" width="245" height="90" rx="6" fill="#c0392b" fill-opacity="0.04" stroke="#c0392b" stroke-width="0.8"/>
+  <text x="160" y="260" text-anchor="middle" fill="#c0392b" font-size="9" font-weight="700">DSAR / Deletion Request</text>
+  <text x="160" y="278" text-anchor="middle" fill="#2C3E50" font-size="8">1. Manually identify all systems</text>
+  <text x="160" y="292" text-anchor="middle" fill="#2C3E50" font-size="8">2. Issue separate requests to each</text>
+  <text x="160" y="306" text-anchor="middle" fill="#2C3E50" font-size="8">3. Hope nothing was missed</text>
+  <text x="160" y="322" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="500">4. Document for audit ← painful</text>
+
+  <!-- Problems -->
+  <rect x="38" y="342" width="245" height="105" rx="6" fill="#c0392b" fill-opacity="0.06"/>
+  <text x="160" y="362" text-anchor="middle" fill="#c0392b" font-size="9" font-weight="600">⚠ Consequences</text>
+  <text x="160" y="382" text-anchor="middle" fill="#2C3E50" font-size="8">Slow: weeks per request</text>
+  <text x="160" y="398" text-anchor="middle" fill="#2C3E50" font-size="8">Incomplete: no single inventory</text>
+  <text x="160" y="414" text-anchor="middle" fill="#2C3E50" font-size="8">Unverifiable: audit gaps</text>
+  <text x="160" y="430" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="500">Regulatory exposure under</text>
+  <text x="160" y="442" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="500">GDPR / CCPA / State Laws</text>
+
+  <!-- ===== CENTER: Arrow of Transformation ===== -->
+  <line x1="305" y1="250" x2="335" y2="250" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#aPt)"/>
+
+  <!-- ===== RIGHT: Graph-Based Compliance Architecture ===== -->
+  <rect x="340" y="48" width="600" height="410" rx="10" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#shGreen)"/>
+  <rect x="340" y="48" width="600" height="34" rx="10" fill="#2A7F62"/>
+  <rect x="340" y="70" width="600" height="12" fill="#2A7F62"/>
+  <text x="640" y="71" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">IDENTITY GRAPH: PII ISOLATED AS DEDICATED NODES</text>
+
+  <!-- Customer node (center) -->
+  <circle cx="520" cy="200" r="32" fill="#fff" stroke="#1F4E79" stroke-width="2.5" filter="url(#shP)"/>
+  <circle cx="520" cy="192" r="8" fill="#1F4E79" fill-opacity="0.6"/>
+  <path d="M506,210 Q506,200 520,200 Q534,200 534,210" fill="#1F4E79" fill-opacity="0.6"/>
+  <text x="520" y="226" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">Customer</text>
+
+  <!-- PII Nodes (isolated, individually deletable) -->
+  <!-- Email -->
+  <circle cx="400" cy="130" r="22" fill="#2A7F62" fill-opacity="0.08" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="400" y="128" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">Email</text>
+  <text x="400" y="140" text-anchor="middle" fill="#8899aa" font-size="6.5">j***@mail</text>
+  <line x1="418" y1="145" x2="496" y2="182" stroke="#1F4E79" stroke-width="1.2"/>
+  <!-- Consent badge -->
+  <circle cx="383" cy="114" r="8" fill="#2A7F62" fill-opacity="0.15" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="383" y="117" text-anchor="middle" fill="#2A7F62" font-size="7">✓</text>
+
+  <!-- Phone -->
+  <circle cx="400" cy="270" r="22" fill="#2A7F62" fill-opacity="0.08" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="400" y="268" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">Phone</text>
+  <text x="400" y="280" text-anchor="middle" fill="#8899aa" font-size="6.5">***-4821</text>
+  <line x1="418" y1="256" x2="496" y2="218" stroke="#1F4E79" stroke-width="1.2"/>
+  <circle cx="383" cy="254" r="8" fill="#2A7F62" fill-opacity="0.15" stroke="#2A7F62" stroke-width="0.8"/>
+  <text x="383" y="257" text-anchor="middle" fill="#2A7F62" font-size="7">✓</text>
+
+  <!-- SSN -->
+  <circle cx="520" cy="110" r="22" fill="#c0392b" fill-opacity="0.08" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="520" y="108" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="600">SSN</text>
+  <text x="520" y="120" text-anchor="middle" fill="#c0392b" font-size="6.5" font-style="italic">encrypted</text>
+  <line x1="520" y1="132" x2="520" y2="168" stroke="#1F4E79" stroke-width="1.2"/>
+
+  <!-- Address -->
+  <circle cx="640" cy="130" r="22" fill="#2A7F62" fill-opacity="0.08" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="640" y="128" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">Address</text>
+  <text x="640" y="140" text-anchor="middle" fill="#8899aa" font-size="6.5">123 Oak St</text>
+  <line x1="622" y1="145" x2="544" y2="182" stroke="#1F4E79" stroke-width="1.2"/>
+
+  <!-- Name -->
+  <circle cx="640" cy="270" r="22" fill="#c0392b" fill-opacity="0.08" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="640" y="268" text-anchor="middle" fill="#c0392b" font-size="8" font-weight="600">Name</text>
+  <text x="640" y="280" text-anchor="middle" fill="#c0392b" font-size="6.5" font-style="italic">PII isolated</text>
+  <line x1="622" y1="256" x2="544" y2="218" stroke="#1F4E79" stroke-width="1.2"/>
+
+  <!-- Edge labels showing consent + classification -->
+  <text x="445" y="158" fill="#1F4E79" font-size="6.5" transform="rotate(-28, 445, 158)">consent: marketing ✓</text>
+  <text x="570" y="158" fill="#1F4E79" font-size="6.5" transform="rotate(28, 570, 158)">retention: 7yr</text>
+
+  <!-- ===== DSAR Workflow (right side) ===== -->
+  <rect x="710" y="95" width="215" height="220" rx="8" fill="#1F4E79" fill-opacity="0.03" stroke="#1F4E79" stroke-width="1"/>
+  <text x="817" y="115" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700">DSAR Fulfillment</text>
+
+  <!-- Step 1 -->
+  <circle cx="735" cy="145" r="10" fill="#1F4E79" fill-opacity="0.1" stroke="#1F4E79" stroke-width="1"/>
+  <text x="735" y="149" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">1</text>
+  <text x="755" y="148" fill="#2C3E50" font-size="8" font-weight="500">Start at Customer node</text>
+
+  <!-- Step 2 -->
+  <circle cx="735" cy="178" r="10" fill="#1F4E79" fill-opacity="0.1" stroke="#1F4E79" stroke-width="1"/>
+  <text x="735" y="182" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">2</text>
+  <text x="755" y="175" fill="#2C3E50" font-size="8" font-weight="500">Traverse all PII edges</text>
+  <text x="755" y="187" fill="#8899aa" font-size="7">→ complete data inventory</text>
+
+  <!-- Step 3 -->
+  <circle cx="735" cy="215" r="10" fill="#1F4E79" fill-opacity="0.1" stroke="#1F4E79" stroke-width="1"/>
+  <text x="735" y="219" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">3</text>
+  <text x="755" y="212" fill="#2C3E50" font-size="8" font-weight="500">Access → report all PII</text>
+  <text x="755" y="224" fill="#2C3E50" font-size="8" font-weight="500">Delete → remove target nodes</text>
+
+  <!-- Step 4 -->
+  <circle cx="735" cy="252" r="10" fill="#2A7F62" fill-opacity="0.1" stroke="#2A7F62" stroke-width="1"/>
+  <text x="735" y="256" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">4</text>
+  <text x="755" y="249" fill="#2C3E50" font-size="8" font-weight="500">Audit trail built into</text>
+  <text x="755" y="261" fill="#2C3E50" font-size="8" font-weight="500">graph edge metadata</text>
+
+  <!-- Timing comparison -->
+  <rect x="730" y="275" width="180" height="30" rx="4" fill="#2A7F62" fill-opacity="0.08"/>
+  <text x="820" y="294" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">Minutes per request vs. weeks</text>
+
+  <!-- ===== Bottom: Three compliance capabilities ===== -->
+  <rect x="365" y="330" width="170" height="115" rx="8" fill="#2A7F62" fill-opacity="0.04" stroke="#2A7F62" stroke-width="1"/>
+  <text x="450" y="352" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="700">Consent Management</text>
+  <text x="450" y="372" text-anchor="middle" fill="#2C3E50" font-size="8">Consent stored as edge</text>
+  <text x="450" y="386" text-anchor="middle" fill="#2C3E50" font-size="8">properties between PII</text>
+  <text x="450" y="400" text-anchor="middle" fill="#2C3E50" font-size="8">and Customer nodes.</text>
+  <text x="450" y="420" text-anchor="middle" fill="#2C3E50" font-size="8">Withdrawal propagates</text>
+  <text x="450" y="434" text-anchor="middle" fill="#2C3E50" font-size="8">to all downstream uses.</text>
+
+  <rect x="555" y="330" width="170" height="115" rx="8" fill="#1F4E79" fill-opacity="0.04" stroke="#1F4E79" stroke-width="1"/>
+  <text x="640" y="352" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">Data Minimization</text>
+  <text x="640" y="372" text-anchor="middle" fill="#2C3E50" font-size="8">Graph makes visible which</text>
+  <text x="640" y="386" text-anchor="middle" fill="#2C3E50" font-size="8">PII nodes are required</text>
+  <text x="640" y="400" text-anchor="middle" fill="#2C3E50" font-size="8">by active use cases.</text>
+  <text x="640" y="420" text-anchor="middle" fill="#2C3E50" font-size="8">Orphaned PII flagged</text>
+  <text x="640" y="434" text-anchor="middle" fill="#2C3E50" font-size="8">for automated cleanup.</text>
+
+  <rect x="745" y="330" width="180" height="115" rx="8" fill="#1F4E79" fill-opacity="0.04" stroke="#1F4E79" stroke-width="1"/>
+  <text x="835" y="352" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="700">Audit &amp; Retention</text>
+  <text x="835" y="372" text-anchor="middle" fill="#2C3E50" font-size="8">Edge metadata records</text>
+  <text x="835" y="386" text-anchor="middle" fill="#2C3E50" font-size="8">when linked, confidence,</text>
+  <text x="835" y="400" text-anchor="middle" fill="#2C3E50" font-size="8">last accessed, retention</text>
+  <text x="835" y="414" text-anchor="middle" fill="#2C3E50" font-size="8">policy. Automated TTL</text>
+  <text x="835" y="428" text-anchor="middle" fill="#2C3E50" font-size="8">on expired data.</text>
+</svg>
