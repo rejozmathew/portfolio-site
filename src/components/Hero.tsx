@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -82,12 +83,12 @@ const Hero: React.FC = () => {
                 with business strategy, regulatory priorities, and customer outcomes.
               </p>
               <div className="flex justify-center gap-4 md:justify-start">
-                <a
-                  href="#contact"
+                <Link
+                  href="/contact"
                   className="rounded bg-gray-700 px-4 py-2 font-bold text-white shadow transition duration-300 hover:bg-gray-800"
                 >
                   Contact Me
-                </a>
+                </Link>
                 <a
                   href="/Resume - Rejo Z Mathew.pdf"
                   target="_blank"

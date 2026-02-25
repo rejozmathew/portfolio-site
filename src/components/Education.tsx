@@ -93,7 +93,7 @@ const Education: React.FC = () => {
         {/* CTA Button */}
         <div className="mt-16 text-center">
           <Link
-            href="#certifications"
+            href="/certifications"
             className="btn-primary inline-block rounded px-6 py-3 text-lg font-semibold text-white shadow transition duration-300"
           >
             View My Certifications

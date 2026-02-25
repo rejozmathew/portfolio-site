@@ -1,6 +1,6 @@
 "use client"; // Mark this as a Client Component
 
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import type { PortfolioProject } from "@/lib/getPortfolioData";
@@ -36,9 +36,28 @@ const tallSectionViewport = { once: true, amount: 0.05 } as const;
 
 interface ClientSectionsProps {
   portfolioProjects: PortfolioProject[];
+  initialSectionId?: string;
 }
 
-const ClientSections: React.FC<ClientSectionsProps> = ({ portfolioProjects }) => {
+const ClientSections: React.FC<ClientSectionsProps> = ({
+  portfolioProjects,
+  initialSectionId,
+}) => {
+  useEffect(() => {
+    if (!initialSectionId) return;
+
+    const timer = window.setTimeout(() => {
+      const section = document.getElementById(initialSectionId);
+      if (!section) return;
+
+      const headerOffset = 80;
+      const top = section.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [initialSectionId]);
+
   return (
     <>
       {/* Render Hero directly, animation will be handled inside Hero */}

@@ -102,7 +102,7 @@ const About: React.FC = () => {
         {/* CTA Button */}
         <div className="mt-12 text-center">
           <Link
-            href="#expertise"
+            href="/expertise"
             className="btn-primary inline-block rounded px-6 py-3 text-lg font-semibold text-white shadow transition duration-300"
           >
             See My Expertise

@@ -94,10 +94,17 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
           ))}
         </div>
 
+        {/* End-of-portfolio blog link */}
+        <div className="mt-10 text-center">
+          <Link href="/blog" className="text-primary text-sm font-medium hover:underline">
+            Read all articles
+          </Link>
+        </div>
+
         {/* CTA Button */}
-        <div className="mt-16 text-center">
+        <div className="mt-8 text-center">
           <Link
-            href="#education"
+            href="/education"
             className="btn-primary inline-block rounded px-6 py-3 text-lg font-semibold text-white shadow transition duration-300"
           >
             See My Education
