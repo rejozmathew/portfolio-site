@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400">
+  <defs>
+    <marker id="a1" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="a2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="a3" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#D35400"/>
+    </marker>
+    <filter id="s2" x="-2%" y="-4%" width="104%" height="112%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="860" height="400" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="430" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1F4E79">Closed-Loop Prepayment Management System</text>
+  <text x="430" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#888">From detection to action — operationalizing the prepayment model</text>
+
+  <!-- Central model block -->
+  <rect x="310" y="70" width="240" height="70" rx="8" fill="#1F4E79" filter="url(#s2)"/>
+  <text x="430" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#fff">Prepayment Risk Model</text>
+  <text x="430" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#B0C4DE">Segmentation tree → Risk scores per account</text>
+
+  <!-- Left output: Acquisition Suppression -->
+  <line x1="350" y1="140" x2="175" y2="185" stroke="#D35400" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="50" y="190" width="250" height="80" rx="6" fill="#fff" stroke="#D35400" stroke-width="2" filter="url(#s2)"/>
+  <text x="175" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#D35400">Acquisition Suppression</text>
+  <line x1="70" y1="222" x2="280" y2="222" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="175" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">Remove high-risk nodes from</text>
+  <text x="175" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">direct mail solicitation campaigns</text>
+
+  <!-- Right output: Retention Intervention -->
+  <line x1="510" y1="140" x2="685" y2="185" stroke="#2A7F62" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="560" y="190" width="250" height="80" rx="6" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#s2)"/>
+  <text x="685" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2A7F62">Retention Response</text>
+  <line x1="580" y1="222" x2="790" y2="222" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="685" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">Proactive outreach to existing</text>
+  <text x="685" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">borrowers showing payoff signals</text>
+
+  <!-- Sub-items: Acquisition -->
+  <rect x="60" y="290" width="110" height="36" rx="4" fill="#FFF5F0" stroke="#D35400" stroke-width="1"/>
+  <text x="115" y="312" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#D35400">Filter Mailings</text>
+
+  <rect x="180" y="290" width="110" height="36" rx="4" fill="#FFF5F0" stroke="#D35400" stroke-width="1"/>
+  <text x="235" y="308" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#D35400">Reduce Cost</text>
+  <text x="235" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#D35400">per Funded Loan</text>
+
+  <!-- Sub-items: Retention -->
+  <rect x="570" y="290" width="100" height="36" rx="4" fill="#F0FAF5" stroke="#2A7F62" stroke-width="1"/>
+  <text x="620" y="308" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#2A7F62">Rate</text>
+  <text x="620" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2A7F62">Modification</text>
+
+  <rect x="678" y="290" width="100" height="36" rx="4" fill="#F0FAF5" stroke="#2A7F62" stroke-width="1"/>
+  <text x="728" y="308" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#2A7F62">Refi into</text>
+  <text x="728" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#2A7F62">New Product</text>
+
+  <!-- Feedback loop -->
+  <path d="M175,270 L175,355 Q175,365 185,365 L675,365 Q685,365 685,355 L685,270" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a1)"/>
+  <rect x="350" y="355" width="160" height="22" rx="4" fill="#f9fafb"/>
+  <text x="430" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#888">Feedback Loop</text>
+
+  <!-- Data feeds into model -->
+  <rect x="50" y="70" width="180" height="52" rx="6" fill="#2C3E50" filter="url(#s2)"/>
+  <text x="140" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#fff">Credit Bureau + Card Data</text>
+  <text x="140" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Refreshed periodically</text>
+  <line x1="230" y1="96" x2="306" y2="100" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <rect x="630" y="70" width="180" height="52" rx="6" fill="#2C3E50" filter="url(#s2)"/>
+  <text x="720" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#fff">Payoff Quote Triggers</text>
+  <text x="720" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Real-time event detection</text>
+  <line x1="630" y1="96" x2="554" y2="100" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- Footer -->
+  <text x="430" y="394" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#aaa">Performance monitoring and model recalibration close the loop — vintage-level tracking validates suppression effectiveness</text>
+</svg>

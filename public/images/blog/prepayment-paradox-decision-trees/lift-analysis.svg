@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 430">
+  <defs>
+    <linearGradient id="liftArea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A7F62" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#2A7F62" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="780" height="430" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="390" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1F4E79">Cumulative Lift Analysis</text>
+  <text x="390" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#888">How the tree concentrates prepayment risk into identifiable segments</text>
+
+  <!-- Chart area -->
+  <line x1="100" y1="70" x2="100" y2="360" stroke="#ddd" stroke-width="1"/>
+  <line x1="100" y1="360" x2="720" y2="360" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Y axis -->
+  <text x="92" y="363" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">0%</text>
+  <text x="92" y="305" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">20%</text>
+  <text x="92" y="247" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">40%</text>
+  <text x="92" y="189" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">60%</text>
+  <text x="92" y="131" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">80%</text>
+  <text x="92" y="73" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#888">100%</text>
+
+  <text x="30" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#2C3E50" transform="rotate(-90, 30, 215)">Cumulative % of Prepayments Captured</text>
+
+  <!-- Grid -->
+  <line x1="100" y1="302" x2="720" y2="302" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="100" y1="244" x2="720" y2="244" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="100" y1="186" x2="720" y2="186" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="100" y1="128" x2="720" y2="128" stroke="#f0f0f0" stroke-width="1"/>
+  <line x1="100" y1="70" x2="720" y2="70" stroke="#f0f0f0" stroke-width="1"/>
+
+  <!-- X axis -->
+  <text x="100" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">0%</text>
+  <text x="224" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">20%</text>
+  <text x="348" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">40%</text>
+  <text x="472" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">60%</text>
+  <text x="596" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">80%</text>
+  <text x="720" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888">100%</text>
+  <text x="410" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#2C3E50">Cumulative % of Accounts (ranked by risk)</text>
+
+  <!-- Random line (diagonal) -->
+  <line x1="100" y1="360" x2="720" y2="70" stroke="#ccc" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="430" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#bbb" transform="rotate(-25, 430, 198)">Random selection</text>
+
+  <!-- Model lift curve (area fill) -->
+  <path d="M100,360 L131,320 L162,288 L193,263 L224,242 L286,210 L348,186 L410,166 L472,145 L534,125 L596,102 L658,85 L720,70 L720,360 Z" fill="url(#liftArea)"/>
+
+  <!-- Model lift curve -->
+  <polyline points="100,360 131,320 162,288 193,263 224,242 286,210 348,186 410,166 472,145 534,125 596,102 658,85 720,70" fill="none" stroke="#2A7F62" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Key data points -->
+  <circle cx="131" cy="320" r="5" fill="#2A7F62"/>
+  <circle cx="162" cy="288" r="4" fill="#2A7F62"/>
+  <circle cx="224" cy="242" r="4" fill="#2A7F62"/>
+  <circle cx="348" cy="186" r="4" fill="#2A7F62"/>
+  <circle cx="472" cy="145" r="4" fill="#2A7F62"/>
+  <circle cx="720" cy="70" r="4" fill="#2A7F62"/>
+
+  <!-- Annotation: Node 2 (top 5%) -->
+  <line x1="131" y1="320" x2="131" y2="360" stroke="#D35400" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="135" y="303" width="140" height="38" rx="4" fill="#fff" stroke="#D35400" stroke-width="1"/>
+  <text x="205" y="318" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#D35400">Top 5% of accounts</text>
+  <text x="205" y="334" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">capture ~14% of prepays</text>
+
+  <!-- Annotation: Top 10% -->
+  <line x1="162" y1="288" x2="162" y2="360" stroke="#1F4E79" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="166" y="258" width="140" height="38" rx="4" fill="#fff" stroke="#1F4E79" stroke-width="1"/>
+  <text x="236" y="273" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#1F4E79">Top 10% of accounts</text>
+  <text x="236" y="289" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">capture ~23% of prepays</text>
+
+  <!-- Lift value callout -->
+  <rect x="520" y="340" width="192" height="48" rx="5" fill="#fff" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="616" y="358" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#2A7F62">Cumulative Lift: 2.8×</text>
+  <text x="616" y="376" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">at the highest-risk node</text>
+
+  <!-- Footer -->
+  <text x="390" y="422" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#aaa">Illustrative lift curve — demonstrates the concentration power of tree-based segmentation</text>
+</svg>

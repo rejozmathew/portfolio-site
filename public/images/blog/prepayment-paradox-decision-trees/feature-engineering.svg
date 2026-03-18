@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <filter id="sh" x="-2%" y="-2%" width="104%" height="110%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="820" height="440" fill="#f9fafb" rx="8"/>
+
+  <!-- Title -->
+  <text x="410" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#1F4E79">Feature Engineering: Multi-Source Data Assembly</text>
+  <text x="410" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#888">Raw attributes + temporal trending features from 4 data domains</text>
+
+  <!-- Left column: 4 source boxes -->
+  <!-- Source 1: Credit Bureau -->
+  <rect x="30" y="80" width="200" height="72" rx="6" fill="#1F4E79" filter="url(#sh)"/>
+  <text x="130" y="104" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">Credit Bureau</text>
+  <text x="130" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Trade counts · Utilization ratios</text>
+  <text x="130" y="133" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Inquiry history · Age of trades</text>
+  <text x="130" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">~475 attributes</text>
+
+  <!-- Source 2: Card Performance -->
+  <rect x="30" y="168" width="200" height="72" rx="6" fill="#2C3E50" filter="url(#sh)"/>
+  <text x="130" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">Card Performance</text>
+  <text x="130" y="208" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Payment-to-balance ratios</text>
+  <text x="130" y="221" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Balance trends · Payment amounts</text>
+  <text x="130" y="234" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Monthly snapshots (h1–h9)</text>
+
+  <!-- Source 3: Mortgage Trade Line -->
+  <rect x="30" y="256" width="200" height="72" rx="6" fill="#1F4E79" filter="url(#sh)"/>
+  <text x="130" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">Mortgage / HE Trade Line</text>
+  <text x="130" y="296" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Balance amounts · Terms</text>
+  <text x="130" y="309" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Payment history · Lien position</text>
+  <text x="130" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Property value · Equity estimates</text>
+
+  <!-- Source 4: Marketing Attributes -->
+  <rect x="30" y="344" width="200" height="72" rx="6" fill="#2C3E50" filter="url(#sh)"/>
+  <text x="130" y="368" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">Marketing Attributes</text>
+  <text x="130" y="384" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">CLTV · Estimated equity</text>
+  <text x="130" y="397" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Unsecured debt · Loan-with-balance</text>
+  <text x="130" y="410" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#B0C4DE">Solicitation-time snapshots</text>
+
+  <!-- Arrows from sources to Feature Engineering -->
+  <line x1="230" y1="116" x2="310" y2="210" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="230" y1="204" x2="310" y2="216" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="230" y1="292" x2="310" y2="224" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="230" y1="380" x2="310" y2="232" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Central Feature Engineering block -->
+  <rect x="315" y="170" width="190" height="100" rx="8" fill="#fff" stroke="#2A7F62" stroke-width="2" filter="url(#sh)"/>
+  <text x="410" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#2A7F62">Feature Engineering</text>
+  <line x1="340" y1="210" x2="480" y2="210" stroke="#eee" stroke-width="1"/>
+  <text x="410" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">Raw snapshots (h1)</text>
+  <text x="410" y="244" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">3M / 6M / 12M averages</text>
+  <text x="410" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2C3E50">Derived ratios &amp; trends</text>
+
+  <!-- Arrow to model -->
+  <line x1="505" y1="220" x2="570" y2="220" stroke="#2A7F62" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Model block -->
+  <rect x="575" y="160" width="210" height="120" rx="8" fill="#2A7F62" filter="url(#sh)"/>
+  <text x="680" y="190" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fff">Segmentation Tree</text>
+  <line x1="600" y1="200" x2="760" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="680" y="220" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#E8F5E9">~1,900 candidate features</text>
+  <text x="680" y="236" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#E8F5E9">→ 3-4 splitting variables</text>
+  <text x="680" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#E8F5E9" font-weight="600">Output: Risk nodes with</text>
+  <text x="680" y="272" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#E8F5E9" font-weight="600">prepayment propensity scores</text>
+
+  <!-- Bottom: Temporal feature callout -->
+  <rect x="300" y="300" width="220" height="55" rx="5" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  <text x="410" y="318" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#1F4E79">Temporal Windowing Pattern</text>
+  <text x="410" y="334" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">ATTR_h1 (current) → ATTR_AVE3M → ATTR_AVE6M</text>
+  <text x="410" y="348" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#666">→ ATTR_AVE12M (trailing 12-month average)</text>
+
+  <!-- Footer -->
+  <text x="410" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#aaa">Feature counts are illustrative — actual implementations will vary by data availability</text>
+</svg>
