@@ -20,7 +20,7 @@ These weren't just simple SELECT statements. We're talking about queries that we
 
 When we embarked on a modernization initiative — reorganizing data by business domains to reduce redundancy, enforce data quality, and apply proper governance — we realized we needed to rewrite **all** of these consumption patterns. Every query. Every script. Every scheduled job.
 
-The estimate? Roughly **3,000 SQL queries** across the enterprise.
+The estimate? Roughly **1,500 SQL queries** across the enterprise.
 
 ### Why Traditional Approaches Don't Scale
 
@@ -28,10 +28,10 @@ Our first instinct was the standard playbook: bring in consultants. We engaged s
 
 The math was straightforward and sobering:
 
-- **~1 week per query** per developer (for complex queries)
-- **$1,500–$2,000/week** per developer
-- **3,000 queries** across the enterprise
-- **Estimated cost: $3M+ over multiple years**
+- **2 to 3 days per query** per developer (>1 week for complex queries)
+- **$1,500 – $2,000/week** per developer
+- **~1,500 queries** across the enterprise
+- **Estimated cost: ~$1.5M+ over multiple years**
 
 And that's before accounting for the knowledge transfer, ramp-up time, and inevitable rework cycles. We needed a fundamentally different approach.
 
