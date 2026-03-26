@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/><stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrT" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+    <marker id="arrFail" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#C0392B"/>
+    </marker>
+    <marker id="arrGray" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#999"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="720" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="960" height="52" fill="url(#hg)" rx="12"/>
+  <rect x="0" y="26" width="960" height="26" fill="url(#hg)"/>
+  <text x="480" y="34" text-anchor="middle" fill="#fff" font-size="17" font-weight="700" letter-spacing="0.5">The Enterprise AI/ML Pipeline — End-to-End Flow</text>
+
+  <!-- ===== MAIN PIPELINE ===== -->
+
+  <!-- STEP 1: Data Foundation -->
+  <rect x="180" y="72" width="420" height="52" rx="8" fill="#2C3E50" filter="url(#ds)"/>
+  <text x="390" y="94" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Data Foundation</text>
+  <text x="390" y="112" text-anchor="middle" fill="#AAB7C4" font-size="10">Snowflake  ·  Amazon S3  ·  Neo4j Identity Graph  ·  Kafka</text>
+
+  <line x1="390" y1="124" x2="390" y2="144" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- STEP 2: Feature Store -->
+  <rect x="180" y="150" width="420" height="52" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="390" y="172" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Feature Store (Feast)</text>
+  <text x="390" y="190" text-anchor="middle" fill="#B0C4DE" font-size="10">Offline store (training + batch)  ·  Online store (real-time)</text>
+
+  <line x1="390" y1="202" x2="390" y2="222" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- STEP 3: DS Workbench -->
+  <rect x="180" y="228" width="420" height="62" rx="8" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="390" y="253" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">DS Workbench (AWS / Kubernetes)</text>
+  <text x="390" y="271" text-anchor="middle" fill="#B0DFCF" font-size="10">Experimentation  ·  Training  ·  MLflow Tracking  ·  800+ Users</text>
+  <text x="390" y="285" text-anchor="middle" fill="#B0DFCF" font-size="9">Output: Python package ready for promotion</text>
+
+  <line x1="390" y1="290" x2="390" y2="310" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- STEP 4: Code Promotion -->
+  <rect x="120" y="316" width="540" height="72" rx="8" fill="#fff" stroke="#1F4E79" stroke-width="2" filter="url(#ds)"/>
+  <text x="390" y="338" text-anchor="middle" fill="#1F4E79" font-size="13" font-weight="700">Code Promotion — Staging Validation (Jenkins CI/CD)</text>
+  <rect x="138" y="348" width="96" height="28" rx="5" fill="#1F4E79"/>
+  <text x="186" y="366" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Unit Tests</text>
+  <rect x="242" y="348" width="96" height="28" rx="5" fill="#1F4E79"/>
+  <text x="290" y="366" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Performance</text>
+  <rect x="346" y="348" width="96" height="28" rx="5" fill="#8B6914"/>
+  <text x="394" y="366" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Regulatory / RA</text>
+  <rect x="450" y="348" width="96" height="28" rx="5" fill="#1F4E79"/>
+  <text x="498" y="366" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Dependencies</text>
+  <rect x="554" y="348" width="96" height="28" rx="5" fill="#1F4E79"/>
+  <text x="602" y="366" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Risk Tier Gate</text>
+
+  <!-- Reject path -->
+  <path d="M 120 355 L 90 355 L 90 260 L 174 260" stroke="#C0392B" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#arrFail)"/>
+  <text x="65" y="310" fill="#C0392B" font-size="9" font-weight="600" text-anchor="middle">FAIL</text>
+
+  <line x1="390" y1="388" x2="390" y2="408" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- STEP 5: Model Registry -->
+  <rect x="270" y="414" width="240" height="40" rx="8" fill="#2C3E50" filter="url(#ds)"/>
+  <text x="390" y="438" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">MLflow Model Registry</text>
+
+  <!-- SPLIT -->
+  <line x1="310" y1="454" x2="200" y2="485" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="470" y1="454" x2="560" y2="485" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrT)"/>
+
+  <!-- STEP 6a: Batch -->
+  <rect x="60" y="490" width="290" height="60" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="205" y="514" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Batch Production (Airflow)</text>
+  <text x="205" y="532" text-anchor="middle" fill="#B0C4DE" font-size="9">Feast (offline) → Model → Output →</text>
+  <text x="205" y="544" text-anchor="middle" fill="#B0C4DE" font-size="9">Campaign · CDP · CRM · Marketing ODS</text>
+
+  <!-- STEP 6b: Real-Time -->
+  <rect x="430" y="490" width="290" height="60" rx="8" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="575" y="514" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Real-Time Production (API)</text>
+  <text x="575" y="532" text-anchor="middle" fill="#B0DFCF" font-size="9">Event → Feast (online) → Model → Decision →</text>
+  <text x="575" y="544" text-anchor="middle" fill="#B0DFCF" font-size="9">Fraud · CRM · CDP · Origination · NBA</text>
+
+  <!-- GenAI branch -->
+  <line x1="390" y1="454" x2="390" y2="568" stroke="#2A7F62" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrT)"/>
+  <rect x="280" y="573" width="220" height="48" rx="8" fill="none" stroke="#2A7F62" stroke-width="2" stroke-dasharray="6,4"/>
+  <rect x="280" y="573" width="220" height="48" rx="8" fill="#2A7F62" opacity="0.06"/>
+  <text x="390" y="594" text-anchor="middle" fill="#2A7F62" font-size="12" font-weight="700">GenAI (AWS Bedrock)</text>
+  <text x="390" y="610" text-anchor="middle" fill="#2A7F62" font-size="9" font-style="italic">VPC-isolated · Early-stage foundation</text>
+
+  <!-- OBSERVABILITY -->
+  <line x1="205" y1="550" x2="205" y2="640" stroke="#2C3E50" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="575" y1="550" x2="575" y2="640" stroke="#2C3E50" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="390" y1="621" x2="390" y2="640" stroke="#2C3E50" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <rect x="60" y="644" width="660" height="48" rx="8" fill="#2C3E50" filter="url(#ds)" opacity="0.93"/>
+  <text x="390" y="666" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Observability — Three Signals Across Every Component</text>
+  <text x="390" y="683" text-anchor="middle" fill="#AAB7C4" font-size="10">Health · Quality · Operational  →  Alerting  →  ServiceNow  →  Retrain / Investigate / Retire</text>
+
+  <!-- Feedback loop -->
+  <path d="M 60 668 L 36 668 L 36 260 L 174 260" stroke="#999" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#arrGray)"/>
+  <text x="24" y="475" fill="#999" font-size="9" font-weight="600" writing-mode="tb">Feedback Loop</text>
+
+  <!-- ===== GOVERNANCE ZONES ===== -->
+
+  <!-- Zone 1: Data Governance -->
+  <rect x="740" y="68" width="200" height="138" rx="8" fill="#8B6914" opacity="0.07" stroke="#8B6914" stroke-width="1.5"/>
+  <text x="840" y="90" text-anchor="middle" fill="#6B5311" font-size="11" font-weight="700">Data Governance</text>
+  <line x1="755" y1="98" x2="925" y2="98" stroke="#8B6914" stroke-width="0.5" opacity="0.3"/>
+  <text x="840" y="116" text-anchor="middle" fill="#5A4510" font-size="9">PII Tokenization (On-Prem)</text>
+  <text x="840" y="133" text-anchor="middle" fill="#5A4510" font-size="9">Data Quality &amp; Completeness</text>
+  <text x="840" y="150" text-anchor="middle" fill="#5A4510" font-size="9">Lineage &amp; Provenance</text>
+  <text x="840" y="167" text-anchor="middle" fill="#5A4510" font-size="9">Feature Freshness SLAs</text>
+  <text x="840" y="184" text-anchor="middle" fill="#5A4510" font-size="9">Source Approval &amp; Representativeness</text>
+  <path d="M 606 98 L 625 98 L 625 175 L 606 175" stroke="#8B6914" stroke-width="1" fill="none" opacity="0.3"/>
+  <line x1="625" y1="137" x2="738" y2="137" stroke="#8B6914" stroke-width="1" opacity="0.3"/>
+
+  <!-- Zone 2: Model Governance -->
+  <rect x="740" y="218" width="200" height="228" rx="8" fill="#8B6914" opacity="0.07" stroke="#8B6914" stroke-width="1.5"/>
+  <text x="840" y="240" text-anchor="middle" fill="#6B5311" font-size="11" font-weight="700">Model Governance</text>
+  <line x1="755" y1="248" x2="925" y2="248" stroke="#8B6914" stroke-width="0.5" opacity="0.3"/>
+  <text x="840" y="268" text-anchor="middle" fill="#6B5311" font-size="9" font-weight="600">Pre-Production</text>
+  <text x="840" y="285" text-anchor="middle" fill="#5A4510" font-size="9">Performance &amp; Validation</text>
+  <text x="840" y="302" text-anchor="middle" fill="#5A4510" font-size="9">Responsible AI Checks (use-case aware)</text>
+  <text x="840" y="319" text-anchor="middle" fill="#5A4510" font-size="9">Explainability (SHAP / LIME)</text>
+  <text x="840" y="336" text-anchor="middle" fill="#5A4510" font-size="9">Model Cards &amp; Documentation</text>
+  <text x="840" y="353" text-anchor="middle" fill="#5A4510" font-size="9">Factor-Based Risk Tiering</text>
+  <text x="840" y="370" text-anchor="middle" fill="#5A4510" font-size="9">Scalable MRM Challenge</text>
+  <line x1="755" y1="380" x2="925" y2="380" stroke="#8B6914" stroke-width="0.5" opacity="0.3"/>
+  <text x="840" y="398" text-anchor="middle" fill="#6B5311" font-size="9" font-weight="600">Post-Production</text>
+  <text x="840" y="415" text-anchor="middle" fill="#5A4510" font-size="9">Metrics / Thresholds / Statusing</text>
+  <text x="840" y="432" text-anchor="middle" fill="#5A4510" font-size="9">Revalidation &amp; Compensating Controls</text>
+  <path d="M 666 340 L 685 340 L 685 430 L 666 430" stroke="#8B6914" stroke-width="1" fill="none" opacity="0.3"/>
+  <line x1="685" y1="385" x2="738" y2="385" stroke="#8B6914" stroke-width="1" opacity="0.3"/>
+  <path d="M 726 520 L 685 520 L 685 432" stroke="#8B6914" stroke-width="1" fill="none" opacity="0.25" stroke-dasharray="4,3"/>
+
+  <!-- Zone 3: GenAI Governance -->
+  <rect x="740" y="458" width="200" height="148" rx="8" fill="#2A7F62" opacity="0.06" stroke="#2A7F62" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="840" y="480" text-anchor="middle" fill="#1F6048" font-size="11" font-weight="700">GenAI Governance</text>
+  <text x="840" y="494" text-anchor="middle" fill="#2A7F62" font-size="8" font-style="italic">(Governed intake + basic monitoring)</text>
+  <line x1="755" y1="502" x2="925" y2="502" stroke="#2A7F62" stroke-width="0.5" opacity="0.3"/>
+  <text x="840" y="520" text-anchor="middle" fill="#1F6048" font-size="9">Risk Assessment at Intake</text>
+  <text x="840" y="537" text-anchor="middle" fill="#1F6048" font-size="9">PII Scan (Input + Output)</text>
+  <text x="840" y="554" text-anchor="middle" fill="#1F6048" font-size="9">HITL Review Gates</text>
+  <text x="840" y="571" text-anchor="middle" fill="#1F6048" font-size="9">Audit Logging per Invocation</text>
+  <text x="840" y="594" text-anchor="middle" fill="#2A7F62" font-size="8" font-style="italic">Not yet: prompt versioning,</text>
+  <text x="840" y="606" text-anchor="middle" fill="#2A7F62" font-size="8" font-style="italic">guardrails-as-a-service, evals</text>
+  <line x1="506" y1="597" x2="738" y2="555" stroke="#2A7F62" stroke-width="1" opacity="0.25" stroke-dasharray="4,3"/>
+</svg>

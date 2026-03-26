@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1F4E79"/><stop offset="100%" stop-color="#7B4EA3"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+  </defs>
+  <rect width="960" height="560" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="960" height="56" fill="url(#hg)" rx="12"/>
+  <rect x="0" y="28" width="960" height="28" fill="url(#hg)"/>
+  <text x="480" y="30" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" letter-spacing="0.5">The Next Chapter — Shared LLMOps Control Plane</text>
+  <text x="480" y="48" text-anchor="middle" fill="#fff" font-size="9.5" opacity="0.8">Prospective target state — layered onto the existing enterprise platform foundation</text>
+  <rect x="40" y="66" width="880" height="24" rx="4" fill="#2C3E50" opacity="0.06" stroke="#2C3E50" stroke-width="1"/>
+  <text x="480" y="82" text-anchor="middle" fill="#2C3E50" font-size="9">Built on today's cloud infrastructure, data foundation, security boundary, and observability patterns — extends, does not replace, the existing governed ML platform</text>
+  <rect x="310" y="100" width="340" height="36" rx="18" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="480" y="122" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Incoming Request (API / Chat / Agent Task)</text>
+  <line x1="480" y1="136" x2="480" y2="154" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="120" y="160" width="680" height="56" rx="8" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="460" y="182" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Multi-Model Gateway</text>
+  <text x="460" y="200" text-anchor="middle" fill="#B0C4DE" font-size="9">Intelligent routing: task type · cost tier · compliance level · latency SLA · policy engine</text>
+  <line x1="240" y1="216" x2="160" y2="232" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="400" y1="216" x2="400" y2="232" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="600" y1="216" x2="640" y2="232" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="60" y="236" width="200" height="38" rx="6" fill="#0078D4" filter="url(#ds)" opacity="0.7"/>
+  <text x="160" y="256" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Azure OpenAI</text>
+  <text x="160" y="268" text-anchor="middle" fill="#B0D4F1" font-size="8">GPT-4o · GPT-4o-mini</text>
+  <rect x="280" y="236" width="200" height="38" rx="6" fill="#D4790E" filter="url(#ds)" opacity="0.7"/>
+  <text x="380" y="256" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Anthropic Claude</text>
+  <text x="380" y="268" text-anchor="middle" fill="#F5D6A8" font-size="8">Opus · Sonnet · Haiku</text>
+  <rect x="500" y="236" width="200" height="38" rx="6" fill="#7B4EA3" filter="url(#ds)" opacity="0.7"/>
+  <text x="600" y="256" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Open Source / Self-Hosted</text>
+  <text x="600" y="268" text-anchor="middle" fill="#D4B8E8" font-size="8">Llama · Mistral · Custom SLMs</text>
+  <rect x="730" y="220" width="200" height="56" rx="6" fill="#fff" stroke="#2C3E50" stroke-width="1" stroke-dasharray="4,3" filter="url(#ds)"/>
+  <text x="830" y="240" text-anchor="middle" fill="#2C3E50" font-size="9" font-weight="700">Traditional ML Unchanged</text>
+  <text x="830" y="254" text-anchor="middle" fill="#888" font-size="8">Remains on existing governed</text>
+  <text x="830" y="266" text-anchor="middle" fill="#888" font-size="8">ML pipeline (Figure 1)</text>
+  <text x="830" y="276" text-anchor="middle" fill="#888" font-size="7.5" font-style="italic">Explainability-required decisions stay here</text>
+  <rect x="40" y="292" width="280" height="62" rx="8" fill="#fff" stroke="#1F4E79" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="180" y="312" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">Prompt Management</text>
+  <text x="180" y="328" text-anchor="middle" fill="#666" font-size="8.5">Version control · Templates · Eval suites</text>
+  <text x="180" y="344" text-anchor="middle" fill="#666" font-size="8.5">Behavioral regression on provider updates</text>
+  <rect x="340" y="292" width="280" height="62" rx="8" fill="#fff" stroke="#2A7F62" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="480" y="312" text-anchor="middle" fill="#2A7F62" font-size="11" font-weight="700">Enterprise RAG Service</text>
+  <text x="480" y="328" text-anchor="middle" fill="#666" font-size="8.5">Centralized vector store · Standardized chunking</text>
+  <text x="480" y="344" text-anchor="middle" fill="#666" font-size="8.5">Retrieval quality monitoring · Shared, not per-app</text>
+  <rect x="640" y="292" width="280" height="62" rx="8" fill="#fff" stroke="#8B6914" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="780" y="312" text-anchor="middle" fill="#6B5311" font-size="11" font-weight="700">Guardrails-as-a-Service</text>
+  <text x="780" y="328" text-anchor="middle" fill="#666" font-size="8.5">Centralized PII · toxicity · hallucination detection</text>
+  <text x="780" y="344" text-anchor="middle" fill="#666" font-size="8.5">Every LLM app passes through — no exceptions</text>
+  <rect x="40" y="372" width="580" height="68" rx="8" fill="#1F4E79" filter="url(#ds)" opacity="0.92"/>
+  <text x="330" y="396" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Agent Orchestration — MCP · A2A · Tool Use</text>
+  <text x="330" y="414" text-anchor="middle" fill="#B0C4DE" font-size="9">MCP: standardized tool + data source connections</text>
+  <text x="330" y="430" text-anchor="middle" fill="#B0C4DE" font-size="9">A2A: specialized agents collaborate on complex tasks</text>
+  <rect x="640" y="372" width="280" height="68" rx="8" fill="#fff" stroke="#7B4EA3" stroke-width="1.5" filter="url(#ds)"/>
+  <text x="780" y="392" text-anchor="middle" fill="#7B4EA3" font-size="10" font-weight="700">Example: Call Quality Triage Agent</text>
+  <text x="780" y="408" text-anchor="middle" fill="#666" font-size="8.5">1. Ingest transcript (MCP → call platform)</text>
+  <text x="780" y="422" text-anchor="middle" fill="#666" font-size="8.5">2. Classify quality (reasoning)</text>
+  <text x="780" y="436" text-anchor="middle" fill="#8B6914" font-size="8.5" font-weight="600">3. Human reviews before escalation (HITL gate)</text>
+  <rect x="40" y="458" width="880" height="68" rx="8" fill="#2C3E50" filter="url(#ds)"/>
+  <text x="480" y="482" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">LLM Observability Layer</text>
+  <text x="480" y="496" text-anchor="middle" fill="#AAB7C4" font-size="9" font-style="italic">Extends the existing three-signal pattern into LLM-specific metrics</text>
+  <text x="130" y="516" text-anchor="middle" fill="#AAB7C4" font-size="9">Token Cost / Model / Team</text>
+  <text x="305" y="516" text-anchor="middle" fill="#AAB7C4" font-size="9">Latency SLA Compliance</text>
+  <text x="480" y="516" text-anchor="middle" fill="#AAB7C4" font-size="9">Quality Evals (Auto + Human)</text>
+  <text x="655" y="516" text-anchor="middle" fill="#AAB7C4" font-size="9">Safety / Guardrail Metrics</text>
+  <text x="830" y="516" text-anchor="middle" fill="#AAB7C4" font-size="9">Behavioral Regression</text>
+  <rect x="40" y="536" width="880" height="16" rx="4" fill="#2C3E50" opacity="0.04"/>
+  <text x="480" y="548" text-anchor="middle" fill="#888" font-size="8" font-style="italic">Same cloud/network controls · Same audit logging pattern · Same exception management → ServiceNow · Extends the enterprise platform, does not replace it</text>
+</svg>

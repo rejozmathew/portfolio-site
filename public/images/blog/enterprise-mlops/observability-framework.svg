@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/><stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="440" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="960" height="52" fill="url(#hg)" rx="12"/>
+  <rect x="0" y="26" width="960" height="26" fill="url(#hg)"/>
+  <text x="480" y="34" text-anchor="middle" fill="#fff" font-size="17" font-weight="700" letter-spacing="0.5">Observability — Standardized Three-Signal Framework</text>
+
+  <!-- Column headers -->
+  <rect x="40" y="66" width="190" height="28" rx="5" fill="#2C3E50"/>
+  <text x="135" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">COMPONENT</text>
+  <rect x="244" y="66" width="210" height="28" rx="5" fill="#1F4E79"/>
+  <text x="349" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">HEALTH</text>
+  <rect x="468" y="66" width="240" height="28" rx="5" fill="#2A7F62"/>
+  <text x="588" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">QUALITY</text>
+  <rect x="722" y="66" width="210" height="28" rx="5" fill="#8B6914"/>
+  <text x="827" y="84" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">OPERATIONAL</text>
+
+  <!-- Row 1: Feature Store -->
+  <rect x="40" y="100" width="892" height="46" rx="0" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <rect x="44" y="104" width="186" height="38" rx="4" fill="#1F4E79" opacity="0.9"/>
+  <text x="137" y="127" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Feature Store (Feast)</text>
+  <text x="349" y="120" text-anchor="middle" fill="#2C3E50" font-size="9">Refresh job completed?</text>
+  <text x="349" y="136" text-anchor="middle" fill="#999" font-size="8">Feature pipeline running?</text>
+  <text x="588" y="120" text-anchor="middle" fill="#2C3E50" font-size="9">Distribution stable? Nulls below threshold?</text>
+  <text x="588" y="136" text-anchor="middle" fill="#999" font-size="8">Schema unchanged? Volume expected?</text>
+  <text x="827" y="120" text-anchor="middle" fill="#2C3E50" font-size="9">Refresh duration trending</text>
+  <text x="827" y="136" text-anchor="middle" fill="#999" font-size="8">Records per materialization</text>
+
+  <!-- Row 2: CI/CD -->
+  <rect x="40" y="150" width="892" height="46" rx="0" fill="#f5f6f7" stroke="#eee" stroke-width="1"/>
+  <rect x="44" y="154" width="186" height="38" rx="4" fill="#2C3E50"/>
+  <text x="137" y="177" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">CI/CD (Jenkins)</text>
+  <text x="349" y="170" text-anchor="middle" fill="#2C3E50" font-size="9">Pipeline executed?</text>
+  <text x="349" y="186" text-anchor="middle" fill="#999" font-size="8">All stages completed?</text>
+  <text x="588" y="170" text-anchor="middle" fill="#2C3E50" font-size="9">All governance gates passed?</text>
+  <text x="588" y="186" text-anchor="middle" fill="#999" font-size="8">Which gate failed? Bias test result?</text>
+  <text x="827" y="170" text-anchor="middle" fill="#2C3E50" font-size="9">Pipeline duration</text>
+  <text x="827" y="186" text-anchor="middle" fill="#999" font-size="8">Gate pass/fail rate trending</text>
+
+  <!-- Row 3: Batch Serving -->
+  <rect x="40" y="200" width="892" height="46" rx="0" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <rect x="44" y="204" width="186" height="38" rx="4" fill="#1F4E79"/>
+  <text x="137" y="227" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Batch (Airflow)</text>
+  <text x="349" y="220" text-anchor="middle" fill="#2C3E50" font-size="9">Job completed on schedule?</text>
+  <text x="349" y="236" text-anchor="middle" fill="#999" font-size="8">DAG succeeded?</text>
+  <text x="588" y="220" text-anchor="middle" fill="#2C3E50" font-size="9">Records scored matches expected?</text>
+  <text x="588" y="236" text-anchor="middle" fill="#999" font-size="8">Output table populated correctly?</text>
+  <text x="827" y="220" text-anchor="middle" fill="#2C3E50" font-size="9">Job duration, record count</text>
+  <text x="827" y="236" text-anchor="middle" fill="#999" font-size="8">Error count, duration trending</text>
+
+  <!-- Row 4: Real-Time -->
+  <rect x="40" y="250" width="892" height="46" rx="0" fill="#f5f6f7" stroke="#eee" stroke-width="1"/>
+  <rect x="44" y="254" width="186" height="38" rx="4" fill="#2A7F62"/>
+  <text x="137" y="277" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Real-Time APIs</text>
+  <text x="349" y="270" text-anchor="middle" fill="#2C3E50" font-size="9">Endpoint responding?</text>
+  <text x="349" y="286" text-anchor="middle" fill="#999" font-size="8">Health check passing?</text>
+  <text x="588" y="270" text-anchor="middle" fill="#2C3E50" font-size="9">Predictions within expected distribution?</text>
+  <text x="588" y="286" text-anchor="middle" fill="#999" font-size="8">Confidence scores stable?</text>
+  <text x="827" y="270" text-anchor="middle" fill="#2C3E50" font-size="9">Latency p50/p95/p99</text>
+  <text x="827" y="286" text-anchor="middle" fill="#999" font-size="8">Throughput, error rate</text>
+
+  <!-- Row 5: Model Performance -->
+  <rect x="40" y="300" width="892" height="46" rx="0" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <rect x="44" y="304" width="186" height="38" rx="4" fill="#8B6914" opacity="0.85"/>
+  <text x="137" y="327" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Model Performance</text>
+  <text x="349" y="320" text-anchor="middle" fill="#2C3E50" font-size="9">Evaluation job ran?</text>
+  <text x="349" y="336" text-anchor="middle" fill="#999" font-size="8">Ground truth available?</text>
+  <text x="588" y="320" text-anchor="middle" fill="#2C3E50" font-size="9">AUC/precision/recall holding vs baseline?</text>
+  <text x="588" y="336" text-anchor="middle" fill="#999" font-size="8">PSI drift below threshold?</text>
+  <text x="827" y="320" text-anchor="middle" fill="#2C3E50" font-size="9">Performance trend over time</text>
+  <text x="827" y="336" text-anchor="middle" fill="#999" font-size="8">Ground truth lag</text>
+
+  <!-- Row 6: GenAI (dashed) -->
+  <rect x="40" y="350" width="892" height="46" rx="0" fill="#f5f6f7" stroke="#eee" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="44" y="354" width="186" height="38" rx="4" fill="#2A7F62" opacity="0.5" stroke="#2A7F62" stroke-dasharray="4,3"/>
+  <text x="137" y="377" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">GenAI (Bedrock)</text>
+  <text x="349" y="370" text-anchor="middle" fill="#2C3E50" font-size="9">Endpoint responding?</text>
+  <text x="349" y="386" text-anchor="middle" fill="#999" font-size="8" font-style="italic">Basic health only</text>
+  <text x="588" y="370" text-anchor="middle" fill="#2C3E50" font-size="9">PII guardrail trigger rate</text>
+  <text x="588" y="386" text-anchor="middle" fill="#999" font-size="8" font-style="italic">HITL escalation rate</text>
+  <text x="827" y="370" text-anchor="middle" fill="#2C3E50" font-size="9">Invocation count, token cost</text>
+  <text x="827" y="386" text-anchor="middle" fill="#999" font-size="8" font-style="italic">Emerging — not yet mature</text>
+
+  <!-- Convergence bar -->
+  <rect x="40" y="404" width="892" height="28" rx="6" fill="#2C3E50"/>
+  <text x="95" y="422" fill="#fff" font-size="10" font-weight="700">ALL SIGNALS →</text>
+  <text x="210" y="422" fill="#AAB7C4" font-size="10">Centralized Alerting</text>
+  <text x="350" y="422" fill="#fff" font-size="10">→</text>
+  <text x="395" y="422" fill="#AAB7C4" font-size="10">ServiceNow (Ticket + Severity + Owner)</text>
+  <text x="635" y="422" fill="#fff" font-size="10">→</text>
+  <text x="710" y="422" fill="#AAB7C4" font-size="10">Retrain  ·  Investigate  ·  Retire</text>
+</svg>

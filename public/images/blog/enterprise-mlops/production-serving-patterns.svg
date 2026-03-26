@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/><stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrT" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2A7F62"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="440" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="960" height="52" fill="url(#hg)" rx="12"/>
+  <rect x="0" y="26" width="960" height="26" fill="url(#hg)"/>
+  <text x="480" y="34" text-anchor="middle" fill="#fff" font-size="17" font-weight="700" letter-spacing="0.5">Production ML — Batch and Real-Time Serving Patterns</text>
+
+  <!-- ===== BATCH PATH ===== -->
+  <text x="40" y="80" fill="#1F4E79" font-size="12" font-weight="700">BATCH PATH</text>
+  <text x="140" y="80" fill="#1F4E79" font-size="9" opacity="0.7">(Scheduled scoring — marketing, segmentation, retention, CLV)</text>
+
+  <!-- Horizontal flow -->
+  <rect x="40" y="96" width="120" height="55" rx="6" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="100" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Airflow</text>
+  <text x="100" y="136" text-anchor="middle" fill="#B0C4DE" font-size="8.5">Scheduled trigger</text>
+
+  <line x1="166" y1="123" x2="190" y2="123" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="198" y="96" width="130" height="55" rx="6" fill="#2C3E50" filter="url(#ds)"/>
+  <text x="263" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Feast (Offline)</text>
+  <text x="263" y="136" text-anchor="middle" fill="#AAB7C4" font-size="8.5">Pull features for population</text>
+
+  <line x1="334" y1="123" x2="358" y2="123" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="366" y="96" width="120" height="55" rx="6" fill="#1F4E79" filter="url(#ds)"/>
+  <text x="426" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Model</text>
+  <text x="426" y="136" text-anchor="middle" fill="#B0C4DE" font-size="8.5">Score population</text>
+
+  <line x1="492" y1="123" x2="516" y2="123" stroke="#1F4E79" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="524" y="96" width="120" height="55" rx="6" fill="#1F4E79" filter="url(#ds)" opacity="0.85"/>
+  <text x="584" y="118" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Output Table</text>
+  <text x="584" y="136" text-anchor="middle" fill="#B0C4DE" font-size="8.5">Scored results</text>
+
+  <!-- Batch downstream -->
+  <line x1="650" y1="110" x2="690" y2="100" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="650" y1="120" x2="690" y2="122" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="650" y1="130" x2="690" y2="144" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="650" y1="140" x2="690" y2="166" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <text x="706" y="103" fill="#1F4E79" font-size="10" font-weight="600">Campaign Tools (UNICA)</text>
+  <text x="706" y="125" fill="#1F4E79" font-size="10" font-weight="600">CDP (Profile Enrichment)</text>
+  <text x="706" y="147" fill="#1F4E79" font-size="10" font-weight="600">CRM (Score Updates)</text>
+  <text x="706" y="169" fill="#1F4E79" font-size="10" font-weight="600">Marketing ODS / MAD</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="210" x2="920" y2="210" stroke="#ddd" stroke-width="1"/>
+
+  <!-- ===== REAL-TIME PATH ===== -->
+  <text x="40" y="240" fill="#2A7F62" font-size="12" font-weight="700">REAL-TIME PATH</text>
+  <text x="185" y="240" fill="#2A7F62" font-size="9" opacity="0.7">(Per-event scoring — fraud, identity, next-best-action)</text>
+
+  <rect x="40" y="256" width="120" height="55" rx="6" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="100" y="278" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Event</text>
+  <text x="100" y="296" text-anchor="middle" fill="#B0DFCF" font-size="8.5">Transaction / App / Visit</text>
+
+  <line x1="166" y1="283" x2="190" y2="283" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrT)"/>
+
+  <rect x="198" y="256" width="130" height="55" rx="6" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="263" y="278" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">API Endpoint</text>
+  <text x="263" y="296" text-anchor="middle" fill="#B0DFCF" font-size="8.5">Load-balanced</text>
+
+  <line x1="334" y1="283" x2="358" y2="283" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrT)"/>
+
+  <rect x="366" y="256" width="130" height="55" rx="6" fill="#2C3E50" filter="url(#ds)"/>
+  <text x="431" y="278" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Feast (Online)</text>
+  <text x="431" y="296" text-anchor="middle" fill="#AAB7C4" font-size="8.5">Latest features (ms)</text>
+
+  <line x1="502" y1="283" x2="526" y2="283" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrT)"/>
+
+  <rect x="534" y="256" width="110" height="55" rx="6" fill="#2A7F62" filter="url(#ds)"/>
+  <text x="589" y="278" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Model</text>
+  <text x="589" y="296" text-anchor="middle" fill="#B0DFCF" font-size="8.5">Score in milliseconds</text>
+
+  <!-- Real-time downstream -->
+  <line x1="650" y1="268" x2="690" y2="260" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#arrT)"/>
+  <line x1="650" y1="280" x2="690" y2="282" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#arrT)"/>
+  <line x1="650" y1="290" x2="690" y2="304" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#arrT)"/>
+  <line x1="650" y1="300" x2="690" y2="326" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#arrT)"/>
+
+  <text x="706" y="264" fill="#2A7F62" font-size="10" font-weight="600">Fraud Decisioning (Accept/Decline)</text>
+  <text x="706" y="286" fill="#2A7F62" font-size="10" font-weight="600">CRM (Real-Time Agent Screen)</text>
+  <text x="706" y="308" fill="#2A7F62" font-size="10" font-weight="600">CDP (Real-Time Profile Update)</text>
+  <text x="706" y="330" fill="#2A7F62" font-size="10" font-weight="600">Origination / NBA Engine</text>
+
+  <!-- Shared systems note -->
+  <rect x="40" y="350" width="430" height="36" rx="6" fill="#fff" stroke="#2C3E50" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="60" y="372" fill="#2C3E50" font-size="9" font-weight="600">CDP, CRM, and ID Graph serve both paths — batch score updates AND real-time decisions.</text>
+
+  <!-- Fallback note -->
+  <rect x="500" y="350" width="430" height="36" rx="6" fill="#C0392B" opacity="0.06" stroke="#C0392B" stroke-width="1"/>
+  <text x="520" y="366" fill="#C0392B" font-size="9" font-weight="600">FALLBACK:</text>
+  <text x="580" y="366" fill="#2C3E50" font-size="9">If real-time endpoint is down → default score, queue request, alert ops.</text>
+  <text x="520" y="380" fill="#2C3E50" font-size="9">Fraud decisioning cannot fail silently — fallback path is tested and monitored.</text>
+
+  <!-- Observability -->
+  <rect x="40" y="400" width="890" height="28" rx="6" fill="#2C3E50" opacity="0.06" stroke="#2C3E50" stroke-width="1"/>
+  <text x="60" y="418" fill="#2C3E50" font-size="9" font-weight="700">OBSERVABILITY:</text>
+  <text x="170" y="418" fill="#2C3E50" font-size="9">Batch — job completion, duration, record count  |  Real-Time — latency p50/p95/p99, throughput, error rate, prediction distribution</text>
+</svg>

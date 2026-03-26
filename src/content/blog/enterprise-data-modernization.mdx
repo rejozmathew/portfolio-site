@@ -2,10 +2,10 @@
 title: "Enterprise Data Modernization: Building Domain-Centric Architectures That Actually Scale"
 date: "2025-03-20"
 description: "How we rebuilt our enterprise analytics environment from the ground up — replacing a sprawling post-migration mess with a domain-centric architecture that turned raw source data into curated, trustworthy, self-service assets."
-tags: ["Data Modernization", "Data Strategy", "Data Architecture", "Data Quality", "Enterprise Analytics", "Data Governance"]
+tags: ["Data Modernization", "Data Strategy", "Data Architecture", "Data Quality", "Data Observability", "Enterprise Analytics", "Data Governance", "Data Lineage", "AI Infrastructure", "Responsible AI"]
 contentType: "strategy"
 traits: ["framework", "architecture"]
-heroImage: "/images/blog/enterprise-data-modernization/architecture-layers.svg"
+heroImage: "/images/blog/enterprise-data-modernization/three-obstacles.svg"
 ---
 
 {/* Hero section */}
@@ -108,13 +108,28 @@ A related concept — the **Feature Store** — packages this same idea specific
 
 The benefits are significant: data gets presented with a business-friendly look and feel, KPIs are calculated and aggregated centrally in uniform ways (a "metrics hub"), simplified access and navigation facilitates broader insight generation, and new KPIs can be rapidly introduced and modified.
 
+### From Data Observability to AI-Ready Trust
+
+It's worth stepping back and recognizing what this architecture actually produces beyond clean data. The source profiling, applicability conditions, metadata-generated validations, transformation audit trails, and centralized quality logging described in the four layers above — taken together, these are the primitives of a **data observability** practice. We didn't set out to build an observability platform. But by making the architecture metadata-driven and logging every validation outcome centrally, we ended up with one: a system where data quality is continuously measured, anomalies are surfaced automatically, and every transformation is traceable back to its source.
+
+The diagram below maps three observability pillars — **Data Quality**, **Data Lineage**, and **Data Process** — across all four architecture layers and into the downstream consumers that depend on them.
+
+<img src="/images/blog/enterprise-data-modernization/observability-to-consumption.svg" alt="Data observability pillars mapped across all four architecture layers, flowing into three consumption tiers: BI and reporting, ad hoc analysis and data science, and productionalized AI and GenAI" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 5: Observability isn't a separate system — it's woven into every layer and inherited by every consumer, from executive dashboards to production AI.
+</span>
+
+This matters far more now than when we first built it — because these data assets increasingly feed not just BI dashboards and ad hoc analysis, but AI and GenAI production systems. When a RAG pipeline retrieves context from a knowledge base, or a feature store supplies inputs to a credit risk model, or a fine-tuning dataset is assembled from historical records, the trustworthiness of the output is bounded by the trustworthiness of the input. The industry phrase is "garbage in, garbage out," but the more precise version is: *unobserved data in, unverifiable AI out.* If you can't trace a model's input back to a validated, governed source — if you can't show when the data was last profiled, what quality checks it passed, and what transformations were applied — you have no basis for trusting the model's behavior in production.
+
+Most organizations today are trying to retrofit observability onto their AI systems after deployment: monitoring for hallucinations, checking for drift, flagging anomalous outputs. That's necessary, but it's incomplete. The harder and more valuable investment is observability *upstream* — in the data layer itself. The architecture we built gives us that foundation. Every attribute has a documented applicability condition. Every domain structure is validated against metadata-driven rules before a single row reaches consumption. Every quality exception is logged, timestamped, and traceable. When we feed these assets into ML pipelines or GenAI applications, we carry that provenance chain forward — and that chain is what makes the difference between an AI system that's merely deployed and one that's genuinely trustworthy.
+
 ### The Development Methodology: Metadata-Driven and Incremental
 
 Building the architecture was one thing — executing it at scale was another. The approach we developed relies heavily on the collection of metadata to automate the development of data pipelines. We designed the methodology to reduce reliance on front-loaded business requirement sessions by separating design and development activities into incremental efforts that can be performed in parallel.
 
 <img src="/images/blog/enterprise-data-modernization/development-methodology.svg" alt="Serpentine development methodology flowing through three lanes with incremental deliverables" />
 <span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
-  Figure 5: The development methodology traverses a serpentine path across three work streams, producing incremental deliverables at each stage.
+  Figure 6: The development methodology traverses a serpentine path across three work streams, producing incremental deliverables at each stage.
 </span>
 
 
@@ -142,7 +157,7 @@ The domain standardization process is the transformation engine that conforms so
 
 <img src="/images/blog/enterprise-data-modernization/domain-standardization.svg" alt="Domain standardization pipeline showing source qualifier, validation engine, transformation rules, and quality logging" />
 <span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
-  Figure 6: The domain standardization pipeline — inputs are assembled, validated against metadata-driven rules, transformed via business logic, and loaded into the target domain structure with comprehensive quality logging.
+  Figure 7: The domain standardization pipeline — inputs are assembled, validated against metadata-driven rules, transformed via business logic, and loaded with comprehensive quality logging. Note the observability annotations: each stage maps to a data observability pillar (lineage, quality, process).
 </span>
 
 **Source Qualifier** — Assembles (joins together) all inputs necessary to build the domain structure. The SQL statement joins all relevant source structures and includes all entity surrogate keys.
@@ -170,6 +185,8 @@ One of the most important architectural insights we gained: the rate of change d
 **Design for change at the edges, stability at the core.** Source data warehouse structures will evolve as new systems are introduced. Semantic layer configurations will adapt to emerging business needs. But well-designed domain structures should remain largely stable — the comprehensive, elemental attributes they present generically describe business entities and events regardless of upstream changes.
 
 **Invest in data quality governance from day one.** Centralized message logging, threshold monitoring, and anomaly detection aren't nice-to-haves — they're how you maintain trust in the architecture over time. Quality issues should be surfaced, tracked, and resolved at the source, not patched over in downstream transformations.
+
+**Think of observability as AI infrastructure.** If your data assets will feed ML models, RAG pipelines, or GenAI applications — and increasingly, they will — the provenance, validation, and quality logging you build into the data layer today becomes the trust foundation for AI tomorrow. Retrofitting observability after model deployment is far harder than inheriting it from well-governed upstream data.
 
 ### Conclusion
 

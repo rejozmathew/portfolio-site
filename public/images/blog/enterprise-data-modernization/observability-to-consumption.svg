@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 580" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="dsO" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hgO" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <marker id="aO" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#1F4E79"/>
+    </marker>
+    <marker id="aOt" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#2A7F62"/>
+    </marker>
+    <marker id="aOw" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#ffffff"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1060" height="580" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1060" height="52" fill="url(#hgO)" rx="12"/>
+  <rect x="0" y="26" width="1060" height="26" fill="url(#hgO)"/>
+  <text x="530" y="34" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700" letter-spacing="0.3">Data Observability — From Architecture Primitives to Trusted Consumption</text>
+
+  <!-- ==================== -->
+  <!-- SECTION LABELS       -->
+  <!-- ==================== -->
+  <text x="375" y="76" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700" letter-spacing="1">ARCHITECTURE LAYERS</text>
+  <text x="375" y="90" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">Observability primitives built into each layer</text>
+
+  <!-- Dashed divider before consumption zone -->
+  <line x1="720" y1="64" x2="720" y2="540" stroke="#1F4E79" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.3"/>
+
+  <text x="890" y="76" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700" letter-spacing="1">CONSUMPTION</text>
+  <text x="890" y="90" text-anchor="middle" fill="#64748b" font-size="9.5" font-style="italic">Observability inherited by every consumer</text>
+
+  <!-- ========================= -->
+  <!-- 4 ARCHITECTURE COLUMNS    -->
+  <!-- ========================= -->
+
+  <!-- Column headers -->
+  <rect x="30" y="104" width="155" height="36" rx="6" fill="#1F4E79" filter="url(#dsO)"/>
+  <text x="107" y="127" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="600">Source Data Warehouse</text>
+
+  <rect x="200" y="104" width="155" height="36" rx="6" fill="#2A7F62" filter="url(#dsO)"/>
+  <text x="277" y="127" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="600">Domain Integration</text>
+
+  <rect x="370" y="104" width="155" height="36" rx="6" fill="#d4a017" filter="url(#dsO)"/>
+  <text x="447" y="127" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="600">Consumption Prep</text>
+
+  <rect x="540" y="104" width="155" height="36" rx="6" fill="#7c3aed" filter="url(#dsO)"/>
+  <text x="617" y="127" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="600">Semantic Layer</text>
+
+  <!-- ========================= -->
+  <!-- ROW 1: DATA QUALITY       -->
+  <!-- ========================= -->
+  <rect x="10" y="154" width="8" height="120" rx="4" fill="#2A7F62"/>
+  <text x="7" y="224" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700" transform="rotate(-90,7,224)" letter-spacing="0.5">DATA QUALITY</text>
+
+  <!-- SDW quality -->
+  <rect x="30" y="156" width="155" height="116" rx="6" fill="#e8f4f8" stroke="#1F4E79" stroke-width="1" filter="url(#dsO)"/>
+  <text x="107" y="176" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Source Profiling</text>
+  <text x="107" y="194" text-anchor="middle" fill="#64748b" font-size="8.5">Null counts, distinct values,</text>
+  <text x="107" y="206" text-anchor="middle" fill="#64748b" font-size="8.5">distributions, ranges</text>
+  <line x1="50" y1="216" x2="165" y2="216" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="107" y="232" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Data Type Validation</text>
+  <text x="107" y="248" text-anchor="middle" fill="#64748b" font-size="8.5">Format conformance</text>
+  <text x="107" y="260" text-anchor="middle" fill="#64748b" font-size="8.5">at ingestion</text>
+
+  <!-- Domain quality -->
+  <rect x="200" y="156" width="155" height="116" rx="6" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1" filter="url(#dsO)"/>
+  <text x="277" y="176" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">Applicability Rules</text>
+  <text x="277" y="194" text-anchor="middle" fill="#64748b" font-size="8.5">Always / When / Sometimes</text>
+  <text x="277" y="206" text-anchor="middle" fill="#64748b" font-size="8.5">When / Undefined</text>
+  <line x1="220" y1="216" x2="335" y2="216" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="277" y="232" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">Metadata Validation</text>
+  <text x="277" y="248" text-anchor="middle" fill="#64748b" font-size="8.5">Generated checks per</text>
+  <text x="277" y="260" text-anchor="middle" fill="#64748b" font-size="8.5">attribute from metadata</text>
+
+  <!-- Consumption quality -->
+  <rect x="370" y="156" width="155" height="116" rx="6" fill="#fef9e7" stroke="#d4a017" stroke-width="1" filter="url(#dsO)"/>
+  <text x="447" y="176" text-anchor="middle" fill="#b8860b" font-size="9.5" font-weight="600">Threshold Monitoring</text>
+  <text x="447" y="194" text-anchor="middle" fill="#64748b" font-size="8.5">Row-count drift,</text>
+  <text x="447" y="206" text-anchor="middle" fill="#64748b" font-size="8.5">aggregate boundaries</text>
+  <line x1="390" y1="216" x2="505" y2="216" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="447" y="232" text-anchor="middle" fill="#b8860b" font-size="9.5" font-weight="600">Referential Integrity</text>
+  <text x="447" y="248" text-anchor="middle" fill="#64748b" font-size="8.5">Dimension-to-reference</text>
+  <text x="447" y="260" text-anchor="middle" fill="#64748b" font-size="8.5">structure checks</text>
+
+  <!-- Semantic quality -->
+  <rect x="540" y="156" width="155" height="116" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" filter="url(#dsO)"/>
+  <text x="617" y="176" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-weight="600">KPI Governance</text>
+  <text x="617" y="194" text-anchor="middle" fill="#64748b" font-size="8.5">Centralized calculation</text>
+  <text x="617" y="206" text-anchor="middle" fill="#64748b" font-size="8.5">definitions &amp; ownership</text>
+  <line x1="560" y1="216" x2="675" y2="216" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="617" y="232" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-weight="600">Metric Consistency</text>
+  <text x="617" y="248" text-anchor="middle" fill="#64748b" font-size="8.5">Single version of truth</text>
+  <text x="617" y="260" text-anchor="middle" fill="#64748b" font-size="8.5">across all consumers</text>
+
+  <!-- Flow arrows between quality row columns -->
+  <line x1="185" y1="214" x2="198" y2="214" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#aO)"/>
+  <line x1="355" y1="214" x2="368" y2="214" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#aOt)"/>
+  <line x1="525" y1="214" x2="538" y2="214" stroke="#d4a017" stroke-width="1.2" marker-end="url(#aO)"/>
+
+  <!-- ========================= -->
+  <!-- ROW 2: DATA LINEAGE       -->
+  <!-- ========================= -->
+  <rect x="10" y="290" width="8" height="120" rx="4" fill="#1F4E79"/>
+  <text x="7" y="360" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="700" transform="rotate(-90,7,360)" letter-spacing="0.5">DATA LINEAGE</text>
+
+  <!-- SDW lineage -->
+  <rect x="30" y="292" width="155" height="116" rx="6" fill="#e8f4f8" stroke="#1F4E79" stroke-width="1" filter="url(#dsO)"/>
+  <text x="107" y="312" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Surrogate Keys</text>
+  <text x="107" y="330" text-anchor="middle" fill="#64748b" font-size="8.5">System-independent</text>
+  <text x="107" y="342" text-anchor="middle" fill="#64748b" font-size="8.5">entity identifiers</text>
+  <line x1="50" y1="352" x2="165" y2="352" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="107" y="368" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Date-Chain History</text>
+  <text x="107" y="386" text-anchor="middle" fill="#64748b" font-size="8.5">Full temporal record</text>
+  <text x="107" y="398" text-anchor="middle" fill="#64748b" font-size="8.5">of every change</text>
+
+  <!-- Domain lineage -->
+  <rect x="200" y="292" width="155" height="116" rx="6" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1" filter="url(#dsO)"/>
+  <text x="277" y="312" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">Source Qualifier Map</text>
+  <text x="277" y="330" text-anchor="middle" fill="#64748b" font-size="8.5">Explicit join graph</text>
+  <text x="277" y="342" text-anchor="middle" fill="#64748b" font-size="8.5">from source to domain</text>
+  <line x1="220" y1="352" x2="335" y2="352" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="277" y="368" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">Transformation Audit</text>
+  <text x="277" y="386" text-anchor="middle" fill="#64748b" font-size="8.5">Every rule mapped</text>
+  <text x="277" y="398" text-anchor="middle" fill="#64748b" font-size="8.5">source → target</text>
+
+  <!-- Consumption lineage -->
+  <rect x="370" y="292" width="155" height="116" rx="6" fill="#fef9e7" stroke="#d4a017" stroke-width="1" filter="url(#dsO)"/>
+  <text x="447" y="312" text-anchor="middle" fill="#b8860b" font-size="9.5" font-weight="600">Aggregate Provenance</text>
+  <text x="447" y="330" text-anchor="middle" fill="#64748b" font-size="8.5">Traceable rollups from</text>
+  <text x="447" y="342" text-anchor="middle" fill="#64748b" font-size="8.5">elemental domains</text>
+  <line x1="390" y1="352" x2="505" y2="352" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="447" y="368" text-anchor="middle" fill="#b8860b" font-size="9.5" font-weight="600">Time-Window Tracking</text>
+  <text x="447" y="386" text-anchor="middle" fill="#64748b" font-size="8.5">Point-in-time</text>
+  <text x="447" y="398" text-anchor="middle" fill="#64748b" font-size="8.5">reproducibility</text>
+
+  <!-- Semantic lineage -->
+  <rect x="540" y="292" width="155" height="116" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" filter="url(#dsO)"/>
+  <text x="617" y="312" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-weight="600">KPI Decomposition</text>
+  <text x="617" y="330" text-anchor="middle" fill="#64748b" font-size="8.5">Trace any metric back</text>
+  <text x="617" y="342" text-anchor="middle" fill="#64748b" font-size="8.5">to underlying domains</text>
+  <line x1="560" y1="352" x2="675" y2="352" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="617" y="368" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-weight="600">Feature Lineage</text>
+  <text x="617" y="386" text-anchor="middle" fill="#64748b" font-size="8.5">Feature store inputs</text>
+  <text x="617" y="398" text-anchor="middle" fill="#64748b" font-size="8.5">traced to source</text>
+
+  <!-- Flow arrows between lineage row columns -->
+  <line x1="185" y1="350" x2="198" y2="350" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#aO)"/>
+  <line x1="355" y1="350" x2="368" y2="350" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#aOt)"/>
+  <line x1="525" y1="350" x2="538" y2="350" stroke="#d4a017" stroke-width="1.2" marker-end="url(#aO)"/>
+
+  <!-- ========================= -->
+  <!-- ROW 3: DATA PROCESS       -->
+  <!-- ========================= -->
+  <rect x="10" y="426" width="8" height="100" rx="4" fill="#2C3E50"/>
+  <text x="7" y="486" text-anchor="middle" fill="#2C3E50" font-size="10" font-weight="700" transform="rotate(-90,7,486)" letter-spacing="0.5">DATA PROCESS</text>
+
+  <!-- SDW process -->
+  <rect x="30" y="428" width="155" height="98" rx="6" fill="#e8f4f8" stroke="#1F4E79" stroke-width="1" filter="url(#dsO)"/>
+  <text x="107" y="452" text-anchor="middle" fill="#1F4E79" font-size="9.5" font-weight="600">Ingestion Orchestration</text>
+  <text x="107" y="470" text-anchor="middle" fill="#64748b" font-size="8.5">CDC, streaming, file</text>
+  <text x="107" y="482" text-anchor="middle" fill="#64748b" font-size="8.5">extract pipelines</text>
+  <line x1="50" y1="492" x2="165" y2="492" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="107" y="508" text-anchor="middle" fill="#64748b" font-size="8.5">Mastering &amp; versioning</text>
+
+  <!-- Domain process -->
+  <rect x="200" y="428" width="155" height="98" rx="6" fill="#e6f5f0" stroke="#2A7F62" stroke-width="1" filter="url(#dsO)"/>
+  <text x="277" y="452" text-anchor="middle" fill="#2A7F62" font-size="9.5" font-weight="600">Centralized Quality Log</text>
+  <text x="277" y="470" text-anchor="middle" fill="#64748b" font-size="8.5">Every exception logged:</text>
+  <text x="277" y="482" text-anchor="middle" fill="#64748b" font-size="8.5">attribute, value, action</text>
+  <line x1="220" y1="492" x2="335" y2="492" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="277" y="508" text-anchor="middle" fill="#64748b" font-size="8.5">Trend &amp; anomaly detection</text>
+
+  <!-- Consumption process -->
+  <rect x="370" y="428" width="155" height="98" rx="6" fill="#fef9e7" stroke="#d4a017" stroke-width="1" filter="url(#dsO)"/>
+  <text x="447" y="452" text-anchor="middle" fill="#b8860b" font-size="9.5" font-weight="600">Build Orchestration</text>
+  <text x="447" y="470" text-anchor="middle" fill="#64748b" font-size="8.5">Master merge, split,</text>
+  <text x="447" y="482" text-anchor="middle" fill="#64748b" font-size="8.5">window, aggregate</text>
+  <line x1="390" y1="492" x2="505" y2="492" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="447" y="508" text-anchor="middle" fill="#64748b" font-size="8.5">RI checks &amp; logging</text>
+
+  <!-- Semantic process -->
+  <rect x="540" y="428" width="155" height="98" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="1" filter="url(#dsO)"/>
+  <text x="617" y="452" text-anchor="middle" fill="#7c3aed" font-size="9.5" font-weight="600">Metric Versioning</text>
+  <text x="617" y="470" text-anchor="middle" fill="#64748b" font-size="8.5">Governed change</text>
+  <text x="617" y="482" text-anchor="middle" fill="#64748b" font-size="8.5">management for KPIs</text>
+  <line x1="560" y1="492" x2="675" y2="492" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="617" y="508" text-anchor="middle" fill="#64748b" font-size="8.5">Publish &amp; refresh cycles</text>
+
+  <!-- Flow arrows between process row columns -->
+  <line x1="185" y1="477" x2="198" y2="477" stroke="#1F4E79" stroke-width="1.2" marker-end="url(#aO)"/>
+  <line x1="355" y1="477" x2="368" y2="477" stroke="#2A7F62" stroke-width="1.2" marker-end="url(#aOt)"/>
+  <line x1="525" y1="477" x2="538" y2="477" stroke="#d4a017" stroke-width="1.2" marker-end="url(#aO)"/>
+
+  <!-- ================================== -->
+  <!-- CONSUMPTION ZONE (right of dashed) -->
+  <!-- ================================== -->
+
+  <!-- Arrows from semantic layer into consumption zone -->
+  <line x1="695" y1="214" x2="735" y2="175" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#aO)" opacity="0.5"/>
+  <line x1="695" y1="350" x2="735" y2="340" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#aO)" opacity="0.5"/>
+  <line x1="695" y1="477" x2="735" y2="480" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#aO)" opacity="0.5"/>
+
+  <!-- TIER 1: BI & Reporting -->
+  <g filter="url(#dsO)">
+    <rect x="740" y="150" width="300" height="100" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="740" y="150" width="300" height="30" rx="8" fill="#1F4E79"/>
+    <rect x="740" y="165" width="300" height="15" fill="#1F4E79"/>
+  </g>
+  <text x="762" y="170" text-anchor="start" fill="#ffffff" font-size="11" font-weight="700">📊  BI &amp; Reporting</text>
+  <text x="762" y="196" text-anchor="start" fill="#2C3E50" font-size="9.5">Dashboards, scheduled reports, executive</text>
+  <text x="762" y="210" text-anchor="start" fill="#2C3E50" font-size="9.5">scorecards, regulatory submissions</text>
+  <text x="762" y="232" text-anchor="start" fill="#2A7F62" font-size="9" font-weight="600" font-style="italic">→ Governed, consistent metrics</text>
+
+  <!-- TIER 2: Ad Hoc / Data Science -->
+  <g filter="url(#dsO)">
+    <rect x="740" y="270" width="300" height="120" rx="8" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+    <rect x="740" y="270" width="300" height="30" rx="8" fill="#2A7F62"/>
+    <rect x="740" y="285" width="300" height="15" fill="#2A7F62"/>
+  </g>
+  <text x="762" y="290" text-anchor="start" fill="#ffffff" font-size="11" font-weight="700">🔬  Ad Hoc Analysis &amp; Data Science</text>
+  <text x="762" y="316" text-anchor="start" fill="#2C3E50" font-size="9.5">Exploratory queries, notebook-driven</text>
+  <text x="762" y="330" text-anchor="start" fill="#2C3E50" font-size="9.5">analysis, hypothesis testing, feature</text>
+  <text x="762" y="344" text-anchor="start" fill="#2C3E50" font-size="9.5">exploration, ad hoc data pulls</text>
+  <text x="762" y="372" text-anchor="start" fill="#2A7F62" font-size="9" font-weight="600" font-style="italic">→ Trusted source data with known quality</text>
+
+  <!-- TIER 3: Productionalized AI / GenAI (highlighted) -->
+  <g filter="url(#dsO)">
+    <rect x="737" y="407" width="306" height="130" rx="8" fill="#1F4E79" stroke="#1F4E79" stroke-width="2"/>
+  </g>
+  <text x="762" y="430" text-anchor="start" fill="#ffffff" font-size="11" font-weight="700">🤖  Productionalized AI / GenAI</text>
+  <text x="762" y="452" text-anchor="start" fill="#d1e3f3" font-size="9.5">Feature stores, model training, RAG</text>
+  <text x="762" y="466" text-anchor="start" fill="#d1e3f3" font-size="9.5">pipelines, fine-tuning datasets,</text>
+  <text x="762" y="480" text-anchor="start" fill="#d1e3f3" font-size="9.5">MLOps / LLMOps monitoring</text>
+  <text x="762" y="506" text-anchor="start" fill="#2A7F62" font-size="9" font-weight="700" font-style="italic">→ Provenance chain, input validation,</text>
+  <text x="762" y="520" text-anchor="start" fill="#2A7F62" font-size="9" font-weight="700" font-style="italic">   reproducibility — the AI trust layer</text>
+
+  <!-- Bottom summary -->
+  <rect x="30" y="544" width="1000" height="26" rx="6" fill="#1F4E79" opacity="0.06"/>
+  <text x="530" y="562" text-anchor="middle" fill="#1F4E79" font-size="10.5" font-weight="600">Observability isn't bolted on after deployment — it's inherited from every layer of the architecture</text>
+</svg>

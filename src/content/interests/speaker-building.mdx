@@ -2,26 +2,24 @@
 title: "Designing a FAST Speaker From Scratch: When You Own Bowers & Wilkins and Still Want to Build Your Own"
 date: "2026-03-21"
 description: "A full-range assisted subwoofer system using a Dayton Audio RS100-8 and DCS205-4 in a mass-loaded transmission line — designed to marry the B&W 606's vocal clarity with real floorstanding bass."
-tags: ["Audio", "Speaker Design", "FAST", "DIY", "Crossover Design", "Transmission Line"]
-category: "hardware"
+tags: ["Audio", "Speaker Design", "FAST", "DIY", "Crossover Design", "Transmission Line", "DIY Projects"]
 contentType: "personal"
-traits: ["hobby", "engineering", "audio", "build-guide"]
+traits: ["hobby", "engineering", "audio", "build-guide", "diy-projects"]
 heroImage: ""
 ---
 
 ### I Already Own Good Speakers. That's Why I Want to Build One.
 
-Between Rejo and me, we have more audio gear than most small hi-fi shops. My living room runs an Onkyo NR7100 driving a 9.1 setup. There's a Sony STR-790 in another room. I own Bowers &amp; Wilkins 606 S2 Anniversary Editions, a Klipsch Reference Theater Pack, Edifier powered monitors, and a collection of LG and budget systems I started with years ago — watching on an LG C series 48" OLED.
-
-Rejo's setup is a different league. Klipsch RP-8000F II floorstanding towers — the flagship of the Reference Premiere line, dual 8-inch Cerametallic woofers with Tractrix horn loading. An RSL Speedwoofer 10S MKII handling the low end. A Denon AVR-X4800H pushing 11.4 channels. Klipsch Reference Premiere center, Sony surrounds, all feeding into a 65" LG C series OLED. I haven't heard it yet — and that's part of what's driving this project.
+My living room runs an Onkyo NR7100 driving a 9.1 setup. There's a Sony STR-790 in another room. I own Bowers & Wilkins 606 S2 Anniversary Editions, a Klipsch Reference Theater Pack, Edifier powered monitors, and a collection of LG and budget systems I started with years ago — watching on an LG C series 48" OLED.
 
 I know what the B&W 606 S2 sounds like. I've listened to it for hundreds of hours. The vocal clarity, the imaging, the way a singer seems to exist physically in the space between the speakers — that's what a good two-way bookshelf does when the crossover and drivers are well-matched. But the 606 rolls off below 50 Hz. It needs a subwoofer for anything with real low-end weight. And the crossover sits at around 4 kHz — right in the vocal band, where phase coherence matters most.
 
-Rejo talks about what his Klipsch floorstanding towers do in the bass — the physical chest impact, the authority in the lower octaves that a bookshelf simply can't produce. I want to hear that. But I don't want to lose what the 606 does in the midrange to get there.
+A while back I spent an evening listening to a pair of Klipsch RP-8000F II floorstanding towers — the flagship of the Reference Premiere line, dual 8-inch Cerametallic woofers with Tractrix horn loading, paired with an RSL Speedwoofer 10S MKII. The physical chest impact of that setup, the authority in the lower octaves — a bookshelf simply can't produce that. I walked away wanting that bass. But I didn't want to lose what the 606 does in the midrange to get there.
 
-So the question became: **can we build a single floorstanding speaker that gives us the 606's vocal clarity with real bass extension down to 30 Hz — no subwoofer needed?** The B&W's imaging in a cabinet that doesn't need an RSL underneath to sound complete.
+So the question became: **can I build a single floorstanding speaker that gives me the 606's vocal clarity with real bass extension down to 30 Hz — no subwoofer needed?** The B&W's imaging in a cabinet that doesn't need an RSL underneath to sound complete.
 
-We decided to build a FAST system. This is the design.
+I decided to build a FAST system. This is the design.
+
 
 ### Why FAST: The Architecture That Fixes the Crossover Problem
 
@@ -64,7 +62,7 @@ A FAST system eliminates this entirely. One full-range driver covers everything 
 
 ### Choosing the Drivers
 
-We spent weeks comparing options before settling on this pairing. In a FAST system, driver matching is everything — you need a full-range driver with enough bandwidth to cover the entire midrange and treble, and a subwoofer whose natural characteristics complement it without expensive correction networks.
+I spent weeks comparing options before settling on this pairing. In a FAST system, driver matching is everything — you need a full-range driver with enough bandwidth to cover the entire midrange and treble, and a subwoofer whose natural characteristics complement it without expensive correction networks.
 
 **The full-range driver: Dayton Audio RS100-8 (4-inch).** Black anodised aluminium cone — rigid enough to behave as a perfect piston well beyond 10 kHz, with transient detail that paper and polypropylene cones can't match. The aluminium phase plug doubles as a voice coil heatsink and prevents wave cancellation at the cone centre at high frequencies. Faraday rings in the motor structure keep voice coil inductance down to just 0.5 mH — critical, because high inductance kills high-frequency response in a full-range driver. Sensitivity is 84.6 dB at 2.83V/1m. Resonant frequency 92.2 Hz, Xmax 3.5 mm. By crossing it over at 350 Hz — two octaves above its resonance — the actual excursion required drops to a fraction of a millimetre. Doppler distortion essentially disappears.
 
@@ -74,7 +72,7 @@ We spent weeks comparing options before settling on this pairing. In a FAST syst
 
 ### The Enclosure: Mass-Loaded Transmission Line
 
-A sealed box would be safe. A ported box would be common. We went with a mass-loaded transmission line because we wanted bass *quality*, not just bass quantity — and the DCS205-4's parameters are almost tailor-made for this topology.
+A sealed box would be safe. A ported box would be common. I went with a mass-loaded transmission line because I wanted bass *quality*, not just bass quantity — and the DCS205-4's parameters are almost tailor-made for this topology.
 
 A transmission line is a long pipe behind the driver. The rear wave travels down the pipe, and if the pipe length equals one quarter of the wavelength at the target frequency, the wave exits the open end in phase with the front wave — reinforcing the bass. For 32 Hz, that quarter wavelength is 2.65 metres. An 8.7-foot tower isn't practical.
 
@@ -82,13 +80,13 @@ The "mass-loaded" part solves this. By restricting the open end with a port, you
 
 Internal stuffing — polyfill or acoustic wool — serves a dual purpose. It damps the higher-order harmonics (3rd, 5th, 7th resonances) that cause midrange ripple. And it slows the speed of sound inside the line, effectively making the enclosure behave 10–15% longer than its physical dimensions. Over-stuff it and you kill the bass output. Under-stuff it and you get comb filtering in the mid-bass. Getting the density right is one of those things you tune by ear once the cabinet is built.
 
-We simulated the DCS205-4 in WinISD: **45-litre net volume tuned to ~34 Hz predicts an F3 of approximately 30–31 Hz.** That's the lowest note on a standard electric bass. Real full-range performance from a single 8-inch driver in a domestic-sized tower.
+I simulated the DCS205-4 in WinISD: **45-litre net volume tuned to ~34 Hz predicts an F3 of approximately 30–31 Hz.** That's the lowest note on a standard electric bass. Real full-range performance from a single 8-inch driver in a domestic-sized tower.
 
-### Port Design: Where Most DIY Builds Go Wrong
+### Port Design: Where Most DIY Builds Go Wrong 
 
-We ran the port velocity calculations for the DCS205-4 at maximum excursion (8.8 mm Xmax). A 1 3/8-inch diameter port — trivially easy to fit inside the cabinet — produces air velocity exceeding **65 m/s** at the 32 Hz tuning frequency. The safe limit for inaudible port noise is 17 m/s. At 65 m/s, you get chuffing (audible turbulence), port compression (the bass output plateaus no matter how much power you add), and a speaker that sounds congested exactly where you need it to breathe.
+I ran the port velocity calculations for the DCS205-4 at maximum excursion (8.8 mm Xmax). A 1 3/8-inch diameter port — trivially easy to fit inside the cabinet — produces air velocity exceeding **65 m/s** at the 32 Hz tuning frequency. The safe limit for inaudible port noise is 17 m/s. At 65 m/s, you get chuffing (audible turbulence), port compression (the bass output plateaus no matter how much power you add), and a speaker that sounds congested exactly where you need it to breathe.
 
-The fix is a larger port. We're using a **3-inch (75 mm) diameter port, approximately 11 inches long**, which brings velocity down to ~14 m/s — safely inside the clean zone. The trade-off: an 11-inch tube takes up space inside the cabinet. We fit it with a 90-degree elbow, keeping the inner opening at least 3 inches from any wall so it can breathe.
+The fix is a larger port. I'm using a **3-inch (75 mm) diameter port, approximately 11 inches long**, which brings velocity down to ~14 m/s — safely inside the clean zone. The trade-off: an 11-inch tube takes up space inside the cabinet. I fit it with a 90-degree elbow, keeping the inner opening at least 3 inches from any wall so it can breathe.
 
 The port sits at the bottom of the cabinet, coupling with the floor boundary for half-space reinforcement — effectively gaining a few dB of free bass output from room physics.
 
@@ -96,7 +94,7 @@ The port sits at the bottom of the cabinet, coupling with the floor boundary for
 
 The crossover frequency is the single most important design decision. 350 Hz sits in a sweet spot: two octaves above the RS100-8's resonant frequency (92 Hz) so the driver is never stressed near its mechanical resonance; below the point where the DCS205-4's high inductance (1.78 mH) starts degrading its response; and near the baffle step transition frequency (~520 Hz for our cabinet width) so the natural acoustic loss aligns with the electrical rolloff.
 
-We designed two versions.
+I designed two versions.
 
 **The ideal version** uses precise calculated values — 3.64 mH / 56.86 uF for the low-pass, 28.43 uF / 7.28 mH for the high-pass — with Zobel impedance linearisation networks on both drivers (4.88 ohm + 74.9 uF for the woofer, 8.0 ohm + 7.81 uF for the full-range). Air-core inductors, film-and-foil polypropylene capacitors. The version you'd build if cost didn't matter and you could wind custom inductors.
 
@@ -150,7 +148,7 @@ We designed two versions.
 
 ### Cabinet Construction Notes
 
-The tower is 1100 mm tall, 165 mm wide, 356 mm deep — built from 19 mm MDF. Front baffle doubled to 38 mm for rigidity and diffraction control. We modelled the geometry parametrically in OpenSCAD — change a driver parameter and the entire cabinet recalculates.
+The tower is 1100 mm tall, 165 mm wide, 356 mm deep — built from 19 mm MDF. Front baffle doubled to 38 mm for rigidity and diffraction control. I modelled the geometry parametrically in OpenSCAD — change a driver parameter and the entire cabinet recalculates.
 
 **The RS100-8 isolation chamber** at the top is non-negotiable. The DCS205-4 generates high internal pressures at low frequencies. If both drivers share the same air volume, those pressure waves physically push the full-range driver's thin aluminium cone — causing modulation distortion or mechanical damage. The sealed sub-enclosure (~1.5–2 litres) isolates the RS100-8 completely.
 
@@ -177,4 +175,4 @@ Parts are bought. Drivers, crossover components, port tube, MDF, damping materia
 
 What remains is the actual build: cutting the MDF, assembling the enclosure, soldering the crossover, stuffing the line, mounting the drivers, and the moment of truth — the first listening test.
 
-The question we set out to answer — can a DIY floorstanding give us the 606's vocal clarity with the bass authority of a Klipsch RP-8000F, in one cabinet, no subwoofer — won't be answered by simulation. It'll be answered by sitting in front of these towers, putting on a familiar recording, and listening. I'll update this article when that happens.
+The question I set out to answer — can a DIY floorstanding give me the 606's vocal clarity with the bass authority of a Klipsch RP-8000F, in one cabinet, no subwoofer — won't be answered by simulation. It'll be answered by sitting in front of these towers, putting on a familiar recording, and listening. I'll update this article when that happens.

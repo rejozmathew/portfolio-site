@@ -1,0 +1,220 @@
+---
+title: "Inside the Enterprise AI/ML Platform: From Experimentation to Governed Production at Scale"
+date: "2026-01-25"
+description: "How we built the enterprise AI/ML operating layer for a Fortune 500 financial services company — a cloud-native platform spanning feature store, governed code promotion, batch and real-time production serving, standardized observability, and an early GenAI extension — designed for 800+ data scientists operating in a regulated environment."
+tags: ["MLOps", "LLMOps", "Feature Store", "Governance", "Observability", "Responsible AI", "Production ML", "Financial Services"]
+contentType: "strategy"
+traits: ["architecture", "framework", "case-study"]
+heroImage: "/images/blog/enterprise-mlops/hero-platform-overview.svg"
+---
+
+<img src="/images/blog/enterprise-mlops/hero-platform-overview.svg" alt="Enterprise AI/ML pipeline end-to-end flow: Data Foundation through Feature Store, DS Workbench, Code Promotion with governance gates, Batch and Real-Time Production, with three governance zones (data, model, GenAI) and a unified observability layer" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 1: The enterprise AI/ML pipeline — end-to-end, from data foundation through governed production. Governance zones (right) align to the pipeline stages they apply to. The GenAI branch is intentionally shown as early-stage.
+</span>
+
+### The Gap That Every Data Science Organization Hits
+
+Every data science organization hits the same wall. A scientist builds a model that performs beautifully in a notebook. It scores well on holdout data. The business stakeholder is excited. And then someone asks: *"Great — when can we use it?"*
+
+That question is where most enterprise ML efforts stall. The distance between a working notebook and a production system that scores real customers, influences real decisions, and holds up under regulatory scrutiny is enormous. It requires infrastructure the scientist didn't build, governance the engineer doesn't own, and operational discipline that nobody's job description quite covers.
+
+At a Fortune 500 financial services company, we built the platform that bridges this gap. Not in one sprint, not with a single tool purchase, but over several years — evolving from a fragmented analytics landscape into a governed, observable, enterprise-scale AI/ML platform serving both traditional ML and, more recently, GenAI workloads.
+
+Before diving into each component, it helps to see the full pipeline end-to-end. Figure 1 shows the complete flow: data enters through the foundation layer, gets shaped into features via the feature store, flows into the DS workbench for experimentation and training, passes through a governed code promotion pipeline with automated gates, registers in the model registry, and splits into batch or real-time production serving — with observability monitoring everything and governance applied at every stage. Each section of this article zooms into one segment of that pipeline. The diagram is the map; the article is the terrain.
+
+### Why We Needed a Platform
+
+When this work started, the enterprise ran eight to ten different analytics toolsets across a dozen teams. Each team had its own infrastructure, its own data pipelines, its own deployment patterns. Data scientists in one business line couldn't collaborate with scientists in another because they were on entirely different stacks. Models lived in notebooks. Deployment meant emailing a scored file. Governance meant hoping someone kept a spreadsheet.
+
+Several forces converged to make a platform investment unavoidable.
+
+**The industry was shifting from linear to non-linear classifiers.** The move from logistic regression to gradient boosting (XGBoost, LightGBM) and neural networks meant Python-based model development and deployment. The existing infrastructure was largely Java-based and couldn't support this shift. The platform needed to be Python-native from the ground up.
+
+**Data modernization was underway.** The enterprise was migrating to Snowflake as its cloud data warehouse. Models needed access to this data — but the operational systems that consumed model outputs (campaign platforms, CRM, fraud decisioning) were still largely on-premises. The platform had to bridge both worlds — cloud-native for the science, integrated with on-prem for the operations.
+
+**New use cases demanded operational integration.** Marketing personalization, fraud detection, and next-best-action models don't live in isolation — they feed campaign tools, CDPs, CRM systems, and origination platforms. A model scoring customers in a notebook is a proof of concept. A model scoring customers and routing the results to UNICA for campaign execution, to the CDP for profile enrichment, and to the CRM for agent-facing updates — that's production. The platform needed to talk to the broader operational ecosystem.
+
+**Governance wasn't optional.** In a regulated financial services environment, every model that influences a customer decision is subject to scrutiny. Fair lending requirements mean testing for disparate impact across protected classes. Explainability requirements mean auditors can ask "why did this customer get this score?" and the answer has to be defensible. The question wasn't whether to build governance — it was whether to build it into the platform or bolt it on after every deployment. We chose to build it in.
+
+### The Cloud-Native Data Science Workbench
+
+Looking at Figure 1, the first three layers — Data Foundation, Feature Store, and DS Workbench — form the experimentation and training environment. The workbench is where models are born.
+
+We built a cloud-native data science platform on AWS and Kubernetes. It gave over 800 data scientists, analysts, and engineers a shared environment for experimentation, training, and collaboration. The design philosophy was *strength in diversity* — not a one-size-fits-all tool, but a containerized platform where each user could provision their own environment with the tools and packages they needed. Jupyter notebooks, RStudio, Spark on Kubernetes — all running in isolated containers on Amazon EC2, with Amazon EFS as the shared storage layer for collaboration and Amazon S3 for long-term archival.
+
+Before this platform existed, provisioning a new analytics environment took weeks. After: hours. That single improvement — collapsing the time between "I have an idea" and "I can test it" — drove more adoption than any feature we added later.
+
+MLflow was integrated for experiment tracking: every training run captured the algorithm, hyperparameters, feature set, and performance metrics automatically. This wasn't just for reproducibility — it was the beginning of the audit trail. When a model eventually reaches production, the MLflow experiment history becomes part of the governance record: here's what was tried, here's what was selected, here's why.
+
+But a workbench for experimentation is necessary and not sufficient. An enterprise doesn't get value from models in notebooks — it gets value from models in production. Everything that follows is about bridging that gap.
+
+### The Feature Store as Contract
+
+The feature store is the connective tissue between the data foundation, the workbench, and production. In our pipeline (Figure 1), it sits between the raw data sources and everything downstream — feeding the workbench during training, feeding batch jobs during scheduled scoring, and feeding real-time APIs during per-event decisioning. It is, more than any other component, the thing that determines whether models can move from experimentation to production reliably.
+
+<img src="/images/blog/enterprise-mlops/feature-store-dual-path.svg" alt="Feature store dual-path architecture showing offline store serving training and batch inference, online store serving real-time inference, with feature sources and data observability monitoring" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 2: The feature store as contract — offline store for training and batch, online store for real-time, with observability monitoring feature health.
+</span>
+
+We built on Feast, designing it around an entity-centric architecture with time-aware snapshots. I've written separately about [the data modeling foundation that makes a feature store work](/blog/feature-store-foundation) — entity design, temporal transformations, and reusable feature families. Here, the focus is on how the feature store operates as an *operational contract* within the production pipeline.
+
+**The offline store** serves historical feature values for model training — with point-in-time correct joins that prevent data leakage — and for batch inference where Airflow jobs pull features to score entire customer populations. Point-in-time correctness matters enormously: if your training data accidentally includes information that wouldn't have been available at prediction time, your model will perform beautifully in development and degrade immediately in production. The offline store enforces this by design.
+
+**The online store** serves the latest feature values at low latency for real-time inference. When a fraud model needs to score a transaction in milliseconds, it can't query a warehouse. It needs a key-value lookup that returns instantly. The online store materializes the latest feature values from the warehouse and serves them at the speed the use case demands.
+
+Feature sources flow in from across the data ecosystem. Snowflake tables provide transactional and account-level data. The [Enterprise Identity Graph](/blog/identity-graph) — built on Neo4j — contributes entity-level features: centrality scores, community membership, household clustering, fraud indicators. These graph-derived features are exported back into Snowflake and materialized into Feast, giving models access to relationship intelligence alongside traditional tabular features. The [Marketing Analytical Database](/blog/marketing-analytical-database) contributes campaign history, response signals, and channel-level features.
+
+Every feature registered in Feast carries metadata: the transformation pipeline that produces it, its refresh schedule, data quality expectations, source lineage, and an owner responsible when something breaks. This is what makes the feature store a *contract* rather than just a data cache. Data engineering guarantees features will be fresh, correct, and available — monitored against SLAs for freshness, distribution stability, null rates, and schema integrity. Data science guarantees models will consume features correctly and produce valid predictions. When either side violates the contract, the observability layer catches it.
+
+This last point is critical and often missed in MLOps discussions: **the most common reason production models degrade is not that the model is wrong — it's that the data feeding the model changed.** A source system starts sending nulls where it didn't before. A feature refresh job silently fails. A schema change upstream breaks a transformation. If you don't monitor feature health continuously, you'll diagnose a "model problem" for days before realizing it's a data problem. The data quality validation and centralized logging patterns we established in our [enterprise data modernization](/blog/enterprise-data-modernization) work extend naturally into feature-level observability — the same principles of metadata-driven validation, threshold monitoring, and anomaly detection apply, now focused on the features flowing into production models. Feature health alerts feed directly into the ServiceNow exception management process, creating a ticket with severity and owner the moment an SLA is breached.
+
+### From Notebook to Production: The Code Promotion Pipeline
+
+This is where the pipeline transitions from experimentation to production — and where governance becomes tangible. In Figure 1, this is the "Code Promotion" stage, sitting between the workbench and the model registry. It's the gauntlet every model must pass through.
+
+<img src="/images/blog/enterprise-mlops/code-promotion-pipeline.svg" alt="Code promotion pipeline showing development through staging with governance gates to production, with factor-driven risk tiering determining governance intensity" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 3: The code promotion pipeline — every model passes through governance gates in staging. The pipeline is standard; the test activation and approval requirements scale with risk tier, which is determined by factor assessment, not model category.
+</span>
+
+When a data scientist has a model ready for production, their notebook code gets refactored into a clean Python package — modular, tested, deployable. This package leaves the workbench and enters a three-environment promotion path orchestrated by Jenkins: **development** (the workbench), **staging** (a production-mirror environment where all validation happens), and **production**.
+
+The critical step is staging. The model package deploys into an environment that mirrors production — same feature store access, same data schemas, same infrastructure constraints. Here, it runs through a sequence of automated governance gates. These gates aren't advisory — if any fails, the promotion is blocked and the model returns to development for remediation.
+
+**Gate 1: Unit and integration tests.** Does the Python package run without errors? Can it consume features from the feature store in the expected format? Does it produce output in the expected schema? These are standard software engineering tests applied to ML code — and they catch a surprising number of issues that would otherwise surface in production.
+
+**Gate 2: Validation.** This gate is *use-case aware* — the specific tests activated depend on what the model does and who it impacts. Performance validation runs the model against a held-out dataset and compares metrics (AUC, precision, recall, calibration) against defined thresholds. Responsible AI and regulatory checks evaluate predictions for disparate impact and compliance requirements — mandatory for models that influence credit, pricing, or coverage decisions, not applicable for internal detective controls or productivity tools. Explainability outputs (SHAP feature attributions, for instance) are generated where the use case demands them.
+
+The use-case awareness is an important design choice. A marketing cross-sell model that determines which customers receive offers requires fair lending testing. A detective control that flags call center transcripts for internal QA review does not — it's not making decisions about customers. Applying the same governance overhead to both would either under-govern the first or over-burden the second. The framework handles this through classification at intake: when a model is registered, its risk tier and use case type determine which gates activate.
+
+**Gate 3: Readiness.** Are the feature store dependencies healthy? Is the model card complete in the MLflow registry — purpose, training data, known limitations, owner, monitoring plan? Has the appropriate risk tier approval been obtained?
+
+Which brings us to risk tiering. The risk tier determines governance intensity — and in our platform, tiering is **factor-driven, not category-driven.** A model's tier is determined by a combination of three factors: *materiality* (the financial impact if the model is wrong — how much it affects the balance sheet, income statement, or customer outcomes), *reliance* (how critical the model's output is to downstream decisions, and the associated regulatory and compliance exposure), and *complexity* (the likelihood of error based on methodology, data sources, and model structure). The model owner proposes an initial tier using a structured assessment; Model Risk Management reviews and can adjust based on their independent evaluation. The result determines what governance the platform enforces.
+
+What scales with risk tier — and what stays constant — is important to understand. **Constant across all tiers:** the pipeline structure itself, the audit trail, the requirement to have a monitoring plan, and some level of MRM oversight. **What scales:** gate depth and validation intensity, the nature and formality of approval, monitoring frequency, and the depth of MRM effective challenge. At the highest risk levels, MRM conducts formal independent review and sign-off; at lower risk levels, the challenge is lighter but still present — there is no tier that escapes MRM's view entirely. The frequency of performance monitoring also scales: the highest-risk models require at minimum quarterly reporting; lower tiers require semi-annual or annual reporting. The platform enforces these cadences through the monitoring framework.
+
+To illustrate how this plays out (noting that actual tier depends on factor assessment, not model category): a pricing or fraud decisioning model would typically land at higher risk due to high materiality and direct regulatory exposure — full MRM review, mandatory responsible AI testing. A marketing segmentation or [complaint detection](/blog/ml-call-center) model might land at moderate risk — structured review, responsible AI checks where applicable. An internal tool like [SQL modernization](/blog/llm-sql-modernization) would typically land at lower risk — automated gates with owner review. But a marketing model with exceptionally high financial impact or novel methodology could absolutely land at a higher tier than expected. The factors determine the tier, not the label.
+
+Only when all applicable gates pass does Jenkins promote the model package to production and register it in the MLflow model registry with version, metadata, and approval signatures. The registry becomes the single source of truth for the model risk management process: at any point, a risk manager or examiner can see what model is in production, what version, what data it trained on, what tests it passed, who approved it, and when it was deployed. The platform provides the infrastructure and evidence trail; MRM provides the independent challenge and oversight.
+
+### Production ML: Batch and Real-Time Serving Patterns
+
+Once a model clears the promotion pipeline and registers in MLflow, it enters production. In Figure 1, this is where the pipeline splits into two paths — batch and real-time — that serve the business through different patterns but share the same downstream ecosystem.
+
+<img src="/images/blog/enterprise-mlops/production-serving-patterns.svg" alt="Batch serving flow via Airflow and real-time serving flow via API endpoint, both consuming from the feature store and feeding shared downstream systems" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 4: Production serving — batch (Airflow-orchestrated) and real-time (API-based) paths. Downstream systems like CDP and CRM receive signals from both paths.
+</span>
+
+**Batch serving is the workhorse.** Airflow triggers scheduled jobs — daily, weekly, or monthly depending on the use case. The job pulls features from the Feast offline store for the target population, loads the model package, scores every eligible customer, and writes the results to output tables. Downstream systems consume these scores: UNICA for campaign execution, the CDP for profile enrichment, the CRM for agent-facing score updates, the Marketing ODS for reporting, and the Enterprise Identity Graph for entity-level intelligence.
+
+The [marketing personalization models](/blog/ml-driven-marketing-personalization) — GBDT+DNN hybrids for cross-sell propensity — are the canonical batch use case. Score millions of customers, rank by propensity, feed the ranked lists into the campaign orchestration engine. The model runs monthly; the business acts on the results for weeks. Batch latency is perfectly acceptable.
+
+**Real-time serving handles per-event scoring where latency matters.** A transaction occurs, a claim is submitted, a customer visits the website — the system calls an API endpoint, the model pulls the latest features from the Feast online store, scores in milliseconds, and returns a decision. The primary real-time use cases are fraud: transaction fraud scoring on every card swipe, third-party identity fraud detection during account applications, and first-party fraud pattern recognition. Next-best-action models also serve in real time — a customer visits the site, the model determines the optimal follow-up and triggers it immediately.
+
+The downstream systems — CDP, CRM, Enterprise Identity Graph, origination systems — are the *same systems* receiving signals from both paths. The CDP doesn't care whether a propensity score arrived from a nightly batch run or a real-time calculation; it stores and acts on it either way. This shared downstream ecosystem is one of the reasons the platform investment pays off — without it, every model team would need to build its own integration to every consuming system.
+
+Real-time serving carries an additional design requirement: **fallback logic.** If the model endpoint is down or latency exceeds the SLA, a customer's transaction can't hang indefinitely. The fallback path — default score, queued retry, or graceful degradation — is defined, tested, and monitored as part of every real-time deployment. Fraud decisioning in particular cannot fail silently; if the model is unavailable, the fallback must still produce a defensible decision.
+
+Both paths feed into the observability layer. Batch observability monitors: did the job run on schedule? Did it complete? How many records scored? Any errors? Duration trending? Real-time observability monitors: latency percentiles (p50/p95/p99), throughput, error rates, prediction distribution stability, and fallback trigger frequency. When any metric breaches its threshold, an alert fires, a ServiceNow ticket is created, and the exception management process kicks in.
+
+### Extending the Platform to GenAI
+
+As the traditional ML platform matured, the emergence of enterprise LLM services created an opportunity to extend it. In Figure 1, this is the dashed-line GenAI branch — intentionally shown as early-stage because that's what it is.
+
+<img src="/images/blog/enterprise-mlops/genai-extension-current.svg" alt="GenAI extension showing AWS Bedrock within VPC connected to reused platform components (Snowflake, S3, PII tokenization), governed intake process, and three proof-point use cases" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 5: Current-state GenAI extension of the core platform — same cloud boundary, reused data foundation, governed intake process, and a small set of proven use cases.
+</span>
+
+The extension was deliberate and cautious. We deployed AWS Bedrock within our VPC via PrivateLink — data never leaves the network boundary, no public internet traversal — non-negotiable for a regulated institution handling sensitive customer data. Bedrock connects to the same Snowflake data foundation and Amazon S3 artifact stores that serve the traditional ML pipeline. PII tokenization continues to happen on-premises before any data reaches cloud services — the same boundary pattern, the same controls.
+
+Governance for GenAI use cases followed a governed intake and risk-assessment model rather than the traditional ML code promotion pipeline. Each proposed use case went through a structured submission and risk identification process — evaluated across risk dimensions (compliance, cyber, data, legal, technology) before any proof of concept or pilot could begin. Basic operational controls were implemented: PII scanning on inputs and outputs, confidence-based HITL routing (outputs below a defined threshold get flagged for human review), and audit logging of every LLM invocation. These are functional but early-stage — per-application implementation, not centralized services.
+
+We proved the pattern on three substantive use cases:
+
+**[Document matching at scale](/blog/document-migration-at-scale):** A RAG pipeline combining vector search, LLM-generated explanations, and HITL review to match roughly 200 million legacy loan documents to borrower accounts across five fragmented source systems. High-stakes, fully governed, with an immutable audit trail for every match decision. Pattern: project-based, governed one-time execution.
+
+**[LLM-assisted SQL modernization](/blog/llm-sql-modernization):** Using Claude via Bedrock to refactor thousands of legacy SQL queries during our data warehouse migration, with an equivalence testing framework that validated every transformation against the original output. Pattern: project-based, governed one-time execution.
+
+**[Call center intelligence](/blog/ml-call-center):** LLM-based call summarization running alongside the traditional ML complaint detection model. This is the strongest integration point between GenAI and the core platform — LLM and ML operating in the same recurring production workflow, with the same transcript processing pipeline, the same downstream escalation paths. Pattern: recurring batch cadence, the one GenAI use case operating on a production schedule.
+
+These use cases proved that GenAI can operate within enterprise governance standards. But I want to be honest about the maturity level: what we built was a *governed foundation*, not an enterprise LLMOps platform. We don't yet have prompt versioning, a multi-model gateway, centralized guardrails-as-a-service, evaluation frameworks, or LLM-specific observability. The traditional ML pipeline took years to mature. The LLMOps layer will too.
+
+### Observability: The Standardized Framework
+
+Throughout the previous sections, I've referenced observability at each pipeline stage — feature health monitoring, CI/CD gate results, batch job tracking, real-time latency monitoring. That wasn't accidental. Observability isn't a separate layer bolted onto the platform after the fact; it's a standardized pattern that every component implements from day one.
+
+<img src="/images/blog/enterprise-mlops/observability-framework.svg" alt="Observability matrix showing six pipeline components each emitting three standardized signals — health, quality, and operational — converging into centralized alerting and ServiceNow" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 6: The three-signal observability framework — standardized across all components, converging into alerting and exception management.
+</span>
+
+The principle is simple: **every component in the pipeline emits three types of signals.**
+
+**Health signals** answer: is this component running? Did the feature refresh complete? Did the Airflow job execute? Is the API endpoint responding? These are binary — alive or dead, succeeded or failed.
+
+**Quality signals** answer: is the output correct? For features — distribution within expected range, null rates below threshold, schema unchanged. For models — prediction distribution stable, performance metrics holding against baseline, drift scores (PSI) below threshold. For real-time APIs — predictions within expected range, confidence scores stable. For GenAI — PII guardrail trigger rates, HITL escalation rates.
+
+**Operational signals** answer: how is it performing? For batch — job duration, record count, error count, duration trending over time. For real-time — latency percentiles, throughput, error rates. For CI/CD — pipeline duration, gate pass/fail rates, promotion success rate.
+
+The platform standardizes the monitoring *pattern* — the signal taxonomy, the alerting mechanism, the evidence trail, and the escalation path through ServiceNow. But the *specific* metrics, thresholds, and statusing logic are configured by model owners based on their model's methodology, complexity, data availability, and segment structure. A fraud detection model tracks different performance metrics (detection rate, false positive rate, alert yield) than a time-series forecasting model (MAE, MAPE, forecast stability). Both follow the same framework; both produce evidence in the same format; both route exceptions through the same process.
+
+For model performance specifically, the monitoring plan is a governed artifact — not an afterthought. Each model's plan defines: selected metrics with rationale, thresholds based on risk tolerance and business goals, a statusing approach that classifies overall model health (we use a Stable / Warning / Unstable framework), action plans including compensating controls when remediation takes time, and a reporting cadence tied to the model's risk tier. When a model enters Warning or Unstable status, the action plan escalates: root cause analysis, enhanced monitoring, evaluation of compensating controls if the fix requires model redevelopment. Consecutive Unstable periods trigger formal MRM findings and potential model retirement.
+
+Models with complex segment or component structures may require segment-level monitoring, where individual segments are tracked independently and the overall model status aggregates from segment performance. Models with upstream dependencies — those consuming outputs of other models — are subject to enhanced monitoring that tracks the health of those upstream inputs. And third-party vendor models receive the same level of monitoring scrutiny as internally developed models. The platform provides the infrastructure for all of this; the model owner configures and executes within the framework; MRM provides effective challenge on the monitoring design and reviews results on a risk-proportionate cadence.
+
+All signals converge into a centralized alerting engine that routes to ServiceNow for exception management. Every alert creates a ticket with severity, owner, and escalation path. The critical feedback loop: when observability detects degradation, the exception management process routes back to one of three outcomes — **retrain** (data has shifted, model needs to learn new patterns), **investigate** (something unexpected, needs root-cause analysis), or **retire** (model is no longer viable).
+
+### Governance as Connective Tissue
+
+If you've followed the pipeline from the data foundation through production, you've already seen governance at every stage. That's by design. Governance in this platform is not a checkpoint you pass through once — it's the connective tissue that binds every component together. The three governance zones in Figure 1 (right column) make this explicit.
+
+**Data governance** applies to the foundation and feature store layers. PII tokenization happens on-premises before data reaches the cloud — sensitive identifiers (SSN, date of birth, card numbers) are tokenized, and models never see raw PII because they don't need it. Data quality standards, lineage tracking, feature freshness SLAs, source approval and representativeness checks — these are the controls that ensure the data feeding every model is trustworthy. If the data is wrong, nothing downstream matters.
+
+**Model governance** applies from code promotion through production. The platform provides the infrastructure that supports model risk management: automated staging gates for pre-production validation, the MLflow registry for version control and approval tracking, the observability framework for ongoing performance monitoring, and the evidence trail that connects experiment to approval to deployment to monitoring. Pre-production, the platform runs performance validation, use-case-aware responsible AI checks, explainability generation, and factor-based risk tier gating. Post-production, the platform enforces monitoring plans with metrics, thresholds, and statusing — and routes exceptions through a governed process with defined action plans and compensating controls.
+
+The framing matters here: the platform does not *do* model risk management — it *enables* model risk management. Model owners establish monitoring plans, select metrics, and set thresholds. MRM provides effective challenge on those designs, reviews results, and can issue findings when standards aren't met. The platform's role is to make all of this possible at scale — standardizing the evidence trail, automating the gates, enforcing the cadences, and ensuring that nothing reaches production without passing through the governed path.
+
+**GenAI governance** applies specifically to the LLM workloads. Currently structured as a governed intake and risk-assessment process: each use case goes through a structured submission, is evaluated across risk dimensions, and must clear pre-build and final risk assessments before deployment. Operational controls include PII scanning, HITL review gates, and audit logging. The things we don't yet have — prompt versioning, centralized guardrails, evaluation frameworks — are part of the next chapter.
+
+The governance framework handles a nuance that's easy to get wrong: **not every test applies to every model.** Fair lending and responsible AI testing is mandatory for models that influence credit or pricing decisions — because the regulatory obligation demands it. It's not applicable to a detective control that flags transcripts for internal review. The pipeline is universal; the test suites are configured based on risk tier and use case classification. This prevents the two failure modes of enterprise AI governance: under-governing the high-risk models (dangerous) and over-governing the low-risk models (adoption-killing).
+
+### The Next Chapter: From LLM Experiments to Enterprise LLMOps
+
+The traditional ML pipeline is mature. The GenAI extension proved the pattern. But scaling GenAI from a handful of governed experiments to an enterprise capability requires a shared operational layer the industry is still defining.
+
+<img src="/images/blog/enterprise-mlops/llmops-evolution-target.svg" alt="Target LLMOps architecture showing shared control plane with multi-model gateway, prompt management, enterprise RAG service, guardrails-as-a-service, agent orchestration, and LLM observability — layered onto the existing enterprise platform" />
+<span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+  Figure 7: Prospective shared LLMOps control plane — future services for multi-model routing, RAG, guardrails, agents, and observability, built on top of the existing enterprise platform foundation.
+</span>
+
+**Multi-model gateway.** Not every request needs the most capable — or most expensive — model. A routing layer that classifies requests by task complexity, cost sensitivity, latency requirements, and compliance constraints, then directs them to the optimal provider. Azure OpenAI, Anthropic Claude, and open-source models coexist behind a single API, with a policy engine enforcing which models are eligible for which use cases. Traditional ML remains on the existing governed pipeline — explainability-dependent use cases like pricing, underwriting, and fraud scoring stay where full model transparency is available. LLMs augment those workflows; they don't replace the explainable models that regulators expect.
+
+**Prompt management as code.** In production, prompts should be versioned, peer-reviewed, tested against evaluation suites, and promoted through the same CI/CD discipline as model code. When a provider updates their model — and they will, on their timeline, not yours — behavioral regression testing should detect output changes before they reach customers.
+
+**Enterprise RAG service.** Moving from project-specific RAG implementations to a shared service with a centralized vector store, standardized chunking and embedding pipelines, and retrieval quality monitoring. When multiple teams need to query policy documents or knowledge bases, they shouldn't each build a RAG pipeline from scratch.
+
+**Guardrails-as-a-service.** Moving from per-application guardrails to a centralized service that every LLM-powered application passes through. PII detection, toxicity filtering, hallucination detection, confidence scoring, HITL routing — as shared infrastructure with consistent enforcement, not reimplemented inconsistently per application.
+
+**Agentic workloads: MCP, A2A, and orchestration.** This is the emerging frontier. Agent architectures where LLMs don't just generate text but take actions — calling tools via MCP (Model Context Protocol), querying databases, invoking APIs, coordinating with specialized agents via A2A (Agent-to-Agent) protocols. For financial services, the use cases are compelling: a complaint triage agent that pulls the call transcript from the archive, classifies risk and regulatory relevance through reasoning, requests supplementary context from a specialized review agent, and drafts a recommended action — all with human analyst approval at the determination point. But the governance implications are significant. Every tool call needs audit logging. Every agent decision needs explainability. The HITL patterns built for simple LLM outputs need to scale to multi-step action chains where the consequences of an unchecked step compound.
+
+**LLM observability.** Token cost tracking per model, per use case, per team — essential for FinOps as usage scales. Latency monitoring against SLAs. Quality metrics through automated evaluation suites and sampled human review. Safety monitoring — guardrail trigger rates, HITL escalation rates. And behavioral regression detection when provider models update.
+
+### Lessons Learned
+
+**Build governance into the pipeline, not around it.** The single best decision we made was embedding governance as automated gates in the CI/CD pipeline rather than as a separate review process. Gates that run in minutes get respected. Review committees that take months get routed around. When governance is the path of least resistance — when the fastest way to get your model to production is to pass the automated checks — adoption follows.
+
+**Feature health is model health.** The most common production model degradation is not model decay — it's upstream data issues. A stale feature, a null spike, a schema change nobody communicated. Investing in feature-level observability before you invest in model-level observability pays off immediately because it catches the most common failure mode first.
+
+**Risk tiering is the key to velocity — and it must be factor-driven.** Treating every model with the same governance intensity is the surest way to kill platform adoption. But tiering by model category alone creates false confidence — a marketing model with high financial impact might deserve more scrutiny than some operational models in "higher-risk" categories. Factor-driven assessment (materiality, reliance, complexity) with MRM challenge ensures the tier reflects actual risk, not just a label. Same pipeline, same gates — the intensity scales, not the process.
+
+**The platform enables MRM; it doesn't replace it.** We built infrastructure — automated gates, evidence trails, monitoring frameworks, alerting, exception management. That infrastructure makes model risk management possible at the scale of 800+ users and hundreds of models. But the independent challenge, the risk judgment, the escalation decisions — those are human responsibilities that the platform supports, not automates.
+
+**Cloud-native is the right answer — now.** Some of our infrastructure decisions reflected the constraints of the time: on-premises operational systems, no GPU provisioning for traditional ML, GenAI not yet a consideration. Today, with managed services for model serving, LLM inference, and GPU compute, the calculus favors cloud-native production infrastructure end to end. The hybrid pattern works, but it introduces integration complexity that cloud-native avoids.
+
+**The hardest problem is organizational, not technical.** Building the platform was complex engineering. Getting a dozen teams to adopt it — to leave behind their comfortable, familiar, ungoverned toolsets — was harder. The platform won adoption not through mandates but by being genuinely better: faster provisioning, easier collaboration, governance that protected teams rather than burdened them. A platform nobody uses is just infrastructure debt.
+
+We're in the early innings of what enterprise AI/ML platforms will need to support. Traditional ML is the foundation, and it works. GenAI is the extension, and the patterns are proving out. The agentic frontier — where AI systems take actions, not just generate text — will test every governance principle we've built. The principles carry over: governance by default, observability at every layer, the right tool for the right task, and human judgment at the decision points that matter. The infrastructure will evolve. The discipline won't.
