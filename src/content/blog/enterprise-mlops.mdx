@@ -2,7 +2,7 @@
 title: "Inside the Enterprise AI/ML Platform: From Experimentation to Governed Production at Scale"
 date: "2026-01-25"
 description: "How we built the enterprise AI/ML operating layer for a Fortune 500 financial services company — a cloud-native platform spanning feature store, governed code promotion, batch and real-time production serving, standardized observability, and an early GenAI extension — designed for 800+ data scientists operating in a regulated environment."
-tags: ["MLOps", "LLMOps", "Feature Store", "Governance", "Observability", "Responsible AI", "Production ML", "Financial Services"]
+tags: ["MLOps", "GenAIOps", "Feature Store", "Governance", "Observability", "Responsible AI", "Production ML", "Financial Services"]
 contentType: "strategy"
 traits: ["architecture", "framework", "case-study"]
 heroImage: "/images/blog/enterprise-mlops/hero-platform-overview.svg"
@@ -141,7 +141,7 @@ We proved the pattern on three substantive use cases:
 
 **[Call center intelligence](/blog/ml-call-center):** LLM-based call summarization running alongside the traditional ML complaint detection model. This is the strongest integration point between GenAI and the core platform — LLM and ML operating in the same recurring production workflow, with the same transcript processing pipeline, the same downstream escalation paths. Pattern: recurring batch cadence, the one GenAI use case operating on a production schedule.
 
-These use cases proved that GenAI can operate within enterprise governance standards. But I want to be honest about the maturity level: what we built was a *governed foundation*, not an enterprise LLMOps platform. We don't yet have prompt versioning, a multi-model gateway, centralized guardrails-as-a-service, evaluation frameworks, or LLM-specific observability. The traditional ML pipeline took years to mature. The LLMOps layer will too.
+These use cases proved that GenAI can operate within enterprise governance standards. But I want to be honest about the maturity level: what we built was a *governed foundation*, not an enterprise GenAIOps platform. We don't yet have prompt versioning, a multi-model gateway, centralized guardrails-as-a-service, evaluation frameworks, or LLM-specific observability. The traditional ML pipeline took years to mature. The GenAIOps layer will too.
 
 ### Observability: The Standardized Framework
 
@@ -182,13 +182,13 @@ The framing matters here: the platform does not *do* model risk management — i
 
 The governance framework handles a nuance that's easy to get wrong: **not every test applies to every model.** Fair lending and responsible AI testing is mandatory for models that influence credit or pricing decisions — because the regulatory obligation demands it. It's not applicable to a detective control that flags transcripts for internal review. The pipeline is universal; the test suites are configured based on risk tier and use case classification. This prevents the two failure modes of enterprise AI governance: under-governing the high-risk models (dangerous) and over-governing the low-risk models (adoption-killing).
 
-### The Next Chapter: From LLM Experiments to Enterprise LLMOps
+### The Next Chapter: From LLM Experiments to Enterprise GenAIOps
 
 The traditional ML pipeline is mature. The GenAI extension proved the pattern. But scaling GenAI from a handful of governed experiments to an enterprise capability requires a shared operational layer the industry is still defining.
 
-<img src="/images/blog/enterprise-mlops/llmops-evolution-target.svg" alt="Target LLMOps architecture showing shared control plane with multi-model gateway, prompt management, enterprise RAG service, guardrails-as-a-service, agent orchestration, and LLM observability — layered onto the existing enterprise platform" />
+<img src="/images/blog/enterprise-mlops/llmops-evolution-target.svg" alt="Target GenAIOps architecture showing shared control plane with multi-model gateway, prompt management, enterprise RAG service, guardrails-as-a-service, agent orchestration, and LLM observability — layered onto the existing enterprise platform" />
 <span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
-  Figure 7: Prospective shared LLMOps control plane — future services for multi-model routing, RAG, guardrails, agents, and observability, built on top of the existing enterprise platform foundation.
+  Figure 7: Prospective shared GenAIOps control plane — future services for multi-model routing, RAG, guardrails, agents, and observability, built on top of the existing enterprise platform foundation.
 </span>
 
 **Multi-model gateway.** Not every request needs the most capable — or most expensive — model. A routing layer that classifies requests by task complexity, cost sensitivity, latency requirements, and compliance constraints, then directs them to the optimal provider. Azure OpenAI, Anthropic Claude, and open-source models coexist behind a single API, with a policy engine enforcing which models are eligible for which use cases. Traditional ML remains on the existing governed pipeline — explainability-dependent use cases like pricing, underwriting, and fraud scoring stay where full model transparency is available. LLMs augment those workflows; they don't replace the explainable models that regulators expect.
