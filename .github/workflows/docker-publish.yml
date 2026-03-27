@@ -7,8 +7,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    env:
-      DOCKER_CONFIG: ${{ runner.temp }}/.docker
 
     permissions:
       contents: read
@@ -19,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prepare isolated Docker config
-        run: mkdir -p "$DOCKER_CONFIG"
+        run: |
+          echo "DOCKER_CONFIG=$RUNNER_TEMP/.docker" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/.docker"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
