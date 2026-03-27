@@ -42,6 +42,42 @@ body { background: transparent; }
 .legend-note {
   color: #6b7280;
 }
+.finish-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.finish-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 62, 80, 0.12);
+  background: rgba(255,255,255,0.74);
+  color: #2C3E50;
+  font-family: system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.finish-chip:hover {
+  background: rgba(255,255,255,0.96);
+  transform: translateY(-1px);
+}
+.finish-chip.active {
+  border-color: #1F4E79;
+  background: #eef4fa;
+}
+.finish-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 62, 80, 0.18);
+  flex-shrink: 0;
+}
 </style>
 
 <div id="container">
@@ -50,6 +86,21 @@ body { background: transparent; }
     <div><span class="legend-label">Front driver:</span> Dayton RS100-8</div>
     <div><span class="legend-label">Side driver:</span> Dayton DCS205-4</div>
     <div class="legend-note">Default view is set to show both.</div>
+    <div class="legend-note">Finish</div>
+    <div class="finish-row">
+      <button class="finish-chip active" onclick="setFinish('natural', this)">
+        <span class="finish-dot" style="background:#c4a87c"></span>Natural
+      </button>
+      <button class="finish-chip" onclick="setFinish('walnut', this)">
+        <span class="finish-dot" style="background:#876544"></span>Walnut
+      </button>
+      <button class="finish-chip" onclick="setFinish('blackash', this)">
+        <span class="finish-dot" style="background:#4d4a48"></span>Black Ash
+      </button>
+      <button class="finish-chip" onclick="setFinish('white', this)">
+        <span class="finish-dot" style="background:#d7d0c5"></span>Satin White
+      </button>
+    </div>
   </div>
   <div id="info">
     <button class="pill active" onclick="setView('solid', this)">Solid</button>
@@ -90,6 +141,8 @@ const innerW = cW-2*ply, innerD = cD-2*ply;
 const woodCol = new THREE.MeshStandardMaterial({ color: 0xC4A87C, roughness: 0.75, metalness: 0.05 });
 const braceCol = new THREE.MeshStandardMaterial({ color: 0xA08060, roughness: 0.7 });
 const driverCol = new THREE.MeshStandardMaterial({ color: 0x333333, roughness: 0.4, metalness: 0.3 });
+const trimCol = new THREE.MeshStandardMaterial({ color: 0x252525, roughness: 0.52, metalness: 0.18, side: THREE.DoubleSide });
+const openingCol = new THREE.MeshStandardMaterial({ color: 0x101010, roughness: 1.0, metalness: 0.0, side: THREE.DoubleSide });
 const basketCol = new THREE.MeshStandardMaterial({ color: 0x2d2d2d, roughness: 0.58, metalness: 0.22, side: THREE.DoubleSide });
 const motorCol = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.82, metalness: 0.08 });
 const coneCol = new THREE.MeshStandardMaterial({
@@ -99,11 +152,32 @@ const coneCol = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 });
 const portCol = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.3, metalness: 0.2 });
+const finishPresets = {
+  natural: {
+    wood: 0xC4A87C,
+    brace: 0xA08060,
+    background: 'linear-gradient(135deg, #f8f6f0 0%, #e8e4da 100%)',
+  },
+  walnut: {
+    wood: 0x876544,
+    brace: 0x67482D,
+    background: 'linear-gradient(135deg, #f5f1ea 0%, #e3ddd0 100%)',
+  },
+  blackash: {
+    wood: 0x4D4A48,
+    brace: 0x393735,
+    background: 'linear-gradient(135deg, #f2f1ee 0%, #dedbd4 100%)',
+  },
+  white: {
+    wood: 0xD7D0C5,
+    brace: 0xB5AB9C,
+    background: 'linear-gradient(135deg, #f6f5f2 0%, #e5e1d8 100%)',
+  },
+};
 
 const cabinetGroup = new THREE.Group();
 cabinetGroup.position.y = -cH/2;
 const cutawayHideMeshes = [];
-const mountedSurfaceOffset = 0.002;
 
 function makeBox(w,h,d,x,y,z,mat){
   const g = new THREE.BoxGeometry(w,h,d);
@@ -157,15 +231,16 @@ const bW = innerW*0.3;
 cabinetGroup.add(makeBox(bW, braceThick, innerD, -innerW/2+bW/2+ply, braceY, 0, braceCol));
 cabinetGroup.add(makeBox(bW, braceThick, innerD, innerW/2-bW/2-ply, braceY, 0, braceCol));
 
-const rs100Geo = new THREE.CylinderGeometry(39*s, 39*s, ply+0.005, 32);
-const rs100 = new THREE.Mesh(rs100Geo, driverCol);
-rs100.rotation.x = Math.PI/2;
-rs100.position.set(0, rs100Y, -cD/2 - (ply + 0.005) / 2 - mountedSurfaceOffset);
-cabinetGroup.add(rs100);
+const rs100Trim = new THREE.Mesh(new THREE.RingGeometry(31*s, 39*s, 32), trimCol);
+rs100Trim.position.set(0, rs100Y, -cD/2 - 0.0012);
+cabinetGroup.add(rs100Trim);
+const rs100Opening = new THREE.Mesh(new THREE.CircleGeometry(31*s, 32), openingCol);
+rs100Opening.position.set(0, rs100Y, -cD/2 - 0.0007);
+cabinetGroup.add(rs100Opening);
 const rs100Cone = new THREE.ConeGeometry(32*s, 20*s, 32);
 const rs100ConeM = new THREE.Mesh(rs100Cone, coneCol);
 rs100ConeM.rotation.x = -Math.PI/2;
-rs100ConeM.position.set(0, rs100Y, -cD/2-0.02);
+rs100ConeM.position.set(0, rs100Y, -cD/2-0.012);
 cabinetGroup.add(rs100ConeM);
 const rs100Phase = new THREE.CylinderGeometry(8*s, 8*s, 8*s, 16);
 const rs100PhaseM = new THREE.Mesh(rs100Phase, new THREE.MeshStandardMaterial({
@@ -175,31 +250,39 @@ const rs100PhaseM = new THREE.Mesh(rs100Phase, new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 }));
 rs100PhaseM.rotation.x = Math.PI/2;
-rs100PhaseM.position.set(0, rs100Y, -cD/2-0.03);
+rs100PhaseM.position.set(0, rs100Y, -cD/2-0.015);
 cabinetGroup.add(rs100PhaseM);
 const rs100Basket = new THREE.Mesh(new THREE.CylinderGeometry(28*s, 18*s, 0.048, 24, 1, true), basketCol);
 rs100Basket.rotation.x = Math.PI/2;
-rs100Basket.position.set(0, rs100Y, -cD/2 + ply + 0.02);
+rs100Basket.position.set(0, rs100Y, -cD/2 + ply + 0.017);
 cabinetGroup.add(rs100Basket);
 const rs100Magnet = new THREE.Mesh(new THREE.CylinderGeometry(11*s, 11*s, 16*s, 20), motorCol);
 rs100Magnet.rotation.x = Math.PI/2;
-rs100Magnet.position.set(0, rs100Y, -cD/2 + ply + 0.052);
+rs100Magnet.position.set(0, rs100Y, -cD/2 + ply + 0.046);
 cabinetGroup.add(rs100Magnet);
 
-const dcs205Geo = new THREE.CylinderGeometry(91*s, 91*s, ply+0.005, 32);
-const dcs205 = new THREE.Mesh(dcs205Geo, driverCol);
-dcs205.rotation.z = Math.PI/2;
-dcs205.position.set(cW/2 + (ply + 0.005) / 2 + mountedSurfaceOffset, dcs205Y, 0);
-cabinetGroup.add(dcs205);
-const dcs205Cone = new THREE.ConeGeometry(78*s, 30*s, 32);
+const dcs205FlangeDepth = 12*s;
+const dcs205FlangeWall = new THREE.Mesh(new THREE.CylinderGeometry(91*s, 91*s, dcs205FlangeDepth, 32, 1, true), trimCol);
+dcs205FlangeWall.rotation.z = Math.PI/2;
+dcs205FlangeWall.position.set(cW/2 + dcs205FlangeDepth/2, dcs205Y, 0);
+cabinetGroup.add(dcs205FlangeWall);
+const dcs205Trim = new THREE.Mesh(new THREE.RingGeometry(78*s, 91*s, 32), trimCol);
+dcs205Trim.rotation.y = Math.PI/2;
+dcs205Trim.position.set(cW/2 + dcs205FlangeDepth + 0.0004, dcs205Y, 0);
+cabinetGroup.add(dcs205Trim);
+const dcs205Opening = new THREE.Mesh(new THREE.CircleGeometry(77*s, 32), openingCol);
+dcs205Opening.rotation.y = Math.PI/2;
+dcs205Opening.position.set(cW/2 + 0.0012, dcs205Y, 0);
+cabinetGroup.add(dcs205Opening);
+const dcs205Cone = new THREE.ConeGeometry(78*s, 24*s, 32);
 const dcs205ConeM = new THREE.Mesh(dcs205Cone, coneCol);
 dcs205ConeM.rotation.z = Math.PI/2;
-dcs205ConeM.position.set(cW/2+0.03, dcs205Y, 0);
+dcs205ConeM.position.set(cW/2-0.001, dcs205Y, 0);
 cabinetGroup.add(dcs205ConeM);
-const dcs205Dust = new THREE.SphereGeometry(25*s, 16, 12, 0, Math.PI*2, 0, Math.PI/2);
+const dcs205Dust = new THREE.SphereGeometry(18*s, 16, 12, 0, Math.PI*2, 0, Math.PI/2);
 const dcs205DustM = new THREE.Mesh(dcs205Dust, coneCol);
 dcs205DustM.rotation.z = Math.PI/2;
-dcs205DustM.position.set(cW/2+0.042, dcs205Y, 0);
+dcs205DustM.position.set(cW/2-0.006, dcs205Y, 0);
 cabinetGroup.add(dcs205DustM);
 const dcs205Basket = new THREE.Mesh(new THREE.CylinderGeometry(72*s, 48*s, 0.07, 28, 1, true), basketCol);
 dcs205Basket.rotation.z = Math.PI/2;
@@ -207,7 +290,7 @@ dcs205Basket.position.set(cW/2 - 0.032, dcs205Y, 0);
 cabinetGroup.add(dcs205Basket);
 const dcs205Magnet = new THREE.Mesh(new THREE.CylinderGeometry(24*s, 24*s, 34*s, 20), motorCol);
 dcs205Magnet.rotation.z = Math.PI/2;
-dcs205Magnet.position.set(cW/2 - 0.08, dcs205Y, 0);
+dcs205Magnet.position.set(cW/2 - 0.078, dcs205Y, 0);
 cabinetGroup.add(dcs205Magnet);
 
 const portY = 280*s;
@@ -234,6 +317,16 @@ cabinetGroup.add(portInnerM);
 
 scene.add(cabinetGroup);
 let cutawayActive = false;
+
+function setFinish(name, button) {
+  const preset = finishPresets[name];
+  if (!preset) return;
+  woodCol.color.setHex(preset.wood);
+  braceCol.color.setHex(preset.brace);
+  container.style.background = preset.background;
+  document.querySelectorAll('.finish-chip').forEach((chip) => chip.classList.remove('active'));
+  button.classList.add('active');
+}
 
 function setView(mode, button) {
   document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
