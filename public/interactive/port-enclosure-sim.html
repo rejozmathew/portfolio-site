@@ -1,0 +1,360 @@
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #25364a;
+}
+
+:root {
+  --txt: #25364a;
+  --txt2: #5f6f81;
+  --card-bg: #f4efe7;
+  --card-brd: #d7dee6;
+}
+
+.wrap {
+  padding: 8px 0 2px;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 3px;
+}
+
+.sub {
+  font-size: 11px;
+  color: var(--txt2);
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-brd);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.card .lbl {
+  font-size: 11px;
+  color: var(--txt2);
+  margin: 0 0 2px;
+}
+
+.card .val {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--txt);
+  margin: 0;
+}
+
+.card .val span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--txt2);
+}
+
+.ctrl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0;
+  font-size: 13px;
+  color: var(--txt2);
+}
+
+.ctrl label {
+  min-width: 90px;
+}
+
+.ctrl input[type="range"] {
+  flex: 1;
+  accent-color: #2a7f62;
+}
+
+.ctrl .out {
+  min-width: 52px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--txt);
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  margin-top: 8px;
+}
+
+.chart-wrap.compact {
+  height: 124px;
+  margin-top: 10px;
+}
+
+.lgd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--txt2);
+}
+
+.lgd span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sw {
+  width: 14px;
+  height: 3px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.port-info {
+  font-size: 12px;
+  color: var(--txt2);
+  margin-top: 8px;
+}
+
+canvas {
+  display: block;
+}
+</style>
+
+<div class="wrap">
+  <h2>DCS205-4 ported enclosure simulation</h2>
+  <div class="sub">
+    Thiele-Small model · Dayton Audio DCS205-4 (8 in, 4 ohms) · Fs=32.3 Hz, Qts=0.37, Vas=36.5 L, Xmax=8.8 mm, Sd=133.6 cm²
+  </div>
+
+  <div class="grid">
+    <div class="card"><p class="lbl">F3 (-3 dB point)</p><p class="val" id="f3">31 <span>Hz</span></p></div>
+    <div class="card"><p class="lbl">F6 (-6 dB point)</p><p class="val" id="f6">27 <span>Hz</span></p></div>
+    <div class="card"><p class="lbl">Peak port velocity</p><p class="val" id="pv">14.2 <span>m/s</span></p></div>
+    <div class="card"><p class="lbl">Cone excursion @ Fb</p><p class="val" id="xc">5.1 <span>mm</span></p></div>
+  </div>
+
+  <div class="ctrl"><label>Box volume</label><input type="range" id="vol" min="25" max="70" value="45" step="1" oninput="upd()"><span class="out" id="volL">45 L</span></div>
+  <div class="ctrl"><label>Tuning freq</label><input type="range" id="fb" min="25" max="50" value="34" step="1" oninput="upd()"><span class="out" id="fbL">34 Hz</span></div>
+  <div class="ctrl"><label>Port diameter</label><input type="range" id="pd" min="38" max="100" value="76" step="1" oninput="upd()"><span class="out" id="pdL">76 mm</span></div>
+  <div class="ctrl"><label>Power</label><input type="range" id="pw" min="1" max="100" value="20" step="1" oninput="upd()"><span class="out" id="pwL">20 W</span></div>
+
+  <div class="chart-wrap"><canvas id="c1"></canvas></div>
+  <div class="lgd">
+    <span><span class="sw" style="background:#185fa5"></span>SPL response</span>
+    <span><span class="sw" style="background:#0f6e56"></span>Port output</span>
+    <span><span class="sw" style="background:#d85a30"></span>Cone excursion</span>
+    <span><span class="sw" style="width:14px;height:1px;background:repeating-linear-gradient(90deg,#8ea0b3 0 4px,transparent 4px 7px)"></span>Xmax limit</span>
+  </div>
+
+  <div class="chart-wrap compact"><canvas id="c2"></canvas></div>
+  <div class="lgd">
+    <span><span class="sw" style="background:#993c1d"></span>Port velocity</span>
+    <span><span class="sw" style="width:14px;height:1px;background:repeating-linear-gradient(90deg,#8ea0b3 0 4px,transparent 4px 7px)"></span>17 m/s safe limit</span>
+  </div>
+
+  <div class="port-info" id="plen"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const Fs = 32.3;
+const Qts = 0.37;
+const Qms = 5.13;
+const Vas = 36.5;
+const Sd = 133.6e-4;
+const Xmax = 8.8e-3;
+const c = 343;
+
+const gc = "rgba(38, 58, 78, 0.08)";
+const tc = "#5f6f81";
+
+function sim(Vb, Fb, pd, Pw) {
+  const alpha = Vas / Vb;
+  const h = Fb / Fs;
+  const Sp = Math.PI * Math.pow(pd / 2000, 2);
+  const fs = [];
+  const spl = [];
+  const pspl = [];
+  const exc = [];
+  const pv = [];
+
+  for (let i = 0; i < 200; i += 1) {
+    const f = 10 * Math.pow(10, (i * 3) / 199);
+    const fn = f / Fs;
+    const fn2 = fn * fn;
+    const h2 = h * h;
+    const Br = fn2 * fn2 - (1 + alpha + h2) * fn2 + h2;
+    const Bi = fn * fn2 / Qts - fn * h2 * (1 / Qts + 1 / Qms);
+    const m2 = Br * Br + Bi * Bi;
+    const cone2 = fn2 * fn2 * fn2 * fn2 / m2;
+    const port2 = (alpha * h2 * fn2) * (alpha * h2 * fn2) / m2;
+
+    fs.push(f);
+    spl.push(88.6 + 10 * Math.log10(Math.max(cone2 + port2, 1e-30)));
+    pspl.push(88.6 + 10 * Math.log10(Math.max(port2, 1e-30)));
+
+    const en = Math.sqrt(fn2 * fn2 / m2);
+    exc.push(Math.min(en * Xmax * 1000 * Math.sqrt(Pw / 20), 25));
+    pv.push(Math.min(Math.abs(en * Xmax * Sd / Sp * 2 * Math.PI * f * 0.3 * Math.sqrt(Pw / 20)), 80));
+  }
+
+  const Le = c * c * Sp / (4 * Math.PI * Math.PI * Fb * Fb * Vb / 1000);
+  const ec = 1.463 * Math.sqrt(Sp / Math.PI);
+  return { fs, spl, pspl, exc, pv, plen: Math.max(0, (Le - ec) * 100) };
+}
+
+function tickLabel(value) {
+  const keep = [10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000];
+  if (!keep.includes(value)) {
+    return null;
+  }
+  return value >= 1000 ? `${value / 1000}k` : `${value}`;
+}
+
+const baseOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  animation: { duration: 0 }
+};
+
+let ch1;
+let ch2;
+
+function init() {
+  const d = sim(45, 34, 76, 20);
+
+  ch1 = new Chart(document.getElementById("c1"), {
+    type: "scatter",
+    data: {
+      datasets: [
+        { data: d.fs.map((f, i) => ({ x: f, y: d.spl[i] })), showLine: true, borderColor: "#185FA5", borderWidth: 2, pointRadius: 0, tension: 0.3 },
+        { data: d.fs.map((f, i) => ({ x: f, y: d.pspl[i] })), showLine: true, borderColor: "#0F6E56", borderWidth: 1.5, pointRadius: 0, tension: 0.3 },
+        { data: d.fs.map((f, i) => ({ x: f, y: 60 + d.exc[i] * 1.5 })), showLine: true, borderColor: "#D85A30", borderWidth: 1.5, pointRadius: 0, tension: 0.3, yAxisID: "y2" },
+        { data: [{ x: 10, y: 60 + 8.8 * 1.5 }, { x: 20000, y: 60 + 8.8 * 1.5 }], showLine: true, borderColor: "#8EA0B3", borderWidth: 1, borderDash: [5, 4], pointRadius: 0, yAxisID: "y2" }
+      ]
+    },
+    options: {
+      ...baseOptions,
+      scales: {
+        x: {
+          type: "logarithmic",
+          min: 10,
+          max: 20000,
+          ticks: { color: tc, font: { size: 10 }, callback: tickLabel },
+          grid: { color: gc }
+        },
+        y: {
+          min: 55,
+          max: 105,
+          ticks: { color: tc, font: { size: 10 }, stepSize: 10 },
+          grid: { color: gc },
+          title: { display: true, text: "dB SPL", color: tc, font: { size: 10 } }
+        },
+        y2: { display: false, min: 55, max: 105 }
+      }
+    }
+  });
+
+  ch2 = new Chart(document.getElementById("c2"), {
+    type: "scatter",
+    data: {
+      datasets: [
+        { data: d.fs.map((f, i) => ({ x: f, y: d.pv[i] })), showLine: true, borderColor: "#993C1D", borderWidth: 2, pointRadius: 0, tension: 0.3 },
+        { data: [{ x: 10, y: 17 }, { x: 20000, y: 17 }], showLine: true, borderColor: "#8EA0B3", borderWidth: 1, borderDash: [5, 4], pointRadius: 0 }
+      ]
+    },
+    options: {
+      ...baseOptions,
+      scales: {
+        x: {
+          type: "logarithmic",
+          min: 10,
+          max: 20000,
+          ticks: { color: tc, font: { size: 10 }, callback: tickLabel },
+          grid: { color: gc }
+        },
+        y: {
+          min: 0,
+          max: 40,
+          ticks: { color: tc, font: { size: 10 }, stepSize: 10 },
+          grid: { color: gc },
+          title: { display: true, text: "m/s", color: tc, font: { size: 10 } }
+        }
+      }
+    }
+  });
+}
+
+function upd() {
+  const V = +document.getElementById("vol").value;
+  const F = +document.getElementById("fb").value;
+  const P = +document.getElementById("pd").value;
+  const W = +document.getElementById("pw").value;
+
+  document.getElementById("volL").textContent = `${V} L`;
+  document.getElementById("fbL").textContent = `${F} Hz`;
+  document.getElementById("pdL").textContent = `${P} mm`;
+  document.getElementById("pwL").textContent = `${W} W`;
+
+  const d = sim(V, F, P, W);
+
+  ch1.data.datasets[0].data = d.fs.map((f, i) => ({ x: f, y: d.spl[i] }));
+  ch1.data.datasets[1].data = d.fs.map((f, i) => ({ x: f, y: d.pspl[i] }));
+  ch1.data.datasets[2].data = d.fs.map((f, i) => ({ x: f, y: 60 + d.exc[i] * 1.5 }));
+  ch1.data.datasets[3].data = [{ x: 10, y: 60 + 8.8 * 1.5 }, { x: 20000, y: 60 + 8.8 * 1.5 }];
+  ch1.update("none");
+
+  ch2.data.datasets[0].data = d.fs.map((f, i) => ({ x: f, y: d.pv[i] }));
+  ch2.update("none");
+
+  const pk = Math.max(...d.spl.filter((_, i) => d.fs[i] > 20 && d.fs[i] < 500));
+  let f3 = 0;
+  let f6 = 0;
+  for (let i = d.fs.length - 1; i >= 0; i -= 1) {
+    if (d.fs[i] < 500) {
+      if (!f3 && d.spl[i] < pk - 3) f3 = Math.round(d.fs[i]);
+      if (!f6 && d.spl[i] < pk - 6) f6 = Math.round(d.fs[i]);
+    }
+  }
+
+  document.getElementById("f3").innerHTML = `${f3 || "-"} <span>Hz</span>`;
+  document.getElementById("f6").innerHTML = `${f6 || "-"} <span>Hz</span>`;
+
+  const ppv = Math.max(...d.pv.filter((_, i) => d.fs[i] > 15 && d.fs[i] < 100));
+  document.getElementById("pv").innerHTML = `${ppv.toFixed(1)} <span>m/s</span>`;
+
+  const fi = d.exc.reduce((best, value, index) => (
+    Math.abs(d.fs[index] - F) < Math.abs(d.fs[best] - F) ? index : best
+  ), 0);
+
+  document.getElementById("xc").innerHTML = `${d.exc[fi].toFixed(1)} <span>mm</span>`;
+  document.getElementById("plen").textContent = `Port length: ${d.plen.toFixed(1)} cm (${(d.plen / 2.54).toFixed(1)} in) for ${P} mm diameter at ${F} Hz in ${V} L`;
+}
+
+init();
+upd();
+</script>

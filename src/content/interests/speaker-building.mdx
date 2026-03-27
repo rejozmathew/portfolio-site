@@ -6,7 +6,7 @@ tags: ["Audio", "Speaker Design", "FAST", "DIY", "Crossover Design", "Transmissi
 category: "hardware"
 contentType: "personal"
 traits: ["hobby", "engineering", "audio", "build-guide", "diy-projects"]
-heroImage: ""
+heroImage: "/images/DIY/speaker-building/speaker-cabinet-hero.png"
 ---
 
 ### I Already Own Good Speakers. That's Why I Want to Build One.
@@ -30,46 +30,19 @@ In a standard two-way speaker — like the B&W 606 — the crossover splits the 
 
 A FAST system eliminates this entirely. One full-range driver covers everything from the lower midrange up to 20 kHz. A dedicated subwoofer handles only the bass — below 300–400 Hz. The crossover sits in a region where wavelengths are so long that the transition between drivers is essentially invisible to the ear. The full-range driver reproduces the entire vocal range, all transient detail, all harmonic texture — from a single point source. No radiation pattern shift. No phase discontinuity. The "disappearing speaker" effect that audiophiles spend thousands chasing.
 
-<svg width="100%" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" style={{maxWidth: '720px', margin: '2rem auto', display: 'block'}}>
-  <rect x="0" y="0" width="720" height="220" rx="8" fill="#f0f4f8" stroke="#d1d9e0" strokeWidth="0.8"/>
-  <text x="360" y="22" textAnchor="middle" fontSize="11" fontWeight="600" fill="#2C3E50" fontFamily="sans-serif">FAST vs Conventional Two-Way</text>
-  <rect x="20" y="38" width="330" height="165" rx="6" fill="#fff" stroke="#d1d9e0" strokeWidth="0.6"/>
-  <text x="185" y="58" textAnchor="middle" fontSize="9" fontWeight="600" fill="#c0392b" fontFamily="sans-serif">Conventional (e.g. B&W 606)</text>
-  <rect x="40" y="70" width="90" height="28" rx="4" fill="#1F4E79"/>
-  <text x="85" y="88" textAnchor="middle" fontSize="8" fill="#f9fafb" fontFamily="sans-serif">Woofer 6.5"</text>
-  <rect x="40" y="105" width="90" height="28" rx="4" fill="#2A7F62"/>
-  <text x="85" y="123" textAnchor="middle" fontSize="8" fill="#f9fafb" fontFamily="sans-serif">Tweeter 1"</text>
-  <text x="185" y="84" textAnchor="middle" fontSize="8" fill="#c0392b" fontFamily="sans-serif">Crossover @ 2–4 kHz</text>
-  <text x="185" y="96" textAnchor="middle" fontSize="7" fill="#c0392b" fontFamily="sans-serif">In the vocal band</text>
-  <text x="185" y="130" textAnchor="middle" fontSize="7" fill="#6b7280" fontFamily="sans-serif">Phase rotation + radiation shift</text>
-  <text x="185" y="150" textAnchor="middle" fontSize="7" fill="#6b7280" fontFamily="sans-serif">Needs subwoofer for &lt;50 Hz</text>
-  <text x="185" y="185" textAnchor="middle" fontSize="8" fontWeight="600" fill="#c0392b" fontFamily="sans-serif">Two sources in the vocal band</text>
-  <rect x="370" y="38" width="330" height="165" rx="6" fill="#fff" stroke="#d1d9e0" strokeWidth="0.6"/>
-  <text x="535" y="58" textAnchor="middle" fontSize="9" fontWeight="600" fill="#2A7F62" fontFamily="sans-serif">FAST (Our Build)</text>
-  <rect x="390" y="70" width="90" height="28" rx="4" fill="#2A7F62"/>
-  <text x="435" y="84" textAnchor="middle" fontSize="7" fill="#f9fafb" fontFamily="sans-serif">Full-Range 4"</text>
-  <text x="435" y="94" textAnchor="middle" fontSize="6" fill="#a8dfc9" fontFamily="sans-serif">350 Hz – 20 kHz</text>
-  <rect x="390" y="105" width="90" height="28" rx="4" fill="#1F4E79"/>
-  <text x="435" y="119" textAnchor="middle" fontSize="7" fill="#f9fafb" fontFamily="sans-serif">Subwoofer 8"</text>
-  <text x="435" y="129" textAnchor="middle" fontSize="6" fill="#a8c4e0" fontFamily="sans-serif">Below 350 Hz</text>
-  <text x="535" y="84" textAnchor="middle" fontSize="8" fill="#2A7F62" fontFamily="sans-serif">Crossover @ 350 Hz</text>
-  <text x="535" y="96" textAnchor="middle" fontSize="7" fill="#2A7F62" fontFamily="sans-serif">Below vocal band</text>
-  <text x="535" y="130" textAnchor="middle" fontSize="7" fill="#6b7280" fontFamily="sans-serif">Single point source across</text>
-  <text x="535" y="150" textAnchor="middle" fontSize="7" fill="#6b7280" fontFamily="sans-serif">full vocal range. Bass to 30 Hz.</text>
-  <text x="535" y="185" textAnchor="middle" fontSize="8" fontWeight="600" fill="#2A7F62" fontFamily="sans-serif">One source for everything you hear</text>
-</svg>
+<img src="/images/DIY/speaker-building/fast-vs-two-way.svg" alt="Comparison diagram showing a conventional two-way crossover in the vocal band versus a FAST layout that keeps the crossover much lower" style={{width: '100%', maxWidth: '720px', margin: '2rem auto', display: 'block'}} />
 
-<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>The conventional crossover sits in the vocal band. FAST moves it two octaves lower — below where the ear detects the transition.</span>
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>The conventional crossover sits in the vocal band. FAST moves it well below — where the ear cannot detect the transition.</span>
 
 ### Choosing the Drivers
 
 I spent weeks comparing options before settling on this pairing. In a FAST system, driver matching is everything — you need a full-range driver with enough bandwidth to cover the entire midrange and treble, and a subwoofer whose natural characteristics complement it without expensive correction networks.
 
-**The full-range driver: Dayton Audio RS100-8 (4-inch).** Black anodised aluminium cone — rigid enough to behave as a perfect piston well beyond 10 kHz, with transient detail that paper and polypropylene cones can't match. The aluminium phase plug doubles as a voice coil heatsink and prevents wave cancellation at the cone centre at high frequencies. Faraday rings in the motor structure keep voice coil inductance down to just 0.5 mH — critical, because high inductance kills high-frequency response in a full-range driver. Sensitivity is 84.6 dB at 2.83V/1m. Resonant frequency 92.2 Hz, Xmax 3.5 mm. By crossing it over at 350 Hz — two octaves above its resonance — the actual excursion required drops to a fraction of a millimetre. Doppler distortion essentially disappears.
+**The full-range driver: Dayton Audio RS100-8 (4-inch).** Black anodised aluminium cone — rigid enough to behave as a perfect piston well beyond 10 kHz, with transient detail that paper and polypropylene cones can't match. The aluminium phase plug doubles as a voice coil heatsink and prevents wave cancellation at the cone centre at high frequencies. Faraday rings in the motor structure keep voice coil inductance down to just 0.5 mH — critical, because high inductance kills high-frequency response in a full-range driver. Sensitivity is 84.6 dB at 2.83V/1m. Resonant frequency 92.2 Hz, Xmax 3.5 mm. In a sealed ~2-litre chamber, it naturally rolls off below 130 Hz — the crossover capacitor simply shapes a gentle transition rather than fighting the driver's physics.
 
 **The subwoofer: Dayton Audio DCS205-4 (8-inch).** Treated paper/Kevlar cone — self-damping, warm, a deliberate contrast to the analytical aluminium of the RS100-8. Rubber half-roll surround rated for 8.8 mm of linear excursion. Vented pole piece prevents chuffing. Resonant frequency 32.3 Hz with a Qts of 0.37 — textbook numbers for transmission line loading. The inductance is high at 1.78 mH, which naturally rolls off its output above 300–400 Hz. In most designs, high inductance is a problem. In ours, it's an advantage — it helps the crossover by doing some of the filtering work naturally.
 
-**Sensitivity matching** is where this pairing gets lucky. The DCS205-4 measures 88.6 dB at 2.83V, but it's a 4-ohm driver drawing twice the power of the 8-ohm RS100-8 at that voltage. Normalise to 1 watt and it drops to ~85.6 dB. Factor in baffle step loss (the woofer operates entirely below the baffle step frequency where it loses up to 6 dB radiating omnidirectionally), and both drivers land at roughly 84–85 dB effective sensitivity. No padding resistors needed. No wasted amplifier power. An engineering coincidence that saves us significant crossover complexity.
+**Sensitivity matching** is where this pairing gets lucky. The DCS205-4 measures 88.6 dB at 2.83V, but it's a 4-ohm driver drawing twice the power of the 8-ohm RS100-8 at that voltage. Normalise to 1 watt and it drops to ~85.6 dB. The RS100-8 is a few dB more efficient in the midrange once it's above its sealed-box rolloff. A 10-ohm shunt resistor on the full-range path pads its level down to match the subwoofer — a simple, elegant solution that also helps tame the RS100-8's aluminium cone breakup peak around 3 kHz.
 
 ### The Enclosure: Mass-Loaded Transmission Line
 
@@ -83,6 +56,10 @@ Internal stuffing — polyfill or acoustic wool — serves a dual purpose. It da
 
 I simulated the DCS205-4 in WinISD: **45-litre net volume tuned to ~34 Hz predicts an F3 of approximately 30–31 Hz.** That's the lowest note on a standard electric bass. Real full-range performance from a single 8-inch driver in a domestic-sized tower.
 
+<iframe src="/interactive/port-enclosure-sim.html" style={{width: '100%', height: '720px', border: '0.5px solid #d1d9e0', borderRadius: '8px', margin: '1.5rem 0'}} title="DCS205-4 ported enclosure simulation - interactive Thiele-Small model" loading="lazy" sandbox="allow-scripts" />
+
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Interactive ported enclosure simulation using Thiele-Small parameters. Adjust box volume, tuning frequency, port diameter, and power to see how the response, port velocity, and cone excursion change. The red dashed line marks the Xmax limit; the safe port velocity threshold is 17 m/s.</span>
+
 ### Port Design: Where Most DIY Builds Go Wrong 
 
 I ran the port velocity calculations for the DCS205-4 at maximum excursion (8.8 mm Xmax). A 1 3/8-inch diameter port — trivially easy to fit inside the cabinet — produces air velocity exceeding **65 m/s** at the 32 Hz tuning frequency. The safe limit for inaudible port noise is 17 m/s. At 65 m/s, you get chuffing (audible turbulence), port compression (the bass output plateaus no matter how much power you add), and a speaker that sounds congested exactly where you need it to breathe.
@@ -91,65 +68,52 @@ The fix is a larger port. I'm using a **3-inch (75 mm) diameter port, approximat
 
 The port sits at the bottom of the cabinet, coupling with the floor boundary for half-space reinforcement — effectively gaining a few dB of free bass output from room physics.
 
-### The Crossover: 350 Hz, Linkwitz-Riley 2nd Order
+### The Crossover: 1st Order with Shunt Attenuation
 
-The crossover frequency is the single most important design decision. 350 Hz sits in a sweet spot: two octaves above the RS100-8's resonant frequency (92 Hz) so the driver is never stressed near its mechanical resonance; below the point where the DCS205-4's high inductance (1.78 mH) starts degrading its response; and near the baffle step transition frequency (~520 Hz for our cabinet width) so the natural acoustic loss aligns with the electrical rolloff.
+The crossover topology came out of iterative simulation in XSim4, using the actual measured FRD (frequency response) and ZMA (impedance) data for both drivers. Rather than a textbook Linkwitz-Riley or Butterworth filter, the final design is a minimalist first-order network with just three components — tuned for the real-world behaviour of these specific drivers in this specific enclosure.
 
-I designed two versions.
+**The low-pass path (DCS205-4 subwoofer):** A single **10 mH laminated steel I-core inductor** in series. With the DCS205-4's nominal 4-ohm impedance, this gives a -3 dB point around 64 Hz. That sounds aggressive, but the DCS205-4's own frequency response peaks around 80–100 Hz in the enclosure — the inductor rolls it off above that peak, and by 300 Hz the output is 15+ dB down. The driver's high voice coil inductance (1.78 mH) assists the electrical rolloff naturally. No shunt capacitor needed.
 
-**The ideal version** uses precise calculated values — 3.64 mH / 56.86 uF for the low-pass, 28.43 uF / 7.28 mH for the high-pass — with Zobel impedance linearisation networks on both drivers (4.88 ohm + 74.9 uF for the woofer, 8.0 ohm + 7.81 uF for the full-range). Air-core inductors, film-and-foil polypropylene capacitors. The version you'd build if cost didn't matter and you could wind custom inductors.
+**The high-pass path (RS100-8 full-range):** A **5.6 µF non-polarised capacitor** in series, followed by a **10-ohm resistor shunted to ground**. The capacitor blocks low frequencies — with the RS100-8's 8-ohm impedance, the -3 dB point sits around 3.5 kHz electrically. But the RS100-8 is already rising rapidly through the 200–400 Hz region from its sealed-chamber rolloff, and the capacitor shapes that transition rather than creating a hard filter knee. The 10-ohm shunt resistor serves a dual purpose: it pads the RS100-8's level down by several dB to match the DCS205-4's effective sensitivity, and it dampens the aluminium cone's breakup resonance around 3–3.5 kHz.
 
-**The real-world version** uses standard off-the-shelf values: **4.0 mH laminated iron core inductor** (slightly higher than the ideal 3.64 mH — compensating for voice coil inductance) and **47 uF + 10 uF paralleled** for the woofer low-pass. The high-pass uses a **30 uF polypropylene capacitor** and **6.8 mH iron core inductor**. No Zobel networks — the DCS205-4's own 1.78 mH inductance naturally helps the rolloff. Performance within 5% of ideal at a fraction of the cost.
+**Critical wiring note:** the RS100-8 must be connected in **reverse polarity** — positive amplifier output to negative driver terminal. This ensures the acoustic outputs of both drivers sum constructively through the crossover region. Wire it in normal polarity and you get a deep cancellation null instead of a smooth transition.
 
-**Critical wiring note:** the RS100-8 must be connected in **reverse polarity** — positive input to negative terminal. This is mandatory for a 2nd-order Linkwitz-Riley to sum flat at the crossover point. Get this wrong and you get a massive null at 350 Hz instead of a seamless transition.
+The beauty of this approach is that the drivers' natural characteristics do most of the crossover work. The DCS205-4's rising response and high inductance handle the low-pass rolloff. The RS100-8's sealed-chamber rolloff handles the high-pass transition. The electrical components just shape and refine what the physics already wants to do. Three components. No Zobel networks. No notch filters. The result is a clean handoff with minimal parts count and without putting the critical vocal range through a high crossover.
 
-<svg width="100%" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" style={{maxWidth: '680px', margin: '2rem auto', display: 'block'}}>
-  <rect x="0" y="0" width="680" height="300" rx="8" fill="#f0f4f8" stroke="#d1d9e0" strokeWidth="0.8"/>
-  <text x="340" y="22" textAnchor="middle" fontSize="11" fontWeight="600" fill="#2C3E50" fontFamily="sans-serif">Crossover Schematic — Real-World Version</text>
-  <text x="340" y="36" textAnchor="middle" fontSize="8" fill="#6b7280" fontFamily="sans-serif">LR2 @ 350 Hz · Standard component values</text>
-  <rect x="20" y="120" width="70" height="36" rx="4" fill="#2C3E50"/>
-  <text x="55" y="140" textAnchor="middle" fontSize="9" fill="#f9fafb" fontFamily="sans-serif">AMP IN</text>
-  <line x1="90" y1="138" x2="160" y2="138" stroke="#2C3E50" strokeWidth="2"/>
-  <line x1="160" y1="138" x2="160" y2="80" stroke="#2C3E50" strokeWidth="2"/>
-  <line x1="160" y1="138" x2="160" y2="200" stroke="#2C3E50" strokeWidth="2"/>
-  <text x="340" y="58" textAnchor="middle" fontSize="9" fontWeight="600" fill="#2A7F62" fontFamily="sans-serif">HIGH PASS (350 Hz and above)</text>
-  <line x1="160" y1="80" x2="210" y2="80" stroke="#2A7F62" strokeWidth="1.5"/>
-  <rect x="210" y="65" width="80" height="30" rx="4" fill="#2A7F62"/>
-  <text x="250" y="82" textAnchor="middle" fontSize="7" fill="#f9fafb" fontFamily="sans-serif">C2: 30 uF</text>
-  <text x="250" y="92" textAnchor="middle" fontSize="6" fill="#a8dfc9" fontFamily="sans-serif">Polypropylene</text>
-  <line x1="290" y1="80" x2="350" y2="80" stroke="#2A7F62" strokeWidth="1.5"/>
-  <line x1="350" y1="80" x2="350" y2="100" stroke="#2A7F62" strokeWidth="1"/>
-  <rect x="325" y="100" width="50" height="22" rx="3" fill="#2A7F62" opacity="0.7"/>
-  <text x="350" y="114" textAnchor="middle" fontSize="6" fill="#f9fafb" fontFamily="sans-serif">L2: 6.8 mH</text>
-  <text x="350" y="130" textAnchor="middle" fontSize="6" fill="#6b7280" fontFamily="sans-serif">GND</text>
-  <line x1="350" y1="80" x2="460" y2="80" stroke="#2A7F62" strokeWidth="1.5"/>
-  <rect x="460" y="62" width="110" height="36" rx="6" fill="#2A7F62"/>
-  <text x="515" y="80" textAnchor="middle" fontSize="8" fill="#f9fafb" fontFamily="sans-serif" fontWeight="600">RS100-8 (4")</text>
-  <text x="515" y="92" textAnchor="middle" fontSize="6" fill="#a8dfc9" fontFamily="sans-serif">Full-Range</text>
-  <text x="600" y="78" textAnchor="start" fontSize="7" fill="#c0392b" fontFamily="sans-serif" fontWeight="600">REVERSE</text>
-  <text x="600" y="90" textAnchor="start" fontSize="7" fill="#c0392b" fontFamily="sans-serif">POLARITY</text>
-  <text x="340" y="180" textAnchor="middle" fontSize="9" fontWeight="600" fill="#1F4E79" fontFamily="sans-serif">LOW PASS (Below 350 Hz)</text>
-  <line x1="160" y1="200" x2="210" y2="200" stroke="#1F4E79" strokeWidth="1.5"/>
-  <rect x="210" y="185" width="80" height="30" rx="4" fill="#1F4E79"/>
-  <text x="250" y="202" textAnchor="middle" fontSize="7" fill="#f9fafb" fontFamily="sans-serif">L1: 4.0 mH</text>
-  <text x="250" y="212" textAnchor="middle" fontSize="6" fill="#a8c4e0" fontFamily="sans-serif">Iron Core</text>
-  <line x1="290" y1="200" x2="350" y2="200" stroke="#1F4E79" strokeWidth="1.5"/>
-  <line x1="350" y1="200" x2="350" y2="220" stroke="#1F4E79" strokeWidth="1"/>
-  <rect x="320" y="220" width="60" height="22" rx="3" fill="#1F4E79" opacity="0.7"/>
-  <text x="350" y="234" textAnchor="middle" fontSize="6" fill="#f9fafb" fontFamily="sans-serif">C1: 47+10 uF</text>
-  <text x="350" y="250" textAnchor="middle" fontSize="6" fill="#6b7280" fontFamily="sans-serif">GND</text>
-  <line x1="350" y1="200" x2="460" y2="200" stroke="#1F4E79" strokeWidth="1.5"/>
-  <rect x="460" y="182" width="110" height="36" rx="6" fill="#1F4E79"/>
-  <text x="515" y="200" textAnchor="middle" fontSize="8" fill="#f9fafb" fontFamily="sans-serif" fontWeight="600">DCS205-4 (8")</text>
-  <text x="515" y="212" textAnchor="middle" fontSize="6" fill="#a8c4e0" fontFamily="sans-serif">Subwoofer</text>
-  <text x="340" y="282" textAnchor="middle" fontSize="8" fill="#6b7280" fontFamily="sans-serif">No Zobel networks needed — DCS205-4's 1.78 mH inductance assists the low-pass naturally</text>
-</svg>
+<iframe src="/interactive/crossover-schematic.html" style={{width: '100%', height: '424px', border: '0.5px solid #d1d9e0', borderRadius: '8px', margin: '1.5rem 0'}} title="XSim4 crossover schematic - 1st order with shunt attenuation" loading="lazy" sandbox="allow-scripts" />
 
-<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Real-world crossover using off-the-shelf components. The RS100-8 must be wired in reverse polarity for flat summation at 350 Hz.</span>
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Three-component crossover designed in XSim4. The 10 Ω shunt pads the RS100-8's level to match the DCS205-4 and tames the aluminium breakup peak. RS100-8 must be wired in reverse polarity.</span>
+
+### XSim4 Simulation Results
+
+The crossover was finalized in XSim4 and exported as combined system FRD and ZMA traces. Those files preserve the finished network's real magnitude, phase, and impedance behavior instead of treating the drivers like flat resistors, which matters most around the bass resonance and the handoff into the RS100-8.
+
+<img src="/images/DIY/speaker-building/xsim-frequency-response.svg" alt="XSim4 combined system frequency response with magnitude in blue and phase in amber, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
+
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system FRD export from XSim4, capped at 20 kHz for readability. Blue is magnitude; amber dashed is phase.</span>
+
+<img src="/images/DIY/speaker-building/xsim-impedance.svg" alt="XSim4 combined system impedance chart with magnitude in green and phase in purple, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
+
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system ZMA export from XSim4. Green is impedance magnitude; purple dashed is phase. The x-axis is limited to the audible band.</span>
+
+**Frequency response:** The final system export rises through the bass, settles into a broad midband plateau, and stays readable through the full audible range without extending the chart out to an irrelevant 100 kHz. The key design goal here is not a high-parts-count ruler-flat curve; it is keeping the crossover behavior out of the vocal band while preserving a smooth overall balance.
+
+**Impedance:** The combined load stays amplifier-friendly through the audible band. Minimum impedance is about 4.1 ohms around 70 Hz, after which it settles into the mid-single digits and climbs gradually toward the top octave. Any amplifier comfortable with 4-ohm loads should drive it without drama.
 
 ### Cabinet Construction Notes
 
 The tower is 1100 mm tall, 165 mm wide, 356 mm deep — built from 19 mm MDF. Front baffle doubled to 38 mm for rigidity and diffraction control. I modelled the geometry parametrically in OpenSCAD — change a driver parameter and the entire cabinet recalculates.
+
+{/* 
+  3D viewer: place speaker-cabinet-3d.html in public/interactive/
+  If you get a 404, your Next.js catch-all route ([...slug] or [section]) is intercepting /interactive/.
+  Fix: add to next.config.js:
+    async rewrites() { return [{ source: '/interactive/:path*', destination: '/interactive/:path*' }] }
+  Or rename to a path outside your dynamic routes.
+*/}
+<iframe src="/interactive/speaker-cabinet-3d.html" style={{width: '100%', aspectRatio: '4/3', border: '0.5px solid #d1d9e0', borderRadius: '8px', margin: '1.5rem 0'}} title="Interactive 3D cabinet model — drag to rotate" loading="lazy" sandbox="allow-scripts" />
+
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Interactive 3D model of the cabinet. Drag to rotate. Use the buttons to switch between solid, cutaway, front, side, and back views.</span>
 
 **The RS100-8 isolation chamber** at the top is non-negotiable. The DCS205-4 generates high internal pressures at low frequencies. If both drivers share the same air volume, those pressure waves physically push the full-range driver's thin aluminium cone — causing modulation distortion or mechanical damage. The sealed sub-enclosure (~1.5–2 litres) isolates the RS100-8 completely.
 
@@ -157,22 +121,21 @@ The tower is 1100 mm tall, 165 mm wide, 356 mm deep — built from 19 mm MDF. Fr
 
 ### Component List
 
-| Component | Model / Spec | Purpose |
-|---|---|---|
-| Full-range driver | Dayton Audio RS100-8 (4") | 350 Hz – 20 kHz |
-| Subwoofer | Dayton Audio DCS205-4 (8") | Below 350 Hz |
-| Low-pass inductor | 4.0 mH laminated iron core | Crossover (woofer) |
-| Low-pass capacitor | 47 uF + 10 uF paralleled | Crossover (woofer) |
-| High-pass capacitor | 30 uF polypropylene | Crossover (full-range) |
-| High-pass inductor | 6.8 mH iron core | Crossover (full-range) |
-| Port | 3" (75 mm) PVC, ~11" long | MLTL tuning @ ~34 Hz |
-| Cabinet | 19 mm MDF, 1100 x 165 x 356 mm | Folded MLTL enclosure |
-| Damping | Polyfill / acoustic wool | Line stuffing |
-| Optional padding | 1.0–2.0 ohm, 10W resistor | If RS100-8 treble is hot |
+| Component | Model / Spec | PE Part # | Purpose |
+|---|---|---|---|
+| Full-range driver | Dayton Audio RS100-8 (4") | 295-352 | ~300 Hz – 20 kHz |
+| Subwoofer | Dayton Audio DCS205-4 (8") | 295-200 | Below ~200 Hz |
+| Low-pass inductor | Dayton Audio IC1810 10 mH, 18 AWG I-core | 257-680 | Series on subwoofer path |
+| High-pass capacitor | 5.6 µF 100V non-polarised | — | Series on full-range path |
+| Shunt resistor | 10 Ω 10W precision (DNR series) | — | Pads RS100-8 level, shunt to GND |
+| Port tube | 1 3/8" ID adjustable | 260-388 | MLTL tuning @ ~34 Hz |
+| Bi-amp terminal | Gold plated bi-amp terminal | 260-304 | Rear panel connection |
+| Cabinet | 19 mm MDF, 1100 × 165 × 356 mm | — | Folded MLTL enclosure |
+| Damping | Polyfill / acoustic wool | — | Line stuffing |
 
 ### Where This Build Stands
 
-Parts are bought. Drivers, crossover components, port tube, MDF, damping material — all sitting in a room waiting to be assembled. The design is finalised through WinISD simulation and OpenSCAD modelling. Cut dimensions are ready.
+Parts are bought. Drivers, crossover components, port tube, MDF, damping material — all sitting in a room waiting to be assembled. The design is finalised through XSim4 simulation and OpenSCAD modelling. Cut dimensions are ready.
 
 What remains is the actual build: cutting the MDF, assembling the enclosure, soldering the crossover, stuffing the line, mounting the drivers, and the moment of truth — the first listening test.
 

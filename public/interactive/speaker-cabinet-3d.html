@@ -1,0 +1,316 @@
+<meta charset="utf-8" />
+<link rel="icon" href="data:," />
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: transparent; }
+#container { width: 100%; aspect-ratio: 4/3; position: relative; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #f8f6f0 0%, #e8e4da 100%); }
+#info {
+  position: absolute; bottom: 12px; left: 12px; right: 12px;
+  display: flex; gap: 8px; flex-wrap: wrap; z-index: 10;
+}
+.pill {
+  font-family: system-ui, sans-serif; font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 20px;
+  background: rgba(255,255,255,0.85); color: #2C3E50; border: none; cursor: pointer;
+  transition: background 0.15s;
+}
+.pill:hover { background: rgba(255,255,255,1); }
+.pill.active { background: #1F4E79; color: #fff; }
+#title {
+  position: absolute; top: 12px; left: 16px; z-index: 10;
+  font-family: system-ui, sans-serif; font-size: 14px; font-weight: 500;
+  color: #2C3E50;
+}
+#subtitle {
+  font-family: system-ui, sans-serif; font-size: 11px; font-weight: 400;
+  color: #6b7280; margin-top: 2px;
+}
+#legend {
+  position: absolute; top: 12px; right: 16px; z-index: 10;
+  display: grid; gap: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.82);
+  color: #2C3E50;
+  font-family: system-ui, sans-serif;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.legend-label {
+  font-weight: 600;
+}
+.legend-note {
+  color: #6b7280;
+}
+</style>
+
+<div id="container">
+  <div id="title">FAST tower - 3D cabinet<div id="subtitle">1100 x 165 x 356 mm - 19mm plywood - Click and drag to rotate</div></div>
+  <div id="legend">
+    <div><span class="legend-label">Front driver:</span> Dayton RS100-8</div>
+    <div><span class="legend-label">Side driver:</span> Dayton DCS205-4</div>
+    <div class="legend-note">Default view is set to show both.</div>
+  </div>
+  <div id="info">
+    <button class="pill active" onclick="setView('solid', this)">Solid</button>
+    <button class="pill" onclick="setView('cutaway', this)">Cutaway</button>
+    <button class="pill" onclick="setView('front', this)">Front</button>
+    <button class="pill" onclick="setView('side', this)">Side</button>
+    <button class="pill" onclick="setView('back', this)">Back</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const container = document.getElementById('container');
+const W = container.clientWidth, H = container.clientHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(38, W/H, 0.1, 100);
+camera.position.set(1.82, 0.18, -2.42);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(W, H);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+const amb = new THREE.AmbientLight(0x909088, 0.6);
+scene.add(amb);
+const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+dir.position.set(3, 4, 2);
+scene.add(dir);
+const fill = new THREE.DirectionalLight(0x8899aa, 0.3);
+fill.position.set(-2, 1, -1);
+scene.add(fill);
+
+const s = 0.001;
+const cH=1100*s, cW=165*s, cD=356*s, ply=19*s;
+const innerW = cW-2*ply, innerD = cD-2*ply;
+const woodCol = new THREE.MeshStandardMaterial({ color: 0xC4A87C, roughness: 0.75, metalness: 0.05 });
+const braceCol = new THREE.MeshStandardMaterial({ color: 0xA08060, roughness: 0.7 });
+const driverCol = new THREE.MeshStandardMaterial({ color: 0x333333, roughness: 0.4, metalness: 0.3 });
+const basketCol = new THREE.MeshStandardMaterial({ color: 0x2d2d2d, roughness: 0.58, metalness: 0.22, side: THREE.DoubleSide });
+const motorCol = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.82, metalness: 0.08 });
+const coneCol = new THREE.MeshStandardMaterial({
+  color: 0x555555,
+  roughness: 0.6,
+  metalness: 0.1,
+  side: THREE.DoubleSide,
+});
+const portCol = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.3, metalness: 0.2 });
+
+const cabinetGroup = new THREE.Group();
+cabinetGroup.position.y = -cH/2;
+const cutawayHideMeshes = [];
+const mountedSurfaceOffset = 0.002;
+
+function makeBox(w,h,d,x,y,z,mat){
+  const g = new THREE.BoxGeometry(w,h,d);
+  const m = new THREE.Mesh(g, mat);
+  m.position.set(x,y,z);
+  return m;
+}
+
+function makeCutawayBox(w,h,d,x,y,z,mat = woodCol) {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), mat);
+  mesh.position.set(x,y,z);
+  return mesh;
+}
+
+const outerShell = new THREE.Group();
+const leftPanel = makeBox(ply, cH, cD, -cW/2+ply/2, cH/2, 0, woodCol);
+const rightPanel = makeBox(ply, cH, cD, cW/2-ply/2, cH/2, 0, woodCol);
+const frontPanel = makeBox(cW-2*ply, cH, ply, 0, cH/2, -cD/2+ply/2, woodCol);
+const backPanel = makeBox(cW-2*ply, cH, ply, 0, cH/2, cD/2-ply/2, woodCol);
+const topPanel = makeBox(cW, ply, cD, 0, cH-ply/2, 0, woodCol);
+const bottomPanel = makeBox(cW, ply, cD, 0, ply/2, 0, woodCol);
+outerShell.add(leftPanel);
+outerShell.add(rightPanel);
+outerShell.add(frontPanel);
+outerShell.add(backPanel);
+outerShell.add(topPanel);
+outerShell.add(bottomPanel);
+cabinetGroup.add(outerShell);
+
+const cutawayShell = new THREE.Group();
+cutawayShell.visible = false;
+cutawayShell.add(makeCutawayBox(ply, cH, cD, cW/2-ply/2, cH/2, 0));
+cutawayShell.add(makeCutawayBox(innerW, cH, ply, 0, cH/2, -cD/2+ply/2));
+cutawayShell.add(makeCutawayBox(innerW, cH, ply, 0, cH/2, cD/2-ply/2));
+cutawayShell.add(makeCutawayBox(cW, ply, cD, 0, cH-ply/2, 0));
+cutawayShell.add(makeCutawayBox(cW, ply, cD, 0, ply/2, 0));
+cabinetGroup.add(cutawayShell);
+
+const rs100Y = cH - 150*s;
+const dcs205Y = 450*s;
+const rs100Radius = 39*s;
+const dcs205Radius = 91*s;
+const driverBraceClearance = 35*s;
+const dividerY = rs100Y - rs100Radius - driverBraceClearance - ply/2;
+const divider = makeBox(innerW, ply, innerD, 0, dividerY, 0, braceCol);
+cabinetGroup.add(divider);
+
+const braceThick = ply;
+const braceY = dcs205Y + dcs205Radius + 120*s + braceThick/2;
+const bW = innerW*0.3;
+cabinetGroup.add(makeBox(bW, braceThick, innerD, -innerW/2+bW/2+ply, braceY, 0, braceCol));
+cabinetGroup.add(makeBox(bW, braceThick, innerD, innerW/2-bW/2-ply, braceY, 0, braceCol));
+
+const rs100Geo = new THREE.CylinderGeometry(39*s, 39*s, ply+0.005, 32);
+const rs100 = new THREE.Mesh(rs100Geo, driverCol);
+rs100.rotation.x = Math.PI/2;
+rs100.position.set(0, rs100Y, -cD/2 - (ply + 0.005) / 2 - mountedSurfaceOffset);
+cabinetGroup.add(rs100);
+const rs100Cone = new THREE.ConeGeometry(32*s, 20*s, 32);
+const rs100ConeM = new THREE.Mesh(rs100Cone, coneCol);
+rs100ConeM.rotation.x = -Math.PI/2;
+rs100ConeM.position.set(0, rs100Y, -cD/2-0.02);
+cabinetGroup.add(rs100ConeM);
+const rs100Phase = new THREE.CylinderGeometry(8*s, 8*s, 8*s, 16);
+const rs100PhaseM = new THREE.Mesh(rs100Phase, new THREE.MeshStandardMaterial({
+  color:0x999999,
+  metalness:0.6,
+  roughness:0.2,
+  side: THREE.DoubleSide,
+}));
+rs100PhaseM.rotation.x = Math.PI/2;
+rs100PhaseM.position.set(0, rs100Y, -cD/2-0.03);
+cabinetGroup.add(rs100PhaseM);
+const rs100Basket = new THREE.Mesh(new THREE.CylinderGeometry(28*s, 18*s, 0.048, 24, 1, true), basketCol);
+rs100Basket.rotation.x = Math.PI/2;
+rs100Basket.position.set(0, rs100Y, -cD/2 + ply + 0.02);
+cabinetGroup.add(rs100Basket);
+const rs100Magnet = new THREE.Mesh(new THREE.CylinderGeometry(11*s, 11*s, 16*s, 20), motorCol);
+rs100Magnet.rotation.x = Math.PI/2;
+rs100Magnet.position.set(0, rs100Y, -cD/2 + ply + 0.052);
+cabinetGroup.add(rs100Magnet);
+
+const dcs205Geo = new THREE.CylinderGeometry(91*s, 91*s, ply+0.005, 32);
+const dcs205 = new THREE.Mesh(dcs205Geo, driverCol);
+dcs205.rotation.z = Math.PI/2;
+dcs205.position.set(cW/2 + (ply + 0.005) / 2 + mountedSurfaceOffset, dcs205Y, 0);
+cabinetGroup.add(dcs205);
+const dcs205Cone = new THREE.ConeGeometry(78*s, 30*s, 32);
+const dcs205ConeM = new THREE.Mesh(dcs205Cone, coneCol);
+dcs205ConeM.rotation.z = Math.PI/2;
+dcs205ConeM.position.set(cW/2+0.03, dcs205Y, 0);
+cabinetGroup.add(dcs205ConeM);
+const dcs205Dust = new THREE.SphereGeometry(25*s, 16, 12, 0, Math.PI*2, 0, Math.PI/2);
+const dcs205DustM = new THREE.Mesh(dcs205Dust, coneCol);
+dcs205DustM.rotation.z = Math.PI/2;
+dcs205DustM.position.set(cW/2+0.042, dcs205Y, 0);
+cabinetGroup.add(dcs205DustM);
+const dcs205Basket = new THREE.Mesh(new THREE.CylinderGeometry(72*s, 48*s, 0.07, 28, 1, true), basketCol);
+dcs205Basket.rotation.z = Math.PI/2;
+dcs205Basket.position.set(cW/2 - 0.032, dcs205Y, 0);
+cabinetGroup.add(dcs205Basket);
+const dcs205Magnet = new THREE.Mesh(new THREE.CylinderGeometry(24*s, 24*s, 34*s, 20), motorCol);
+dcs205Magnet.rotation.z = Math.PI/2;
+dcs205Magnet.position.set(cW/2 - 0.08, dcs205Y, 0);
+cabinetGroup.add(dcs205Magnet);
+
+const portY = 280*s;
+const portHole = new THREE.Mesh(
+  new THREE.CircleGeometry(35*s, 24),
+  new THREE.MeshStandardMaterial({ color: 0x121212, roughness: 1.0, metalness: 0.0 }),
+);
+portHole.position.set(0, portY, cD/2 + 0.0004);
+cabinetGroup.add(portHole);
+const portRim = new THREE.Mesh(
+  new THREE.RingGeometry(35*s, 39*s, 24),
+  new THREE.MeshStandardMaterial({ color: 0x8f8f8f, roughness: 0.35, metalness: 0.35, side: THREE.DoubleSide }),
+);
+portRim.position.set(0, portY, cD/2 + 0.0008);
+cabinetGroup.add(portRim);
+const portInner = new THREE.CylinderGeometry(35*s, 35*s, 0.18, 24, 1, true);
+const portInnerM = new THREE.Mesh(portInner, new THREE.MeshStandardMaterial({
+  color:0x222222,
+  side:THREE.DoubleSide,
+}));
+portInnerM.rotation.x = Math.PI/2;
+portInnerM.position.set(0, portY, cD/2-0.09);
+cabinetGroup.add(portInnerM);
+
+scene.add(cabinetGroup);
+let cutawayActive = false;
+
+function setView(mode, button) {
+  document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+  button.classList.add('active');
+  outerShell.visible = true;
+  cutawayShell.visible = false;
+  cutawayHideMeshes.forEach((mesh) => { mesh.visible = true; });
+  cutawayActive = false;
+
+  if (mode === 'solid') {
+    animateView(1.82, 0.18, -2.42, 0, 0);
+  } else if (mode === 'cutaway') {
+    cutawayActive = true;
+    outerShell.visible = false;
+    cutawayShell.visible = true;
+    cutawayHideMeshes.forEach((mesh) => { mesh.visible = false; });
+    animateView(-2.42, 0.03, -0.18, 0.02, 0.02);
+  } else if (mode === 'front') {
+    animateView(0, 0.02, -2.92, 0, 0);
+  } else if (mode === 'side') {
+    animateView(2.86, 0.03, -1.02, 0, 0);
+  } else if (mode === 'back') {
+    animateView(0, 0.02, 3.05, 0, 0);
+  }
+}
+
+function animateView(tx, ty, tz, targetRotY, targetRotX) {
+  const start = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
+  const startRot = { y: rotY, x: rotX };
+  const dur = 600;
+  const t0 = performance.now();
+  function step(t) {
+    const p = Math.min((t - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    camera.position.set(
+      start.x + (tx - start.x) * e,
+      start.y + (ty - start.y) * e,
+      start.z + (tz - start.z) * e
+    );
+    rotY = startRot.y + (targetRotY - startRot.y) * e;
+    rotX = startRot.x + (targetRotX - startRot.x) * e;
+    camera.lookAt(0, 0, 0);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+let isDragging = false, prevX = 0, prevY = 0;
+let rotY = 0, rotX = 0;
+container.addEventListener('pointerdown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+window.addEventListener('pointerup', () => isDragging = false);
+window.addEventListener('pointermove', e => {
+  if (!isDragging) return;
+  rotY += (e.clientX - prevX) * 0.005;
+  rotX += (e.clientY - prevY) * 0.003;
+  if (cutawayActive) {
+    rotY = Math.max(-0.18, Math.min(0.16, rotY));
+    rotX = Math.max(-0.08, Math.min(0.14, rotX));
+  } else {
+    rotX = Math.max(-0.24, Math.min(0.32, rotX));
+  }
+  prevX = e.clientX;
+  prevY = e.clientY;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  cabinetGroup.rotation.y = rotY;
+  cabinetGroup.rotation.x = rotX;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  const w = container.clientWidth, h = container.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+</script>

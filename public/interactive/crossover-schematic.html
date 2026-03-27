@@ -1,0 +1,204 @@
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+</style>
+<svg
+  width="100%"
+  viewBox="0 0 680 420"
+  xmlns="http://www.w3.org/2000/svg"
+  style="max-width:680px;display:block;margin:0 auto"
+>
+  <defs>
+    <style>
+      text {
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .th {
+        font-size: 14px;
+        font-weight: 600;
+        fill: #25364a;
+      }
+      .ts {
+        font-size: 12px;
+        fill: #5f6f81;
+      }
+      .tsb {
+        font-size: 12px;
+        font-weight: 600;
+        fill: #5f6f81;
+      }
+      .wire {
+        stroke: #33485e;
+      }
+      .amp-fill {
+        fill: #2c3e50;
+      }
+      .amp-text {
+        fill: #f9fafb;
+      }
+      .spk-body {
+        fill: #ece8df;
+        stroke: #8795a4;
+      }
+      .spk-cone {
+        fill: none;
+        stroke: #8795a4;
+      }
+      .pill-hp {
+        fill: #e6f1fb;
+        stroke: #85b7eb;
+      }
+      .pill-hp text {
+        fill: #0c447c;
+      }
+      .pill-lp {
+        fill: #e1f5ee;
+        stroke: #5dcaa5;
+      }
+      .pill-lp text {
+        fill: #085041;
+      }
+      .pill-inv {
+        fill: #faece7;
+        stroke: #f0997b;
+      }
+      .pill-inv text {
+        fill: #712b13;
+      }
+      .gnd {
+        stroke: #8795a4;
+      }
+      .leader {
+        stroke: #aeb8c3;
+        stroke-dasharray: 3 2;
+      }
+    </style>
+  </defs>
+
+  <text class="th" x="340" y="28" text-anchor="middle" dominant-baseline="central">
+    XSim4 crossover - 1st order with shunt attenuation
+  </text>
+  <text class="ts" x="340" y="48" text-anchor="middle" dominant-baseline="central">
+    2.828 Vrms · 1 W into 8 ohms · RS100-8 + DCS205-4
+  </text>
+
+  <rect class="amp-fill" x="28" y="155" width="72" height="90" rx="6" />
+  <text class="amp-text" x="64" y="182" text-anchor="middle" dominant-baseline="central" style="font-size:15px;font-weight:600">
+    Power
+  </text>
+  <text class="amp-text" x="64" y="200" text-anchor="middle" dominant-baseline="central" style="font-size:12px">
+    amp
+  </text>
+  <text class="amp-text" x="64" y="220" text-anchor="middle" dominant-baseline="central" style="font-size:11px;opacity:0.72">
+    1 W / 8 ohms
+  </text>
+
+  <circle cx="100" cy="180" r="4" fill="#c02020" />
+  <text class="tsb" x="100" y="170" text-anchor="middle" dominant-baseline="central" fill="#c02020">+</text>
+  <circle cx="100" cy="220" r="4" fill="#3a7fd5" />
+  <text class="tsb" x="100" y="232" text-anchor="middle" dominant-baseline="central" fill="#3a7fd5">-</text>
+
+  <line class="wire" x1="104" y1="180" x2="150" y2="180" stroke-width="1.5" />
+  <circle cx="150" cy="180" r="3" fill="#33485e" />
+
+  <line class="wire" x1="150" y1="180" x2="150" y2="115" stroke-width="1.5" />
+  <line class="wire" x1="150" y1="115" x2="185" y2="115" stroke-width="1.5" />
+
+  <line class="wire" x1="185" y1="115" x2="206" y2="115" stroke-width="1.5" />
+  <line class="wire" x1="206" y1="98" x2="206" y2="132" stroke-width="2.5" />
+  <line class="wire" x1="216" y1="98" x2="216" y2="132" stroke-width="2.5" />
+  <line class="wire" x1="216" y1="115" x2="245" y2="115" stroke-width="1.5" />
+  <text class="th" x="211" y="88" text-anchor="middle" dominant-baseline="central">C3</text>
+  <text class="ts" x="211" y="145" text-anchor="middle" dominant-baseline="central">5.6 uF</text>
+
+  <circle cx="265" cy="115" r="3" fill="#33485e" />
+  <line class="wire" x1="245" y1="115" x2="285" y2="115" stroke-width="1.5" />
+
+  <line class="wire" x1="265" y1="115" x2="265" y2="152" stroke-width="1.5" />
+  <polyline
+    class="wire"
+    points="265,152 257,159 273,171 257,183 273,195 265,202"
+    fill="none"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+  <line class="wire" x1="265" y1="202" x2="265" y2="222" stroke-width="1.5" />
+  <line class="gnd" x1="253" y1="222" x2="277" y2="222" stroke-width="1.5" />
+  <line class="gnd" x1="257" y1="228" x2="273" y2="228" stroke-width="1.2" />
+  <line class="gnd" x1="261" y1="234" x2="269" y2="234" stroke-width="0.8" />
+
+  <text class="th" x="290" y="172" text-anchor="start" dominant-baseline="central">R5</text>
+  <text class="ts" x="290" y="190" text-anchor="start" dominant-baseline="central">10 ohms</text>
+
+  <line class="leader" x1="265" y1="238" x2="340" y2="260" />
+  <circle cx="265" cy="238" r="2" fill="#8795a4" />
+  <text class="ts" x="346" y="254" text-anchor="start" dominant-baseline="central">
+    Shunt: pads RS100 level
+  </text>
+  <text class="ts" x="346" y="270" text-anchor="start" dominant-baseline="central">
+    to match DCS205 sensitivity
+  </text>
+
+  <line class="wire" x1="285" y1="115" x2="430" y2="115" stroke-width="1.5" />
+
+  <rect class="spk-body" x="430" y="90" width="26" height="50" rx="2" stroke-width="1" />
+  <path class="spk-cone" d="M456,84 L492,68 L492,162 L456,140 Z" stroke-width="1" />
+  <text class="tsb" x="424" y="100" text-anchor="end" dominant-baseline="central" fill="#c02020">-</text>
+  <text class="tsb" x="424" y="132" text-anchor="end" dominant-baseline="central" fill="#3a7fd5">+</text>
+
+  <text class="th" x="530" y="92" text-anchor="start" dominant-baseline="central" style="font-size:15px">S3: RS100-8</text>
+  <text class="ts" x="530" y="112" text-anchor="start" dominant-baseline="central">4 in full range · 8 ohms</text>
+  <g class="pill-inv">
+    <rect x="527" y="122" width="108" height="22" rx="11" stroke-width="0.5" />
+    <text x="581" y="133" text-anchor="middle" dominant-baseline="central" style="font-size:11px;font-weight:600">
+      inverted polarity
+    </text>
+  </g>
+
+  <line class="wire" x1="430" y1="140" x2="430" y2="365" stroke-width="1" opacity="0.3" stroke-dasharray="4 3" />
+
+  <line class="wire" x1="150" y1="180" x2="150" y2="310" stroke-width="1.5" />
+  <line class="wire" x1="150" y1="310" x2="185" y2="310" stroke-width="1.5" />
+
+  <path
+    class="wire"
+    d="M185,310 Q197,293 209,310 Q221,293 233,310 Q245,293 257,310 Q269,293 281,310"
+    fill="none"
+    stroke-width="1.5"
+  />
+  <line class="wire" x1="281" y1="310" x2="430" y2="310" stroke-width="1.5" />
+  <text class="th" x="233" y="285" text-anchor="middle" dominant-baseline="central">L3</text>
+  <text class="ts" x="233" y="330" text-anchor="middle" dominant-baseline="central">10 mH</text>
+
+  <rect class="spk-body" x="430" y="287" width="26" height="50" rx="2" stroke-width="1" />
+  <path class="spk-cone" d="M456,281 L492,265 L492,359 L456,337 Z" stroke-width="1" />
+  <text class="tsb" x="424" y="298" text-anchor="end" dominant-baseline="central" fill="#c02020">+</text>
+  <text class="tsb" x="424" y="328" text-anchor="end" dominant-baseline="central" fill="#3a7fd5">-</text>
+
+  <text class="th" x="530" y="292" text-anchor="start" dominant-baseline="central" style="font-size:15px">S2: DCS205-4</text>
+  <text class="ts" x="530" y="312" text-anchor="start" dominant-baseline="central">8 in subwoofer · 4 ohms</text>
+
+  <line class="wire" x1="430" y1="337" x2="430" y2="365" stroke-width="1" opacity="0.3" stroke-dasharray="4 3" />
+
+  <line class="wire" x1="104" y1="220" x2="130" y2="220" stroke-width="1.5" />
+  <line class="wire" x1="130" y1="220" x2="130" y2="365" stroke-width="1.5" />
+  <line class="wire" x1="130" y1="365" x2="430" y2="365" stroke-width="1.5" />
+
+  <g class="pill-hp">
+    <rect x="28" y="74" width="108" height="24" rx="12" stroke-width="0.5" />
+    <text x="82" y="86" text-anchor="middle" dominant-baseline="central" style="font-size:11px;font-weight:600">
+      High-pass path
+    </text>
+  </g>
+  <g class="pill-lp">
+    <rect x="28" y="280" width="108" height="24" rx="12" stroke-width="0.5" />
+    <text x="82" y="292" text-anchor="middle" dominant-baseline="central" style="font-size:11px;font-weight:600">
+      Low-pass path
+    </text>
+  </g>
+</svg>
