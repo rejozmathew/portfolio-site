@@ -70,7 +70,7 @@ The port sits at the bottom of the cabinet, coupling with the floor boundary for
 
 ### The Crossover: 1st Order with Shunt Attenuation
 
-The crossover topology came out of iterative simulation in XSim4, using the actual measured FRD (frequency response) and ZMA (impedance) data for both drivers. Rather than a textbook Linkwitz-Riley or Butterworth filter, the final design is a minimalist first-order network with just three components — tuned for the real-world behaviour of these specific drivers in this specific enclosure.
+The crossover topology came out of iterative simulation in XSim, using the actual measured FRD (frequency response) and ZMA (impedance) data for both drivers. Rather than a textbook Linkwitz-Riley or Butterworth filter, the final design is a minimalist first-order network with just three components — tuned for the real-world behaviour of these specific drivers in this specific enclosure.
 
 **The low-pass path (DCS205-4 subwoofer):** A single **10 mH laminated steel I-core inductor** in series. With the DCS205-4's nominal 4-ohm impedance, this gives a -3 dB point around 64 Hz. That sounds aggressive, but the DCS205-4's own frequency response peaks around 80–100 Hz in the enclosure — the inductor rolls it off above that peak, and by 300 Hz the output is 15+ dB down. The driver's high voice coil inductance (1.78 mH) assists the electrical rolloff naturally. No shunt capacitor needed.
 
@@ -80,21 +80,21 @@ The crossover topology came out of iterative simulation in XSim4, using the actu
 
 The beauty of this approach is that the drivers' natural characteristics do most of the crossover work. The DCS205-4's rising response and high inductance handle the low-pass rolloff. The RS100-8's sealed-chamber rolloff handles the high-pass transition. The electrical components just shape and refine what the physics already wants to do. Three components. No Zobel networks. No notch filters. The result is a clean handoff with minimal parts count and without putting the critical vocal range through a high crossover.
 
-<iframe src="/interactive/crossover-schematic.html" style={{width: '100%', height: '424px', border: '0.5px solid #d1d9e0', borderRadius: '8px', margin: '1.5rem 0'}} title="XSim4 crossover schematic - 1st order with shunt attenuation" loading="lazy" sandbox="allow-scripts" />
+<iframe src="/interactive/crossover-schematic.html" style={{width: '100%', height: '424px', border: '0.5px solid #d1d9e0', borderRadius: '8px', margin: '1.5rem 0'}} title="XSim crossover schematic - 1st order with shunt attenuation" loading="lazy" sandbox="allow-scripts" />
 
-<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Three-component crossover designed in XSim4. The 10 Ω shunt pads the RS100-8's level to match the DCS205-4 and tames the aluminium breakup peak. RS100-8 must be wired in reverse polarity.</span>
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '2rem'}}>Three-component crossover designed in XSim. The 10 Ω shunt pads the RS100-8's level to match the DCS205-4 and tames the aluminium breakup peak. RS100-8 must be wired in reverse polarity.</span>
 
-### XSim4 Simulation Results
+### XSim Simulation Results
 
-The crossover was finalized in XSim4 and exported as combined system FRD and ZMA traces. Those files preserve the finished network's real magnitude, phase, and impedance behavior instead of treating the drivers like flat resistors, which matters most around the bass resonance and the handoff into the RS100-8.
+The crossover was finalized in XSim and exported as combined system FRD and ZMA traces. Those files preserve the finished network's real magnitude, phase, and impedance behavior instead of treating the drivers like flat resistors, which matters most around the bass resonance and the handoff into the RS100-8.
 
-<img src="/images/DIY/speaker-building/xsim-frequency-response.svg" alt="XSim4 combined system frequency response with magnitude in blue and phase in amber, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
+<img src="/images/DIY/speaker-building/xsim-frequency-response.svg" alt="XSim combined system frequency response with magnitude in blue and phase in amber, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
 
-<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system FRD export from XSim4, capped at 20 kHz for readability. Blue is magnitude; amber dashed is phase.</span>
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system FRD export from XSim, capped at 20 kHz for readability. Blue is magnitude; amber dashed is phase.</span>
 
-<img src="/images/DIY/speaker-building/xsim-impedance.svg" alt="XSim4 combined system impedance chart with magnitude in green and phase in purple, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
+<img src="/images/DIY/speaker-building/xsim-impedance.svg" alt="XSim combined system impedance chart with magnitude in green and phase in purple, capped at 20 kHz" style={{width: '100%', borderRadius: '8px', margin: '1rem 0'}} />
 
-<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system ZMA export from XSim4. Green is impedance magnitude; purple dashed is phase. The x-axis is limited to the audible band.</span>
+<span style={{display: 'block', textAlign: 'center', fontSize: '0.85rem', color: '#6b7280', marginTop: '-0.5rem', marginBottom: '1rem'}}>Combined system ZMA export from XSim. Green is impedance magnitude; purple dashed is phase. The x-axis is limited to the audible band.</span>
 
 **Frequency response:** The final system export rises through the bass, settles into a broad midband plateau, and stays readable through the full audible range without extending the chart out to an irrelevant 100 kHz. The key design goal here is not a high-parts-count ruler-flat curve; it is keeping the crossover behavior out of the vocal band while preserving a smooth overall balance.
 
@@ -135,7 +135,7 @@ The tower is 1100 mm tall, 165 mm wide, 356 mm deep — built from 19 mm MDF. Fr
 
 ### Where This Build Stands
 
-Parts are bought. Drivers, crossover components, port tube, MDF, damping material — all sitting in a room waiting to be assembled. The design is finalised through XSim4 simulation and OpenSCAD modelling. Cut dimensions are ready.
+Parts are bought. Drivers, crossover components, port tube, MDF, damping material — all sitting in a room waiting to be assembled. The design is finalised through XSim simulation and OpenSCAD modelling. Cut dimensions are ready.
 
 What remains is the actual build: cutting the MDF, assembling the enclosure, soldering the crossover, stuffing the line, mounting the drivers, and the moment of truth — the first listening test.
 
