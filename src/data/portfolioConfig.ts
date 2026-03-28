@@ -21,6 +21,5 @@ export const portfolioConfig: PortfolioItemConfig[] = [
   {
     blogSlug: "feature-store-foundation",
     titleOverride: "Feature Store Foundation",
-    imageOverride: "/images/blog/feature-store-foundation/entity-centric-architecture.svg",
   },
 ];

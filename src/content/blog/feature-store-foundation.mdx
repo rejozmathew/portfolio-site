@@ -5,6 +5,7 @@ description: "A practical guide to building the data foundation that makes featu
 tags: ["Feature Store", "Feature Engineering", "Data Architecture", "ML Engineering", "Data Modeling", "Time Series"]
 contentType: "technical"
 traits: ["framework", "architecture"]
+heroImage: "/images/blog/feature-store-foundation/entity-centric-architecture-v2.svg"
 ---
 
 Every ML team eventually discovers the same inconvenient truth: the hardest part of building a feature store isn't choosing a tool. It's designing the data foundation that feeds it.
@@ -19,7 +20,7 @@ The most common mistake in feature engineering is thinking in terms of database 
 
 An entity is the thing you're making predictions about. In financial services, the two dominant entities are **Account** (a single financial product instance) and **Customer** (a person who may hold multiple accounts). In e-commerce, the entities might be User and Order. In SaaS, they might be Tenant and Subscription. The specifics vary, but the architectural principle is universal.
 
-![Entity-Centric Architecture](/images/blog/feature-store-foundation/entity-centric-architecture.svg)
+![Entity-Centric Architecture](/images/blog/feature-store-foundation/entity-centric-architecture-v2.svg)
 <span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
   Figure 1: An entity-centric feature architecture anchors every attribute to either an Account or Customer entity, connected through a cross-reference that enables aggregation across grains.
 </span>
@@ -34,7 +35,7 @@ Features without timestamps are features waiting to cause training-serving skew.
 
 The pattern that works at scale is a **snapshot hierarchy**: a layered set of time-grain-specific materializations, each serving a different analytical and ML use case.
 
-![Snapshot Hierarchy](/images/blog/feature-store-foundation/snapshot-hierarchy.svg)
+![Snapshot Hierarchy](/images/blog/feature-store-foundation/snapshot-hierarchy-v2.svg)
 <span style={{ fontSize: "0.85em", fontStyle: "italic" }}>
   Figure 2: A time-aware snapshot hierarchy layers daily captures, period-end historic snapshots, and accumulating aggregations (WTD, MTD, YTD, Lifetime) to support diverse analytical and ML time grains.
 </span>
