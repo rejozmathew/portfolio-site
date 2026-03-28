@@ -7,10 +7,20 @@ export interface PortfolioItemConfig {
 }
 
 export const portfolioConfig: PortfolioItemConfig[] = [
-  { blogSlug: "identity-graph", titleOverride: "Enterprise Identity Graphs / Customer360" },
+  { blogSlug: "identity-graph", titleOverride: "Enterprise Identity Graph" },
+  { blogSlug: "document-migration-at-scale", titleOverride: "Responsible RAG for Document Matching" },
+  { blogSlug: "enterprise-mlops", titleOverride: "Inside an Enterprise AI/ML Platform" },
   { blogSlug: "ml-driven-marketing-personalization", titleOverride: "ML-Driven Marketing Personalization" },
-  { blogSlug: "document-migration-at-scale", titleOverride: "Responsible RAG: Enhanced Document Matching At Scale" },
-  { blogSlug: "enterprise-data-modernization", titleOverride: "Enterprise Data Modernization: Building Domain-Centric Data Architecture" },
+  { blogSlug: "llm-sql-modernization", titleOverride: "Responsible AI Pattern for Data Transformation" },
+  { blogSlug: "ml-call-center", titleOverride: "ML-Powered Call Center Monitoring" },
+  {
+    blogSlug: "enterprise-data-modernization",
+    titleOverride: "Enterprise Data Modernization & AI Data Lifecycle",
+  },
   { blogSlug: "bfsi-controls-monitoring", titleOverride: "Controls & Monitoring in Financial Services" },
-  { blogSlug: "llm-sql-modernization", titleOverride: "GenAI + HITL SQL Modernization" },
+  {
+    blogSlug: "feature-store-foundation",
+    titleOverride: "Feature Store Foundation",
+    imageOverride: "/images/blog/feature-store-foundation/entity-centric-architecture.svg",
+  },
 ];
