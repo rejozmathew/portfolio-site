@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
                 Rejo Z Mathew
               </h1>
               <h2 className="text-primary mb-6 text-2xl font-semibold md:text-3xl">
-                Senior Data & AI Strategy Leader in Financial Services
+                Senior Data, Analytics & AI Strategy Leader in Financial Services
               </h2>
               <p className="mb-8 text-lg text-gray-700">
                 Driving enterprise transformation by aligning data, analytics, and AI
