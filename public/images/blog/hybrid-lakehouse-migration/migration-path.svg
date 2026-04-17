@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="phase-arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1F4E79"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3E50">Strangler-Pattern Migration Path</text>
+  <text x="450" y="62" text-anchor="middle" font-size="13" fill="#64748b">Migrate bottom-up; preserve the business-facing contract throughout</text>
+
+  <!-- PHASE 1 -->
+  <rect x="40" y="95" width="260" height="370" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="40" y="95" width="260" height="38" rx="12" fill="#1F4E79"/>
+  <text x="170" y="119" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Phase 1 — Before</text>
+
+  <text x="170" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Single-engine, proprietary format</text>
+
+  <!-- Phase 1 layers -->
+  <rect x="70" y="170" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="170" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
+  <text x="170" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native</text>
+
+  <rect x="70" y="222" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="170" y="240" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Consumption Prep</text>
+  <text x="170" y="255" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native</text>
+
+  <rect x="70" y="274" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="170" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Domain Integrated</text>
+  <text x="170" y="307" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native</text>
+
+  <rect x="70" y="326" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="170" y="344" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Source Data Warehouse</text>
+  <text x="170" y="359" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native</text>
+
+  <text x="170" y="398" text-anchor="middle" font-size="10" fill="#64748b">Bulk ETL and ML</text>
+  <text x="170" y="412" text-anchor="middle" font-size="10" fill="#64748b">pay warehouse compute</text>
+  <text x="170" y="426" text-anchor="middle" font-size="10" fill="#64748b">premiums</text>
+  <text x="170" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#1F4E79">Cost growth &gt; business growth</text>
+
+  <!-- Transition arrow 1->2 -->
+  <line x1="305" y1="280" x2="335" y2="280" stroke="#1F4E79" stroke-width="3" marker-end="url(#phase-arrow)"/>
+
+  <!-- PHASE 2 -->
+  <rect x="340" y="95" width="260" height="370" rx="12" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="340" y="95" width="260" height="38" rx="12" fill="#1F4E79"/>
+  <text x="470" y="119" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Phase 2 — Transition</text>
+
+  <text x="470" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Migrate bottom-up, consumption unchanged</text>
+
+  <!-- Phase 2 layers -->
+  <rect x="370" y="170" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="470" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
+  <text x="470" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native (unchanged)</text>
+
+  <rect x="370" y="222" width="200" height="42" rx="5" fill="#1F4E79"/>
+  <text x="470" y="240" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Consumption Prep</text>
+  <text x="470" y="255" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native (unchanged)</text>
+
+  <!-- Migrated layers with teal color -->
+  <rect x="370" y="274" width="200" height="42" rx="5" fill="#2A7F62"/>
+  <text x="470" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Domain Integrated</text>
+  <text x="470" y="307" text-anchor="middle" font-size="9" fill="#ffffff">Iceberg on Databricks</text>
+
+  <rect x="370" y="326" width="200" height="42" rx="5" fill="#2A7F62"/>
+  <text x="470" y="344" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Source Data Warehouse</text>
+  <text x="470" y="359" text-anchor="middle" font-size="9" fill="#ffffff">Iceberg on Databricks</text>
+
+  <text x="470" y="398" text-anchor="middle" font-size="10" fill="#64748b">Snowflake reads Iceberg via</text>
+  <text x="470" y="412" text-anchor="middle" font-size="10" fill="#64748b">catalog integration; dashboards</text>
+  <text x="470" y="426" text-anchor="middle" font-size="10" fill="#64748b">continue working unchanged</text>
+  <text x="470" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Biggest savings, lowest risk</text>
+
+  <!-- Transition arrow 2->3 -->
+  <line x1="605" y1="280" x2="635" y2="280" stroke="#1F4E79" stroke-width="3" marker-end="url(#phase-arrow)"/>
+
+  <!-- PHASE 3 -->
+  <rect x="640" y="95" width="220" height="370" rx="12" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="640" y="95" width="220" height="38" rx="12" fill="#1F4E79"/>
+  <text x="750" y="119" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Phase 3 — Target</text>
+
+  <text x="750" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Workload-specialized, Iceberg underneath</text>
+
+  <!-- Phase 3 layers - mixed -->
+  <rect x="665" y="170" width="170" height="42" rx="5" fill="#1F4E79"/>
+  <text x="750" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
+  <text x="750" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Engine-agnostic routing</text>
+
+  <!-- Split consumption prep into two -->
+  <rect x="665" y="222" width="82" height="42" rx="5" fill="#1F4E79"/>
+  <text x="706" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Cons. Prep</text>
+  <text x="706" y="254" text-anchor="middle" font-size="8" fill="#cbd5e1">SF Dynamic</text>
+
+  <rect x="753" y="222" width="82" height="42" rx="5" fill="#2A7F62"/>
+  <text x="794" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Cons. Prep</text>
+  <text x="794" y="254" text-anchor="middle" font-size="8" fill="#ffffff">Iceberg / ML</text>
+
+  <rect x="665" y="274" width="170" height="42" rx="5" fill="#2A7F62"/>
+  <text x="750" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Domain Integrated</text>
+  <text x="750" y="307" text-anchor="middle" font-size="9" fill="#ffffff">Iceberg, multi-engine reads</text>
+
+  <rect x="665" y="326" width="170" height="42" rx="5" fill="#2A7F62"/>
+  <text x="750" y="344" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Source Data Warehouse</text>
+  <text x="750" y="359" text-anchor="middle" font-size="9" fill="#ffffff">Iceberg on Databricks</text>
+
+  <text x="750" y="398" text-anchor="middle" font-size="10" fill="#64748b">Each workload runs on</text>
+  <text x="750" y="412" text-anchor="middle" font-size="10" fill="#64748b">its best-fit engine; one</text>
+  <text x="750" y="426" text-anchor="middle" font-size="10" fill="#64748b">canonical copy of data</text>
+  <text x="750" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#1F4E79">Flexible, AI-ready, portable</text>
+
+  <!-- Bottom legend -->
+  <rect x="50" y="485" width="20" height="15" fill="#1F4E79"/>
+  <text x="78" y="497" font-size="11" fill="#2C3E50">Proprietary / warehouse-native storage</text>
+
+  <rect x="310" y="485" width="20" height="15" fill="#2A7F62"/>
+  <text x="338" y="497" font-size="11" fill="#2C3E50">Open Iceberg format on object storage</text>
+</svg>

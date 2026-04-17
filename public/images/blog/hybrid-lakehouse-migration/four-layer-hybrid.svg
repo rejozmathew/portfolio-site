@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <!-- Standard right-pointing arrow; auto-rotates with line direction -->
+    <marker id="arrow-flow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2A7F62"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="680" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3E50">The Four-Layer Architecture in a Hybrid World</text>
+  <text x="450" y="62" text-anchor="middle" font-size="13" fill="#64748b">Same layers, same purposes — each placed on the engine that fits its workload</text>
+
+  <!-- Column headers -->
+  <text x="130" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">LAYER</text>
+  <text x="450" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">PURPOSE &amp; CHARACTERISTICS</text>
+  <text x="770" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">ENGINE &amp; STORAGE</text>
+
+  <!-- Flow direction label on left edge -->
+  <text x="25" y="385" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62" transform="rotate(-90 25 385)">DATA FLOW</text>
+
+  <!-- Layer 4: Semantic (TOP) -->
+  <rect x="50" y="115" width="800" height="105" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="50" y="115" width="160" height="105" rx="10" fill="#1F4E79"/>
+  <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Semantic Layer</text>
+  <text x="130" y="178" text-anchor="middle" font-size="11" fill="#cbd5e1">Layer 4</text>
+  <text x="130" y="200" text-anchor="middle" font-size="10" fill="#cbd5e1">Business terms,</text>
+  <text x="130" y="213" text-anchor="middle" font-size="10" fill="#cbd5e1">metric hub</text>
+
+  <text x="230" y="143" font-size="12" fill="#2C3E50">Centralized KPI definitions; users query in business</text>
+  <text x="230" y="160" font-size="12" fill="#2C3E50">terms (product, customer, revenue) rather than tables.</text>
+  <text x="230" y="181" font-size="11" fill="#64748b" font-style="italic">Engine-agnostic by design — resolves to whichever</text>
+  <text x="230" y="197" font-size="11" fill="#64748b" font-style="italic">engine holds the target data.</text>
+
+  <rect x="630" y="135" width="210" height="70" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="735" y="157" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">BI tool / Metric View</text>
+  <text x="735" y="175" text-anchor="middle" font-size="10" fill="#64748b">Routes to Snowflake or</text>
+  <text x="735" y="190" text-anchor="middle" font-size="10" fill="#64748b">Databricks per query</text>
+
+  <!-- Upward arrow: line goes from bottom (245) to top (222), marker-end puts the arrow at the top pointing up -->
+  <line x1="450" y1="245" x2="450" y2="222" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+  <!-- Layer 3: Consumption Prep -->
+  <rect x="50" y="248" width="800" height="115" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="50" y="248" width="160" height="115" rx="10" fill="#1F4E79"/>
+  <text x="130" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Consumption</text>
+  <text x="130" y="307" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Preparation</text>
+  <text x="130" y="329" text-anchor="middle" font-size="11" fill="#cbd5e1">Layer 3</text>
+  <text x="130" y="349" text-anchor="middle" font-size="10" fill="#cbd5e1">Time-windowed,</text>
+  <text x="130" y="361" text-anchor="middle" font-size="10" fill="#cbd5e1">aggregated views</text>
+
+  <text x="230" y="277" font-size="12" fill="#2C3E50">Optimized for high-concurrency BI reads. Hybrid by</text>
+  <text x="230" y="294" font-size="12" fill="#2C3E50">nature — some structures cached natively in Snowflake;</text>
+  <text x="230" y="311" font-size="12" fill="#2C3E50">others remain on Iceberg for ML / AI consumption.</text>
+  <text x="230" y="333" font-size="11" fill="#64748b" font-style="italic">Cache only when queries-per-materialized-row ≥ ~10;</text>
+  <text x="230" y="349" font-size="11" fill="#64748b" font-style="italic">otherwise read Iceberg directly.</text>
+
+  <rect x="630" y="270" width="210" height="75" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="735" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Snowflake Dynamic Tables</text>
+  <text x="735" y="310" text-anchor="middle" font-size="10" fill="#64748b">reading Iceberg sources</text>
+  <text x="735" y="326" text-anchor="middle" font-size="10" fill="#64748b">with declared refresh lag</text>
+  <text x="735" y="340" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="700">+ Iceberg (for ML)</text>
+
+  <!-- Upward arrow from Layer 2 to Layer 3 -->
+  <line x1="450" y1="388" x2="450" y2="365" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+  <!-- Layer 2: Domain Integrated -->
+  <rect x="50" y="391" width="800" height="115" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="50" y="391" width="160" height="115" rx="10" fill="#1F4E79"/>
+  <text x="130" y="433" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Domain</text>
+  <text x="130" y="450" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Integrated</text>
+  <text x="130" y="467" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Structures</text>
+  <text x="130" y="489" text-anchor="middle" font-size="11" fill="#cbd5e1">Layer 2</text>
+  <text x="130" y="501" text-anchor="middle" font-size="10" fill="#cbd5e1">Source of truth</text>
+
+  <text x="230" y="420" font-size="12" fill="#2C3E50">Curated, elemental, business-oriented entity &amp; event</text>
+  <text x="230" y="437" font-size="12" fill="#2C3E50">data. Stable; changes least frequently. Consumed by</text>
+  <text x="230" y="454" font-size="12" fill="#2C3E50">every downstream layer and every AI / ML use case.</text>
+  <text x="230" y="476" font-size="11" fill="#64748b" font-style="italic">Open-format storage is mandatory — many engines</text>
+  <text x="230" y="492" font-size="11" fill="#64748b" font-style="italic">read this layer.</text>
+
+  <rect x="630" y="413" width="210" height="75" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="735" y="436" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Databricks writes</text>
+  <text x="735" y="454" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Snowflake &amp; others read</text>
+  <text x="735" y="473" text-anchor="middle" font-size="10" fill="#64748b">Iceberg on object storage,</text>
+  <text x="735" y="487" text-anchor="middle" font-size="10" fill="#64748b">Unity Catalog governance</text>
+
+  <!-- Upward arrow from Layer 1 to Layer 2 -->
+  <line x1="450" y1="531" x2="450" y2="508" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+  <!-- Layer 1: Source Data Warehouse (BOTTOM) -->
+  <rect x="50" y="534" width="800" height="100" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <rect x="50" y="534" width="160" height="100" rx="10" fill="#1F4E79"/>
+  <text x="130" y="574" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Source Data</text>
+  <text x="130" y="591" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Warehouse</text>
+  <text x="130" y="613" text-anchor="middle" font-size="11" fill="#cbd5e1">Layer 1</text>
+  <text x="130" y="625" text-anchor="middle" font-size="10" fill="#cbd5e1">Historical foundation</text>
+
+  <text x="230" y="561" font-size="12" fill="#2C3E50">Comprehensive, date-chained staging of all source data.</text>
+  <text x="230" y="578" font-size="12" fill="#2C3E50">Largest layer by volume; write-heavy; pure engineering.</text>
+  <text x="230" y="600" font-size="11" fill="#64748b" font-style="italic">Benefits most from cheap bulk-compute engine; v3</text>
+  <text x="230" y="616" font-size="11" fill="#64748b" font-style="italic">deletion vectors dramatically reduce rewrite cost.</text>
+
+  <rect x="630" y="551" width="210" height="70" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+  <text x="735" y="573" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Databricks / Spark</text>
+  <text x="735" y="591" text-anchor="middle" font-size="10" fill="#64748b">Iceberg-native writes;</text>
+  <text x="735" y="606" text-anchor="middle" font-size="10" fill="#64748b">spot-priced compute for ingest</text>
+
+  <!-- Bottom annotation -->
+  <text x="450" y="658" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Sources feed the SDW; each subsequent layer refines the data for its consumers</text>
+</svg>

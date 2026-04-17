@@ -1,0 +1,180 @@
+---
+title: "The Hybrid Lakehouse: Designing and Migrating Into a Snowflake + Databricks Architecture"
+date: "2026-04-16"
+description: "A practical migration path from single-engine cloud data warehouses to a hybrid Snowflake + Databricks environment built on Apache Iceberg, and how a layered, domain-centric architecture translates into the new open lakehouse paradigm."
+tags:
+  - Open Table Formats
+  - Apache Iceberg
+  - Snowflake
+  - Databricks
+  - Unity Catalog
+  - Lakehouse
+  - Hybrid Architecture
+  - Data Modernization
+  - AI Infrastructure
+  - Data Strategy
+contentType: "strategy"
+traits: ["architecture", "framework"]
+heroImage: "/images/blog/hybrid-lakehouse-migration/hybrid-rationale.svg"
+---
+
+# The Hybrid Lakehouse: Migrating Layered Architectures to Open Table Formats
+
+## Why Nobody Gets to Pick Just One Platform Anymore
+
+For the past decade, most large enterprises answered the "where does our data live" question by picking a single cloud data warehouse and pouring everything into it. That worked well enough when the dominant workload was SQL analytics for BI. It has stopped working in the last two years — not because the warehouse got worse, but because the *mix* of workloads changed.
+
+A modern data estate now has to simultaneously serve:
+
+- **SQL analytics and BI** — consistent, low-latency, concurrency-friendly queries for dashboards and self-service
+- **Large-scale data engineering** — transformation jobs over terabytes of raw history, often cheaper on Spark than on a proprietary engine
+- **Data science and ML training** — distributed Python, feature engineering, MLflow, GPU jobs
+- **AI and GenAI pipelines** — embedding generation, retrieval, agentic workflows, vector search, and model inference that pulls from governed enterprise data
+
+No single engine is best in class at all four. Snowflake's SQL performance and governance are hard to beat for BI and analytics, but it is an expensive place to run bulk ETL and custom ML training. Databricks is optimized for Spark-based engineering and ML, but its SQL and concurrency story, while much improved, still has gaps for traditional BI workloads. The result is that almost every serious enterprise I talk to is running — or is moving toward — **both** platforms, side by side.
+
+That used to mean running two platforms *and two copies of the data*. The breakthrough of the last eighteen months is that the second part is no longer necessary. Open table formats — particularly Apache Iceberg — let a single physical copy of the data live in cloud object storage and be read and written by multiple engines without duplication, export pipelines, or format conversion.
+
+This article is about how to actually execute that transition in an enterprise that already has a mature, layered data architecture. In a [previous post](https://www.rejozmathew.com/blog/enterprise-data-modernization), I walked through the domain-centric, four-layer architecture we built to modernize an enterprise analytics environment — Source Data Warehouse, Domain Integrated Structures, Consumption Preparation, and Semantic Layer. That architecture holds up remarkably well in a hybrid world. It also makes the migration tractable: the layers give you natural seams to cut along, which is exactly what you want when you're moving a production data estate onto new storage and new engines without a big-bang cutover.
+
+## The Forces Behind the Shift
+
+Before the *how*, the *why*. Four forces are simultaneously pushing enterprises toward hybrid lakehouse architectures built on open table formats, and understanding them shapes every downstream design choice.
+
+![Three workload categories — BI and SQL analytics, data engineering and ETL, and ML and AI — mapped to their best-fit engines, with a shared Apache Iceberg foundation on cloud object storage](/images/blog/hybrid-lakehouse-migration/hybrid-rationale.svg)
+
+Figure 1: Different workloads have different best-fit engines. A shared Iceberg layer is what makes running both affordable.
+
+**1. The cost curve flattens at scale.** A single-engine warehouse bills primarily for compute, and the heaviest compute consumers — bulk loads, large transformations, and ML feature generation — are often the *least* differentiated workloads. Running them on spot-priced Spark against Iceberg-formatted data and then serving the results to a SQL engine for analytics can cut total platform spend substantially. Iceberg tables stored in the customer's own cloud storage incur no warehouse storage fees, and the storage itself is at raw cloud-provider rates rather than the warehouse-managed premium. For organizations with petabyte-scale cold data, the storage savings alone are material.
+
+**2. AI and ML workloads cannot wait in line.** Training a model, generating embeddings, or running a feature pipeline are not SQL workloads. They want distributed Python, access to raw files, notebook-first tooling, and cluster autoscaling with GPUs. When these teams are forced through a SQL warehouse, you end up extracting data back out to a lake anyway — at which point you're paying for the extract, the egress, and the duplicate storage, all to get to a place you could have been with Iceberg from the start.
+
+**3. Format wars ended; the industry picked Iceberg.** When Databricks acquired Tabular in 2024 and announced the long-term convergence of Delta and Iceberg, and Snowflake contributed Polaris as an open Iceberg catalog, the format debate effectively closed. Large organizations that had held off building next-generation big data lakes based on one of the open table formats suddenly had a green light from the biggest vendors that Iceberg was the winner. Both vendors now read and write Iceberg natively. That changes the risk calculus: committing to Iceberg no longer feels like picking a side.
+
+**4. Catalogs became the new control plane.** Unity Catalog, Snowflake Horizon, and Polaris have all implemented the open Iceberg REST Catalog API, which means governance can now be applied to *one copy of the data* across *multiple engines*. Full support for the Iceberg REST Catalog API allows external engines to read and write to Unity Catalog–managed Iceberg tables, eliminating format lock-in. The practical effect is that a table written by a Spark job on Databricks can be queried by Snowflake five seconds later, with a single masking policy and a single lineage record covering both reads.
+
+None of these forces on its own is enough to justify a platform change. Together, they make the hybrid lakehouse the rational endpoint for most large enterprises — especially those whose AI ambitions are outgrowing what a single SQL engine can economically support.
+
+## The Open Lakehouse Stack: Storage, Format, Catalog, Engines
+
+It's worth slowing down on what an open lakehouse actually *is* at the architectural level, because the term has been used loosely enough that the substance can get lost.
+
+![The open lakehouse stack — cloud object storage at the base, Apache Iceberg table format above it, a catalog layer (Unity Catalog, Polaris, Horizon) exposing Iceberg REST APIs, and multiple compute engines reading and writing the same tables](/images/blog/hybrid-lakehouse-migration/open-lakehouse-stack.svg)
+
+Figure 2: The four layers of an open lakehouse. Storage and format are open by design; the catalog is what ties engines together.
+
+**Cloud object storage** is the base. Parquet data files and Iceberg metadata files sit in S3, ADLS, or GCS buckets owned by the enterprise. This is the single copy of the data. No engine owns it; the enterprise does.
+
+**The open table format** — Apache Iceberg — sits on top of the raw files and provides ACID transactions, schema evolution, partition evolution, time travel, and row-level updates without rewriting entire files. The Iceberg v3 specification added row lineage, deletion vectors, and variant types, which among other things brought Iceberg's performance for heavy MERGE operations close to proprietary formats. The spec is engine-neutral; anyone can write a compliant reader or writer.
+
+**The catalog** is where the story gets interesting. Iceberg tables need something to track the current state of each table's metadata — which snapshot is current, where the metadata files live, who has permission to read or write. Historically, each platform had its own catalog: Unity Catalog on Databricks, Horizon on Snowflake, Glue on AWS, Hive Metastore everywhere else. These catalogs were silos. The Iceberg REST Catalog API changed that — it's a standard HTTP contract that any engine can speak to any catalog. Unity Catalog exposes its managed Iceberg tables via the REST API. Snowflake's Horizon, built on Polaris, does the same. Both can also federate to each other: Unity Catalog can mount Horizon as a foreign catalog and read tables Snowflake wrote, and Snowflake can create a catalog-linked database pointing at Unity Catalog and read tables Databricks wrote.
+
+**The compute engines** sit at the top. Snowflake, Databricks, Trino, Flink, DuckDB, Spark, and a growing list of smaller engines can all read and write the same Iceberg tables. The choice of engine becomes a *workload-by-workload* decision rather than an all-or-nothing platform commitment.
+
+The practical implication is that "Snowflake vs. Databricks" is increasingly the wrong question. The right question is: which engine do I want to run this particular workload on today, and what do I need to do to preserve the option to change my mind tomorrow?
+
+## Rethinking the Four-Layer Architecture for a Hybrid World
+
+This is where the layered architecture from the previous article pays off. Because each layer has a distinct purpose and a distinct rate of change, each one can be placed on the engine that best fits its workload — without rebuilding the whole stack.
+
+![The four-layer architecture — Source Data Warehouse, Domain Integrated Structures, Consumption Preparation, and Semantic Layer — mapped onto a hybrid Snowflake and Databricks environment, with Iceberg as the shared storage format across layers 1 through 3](/images/blog/hybrid-lakehouse-migration/four-layer-hybrid.svg)
+
+Figure 3: The four layers map cleanly onto a hybrid environment. Each layer keeps its purpose; only the engine and storage choice change.
+
+### Layer 1 — Source Data Warehouse on Iceberg
+
+The Source Data Warehouse is a natural fit for Iceberg on object storage, managed primarily by Databricks. It's the largest layer by volume, the most write-heavy (every source system change lands here), and the workload is almost pure data engineering: ingest, date-chain, assign surrogate keys, store. Databricks on Spark is cost-effective for exactly this profile — large batch writes, occasional full-table rescans, and schema evolution as new source systems come online. Writing these tables as Iceberg managed by Unity Catalog means Snowflake can still read them for the rare analytical need, but the expensive bulk load work happens on the cheaper engine.
+
+One subtlety: the SDW's historical tracking (date-chaining and surrogate key generation) benefits enormously from Iceberg's row-level update capabilities introduced in v3. What used to require rewriting entire partitions when a late-arriving update came in can now be expressed as a MERGE with deletion vectors, making the ingestion layer significantly more efficient at scale.
+
+### Layer 2 — Domain Integrated Structures on Iceberg
+
+Domain Integrated Structures are the transformation product — cleansed, conformed, business-friendly entity and event data. This is the layer that gets the most varied downstream consumption: BI tools pulling point-in-time snapshots, data scientists training models, and GenAI pipelines constructing RAG contexts. That variety is the tell. *Anything that multiple engines will consume should sit in the open format*.
+
+In practice, this means building the domain transformations in Databricks (where the Spark-based metadata-driven pipeline framework lives), writing the outputs as Iceberg tables registered in Unity Catalog, and exposing them to Snowflake via either Unity Catalog's Iceberg REST API or a Snowflake catalog-linked database. A common pattern is to use Databricks' best-in-class ETL price/performance for upstream data, accessing it from BI and analytics tools such as Snowflake.
+
+The rate-of-change lesson from the previous article still applies here, and it matters more in a hybrid world: domain structures, when built properly, change least frequently. That stability is what makes them a safe place to draw the storage-format boundary. If you pick the wrong table to put in Iceberg, you'll feel it every time you need to alter the schema. The elemental, comprehensive domain design philosophy earns its keep precisely because it minimizes those alterations.
+
+### Layer 3 — Consumption Preparation: A Hybrid Within the Layer
+
+The Consumption Preparation layer is where the decision gets more nuanced. This layer's job is to produce time-windowed, aggregated, analysis-ready views — the kind of structures that dashboards and downstream analytics hit constantly. Here, Snowflake's Dynamic Tables reading from Iceberg source tables is often the right answer. The domain-integrated source lives on cheap object storage in Iceberg; Snowflake's Dynamic Table materializes a hot cache with a declared refresh lag (say, ten minutes) for fast, concurrent BI query service.
+
+This is Pattern 2 — "Hybrid Materialize" — from the widely cited write once, read many taxonomy: write the canonical data once on Databricks, cache the dashboard-facing slice on Snowflake, and let the latency budget dictate the refresh interval. For data science and AI workloads, the Iceberg source remains the access path — they don't need the cached view, they need the raw elemental data at full grain.
+
+One trap to avoid: don't cache everything. A Dynamic Table is only cost-effective when the query-to-materialized-row ratio is high. If a cache is refreshed constantly but queried rarely, you're burning Snowflake compute to no purpose. The cost efficiency rule of thumb — roughly ten or more queries per materialized row — should drive which consumption-prep structures get cached versus read directly from Iceberg.
+
+### Layer 4 — The Semantic Layer, Engine-Agnostic
+
+The Semantic Layer is the one place where the hybrid architecture starts to genuinely simplify rather than complicate. A well-built semantic layer is already abstracted from its underlying physical storage — business users interact with *product*, *customer*, *revenue* as concepts, and the semantic tool resolves those to SQL against whichever engine holds the relevant consumption-prep data. In the hybrid world, the semantic layer can route queries to either engine based on where the required data sits. Emerging semantic tooling like Unity Catalog Metric Views, as well as vendor-neutral efforts like the Open Semantic Interchange, are explicitly designed for this multi-engine reality.
+
+The Feature Store pattern extends the same idea to ML consumption. Features derived from domain-integrated Iceberg tables can be served to training jobs on Databricks and online inference systems without a second physical copy — the feature values are computed once and read everywhere.
+
+## Catalog Strategy: The Decision That Shapes Everything Else
+
+If the choice of engine per layer is the visible part of the hybrid design, the choice of *catalog strategy* is the invisible part that determines whether any of it actually works. I've seen more than one program stall out because the catalog question got answered by default rather than deliberately.
+
+There are three practical options, and each has real trade-offs:
+
+**Option A: Unity Catalog as the primary, Snowflake federates in.** Databricks writes all Iceberg tables as Unity Catalog–managed. Snowflake creates a catalog-linked database pointing to Unity Catalog's Iceberg REST endpoint. Snowflake gets read access (and, in Public Preview, write access) to tables whose lifecycle is managed elsewhere. Governance, lineage, and access control are centered in Unity Catalog. This works best if the data engineering center of gravity is on Databricks and Snowflake's role is primarily analytical consumption.
+
+**Option B: Horizon (Polaris) as the primary, Unity Catalog federates in.** Inverted: Snowflake manages the Iceberg tables, Databricks uses Unity Catalog's foreign catalog federation to mount Horizon and read those tables. This works best when the organization has a long Snowflake history with established governance and the Databricks environment is newer. The watch-out here is that foreign Iceberg tables are read-only in Databricks, so if Databricks needs to write, a different pattern is required.
+
+**Option C: A neutral open catalog (Polaris or similar) as primary.** Both Snowflake and Databricks treat the open catalog as external. This is the most vendor-neutral architecture and the most operationally complex. It's appropriate when governance independence is a hard requirement — regulated industries, multi-party data sharing, or long-horizon architectures designed to outlast any single vendor relationship.
+
+In practice, most enterprises I see end up with Option A or a pragmatic hybrid: Unity Catalog as the primary for net-new data built in the hybrid environment, with legacy Snowflake-native tables remaining in Horizon for as long as their lifecycle warrants, and federation gluing the two catalogs together. That's an honest acknowledgment of the fact that a real enterprise data estate is always mid-migration, never finished.
+
+## The Migration Path: Strangler, Not Big Bang
+
+The single most important decision in a migration like this is not technical — it's sequencing. Migrations that try to cut over everything in one event almost always fail; the organization cannot absorb that much simultaneous change, and the rollback surface area is impossibly large. The layered architecture gives you a natural way to avoid that trap.
+
+![Three-phase migration timeline showing the progression from a fully Snowflake-native environment, through a transition phase where the Source Data Warehouse and Domain Integrated Structures have moved to Iceberg while Snowflake retains consumption and semantic workloads, to a target hybrid state with workload-specialized engines reading and writing a shared Iceberg foundation](/images/blog/hybrid-lakehouse-migration/migration-path.svg)
+
+Figure 4: A strangler-pattern migration. Move the heaviest and most stable layers first; let the consumption layers follow when the economics justify it.
+
+**Phase 1 — Before.** The starting state for most enterprises: everything lives in a single warehouse, in the warehouse's proprietary format. All four layers run on the same engine and share the same bill. The warehouse bill is growing faster than the business, and the ML and AI teams are either paying for expensive compute they don't love, or silently building shadow lakes on the side.
+
+**Phase 2 — Transition.** This is where the work actually happens. The approach that has worked for us — and that I've seen work at peer organizations — is to migrate bottom-up: **start with the Source Data Warehouse, then move the Domain Integrated Structures, and leave the Consumption Preparation and Semantic Layers in place until last**. There are three reasons for this ordering.
+
+First, the SDW is the largest layer by volume and the heaviest on bulk-write cost. Moving it to Iceberg on Databricks delivers the biggest and fastest cost reduction, which funds the rest of the program. Second, the SDW is the furthest upstream of business users — its migration is nearly invisible to the business, which is exactly the kind of change you want to do first. Third, once the SDW is in Iceberg, the Domain Integrated Structures become much easier to migrate because their inputs are already in the target format.
+
+During Phase 2, the Snowflake-facing consumption and semantic layers continue to run largely unchanged, but now reading from Iceberg sources via catalog integration rather than from Snowflake-native tables. End users see no change. Dashboards don't break. BI tools keep querying the same semantic objects. Behind the scenes, the storage-and-engine substrate has shifted; the business-facing contract has not.
+
+**Phase 3 — Target.** With the SDW and Domain Integrated Structures established on Iceberg, the Consumption Preparation layer gets its own review. Some structures stay on Snowflake as Dynamic Tables (high-concurrency BI, tight latency, complex SQL). Others migrate to Databricks materialized views or Iceberg-native structures (ML feature prep, agentic AI context assembly, heavy engineering transformations). The Semantic Layer, if it was built to be engine-agnostic, requires minimal change — its job is to resolve business terms to physical queries, and in the hybrid world it just routes queries to whichever engine holds the target structure.
+
+A critical discipline throughout: **keep the quality and observability infrastructure running continuously across the transition**. The metadata-driven validation, applicability conditions, and centralized message log described in the previous article do not require rewriting for a hybrid environment — they run wherever the pipeline runs. If anything, the hybrid architecture makes observability *more* important, because lineage now crosses engine boundaries. Every transformation, every catalog federation, every Dynamic Table refresh needs to carry provenance forward so that the AI and ML systems at the top of the stack still have a traceable chain back to a governed source.
+
+## Risks and Anti-Patterns
+
+A few things will bite you if you don't plan for them.
+
+**Performance parity is a myth, at least for now.** Iceberg reads are meaningfully slower than native-format reads on most engines — even Snowflake has roughly a 20% performance penalty on Iceberg versus native tables, and the gap is larger on open-source engines that don't implement the full Puffin metadata statistics. This is a manageable tax, but not a free one. Workloads with strict query-latency SLAs will still want a materialized cache in the warehouse-native format, which is exactly why the Dynamic Table pattern in Layer 3 exists.
+
+**Catalog split-brain is real.** If governance policies are defined in Unity Catalog for Databricks and separately in Horizon for Snowflake, and both are edited independently, you will have divergent security postures on the same physical tables. This is genuinely dangerous and has to be solved before the hybrid architecture goes anywhere near sensitive data. Either make one catalog authoritative and federate in the other, or invest in a governance layer (Atlan, Collibra, or similar) that synchronizes policies across catalogs and treats drift as an alert.
+
+**Don't federate what you could materialize.** Query federation — Trino or Starburst joining Snowflake and Databricks tables at runtime — is an attractive pattern for ad-hoc exploration and a terrible pattern for production ETL. It pushes compute across engines, and the egress and network costs can dwarf the savings the open architecture was supposed to deliver. The discipline is: materialize the join into Iceberg and let each engine read the result, rather than paying two engines to do the join together every time.
+
+**Egress is the silent killer.** Moving data between engines in different cloud regions — or worse, different cloud providers — will generate egress charges that add up fast. Plan the storage regionality carefully, keep the Iceberg data and the consuming engines co-located, and for multi-region requirements use Iceberg replication rather than cross-region query federation.
+
+**Don't migrate what isn't worth migrating.** A surprising amount of data in most enterprise warehouses is either unused, stale, or available upstream. A migration is a forcing function for a data-estate cleanup. The tables nobody queries can be decommissioned. The legacy ETL outputs that duplicate upstream sources can be deleted. Every row that doesn't move is a row you don't have to validate in the target architecture. I have never seen a migration regret its lightening-up choices; I have often seen programs regret their scope creep.
+
+## What We Learned
+
+**Layered architectures age well.** The four-layer, domain-centric framework was not designed with hybrid lakehouses in mind, and yet it maps cleanly onto this new paradigm. The separation of concerns it enforces — raw history versus curated domains versus consumption-ready versus business semantics — turns out to be exactly the separation you need when you want to place each layer on the engine that fits its workload. Good architecture earns compound returns over time, even when the underlying technology shifts.
+
+**The catalog question is the real architecture question.** Engines change faster than catalogs, and catalogs change faster than storage. When the three layers are decoupled through open formats and open APIs, the choice of primary catalog is the decision you'll live with the longest. Pick deliberately.
+
+**Migrate bottom-up, preserve the business contract.** End users should not feel the storage or engine transition. The Source Data Warehouse moves first because it's invisible to them; the Semantic Layer moves last — or barely at all — because any change there is visible everywhere. In between, the Consumption Preparation layer is where the most interesting hybrid decisions happen and where the cost-latency trade-offs live.
+
+**Observability must cross engine boundaries.** In a single-engine world, data lineage is a feature of the warehouse. In a hybrid world, lineage and quality logging have to be engine-agnostic and catalog-aware. Every transformation should write to a lineage record that a downstream AI system can walk back to a validated source regardless of which engine produced the output along the way. If you treat observability as platform-specific, you lose the audit chain precisely when regulators and auditors care about it most.
+
+**Treat AI workloads as a first-class citizen from the start.** The AI and ML use cases are often what make the business case for the hybrid architecture in the first place. Designing the open lakehouse around them — keeping domain-integrated data accessible to notebooks, feature stores, and embedding pipelines without a second extraction — prevents the shadow-lake problem that single-engine environments tend to accumulate. A well-governed Iceberg layer is, in practice, the best AI-ready data substrate available today.
+
+**Don't mistake format openness for vendor independence.** Committing to Iceberg reduces storage-format lock-in. It does not, by itself, reduce catalog, tooling, or operational lock-in. Each of those requires its own deliberate strategy, and some amount of lock-in is unavoidable and usually worth paying for in exchange for managed services. The goal is clear-eyed trade-offs, not purity.
+
+## Conclusion
+
+The hybrid lakehouse isn't a destination so much as a re-stabilization. For the last decade, the right answer was "pick one cloud data warehouse and go deep." For the next decade, it is "pick the right engine for each workload, keep the data in an open format underneath, and let the catalog tie everything together." That's a more demanding architecture to design, but it produces a more resilient and more economic one — and crucially, it fits the shape of modern AI, ML, and analytics work in a way that a single-engine environment cannot.
+
+If you've already built a layered, domain-centric data architecture, you have far more of the work done than you probably realize. The layers are the migration seams. Each one moves on its own schedule, to its own best-fit engine, and the business-facing contract stays intact throughout. The hardest part of the transition isn't technical — it's sequencing, governance, and the discipline to migrate bottom-up without being tempted by the visible wins at the top of the stack.
+
+The platform choices will keep shifting. The layered, observable, domain-integrated architecture underneath them is what keeps those shifts from being catastrophic. That's the real investment — the one that lets you treat Snowflake, Databricks, and whatever comes next as tools you choose rather than platforms you're stuck with.

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <defs>
+    <marker id="arrow-primary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrow-secondary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="560" fill="#f9fafb"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3E50">Why One Engine Doesn't Fit All</text>
+  <text x="450" y="65" text-anchor="middle" font-size="13" fill="#64748b">Workload mix, not vendor loyalty, drives hybrid platform decisions</text>
+
+  <!-- Column headers -->
+  <text x="190" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1">WORKLOADS</text>
+  <text x="710" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b" letter-spacing="1">BEST-FIT ENGINE</text>
+
+  <!-- Workload 1: BI & SQL Analytics -->
+  <rect x="60" y="135" width="260" height="85" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <text x="80" y="160" font-size="15" font-weight="700" fill="#1F4E79">BI &amp; SQL Analytics</text>
+  <text x="80" y="183" font-size="12" fill="#2C3E50">• Executive dashboards, reports</text>
+  <text x="80" y="200" font-size="12" fill="#2C3E50">• Self-service analytics</text>
+  <text x="80" y="217" font-size="12" fill="#2C3E50">• High-concurrency SQL queries</text>
+
+  <!-- Workload 2: Data Engineering -->
+  <rect x="60" y="245" width="260" height="85" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <text x="80" y="270" font-size="15" font-weight="700" fill="#1F4E79">Data Engineering</text>
+  <text x="80" y="293" font-size="12" fill="#2C3E50">• Bulk ETL &amp; transformations</text>
+  <text x="80" y="310" font-size="12" fill="#2C3E50">• CDC ingestion at scale</text>
+  <text x="80" y="327" font-size="12" fill="#2C3E50">• Complex Python / Spark jobs</text>
+
+  <!-- Workload 3: ML / AI -->
+  <rect x="60" y="355" width="260" height="85" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  <text x="80" y="380" font-size="15" font-weight="700" fill="#1F4E79">ML &amp; AI</text>
+  <text x="80" y="403" font-size="12" fill="#2C3E50">• Model training, feature eng.</text>
+  <text x="80" y="420" font-size="12" fill="#2C3E50">• Embeddings, RAG, agents</text>
+  <text x="80" y="437" font-size="12" fill="#2C3E50">• GPU-accelerated notebooks</text>
+
+  <!-- Engine 1: Snowflake -->
+  <rect x="580" y="175" width="260" height="105" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="2"/>
+  <text x="600" y="202" font-size="16" font-weight="700" fill="#2A7F62">Snowflake</text>
+  <text x="600" y="223" font-size="12" fill="#2C3E50">SQL-first, BI &amp; analytics</text>
+  <text x="600" y="245" font-size="11" fill="#64748b">Strengths: concurrency, governance,</text>
+  <text x="600" y="260" font-size="11" fill="#64748b">zero-admin, serverless SQL</text>
+
+  <!-- Engine 2: Databricks -->
+  <rect x="580" y="310" width="260" height="105" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="2"/>
+  <text x="600" y="337" font-size="16" font-weight="700" fill="#2A7F62">Databricks</text>
+  <text x="600" y="358" font-size="12" fill="#2C3E50">Spark-first, engineering &amp; ML</text>
+  <text x="600" y="380" font-size="11" fill="#64748b">Strengths: distributed compute,</text>
+  <text x="600" y="395" font-size="11" fill="#64748b">MLflow, GPU clusters, Python</text>
+
+  <!-- Primary arrows (solid, navy) -->
+  <!-- BI -> Snowflake -->
+  <line x1="320" y1="177" x2="577" y2="215" stroke="#1F4E79" stroke-width="2.5" marker-end="url(#arrow-primary)"/>
+  <!-- DE -> Databricks -->
+  <line x1="320" y1="287" x2="577" y2="345" stroke="#1F4E79" stroke-width="2.5" marker-end="url(#arrow-primary)"/>
+  <!-- ML -> Databricks -->
+  <line x1="320" y1="397" x2="577" y2="370" stroke="#1F4E79" stroke-width="2.5" marker-end="url(#arrow-primary)"/>
+
+  <!-- Secondary arrows (dashed, gray) -->
+  <!-- BI -> Databricks (SQL Pro) -->
+  <line x1="320" y1="200" x2="577" y2="330" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-secondary)"/>
+  <!-- DE -> Snowflake (Snowpark) -->
+  <line x1="320" y1="265" x2="577" y2="245" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-secondary)"/>
+  <!-- ML -> Snowflake (Cortex inference) -->
+  <line x1="320" y1="375" x2="577" y2="265" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-secondary)"/>
+
+  <!-- Arrow legend -->
+  <line x1="370" y1="465" x2="410" y2="465" stroke="#1F4E79" stroke-width="2.5" marker-end="url(#arrow-primary)"/>
+  <text x="418" y="469" font-size="11" fill="#2C3E50">Best-fit engine</text>
+  <line x1="520" y1="465" x2="560" y2="465" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow-secondary)"/>
+  <text x="568" y="469" font-size="11" fill="#2C3E50">Works, but secondary</text>
+
+  <!-- Shared foundation strip -->
+  <rect x="60" y="495" width="780" height="50" rx="8" fill="#1F4E79"/>
+  <text x="450" y="519" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Shared foundation — one physical copy</text>
+  <text x="450" y="538" text-anchor="middle" font-size="12" fill="#cbd5e1">Apache Iceberg tables on S3 / ADLS / GCS, governed via an open catalog</text>
+</svg>
