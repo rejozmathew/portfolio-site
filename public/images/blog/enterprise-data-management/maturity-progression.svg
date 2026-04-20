@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow5" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="hGrad5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="progressGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c0392b"/>
+      <stop offset="33%" stop-color="#e67e22"/>
+      <stop offset="66%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#hGrad5)" rx="12"/>
+  <rect x="0" y="30" width="900" height="30" fill="url(#hGrad5)"/>
+  <text x="450" y="38" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="700" letter-spacing="0.5">Data Management Maturity: The Multi-Year Arc</text>
+
+  <!-- Progress bar -->
+  <rect x="60" y="88" width="780" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="60" y="88" width="780" height="8" rx="4" fill="url(#progressGrad)"/>
+
+  <!-- Stage markers on the bar -->
+  <circle cx="60" cy="92" r="10" fill="#c0392b" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="300" cy="92" r="10" fill="#e67e22" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="560" cy="92" r="10" fill="#1F4E79" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="840" cy="92" r="10" fill="#2A7F62" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Stage 1: Chaotic -->
+  <g filter="url(#shadow5)">
+    <rect x="15" y="115" width="195" height="265" rx="10" fill="#ffffff" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+  <rect x="15" y="115" width="195" height="40" rx="10" fill="#c0392b"/>
+  <rect x="15" y="135" width="195" height="20" fill="#c0392b"/>
+  <text x="112" y="141" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Stage 1: Chaotic</text>
+
+  <text x="35" y="177" fill="#2C3E50" font-size="11" font-weight="600">Characteristics</text>
+  <text x="35" y="196" fill="#2C3E50" font-size="10">No inventory of assets</text>
+  <text x="35" y="212" fill="#2C3E50" font-size="10">Tribal knowledge only</text>
+  <text x="35" y="228" fill="#2C3E50" font-size="10">Ad-hoc quality fixes</text>
+  <text x="35" y="244" fill="#2C3E50" font-size="10">No stewardship model</text>
+  <line x1="35" y1="255" x2="190" y2="255" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="35" y="275" fill="#c0392b" font-size="10" font-weight="600">Risk Exposure</text>
+  <text x="35" y="293" fill="#2C3E50" font-size="10">Regulatory findings</text>
+  <text x="35" y="309" fill="#2C3E50" font-size="10">Duplicated effort</text>
+  <text x="35" y="325" fill="#2C3E50" font-size="10">Unreliable analytics</text>
+  <rect x="35" y="345" width="155" height="22" rx="4" fill="#fde8e8"/>
+  <text x="112" y="360" text-anchor="middle" fill="#c0392b" font-size="9" font-weight="600">500K+ tables, no catalogue</text>
+
+  <!-- Stage 2: Aware -->
+  <g filter="url(#shadow5)">
+    <rect x="235" y="115" width="195" height="265" rx="10" fill="#ffffff" stroke="#e67e22" stroke-width="1.5"/>
+  </g>
+  <rect x="235" y="115" width="195" height="40" rx="10" fill="#e67e22"/>
+  <rect x="235" y="135" width="195" height="20" fill="#e67e22"/>
+  <text x="332" y="141" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Stage 2: Aware</text>
+
+  <text x="255" y="177" fill="#2C3E50" font-size="11" font-weight="600">Characteristics</text>
+  <text x="255" y="196" fill="#2C3E50" font-size="10">Inventory initiated</text>
+  <text x="255" y="212" fill="#2C3E50" font-size="10">Priority tiers defined</text>
+  <text x="255" y="228" fill="#2C3E50" font-size="10">Profiling underway</text>
+  <text x="255" y="244" fill="#2C3E50" font-size="10">Stewards assigned</text>
+  <line x1="255" y1="255" x2="410" y2="255" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="255" y="275" fill="#e67e22" font-size="10" font-weight="600">Key Activities</text>
+  <text x="255" y="293" fill="#2C3E50" font-size="10">Catalogue high-priority tables</text>
+  <text x="255" y="309" fill="#2C3E50" font-size="10">Build profiling tooling</text>
+  <text x="255" y="325" fill="#2C3E50" font-size="10">Define DQ rule templates</text>
+  <rect x="255" y="345" width="155" height="22" rx="4" fill="#fff3e0"/>
+  <text x="332" y="360" text-anchor="middle" fill="#e67e22" font-size="9" font-weight="600">~Years 1–2</text>
+
+  <!-- Stage 3: Managed -->
+  <g filter="url(#shadow5)">
+    <rect x="460" y="115" width="195" height="265" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+  <rect x="460" y="115" width="195" height="40" rx="10" fill="#1F4E79"/>
+  <rect x="460" y="135" width="195" height="20" fill="#1F4E79"/>
+  <text x="557" y="141" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Stage 3: Managed</text>
+
+  <text x="480" y="177" fill="#2C3E50" font-size="11" font-weight="600">Characteristics</text>
+  <text x="480" y="196" fill="#2C3E50" font-size="10">DQ rules in production</text>
+  <text x="480" y="212" fill="#2C3E50" font-size="10">Anomaly detection active</text>
+  <text x="480" y="228" fill="#2C3E50" font-size="10">Catalogue widely adopted</text>
+  <text x="480" y="244" fill="#2C3E50" font-size="10">New assets follow process</text>
+  <line x1="480" y1="255" x2="635" y2="255" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="480" y="275" fill="#1F4E79" font-size="10" font-weight="600">Key Activities</text>
+  <text x="480" y="293" fill="#2C3E50" font-size="10">Build next-gen assets (MAD,</text>
+  <text x="480" y="309" fill="#2C3E50" font-size="10">CIMS, identity graph)</text>
+  <text x="480" y="325" fill="#2C3E50" font-size="10">Integrate DQ into pipelines</text>
+  <rect x="480" y="345" width="155" height="22" rx="4" fill="#e8f0fe"/>
+  <text x="557" y="360" text-anchor="middle" fill="#1F4E79" font-size="9" font-weight="600">~Years 2–4</text>
+
+  <!-- Stage 4: Governed -->
+  <g filter="url(#shadow5)">
+    <rect x="685" y="115" width="195" height="265" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
+  </g>
+  <rect x="685" y="115" width="195" height="40" rx="10" fill="#2A7F62"/>
+  <rect x="685" y="135" width="195" height="20" fill="#2A7F62"/>
+  <text x="782" y="141" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Stage 4: Governed</text>
+
+  <text x="705" y="177" fill="#2C3E50" font-size="11" font-weight="600">Characteristics</text>
+  <text x="705" y="196" fill="#2C3E50" font-size="10">Proactive monitoring</text>
+  <text x="705" y="212" fill="#2C3E50" font-size="10">Self-service discovery</text>
+  <text x="705" y="228" fill="#2C3E50" font-size="10">Control gates enforced</text>
+  <text x="705" y="244" fill="#2C3E50" font-size="10">GenAI / ML-ready data</text>
+  <line x1="705" y1="255" x2="860" y2="255" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="705" y="275" fill="#2A7F62" font-size="10" font-weight="600">Capabilities Unlocked</text>
+  <text x="705" y="293" fill="#2C3E50" font-size="10">Trusted analytics at scale</text>
+  <text x="705" y="309" fill="#2C3E50" font-size="10">Regulatory confidence</text>
+  <text x="705" y="325" fill="#2C3E50" font-size="10">AI/ML production pipelines</text>
+  <rect x="705" y="345" width="155" height="22" rx="4" fill="#e8f5e9"/>
+  <text x="782" y="360" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">~Year 5+</text>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow2" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="hGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="500" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#hGrad2)" rx="12"/>
+  <rect x="0" y="30" width="900" height="30" fill="url(#hGrad2)"/>
+  <text x="450" y="32" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">How We Organized Our Data Management Function</text>
+  <text x="450" y="52" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11" font-style="italic">Your organization's mandates will reflect its own data priorities and starting point</text>
+
+  <!-- Mandate 1: Build Next-Gen Assets (left) -->
+  <g filter="url(#shadow2)">
+    <rect x="25" y="82" width="270" height="370" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="2"/>
+  </g>
+  <rect x="25" y="82" width="270" height="48" rx="10" fill="#1F4E79"/>
+  <rect x="25" y="110" width="270" height="20" fill="#1F4E79"/>
+  <circle cx="52" cy="106" r="14" fill="rgba(255,255,255,0.25)"/>
+  <text x="52" y="112" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">1</text>
+  <text x="75" y="111" fill="#ffffff" font-size="13" font-weight="600">Build Next-Gen Assets</text>
+
+  <text x="45" y="152" fill="#2C3E50" font-size="11">Design domain-centric structures</text>
+  <text x="45" y="172" fill="#2C3E50" font-size="11">Marketing Analytical Database</text>
+  <text x="45" y="192" fill="#2C3E50" font-size="11">Customer data infrastructure</text>
+  <text x="45" y="212" fill="#2C3E50" font-size="11">Identity resolution platform</text>
+  <text x="45" y="232" fill="#2C3E50" font-size="11">Feature store &amp; semantic layers</text>
+  <text x="45" y="252" fill="#2C3E50" font-size="11">Data modernization architecture</text>
+
+  <line x1="45" y1="268" x2="275" y2="268" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="45" y="290" fill="#7f8c8d" font-size="10.5" font-style="italic">Covered in companion articles</text>
+
+  <g transform="translate(45, 305)">
+    <rect x="0" y="0" width="48" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="24" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">MAD</text>
+    <rect x="54" y="0" width="48" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="78" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">CIMS</text>
+    <rect x="108" y="0" width="55" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="135" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">IDGraph</text>
+    <rect x="169" y="0" width="55" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="196" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">MLOps</text>
+  </g>
+  <g transform="translate(45, 333)">
+    <rect x="0" y="0" width="70" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="35" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">Semantic</text>
+    <rect x="76" y="0" width="80" height="22" rx="4" fill="#e8f0fe" stroke="#1F4E79" stroke-width="0.8"/>
+    <text x="116" y="15" text-anchor="middle" fill="#1F4E79" font-size="8" font-weight="600">Modernization</text>
+  </g>
+
+  <!-- Mandate 2: BAU Data Operations (center) -->
+  <g filter="url(#shadow2)">
+    <rect x="315" y="82" width="270" height="370" rx="10" fill="#ffffff" stroke="#34495e" stroke-width="1.5"/>
+  </g>
+  <rect x="315" y="82" width="270" height="48" rx="10" fill="#34495e"/>
+  <rect x="315" y="110" width="270" height="20" fill="#34495e"/>
+  <circle cx="342" cy="106" r="14" fill="rgba(255,255,255,0.25)"/>
+  <text x="342" y="112" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">2</text>
+  <text x="365" y="111" fill="#ffffff" font-size="13" font-weight="600">BAU Data Operations</text>
+
+  <text x="335" y="150" fill="#2C3E50" font-size="11" font-weight="600">Ongoing BU data work:</text>
+  <text x="335" y="172" fill="#2C3E50" font-size="11">Pricing grid &amp; product changes</text>
+  <text x="335" y="192" fill="#2C3E50" font-size="11">New attribute onboarding</text>
+  <text x="335" y="212" fill="#2C3E50" font-size="11">Source system integrations</text>
+
+  <line x1="335" y1="228" x2="565" y2="228" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="335" y="248" fill="#2C3E50" font-size="11" font-weight="600">Data product management:</text>
+  <text x="335" y="268" fill="#2C3E50" font-size="11">Business prioritization</text>
+  <text x="335" y="288" fill="#2C3E50" font-size="11">Requirements &amp; business analysis</text>
+  <text x="335" y="308" fill="#2C3E50" font-size="11">Coordination with data engineering</text>
+  <text x="335" y="328" fill="#2C3E50" font-size="11">Testing &amp; validation</text>
+
+  <line x1="335" y1="344" x2="565" y2="344" stroke="#e2e8f0" stroke-width="1"/>
+
+  <g transform="translate(335, 356)">
+    <rect x="0" y="0" width="65" height="22" rx="4" fill="#f0f4f8" stroke="#7f8c8d" stroke-width="0.8"/>
+    <text x="32" y="15" text-anchor="middle" fill="#34495e" font-size="8" font-weight="600">Deposits</text>
+    <rect x="71" y="0" width="85" height="22" rx="4" fill="#f0f4f8" stroke="#7f8c8d" stroke-width="0.8"/>
+    <text x="113" y="15" text-anchor="middle" fill="#34495e" font-size="8" font-weight="600">Personal Loans</text>
+    <rect x="162" y="0" width="70" height="22" rx="4" fill="#f0f4f8" stroke="#7f8c8d" stroke-width="0.8"/>
+    <text x="197" y="15" text-anchor="middle" fill="#34495e" font-size="8" font-weight="600">Credit Card</text>
+  </g>
+
+  <rect x="335" y="390" width="235" height="48" rx="6" fill="#f0f4f8" stroke="#7f8c8d" stroke-width="0.8"/>
+  <text x="452" y="409" text-anchor="middle" fill="#7f8c8d" font-size="9.5">Each BU has data teams handling</text>
+  <text x="452" y="425" text-anchor="middle" fill="#7f8c8d" font-size="9.5">ongoing change requests &amp; enhancements</text>
+
+  <!-- Mandate 3: Catalogue & Steward (right, focus) -->
+  <g filter="url(#shadow2)">
+    <rect x="605" y="82" width="270" height="370" rx="10" fill="#ffffff" stroke="#2A7F62" stroke-width="2"/>
+  </g>
+  <rect x="605" y="82" width="270" height="48" rx="10" fill="#2A7F62"/>
+  <rect x="605" y="110" width="270" height="20" fill="#2A7F62"/>
+  <circle cx="632" cy="106" r="14" fill="rgba(255,255,255,0.25)"/>
+  <text x="632" y="112" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">3</text>
+  <text x="655" y="111" fill="#ffffff" font-size="13" font-weight="600">Catalogue &amp; Steward</text>
+
+  <text x="625" y="152" fill="#2C3E50" font-size="11">Inventory 1,000+ existing datasets</text>
+  <text x="625" y="172" fill="#2C3E50" font-size="11">Enrich with business metadata</text>
+  <text x="625" y="192" fill="#2C3E50" font-size="11">Profile for quality baseline</text>
+  <text x="625" y="212" fill="#2C3E50" font-size="11">Implement DQ rules &amp; anomaly</text>
+  <text x="625" y="229" fill="#2C3E50" font-size="11">detection monitoring</text>
+  <text x="625" y="249" fill="#2C3E50" font-size="11">Assign stewardship ownership</text>
+  <text x="625" y="269" fill="#2C3E50" font-size="11">Maintain ongoing governance</text>
+
+  <line x1="625" y1="285" x2="855" y2="285" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="625" y="307" fill="#2A7F62" font-size="10.5" font-weight="600" font-style="italic">Focus of this article</text>
+
+  <rect x="620" y="322" width="240" height="50" rx="6" fill="#e8f5e9" stroke="#2A7F62" stroke-width="1"/>
+  <text x="740" y="342" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">1,000+ CB datasets catalogued</text>
+  <text x="740" y="359" text-anchor="middle" fill="#2A7F62" font-size="10">Stratified by priority over 5 years</text>
+
+  <rect x="620" y="382" width="240" height="55" rx="6" fill="#f0f4f8" stroke="#7f8c8d" stroke-width="0.8"/>
+  <text x="740" y="401" text-anchor="middle" fill="#7f8c8d" font-size="9.5">Cross-cuts mandates 1 &amp; 2:</text>
+  <text x="740" y="417" text-anchor="middle" fill="#7f8c8d" font-size="9.5">stewardship &amp; governance apply</text>
+  <text x="740" y="430" text-anchor="middle" fill="#7f8c8d" font-size="9.5">to all data work</text>
+
+  <!-- Bottom connector bar -->
+  <rect x="25" y="462" width="850" height="28" rx="6" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+  <text x="450" y="480" text-anchor="middle" fill="#e67e22" font-size="10.5" font-weight="600">Stewardship &amp; governance practices from Mandate 3 apply across all three mandates as a cross-cutting discipline</text>
+</svg>

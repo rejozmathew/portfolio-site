@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="shadow1" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="foundationGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="50%" stop-color="#2A7F62"/>
+      <stop offset="100%" stop-color="#1F4E79"/>
+    </linearGradient>
+    <marker id="arrowUp" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,10 L5,0 L10,10" fill="none" stroke="#2A7F62" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#headerGrad)" rx="12"/>
+  <rect x="0" y="30" width="900" height="30" fill="url(#headerGrad)"/>
+  <text x="450" y="38" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="700" letter-spacing="0.5">Data Management as a Strategic Enterprise Foundation</text>
+
+  <!-- Three capability pillars -->
+  <!-- Pillar 1: Regulatory & Controls -->
+  <g filter="url(#shadow1)">
+    <rect x="60" y="95" width="240" height="200" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="60" y="95" width="240" height="48" rx="10" fill="#1F4E79"/>
+    <rect x="60" y="123" width="240" height="20" fill="#1F4E79"/>
+  </g>
+  <text x="180" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Regulatory &amp; Controls</text>
+  <!-- Pillar 1 items -->
+  <text x="85" y="170" fill="#2C3E50" font-size="11">• Compliance monitoring</text>
+  <text x="85" y="190" fill="#2C3E50" font-size="11">• Audit trail &amp; lineage</text>
+  <text x="85" y="210" fill="#2C3E50" font-size="11">• Control gate frameworks</text>
+  <text x="85" y="230" fill="#2C3E50" font-size="11">• Incident management</text>
+  <text x="85" y="250" fill="#2C3E50" font-size="11">• Fair lending / FCRA / ECOA</text>
+  <text x="85" y="275" fill="#2A7F62" font-size="10" font-style="italic">Requires: known, traced, validated data</text>
+
+  <!-- Pillar 2: Business Growth -->
+  <g filter="url(#shadow1)">
+    <rect x="330" y="95" width="240" height="200" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="330" y="95" width="240" height="48" rx="10" fill="#1F4E79"/>
+    <rect x="330" y="123" width="240" height="20" fill="#1F4E79"/>
+  </g>
+  <text x="450" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Business Growth &amp; Analytics</text>
+  <!-- Pillar 2 items -->
+  <text x="355" y="170" fill="#2C3E50" font-size="11">• Marketing attribution</text>
+  <text x="355" y="190" fill="#2C3E50" font-size="11">• Customer analytics</text>
+  <text x="355" y="210" fill="#2C3E50" font-size="11">• Self-service BI</text>
+  <text x="355" y="230" fill="#2C3E50" font-size="11">• Personalization</text>
+  <text x="355" y="250" fill="#2C3E50" font-size="11">• Operational reporting</text>
+  <text x="355" y="275" fill="#2A7F62" font-size="10" font-style="italic">Requires: curated, trustworthy assets</text>
+
+  <!-- Pillar 3: AI / ML -->
+  <g filter="url(#shadow1)">
+    <rect x="600" y="95" width="240" height="200" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="600" y="95" width="240" height="48" rx="10" fill="#1F4E79"/>
+    <rect x="600" y="123" width="240" height="20" fill="#1F4E79"/>
+  </g>
+  <text x="720" y="125" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">Advanced Analytics &amp; AI</text>
+  <!-- Pillar 3 items -->
+  <text x="625" y="170" fill="#2C3E50" font-size="11">• ML model development</text>
+  <text x="625" y="190" fill="#2C3E50" font-size="11">• Feature engineering</text>
+  <text x="625" y="210" fill="#2C3E50" font-size="11">• Identity resolution</text>
+  <text x="625" y="230" fill="#2C3E50" font-size="11">• GenAI pipelines</text>
+  <text x="625" y="250" fill="#2C3E50" font-size="11">• MLOps &amp; observability</text>
+  <text x="625" y="275" fill="#2A7F62" font-size="10" font-style="italic">Requires: profiled, governed, quality data</text>
+
+  <!-- Arrows from foundation to pillars -->
+  <line x1="180" y1="365" x2="180" y2="300" stroke="#2A7F62" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="180,296 175,306 185,306" fill="#2A7F62"/>
+  <line x1="450" y1="365" x2="450" y2="300" stroke="#2A7F62" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="450,296 445,306 455,306" fill="#2A7F62"/>
+  <line x1="720" y1="365" x2="720" y2="300" stroke="#2A7F62" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="720,296 715,306 725,306" fill="#2A7F62"/>
+
+  <!-- Foundation block -->
+  <g filter="url(#shadow1)">
+    <rect x="40" y="365" width="820" height="130" rx="12" fill="url(#foundationGrad)"/>
+  </g>
+  <text x="450" y="400" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700">Enterprise Data Management Foundation</text>
+  
+  <!-- Foundation sub-elements -->
+  <rect x="70" y="415" width="170" height="55" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="155" y="438" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Data Cataloguing</text>
+  <text x="155" y="455" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Inventory · Metadata · Search</text>
+  
+  <rect x="260" y="415" width="170" height="55" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="345" y="438" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Data Quality</text>
+  <text x="345" y="455" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Profiling · Rules · Anomaly</text>
+
+  <rect x="450" y="415" width="170" height="55" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="535" y="438" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Data Stewardship</text>
+  <text x="535" y="455" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Ownership · Governance · Lifecycle</text>
+
+  <rect x="640" y="415" width="190" height="55" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="735" y="438" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">Next-Gen Asset Design</text>
+  <text x="735" y="455" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10">Domain Structures · Integration</text>
+</svg>
