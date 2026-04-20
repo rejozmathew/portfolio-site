@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
   <defs>
-    <!-- Standard right-pointing arrow; auto-rotates with line direction -->
     <marker id="arrow-flow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#2A7F62"/>
     </marker>
@@ -39,7 +38,7 @@
   <text x="735" y="175" text-anchor="middle" font-size="10" fill="#64748b">Routes to Snowflake or</text>
   <text x="735" y="190" text-anchor="middle" font-size="10" fill="#64748b">Databricks per query</text>
 
-  <!-- Upward arrow: line goes from bottom (245) to top (222), marker-end puts the arrow at the top pointing up -->
+  <!-- Upward arrow from Layer 3 to Layer 4 -->
   <line x1="450" y1="245" x2="450" y2="222" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
 
   <!-- Layer 3: Consumption Prep -->
@@ -53,7 +52,7 @@
 
   <text x="230" y="277" font-size="12" fill="#2C3E50">Optimized for high-concurrency BI reads. Hybrid by</text>
   <text x="230" y="294" font-size="12" fill="#2C3E50">nature — some structures cached natively in Snowflake;</text>
-  <text x="230" y="311" font-size="12" fill="#2C3E50">others remain on Iceberg for ML / AI consumption.</text>
+  <text x="230" y="311" font-size="12" fill="#2C3E50">others remain on Iceberg for ML / DS consumption.</text>
   <text x="230" y="333" font-size="11" fill="#64748b" font-style="italic">Cache only when queries-per-materialized-row ≥ ~10;</text>
   <text x="230" y="349" font-size="11" fill="#64748b" font-style="italic">otherwise read Iceberg directly.</text>
 
@@ -61,7 +60,7 @@
   <text x="735" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Snowflake Dynamic Tables</text>
   <text x="735" y="310" text-anchor="middle" font-size="10" fill="#64748b">reading Iceberg sources</text>
   <text x="735" y="326" text-anchor="middle" font-size="10" fill="#64748b">with declared refresh lag</text>
-  <text x="735" y="340" text-anchor="middle" font-size="10" fill="#2C3E50" font-weight="700">+ Iceberg (for ML)</text>
+  <text x="735" y="340" text-anchor="middle" font-size="10" fill="#64748b" font-weight="700">+ Iceberg (for ML / DS)</text>
 
   <!-- Upward arrow from Layer 2 to Layer 3 -->
   <line x1="450" y1="388" x2="450" y2="365" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
@@ -77,15 +76,15 @@
 
   <text x="230" y="420" font-size="12" fill="#2C3E50">Curated, elemental, business-oriented entity &amp; event</text>
   <text x="230" y="437" font-size="12" fill="#2C3E50">data. Stable; changes least frequently. Consumed by</text>
-  <text x="230" y="454" font-size="12" fill="#2C3E50">every downstream layer and every AI / ML use case.</text>
-  <text x="230" y="476" font-size="11" fill="#64748b" font-style="italic">Open-format storage is mandatory — many engines</text>
+  <text x="230" y="454" font-size="12" fill="#2C3E50">every downstream layer and every ML use case.</text>
+  <text x="230" y="476" font-size="11" fill="#64748b" font-style="italic">Open-format storage is mandatory — multiple engines</text>
   <text x="230" y="492" font-size="11" fill="#64748b" font-style="italic">read this layer.</text>
 
   <rect x="630" y="413" width="210" height="75" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
   <text x="735" y="436" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Databricks writes</text>
-  <text x="735" y="454" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Snowflake &amp; others read</text>
+  <text x="735" y="454" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Snowflake reads</text>
   <text x="735" y="473" text-anchor="middle" font-size="10" fill="#64748b">Iceberg on object storage,</text>
-  <text x="735" y="487" text-anchor="middle" font-size="10" fill="#64748b">Unity Catalog governance</text>
+  <text x="735" y="487" text-anchor="middle" font-size="10" fill="#64748b">coordinated governance</text>
 
   <!-- Upward arrow from Layer 1 to Layer 2 -->
   <line x1="450" y1="531" x2="450" y2="508" stroke="#2A7F62" stroke-width="2" marker-end="url(#arrow-flow)"/>
@@ -100,8 +99,8 @@
 
   <text x="230" y="561" font-size="12" fill="#2C3E50">Comprehensive, date-chained staging of all source data.</text>
   <text x="230" y="578" font-size="12" fill="#2C3E50">Largest layer by volume; write-heavy; pure engineering.</text>
-  <text x="230" y="600" font-size="11" fill="#64748b" font-style="italic">Benefits most from cheap bulk-compute engine; v3</text>
-  <text x="230" y="616" font-size="11" fill="#64748b" font-style="italic">deletion vectors dramatically reduce rewrite cost.</text>
+  <text x="230" y="600" font-size="11" fill="#64748b" font-style="italic">Benefits most from cost-effective bulk compute; v3</text>
+  <text x="230" y="616" font-size="11" fill="#64748b" font-style="italic">deletion vectors reduce rewrite cost for late-arriving updates.</text>
 
   <rect x="630" y="551" width="210" height="70" rx="6" fill="#ffffff" stroke="#2A7F62" stroke-width="1.5"/>
   <text x="735" y="573" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7F62">Databricks / Spark</text>

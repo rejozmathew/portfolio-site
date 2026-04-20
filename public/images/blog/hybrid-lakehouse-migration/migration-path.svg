@@ -19,7 +19,6 @@
 
   <text x="170" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Single-engine, proprietary format</text>
 
-  <!-- Phase 1 layers -->
   <rect x="70" y="170" width="200" height="42" rx="5" fill="#1F4E79"/>
   <text x="170" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
   <text x="170" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native</text>
@@ -51,7 +50,6 @@
 
   <text x="470" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Migrate bottom-up, consumption unchanged</text>
 
-  <!-- Phase 2 layers -->
   <rect x="370" y="170" width="200" height="42" rx="5" fill="#1F4E79"/>
   <text x="470" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
   <text x="470" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native (unchanged)</text>
@@ -60,7 +58,6 @@
   <text x="470" y="240" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Consumption Prep</text>
   <text x="470" y="255" text-anchor="middle" font-size="9" fill="#cbd5e1">Snowflake-native (unchanged)</text>
 
-  <!-- Migrated layers with teal color -->
   <rect x="370" y="274" width="200" height="42" rx="5" fill="#2A7F62"/>
   <text x="470" y="292" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Domain Integrated</text>
   <text x="470" y="307" text-anchor="middle" font-size="9" fill="#ffffff">Iceberg on Databricks</text>
@@ -84,12 +81,10 @@
 
   <text x="750" y="152" text-anchor="middle" font-size="11" font-style="italic" fill="#64748b">Workload-specialized, Iceberg underneath</text>
 
-  <!-- Phase 3 layers - mixed -->
   <rect x="665" y="170" width="170" height="42" rx="5" fill="#1F4E79"/>
   <text x="750" y="188" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Semantic Layer</text>
   <text x="750" y="203" text-anchor="middle" font-size="9" fill="#cbd5e1">Engine-agnostic routing</text>
 
-  <!-- Split consumption prep into two -->
   <rect x="665" y="222" width="82" height="42" rx="5" fill="#1F4E79"/>
   <text x="706" y="240" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">Cons. Prep</text>
   <text x="706" y="254" text-anchor="middle" font-size="8" fill="#cbd5e1">SF Dynamic</text>
@@ -109,7 +104,7 @@
   <text x="750" y="398" text-anchor="middle" font-size="10" fill="#64748b">Each workload runs on</text>
   <text x="750" y="412" text-anchor="middle" font-size="10" fill="#64748b">its best-fit engine; one</text>
   <text x="750" y="426" text-anchor="middle" font-size="10" fill="#64748b">canonical copy of data</text>
-  <text x="750" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#1F4E79">Flexible, AI-ready, portable</text>
+  <text x="750" y="450" text-anchor="middle" font-size="11" font-weight="700" fill="#1F4E79">Flexible, governed, portable</text>
 
   <!-- Bottom legend -->
   <rect x="50" y="485" width="20" height="15" fill="#1F4E79"/>
