@@ -88,7 +88,7 @@ Beyond query performance, three characteristics made the graph approach compelli
 
 The conceptual model places a **Customer** node at the center. Everything else radiates outward through typed, directed edges — and the model explicitly accommodates all three use case domains.
 
-![Conceptual identity graph model — the Customer node at the center connected to personal identifiers, interaction events, applications, and accounts through directed, weighted edges](/images/blog/identity/graph-model.svg)
+![Conceptual identity graph model — the Customer node at the center connected to personal identifiers, interaction events, applications, and accounts through directed, weighted edges](/images/blog/identity/graph-modelv2.svg)
 
 **Identity nodes** include Email ID, Phone, Address, Device, Full Name, and SSN. Each connects to the Customer node through a deterministic edge (verified linkage) or a probabilistic-and-deterministic edge (inferred with a confidence score). These nodes are intentionally separated from the Customer node rather than stored as properties — a deliberate design choice that serves privacy (PII nodes can be individually obfuscated or deleted), fraud detection (shared identifier nodes surface suspicious overlaps), and marketing flexibility (multiple customers sharing the same Address node is exactly how householding works).
 
