@@ -17,8 +17,8 @@ const experiences: ExperienceItem[] = [
     company: "Discover Financial Services",
     location: "Chicago",
     title:
-      "Sr. Director, Data Science & Data Infrastructure Management (DNA)",
-    dates: "June 2022 – Present",
+      "Sr. Director, Data, Analytics & AI",
+    dates: "June 2022 – May 2026",
     description: [
       "Led enterprise data & AI platform modernization across analytics, ML, and governance.",
       "Built a cloud-native analytics platform on AWS and Snowflake.",
@@ -32,7 +32,7 @@ const experiences: ExperienceItem[] = [
   {
     company: "Discover Financial Services",
     location: "Chicago",
-    title: "Director, Data Science – Consumer Banking",
+    title: "Director, Data, Anlytics & AI",
     dates: "Oct 2018 – June 2022",
     description: [
       "Built and scaled an enterprise ML feature store for production analytics.",

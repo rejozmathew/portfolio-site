@@ -39,7 +39,7 @@ const About: React.FC = () => {
         </h2>
         <div className="space-y-6 text-lg text-gray-700">
           <p>
-            With over 18 years of extensive leadership experience, I specialize
+            With over 20 years of extensive leadership experience, I specialize
             in driving transformational change at the intersection of data
             science, business strategy, and technology within the financial
             services industry. My career has focused on building and leading
@@ -75,7 +75,7 @@ const About: React.FC = () => {
               platforms.
             </motion.li>
             <motion.li variants={itemVariants}>
-              Implementing impactful MarTech/CDP solutions (Neustar, Segment)
+              Implementing impactful MarTech/CDP solutions (Adobe, Segment)
               for improved marketing activation and personalization.
             </motion.li>
             <motion.li variants={itemVariants}>

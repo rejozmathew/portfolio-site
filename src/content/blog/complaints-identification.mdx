@@ -1,219 +1,146 @@
 ---
-title: "ML-Powered Complaint Detection in Financial Services Call Centers"
+title: "ML-Powered Monitoring Controls in a Financial Services Call Center"
 date: "2024-09-19"
-description: "A Random Forest-based NLP control for detecting missed customer complaints from call transcripts — covering the full lifecycle from NLP preprocessing and PII tokenization to human-in-the-loop QA, and why traditional ML still beats GenAI for regulatory compliance."
-tags: ["Machine Learning", "NLP", "Compliance", "Call Center", "Random Forest", "GenAI", "LLM", "HITL"]
-contentType: "technical"
-traits: ["code", "case-study"]
-hidden: true
+description: "How we built a transcript processing platform that powers traditional ML controls for regulatory compliance — starting with detecting non-self-identified complaints — and extends into LLM-driven summarization, coaching, and knowledge gap analysis."
+tags: ["Machine Learning", "NLP", "Compliance", "GenAI", "LLM", "Call Center", "HITL", "RAG"]
+contentType: "strategy"
+traits: ["framework", "architecture", "case-study"]
 ---
 
 {/* Hero section */}
 
-### The Complaint You Don't Know About Is the One That Gets You Fined
+### "How Do You Know You're Catching Every Complaint?"
 
-In financial services, every customer complaint matters — not just because of customer experience, but because regulators require it. The Consumer Financial Protection Bureau (CFPB), OCC, and state regulators expect financial institutions to capture, track, and resolve *every* complaint. Missing one isn't just a customer service failure — it's a compliance failure that can result in consent orders, fines, and reputational damage.
+That was the question. Not from a business leader. Not from an internal auditor. From a **regulator**.
 
-At a Fortune 500 financial institution, our Field Leadership team faced a deceptively simple question: **are we catching all the complaints?** The existing process relied on agents manually flagging calls as complaints and logging them in the DCC (Digital Customer Complaint) system. But leadership had a nagging suspicion — and the data to support it — that some complaint calls were slipping through the cracks. Agents might not recognize a complaint, might forget to log it, or might misclassify feedback as a non-complaint.
+In financial services, customer complaints are a regulatory obligation. The CFPB, OCC, and state regulators expect institutions to capture, track, and resolve every complaint. Missing one isn't a customer service failure — it's a compliance failure that can lead to consent orders and fines.
 
-The challenge was staggering in scale. Thousands of calls come in every day. Randomly sampling and reviewing them manually was like searching for a needle in a haystack — except the haystack was growing faster than anyone could search it.
+The existing process relied on agents recognizing complaints and manually logging them. This works when a customer says "I want to file a formal complaint." But complaints aren't always that explicit. A customer frustrated about a payment issue might vent, have it resolved by a skilled agent, and hang up satisfied — and nobody ever logs it. The agent handled the situation well; they just didn't recognize it as something that needed to be captured. These **non-self-identified complaints** — the ones that slip through because the agent's perception of "complaint" doesn't match the regulatory definition — are where risk accumulates.
 
-We needed something smarter.
+When the regulator asks "how do you know?", "our agents are well-trained" isn't a sufficient answer. You need a **detective control** — a systematic, auditable mechanism that retrospectively identifies calls that should have been flagged but weren't.
 
-### The Business Problem: Why This Isn't Just a Customer Service Issue
+That question was the catalyst. But what we ended up building was bigger than a single model. To detect missed complaints, we had to build a pipeline that processes every call transcript daily — tokenizing PII, normalizing text, and making it available for analysis. Once that infrastructure existed, it became a **monitoring platform**. Complaint capture was the first control we built on it. But the same transcript pipeline can power other regulatory controls (sales practice monitoring, UDAAP risk detection) and operational intelligence (coaching, summarization, knowledge gap analysis). The first category calls for traditional ML — explainable, deterministic, auditable. The second calls for generative AI.
 
-To understand why this project mattered, you need to understand the regulatory landscape. Under Dodd-Frank and various supervisory frameworks, financial institutions must demonstrate they have adequate controls to identify, capture, and respond to customer complaints. "We didn't know about it" is not an acceptable answer during an examination.
+This article covers how the platform works, walks through the complaint capture model as a worked example of traditional ML controls, and then explores how we're extending the same infrastructure with LLMs — what we've piloted, what we're designing, and how we think about which AI approach fits which problem.
 
-The existing complaint workflow was reactive. An agent receives a call, identifies it as a complaint based on training and judgment, and manually logs it in the DCC system. This works well enough when the complaint is explicit ("I want to file a formal complaint"), but many complaints are implicit. A customer might express frustration about a payment being past due without ever using the word "complaint." An agent might handle the situation well — resolving the issue and satisfying the customer — but never log it, because in their mind it was just a "feedback" interaction.
+### The First Decision: Traditional ML or GenAI?
 
-The gap between *agent perception* and *regulatory definition* of a complaint is where risk lives.
+Before any implementation, the most important architectural decision is which AI approach to apply to which problem. We found that it comes down to one question: **does the output need to be explained to a regulator?**
 
-Our model was designed as a **detective control**: it doesn't prevent complaints from being missed in real time (that would require a preventive control), but it retrospectively identifies calls that should have been flagged as complaints, ensuring they get proper attention before they become compliance gaps.
+![Side-by-side comparison of Traditional ML and Generative AI approaches across explainability, determinism, cost, and comprehension dimensions](/images/blog/ml-call-center/ml-vs-genai.svg)
 
-### The Data: Marrying DCC Cases with Call Transcripts
+**Explainability.** When a regulator asks "why was this call flagged?", a Random Forest can point to specific feature importances — the words "escalate," "frustrated," and "supervisor" drove the score. The reasoning is transparent and auditable. An LLM can provide a natural-language explanation, but that explanation is itself generated — a post-hoc rationalization, not a trace of the actual computation. In a regulatory examination, that distinction matters.
 
-The foundation of any ML model is its training data, and this project required joining two distinct data sources.
+**Determinism.** Same transcript into a traditional classifier twice produces the same score. Same transcript into an LLM twice might produce different results. This stochasticity is fine for internal analytics but problematic for compliance, where audit trails demand reproducibility.
 
-First, we had the **DCC cases** — confirmed complaints and feedback cases already tracked in the system, each with a unique case ID, line of business, and individual reference. These represented the "known" universe of complaint calls. Second, we had **call transcripts** from the Verint platform, which records and transcribes customer calls to text (speech-to-text). Each transcript came with a Verint ID, call timestamp, and the full conversation text in JSON format.
+**Output calibration.** Traditional ML produces numeric scores that can be thresholded, ranked, and monitored with standard statistical methods — drift detection and alerting are well-understood problems. LLM outputs are harder to monitor systematically.
 
-The data preparation challenge was joining these worlds. Of 5,948 DCC cases in our population window (July 2020 through November 2020), only 2,810 could be successfully matched to corresponding call transcripts — a matching rate that reflects the reality of imperfect joins across systems with different identifiers.
+**But traditional ML can't *understand* a call.** It detects. It scores. It cannot summarize a 45-minute conversation, identify that an agent gave incorrect policy information, or detect that a customer's frustration stemmed from a systemic processing issue. That deep language comprehension is what LLMs provide — and it's especially valuable when transcript quality varies, which it always does in speech-to-text.
 
-Since DSL origination has seasonality, we used this full window to ensure our training data covered peak, mini-peak, and off-peak seasons. The modeling dataset used a random 70/30 split for training and testing, with November 2020 data held out entirely as an out-of-time validation set.
+The pragmatic answer is a **dual-track architecture**: traditional ML for regulatory-facing controls (anything that needs to be explained, reproduced, and audited) and GenAI for internal-facing intelligence (anything that needs comprehension and flexibility). Both tracks operate on the same data pipeline. The difference is the inference layer and the accountability standard applied to the output.
 
-![End-to-end pipeline architecture showing data flow from Verint platform through PII tokenization, NLP preprocessing, ML scoring, and human review](/images/blog/call-detective/pipeline-architecture.svg)
+### The Shared Foundation: PII-Safe Transcripts
 
-### Privacy by Design: Tokenizing PII Before It Reaches the Model
+Regardless of which track a transcript feeds, it starts in the same place: a call recording platform that converts speech to text. We used Verint, but the pattern applies whether you're on NICE, AWS Transcribe, or any other platform.
 
-Call transcripts are among the most sensitive data in any financial institution. A single transcript might contain a customer's full name, Social Security number, date of birth, card numbers, account numbers, and address — all spoken aloud during the conversation and faithfully captured by the speech-to-text engine.
+Before that transcript touches any model, it goes through **PII tokenization**. Call transcripts in financial services routinely contain Social Security numbers, dates of birth, and card numbers — spoken aloud and faithfully captured. Our tokenization layer replaces these with opaque tokens using regex matching and named entity recognition: `[TOKEN_SSN]`, `[TOKEN_DOB]`, `[TOKEN_CARD]`.
 
-Our design principle was non-negotiable: **the model never needs PII to detect complaints, so the model never sees PII.**
+The design principle: **neither model track needs PII to do its job.** Regulatory controls depend on sentiment-bearing words and behavioral patterns, not customer identifiers. Summarization needs to understand the *issue*, not the customer's Social Security number. Tokenizing upstream of everything simplifies the entire downstream architecture — fewer access controls, simpler retention policies, reduced blast radius.
 
-Before any transcript entered the ML pipeline, a tokenization engine scanned for sensitive patterns using a combination of regex matching and named entity recognition. Social Security numbers, dates of birth, card numbers, and other sensitive identifiers were replaced with opaque tokens: `[TOKEN_SSN]`, `[TOKEN_DOB]`, `[TOKEN_CARD]`, and so on.
+This tokenization is one-way at the model layer. Even if a model were compromised, no sensitive data could be extracted.
 
-Critically, this tokenization was **one-way at the model layer**. The model had no mechanism to reverse the tokens. This is by design — complaint detection depends on sentiment-bearing words like "upset," "frustrated," "escalate," and "supervisor," not on whether the customer's SSN ends in 6789. The tokenized transcripts preserved all the emotional and contextual signal the model needed while eliminating privacy risk.
+![Dual-track pipeline showing Traditional ML for compliance and GenAI for internal intelligence branching from the same clean transcript source](/images/blog/ml-call-center/dual-track-pipeline.svg)
 
-![Privacy tokenization pipeline showing how PII is replaced with tokens before reaching the ML model](/images/blog/call-detective/privacy-tokenization.svg)
+### Track 1: Traditional ML Controls (Regulatory-Facing)
 
-This approach also simplified our data governance posture significantly. The model's training data, feature store, and prediction outputs could all be classified at a lower sensitivity tier than the raw transcripts — reducing the blast radius of any potential data incident.
+The traditional ML track is where you build controls that need to produce explainable, deterministic, auditable outputs — the kind you can defend in a regulatory examination. Complaint capture was the first model we built on this track, and it's a good illustration of the pattern: NLP preprocessing, domain-specific feature engineering, a stable classifier, and human-in-the-loop validation. The same pattern applies to other regulatory controls — sales practice monitoring, UDAAP risk detection, fair lending analysis on call transcripts — with different labels, features, and review workflows but the same underlying architecture.
 
-### The NLP Pipeline: From Raw Text to Feature Vectors
+Here's how we built the complaint capture model — designed specifically to surface **non-self-identified complaints**, the calls that should have been logged but weren't because the agent didn't recognize them as complaints.
 
-Call transcripts are messy. They're long, conversational, full of filler words, and vary wildly in structure depending on the agent, the customer, and the topic. Turning this raw text into something a classifier can work with required a careful preprocessing pipeline.
+The model is a classic NLP pipeline built on Random Forest, with domain-specific feature engineering that made more difference than any algorithm choice.
 
-**Step 1: Stopword Removal.** We started by removing common English words that add no predictive signal — articles, prepositions, conjunctions. But we went beyond the standard NLTK stopword list. We built a custom stopword dictionary of approximately 350 words, including domain-specific filler terms common in call center conversations ("um," "uh," "okay," "alright," "basically") that would otherwise dilute our feature space.
+**NLP Preprocessing.** Raw transcripts are noisy — conversational, full of filler, highly variable. The preprocessing pipeline applies four transformations.
 
-**Step 2: Lemmatization.** Using NLTK's WordNet lemmatizer, we reduced words to their base forms. "Payments" became "payment," "called" became "call," "frustrating" became "frustrate." This was applied to both nouns and verbs, ensuring that different inflections of the same concept mapped to a single feature.
+First, **stopword removal** using a custom dictionary that goes well beyond the standard list. We added hundreds of call-center-specific filler terms ("um," "alright," "basically") that dilute the feature space without carrying complaint signal.
 
-```python
-from nltk.stem import WordNetLemmatizer
+Second, **lemmatization** — reducing inflected words to base forms so that "payments," "payment," and "paying" map to a single feature.
 
-lemmatizer = WordNetLemmatizer()
-# Noun lemmatization
-lemmatizer.lemmatize("payments")   # → "payment"
-# Verb lemmatization
-lemmatizer.lemmatize("frustrated", pos="v")  # → "frustrate"
-```
+Third, and most impactful, **synonym normalization**. We built manual dictionaries that collapsed complaint-signal words into canonical forms. "Disappointed," "frustrating," "dissatisfied," and "upset" all mapped to the same root. "Talk to manager," "speak to supervisor," and "escalate" converged to a single feature. Customers express dissatisfaction in dozens of ways — without this normalization, the model treats each variant as independent signal rather than reinforcing evidence of the same underlying complaint.
 
-**Step 3: Synonym Normalization.** This was perhaps the most important domain-specific step. We manually built synonym dictionaries that collapsed related complaint-signal words into canonical forms:
+Finally, **Boolean Adjusted TF-IDF vectorization**. In long transcripts, word repetition reflects the nature of conversation, not complaint intensity. A customer says "payment" thirty times because the call is about a payment, not because the complaint is thirty times more severe. Boolean TF-IDF treats term presence as binary, then applies inverse document frequency — reducing noise dramatically for transcript-length documents.
 
-- `apologetic`, `apologise`, `apologist`, `apologize` → **apology**
-- `frustrate`, `frustrated`, `frustrates`, `frustrating`, `frustration`, `disappoint`, `disappointed`, `disappointing`, `disappointment` → **frustrate**
-- `complain`, `complainant`, `complaint` → **complain**
-- `escalade`, `escalate`, `escalation` → **escalate**
-- `supervise`, `supervised`, `supervisor`, `supervisory` → **supervise**
-- `talk manager`, `speak manager`, `talk supervise` → **talk supervise**
+**Why TF-IDF over transformer embeddings?** A reasonable question — models like BERT produce dense vector representations that capture semantic relationships TF-IDF can't. "I'm fed up with this" and "this is completely unacceptable" would land close together in BERT space but look like entirely unrelated features in a TF-IDF matrix. The synonym normalization step above is essentially us doing manually what BERT does natively. But there are two practical reasons we chose TF-IDF for this use case. First, **explainability**: TF-IDF features are individual words. When the model flags a call, you can trace the prediction back to specific terms — "escalate," "supervisor," "frustrated" — that a compliance officer can verify against the transcript. BERT embeddings are 768-dimensional vectors where no single dimension maps to a human-interpretable concept. The moment you feed those into a Random Forest, your "explainable" model is making decisions based on a representation that's as opaque as an LLM's internals — you've accepted transformer-level opacity without getting the full comprehension benefits of actually using the LLM. Second, **document length**: BERT has a hard token limit (512 tokens, roughly 300-400 words). A call transcript can run thousands of words, forcing you to chunk the transcript into windows, embed each separately, and average the vectors — which dilutes complaint signal if the customer's frustration lives in two minutes of an otherwise pleasant 20-minute call. TF-IDF has no such constraint; it produces a single sparse vector across the entire document regardless of length. It's a simpler representation, but for a regulatory control where you need to explain *why* a call was flagged and you're processing documents of highly variable length, the practical tradeoffs favor it.
 
-This normalization was crucial because customers express dissatisfaction in dozens of ways, and without it, the model would treat "I'm disappointed," "this is frustrating," and "I'm very frustrated" as unrelated signals rather than variations of the same complaint indicator.
+![NLP preprocessing pipeline from raw transcript through stopword removal, lemmatization, synonym normalization, and TF-IDF vectorization](/images/blog/ml-call-center/nlp-preprocessing.svg)
 
-**Step 4: Boolean Adjusted TF-IDF Vectorization.** For the vectorization step, we chose a Boolean Adjusted TF-IDF approach rather than raw term frequency. In standard TF-IDF, a word that appears 10 times in a transcript gets a higher weight than one that appears once. But in call transcripts, repetition often reflects the nature of conversation rather than the intensity of the complaint. A customer might say "payment" fifteen times simply because the call is about a payment issue — not because the complaint is fifteen times more severe.
+**Why Random Forest.** We benchmarked over a dozen algorithms. Some linear models edged out Random Forest on raw AUC, but Random Forest offered the best combination of score separation (the ability to rank genuine missed complaints to the top of the distribution) and stability across time periods. In a compliance context, a model that gives consistent scores week over week is more valuable than one that fluctuates with retraining. We built this as a stable model that gets refitted only when drift monitoring indicates degradation — not on a continuous schedule.
 
-Boolean TF-IDF treats term presence as binary (1 if present, 0 if not) and then applies the standard IDF weighting. This reduces noise from long, repetitive transcripts and emphasizes the *presence* of complaint-specific language over its *frequency*.
+**Handling Class Imbalance.** Non-self-identified complaints represent a tiny fraction of total call volume — under 2%. We addressed this through stratified resampling across months and call characteristics, and through a deliberate labeling choice: *feedback* cases — where a customer expressed concern that didn't meet the regulatory definition of a complaint — were labeled as non-complaint. This ensured the model learned the specific distinction regulators care about, not just "was the customer unhappy?"
 
-**Step 5: Chi-Squared Feature Selection.** The TF-IDF matrix can easily produce tens of thousands of features. To focus the model on the most discriminative signals, we applied a chi-squared statistical test and selected the top 1,000 features — those most correlated with complaint versus non-complaint labels. This kept the model lean and interpretable while preserving the features that actually drive classification.
+**Deployment.** The model runs as a daily batch pipeline — pull transcripts, preprocess, score, rank — with a multi-day lag to account for transcription processing time. The scored output (a ranked list of calls most likely to contain unlogged complaints) is automatically routed to a quality management system for human review. Batch is appropriate here because detective controls are retrospective by definition — there's no value in real-time scoring for a call that already happened.
 
-![NLP preprocessing pipeline from raw transcript through stopword removal, lemmatization, synonym normalization, TF-IDF vectorization, and feature selection](/images/blog/call-detective/nlp-preprocessing.svg)
+### Monitoring: The Human Loop That Closes the System
 
-### The Model: Why Random Forest Won
+A model score is a recommendation. The human review process turns it into a compliance outcome.
 
-With our feature vectors ready, we benchmarked over a dozen classification algorithms. The comparison was thorough:
+Reviewers listen to flagged calls and assign verified labels: *complaint* (the model surfaced a genuine miss — this should have been logged), *feedback* (flagged but doesn't meet the regulatory definition), or *false positive*. Each reviewed call gets documented agent notes — creating the audit trail regulators expect.
 
-| Classifier | KS on Test | AUC on Test |
-|---|---|---|
-| **Random Forest** | **63.45%** | **0.89** |
-| Multinomial Naive Bayes | 60.05% | 0.89 |
-| Complement Naive Bayes | 58.53% | 0.88 |
-| Bernoulli Naive Bayes | 54.07% | 0.84 |
-| KNN | 48.35% | 0.81 |
-| Ridge Classifier | — | 0.92 |
-| L2 Penalty LinearSVC | — | 0.92 |
-| L2 Penalty SGDClassifier | — | 0.92 |
-| Elastic-Net SGDClassifier | — | 0.92 |
-| L1 Penalty LinearSVC | — | 0.91 |
-| L1 Penalty SGDClassifier | — | 0.91 |
-| Passive-Aggressive | — | 0.89 |
-| Perceptron | — | 0.88 |
+![Human-in-the-loop QA review cycle showing model scoring, agent review, outcome classification, and feedback loop for retraining](/images/blog/ml-call-center/hitl-review-loop.svg)
 
-You'll notice that some linear models (Ridge, LinearSVC) actually had higher AUC scores. So why did we choose Random Forest?
+This loop serves three purposes. First, **compliance remediation** — genuine missed complaints get logged and addressed. Second, **model improvement** — false positives and misses feed back as labeled data for retraining decisions. Third, **operational visibility** — a tracking dashboard gives leadership daily metrics on flagged calls, review rates, and true positive rates, providing the kind of systematic evidence a regulator expects.
 
-The answer lies in the specific requirements of a compliance-grade model. Random Forest gave us the best **KS statistic** — the Kolmogorov-Smirnov measure of separation between the complaint and non-complaint score distributions — which matters more than raw AUC when your operational use case involves **ranking calls and reviewing the top-scored ones**. We needed the model to clearly separate the most likely complaints at the top of the score distribution, and KS measures exactly that.
+One of the biggest learnings: the human review wasn't a bottleneck to be optimized away. It was one of the most valuable parts of the system. Agent notes provided qualitative context no model could generate. The QA dashboard gave leadership visibility they'd never had. The model narrows the haystack; the human makes the call.
 
-Additionally, Random Forest provided better **stability** across time periods. After several rounds of discussion, we settled on building a one-time model (rather than continuously retraining), since the cost of refitting was low and we prioritized stability and predictability over marginal accuracy gains. A model that gives consistent scores week over week is more valuable in a compliance context than one that fluctuates with each retraining cycle.
+### Track 2: Extending with LLMs
 
-### Handling Class Imbalance: The Resampling Strategy
+With a production pipeline processing every call transcript daily, we had the infrastructure to explore what generative AI could add. The key word here is *infrastructure* — the transcript pipeline, PII tokenization, and batch orchestration we built for regulatory controls became the foundation for a different set of capabilities.
 
-One of the biggest challenges in complaint detection is severe class imbalance. In the general call population, complaint calls represent less than 2% of total volume. Before resampling, the positive (complaint) rate ranged from just 0.70% (November) to 1.60% (October).
+**Call Summarization (Piloted).** This was our first LLM use case, and we chose it deliberately — it's high-value, low-risk, and the output is internal.
 
-Training a classifier on such imbalanced data would result in a model that simply predicts "not a complaint" for everything and achieves 98%+ accuracy — while being completely useless for our purposes.
+Reviewers in the complaint detection workflow were spending significant time listening to full call recordings to understand context before making a labeling decision. We piloted LLM-generated summaries — 3-5 sentence distillations of each transcript covering the customer's issue, the resolution provided, and the overall sentiment — and embedded them directly into the review workflow.
 
-We addressed this through stratified resampling of the non-complaint (Label 0) calls, sampling by call length and agent for each month. The sampling fractions varied by month (0.3 for July, 0.3 for August, 0.4 for September, 0.5 for October, 0.3 for November) to achieve a target positive rate of approximately 4-6% after resampling. This gave the model enough complaint signal to learn from without introducing unrealistic class proportions that would distort the score distribution in production.
+The pilot validated the concept: reviewers could triage flagged calls faster by scanning summaries first, reserving full-listen time for borderline cases. But moving from pilot to production surfaced the real engineering questions. How do you handle transcripts that exceed the model's context window? (Chunking with overlap, or pre-summarization of long calls.) How do you monitor summary quality at scale when there's no ground truth label? (Reviewer feedback signals and periodic sampling.) How do you manage prompt versioning so a prompt change doesn't silently alter summary behavior across the pipeline?
 
-We also made a deliberate labeling decision after discussion with business users: **feedback cases were labeled as 0 (non-complaint), not 1.** Only calls mapped to DCC complaint cases received Label 1. Label 0 included both feedback cases and non-mapped inbound calls. This clean separation ensured the model learned to distinguish *actual complaints* from *general feedback*, which is exactly the regulatory distinction that matters.
+These are the problems we're solving now as we productionalize the summarization pipeline.
 
-### Model Evaluation: In-Time and Out-of-Time Performance
+**Enterprise LLM Hosting.** One question we hear often: how do you actually call an LLM from inside a regulated enterprise environment? You're not making API calls to a public endpoint.
 
-The real test of any model is whether it holds up on data it has never seen — especially data from a different time period. Our evaluation covered both in-time validation (July through October) and out-of-time validation (November).
+The answer, in our case, is **AWS Bedrock** — Amazon's managed service that provides access to foundation models (including Claude) within your own AWS environment. The critical properties for financial services:
 
-![Model performance metrics showing KS statistic and Top 5% Capture Rate across months](/images/blog/call-detective/model-performance.svg)
+**Data sovereignty.** Transcripts never leave your VPC. Bedrock invocations go through a VPC endpoint via AWS PrivateLink — traffic stays on the AWS backbone, never traversing the public internet.
 
-The numbers were strong across the board:
+**Zero data retention.** The model provider doesn't store your inputs or outputs. There's no training on your data. This isn't a trust-us assurance — it's a contractual and architectural guarantee.
 
-| Month | KS Statistic | Top 5% Capture Rate |
-|---|---|---|
-| Jul (In-time) | 91.31% | 92.16% |
-| Aug (In-time) | 91.48% | 86.89% |
-| Sep (In-time) | 98.74% | 99.03% |
-| Oct (In-time) | 94.79% | 86.43% |
-| **Nov (Out-of-time)** | **98.85%** | **100.00%** |
+**Model pinning.** You can lock to a specific model version, which matters for output consistency. When you change model versions, you do it deliberately and can test the impact before deployment.
 
-The out-of-time validation in November was particularly encouraging — 100% capture rate in the top 5% of scored calls. This meant that if we reviewed only the top 5% of calls flagged by the model, we would catch *every* complaint in the November dataset.
+Google Cloud's Vertex AI offers a similar pattern for organizations on GCP. The point isn't the specific cloud provider — it's that the deployment pattern exists for running LLM inference in a way that meets financial services data governance requirements without self-hosting.
 
-We also validated the model through a manual agent review: 209 perfect samples (79 complaints, 130 other) were scored, and the top 79 were selected. The result was a **76% recall** — meaning the model correctly surfaced three-quarters of actual complaints in its top-ranked predictions. For a detective control operating at enterprise scale, this was a strong starting point.
+![Enterprise LLM deployment architecture showing VPC-isolated inference through AWS Bedrock with PrivateLink, no data retention, and RAG integration](/images/blog/ml-call-center/enterprise-llm-deployment.svg)
 
-### The Deployment Pattern: Batch Execution with a 3-Day Lag
+**Coaching, Knowledge Gaps, and RAG (Designing Now).** The most ambitious extension — and the one we're still designing — is using LLMs to generate agent coaching insights grounded in actual policy documents.
 
-This model operates as a **batch detective control**, not a real-time prevention system. The deployment pattern reflects this operational reality.
+The concept: an LLM evaluates a transcript against a coaching rubric (empathy, de-escalation, policy accuracy, resolution quality) and cross-references the agent's responses against a **RAG layer** — internal policies, SOPs, job aids, and training materials that have been chunked, embedded, and indexed in a vector store.
 
-Each day, a scheduled pipeline pulls new call transcripts from the Verint platform (stored as JSON at `/DATA3/VERINT/JSON/`). The transcript data flows through the tokenization engine, then through the NLP preprocessing pipeline, and finally through the Random Forest scorer. The entire pipeline is orchestrated by a single shell script (`Main.sh`) that chains together the SAS and Python components.
+When there's a discrepancy — the agent quoted a 15-day grace period when the policy says 10 — the system flags it as a knowledge gap and recommends specific training. Aggregated across an agent's calls over weeks, this produces a coaching profile that's grounded in what actually happened, not abstract performance scores.
 
-There's an intentional **3-day lag** in the delivery cycle. Calls from July 20th, for example, would be scored and delivered for review on July 23rd. This lag accounts for transcript processing time in Verint, ensures completeness of the input data, and gives the automation pipeline time to run.
+RAG is essential here because policies change constantly in financial services. A base LLM might confidently reference procedures that have since been updated. Retrieval-augmented generation ensures the model always grounds its answers in the latest version of the truth — the current documents, not its training data. For an industry where giving a customer the wrong information can itself become a compliance issue, this grounding is non-negotiable.
 
-The scored output — a ranked list of calls most likely to be missed complaints — is written to a download directory (`/DATA/download/`), where the QMS (Quality Management System) automatically picks it up and routes the calls to the review team's queue.
+We're also exploring LLM-assisted **trend and theme analysis** — processing batches of transcripts to identify emerging complaint patterns that might signal systemic issues. A spike in "late fee" mentions across call centers could indicate a processing delay. A cluster of "app login" complaints might correlate with a recent software release. LLMs don't replace traditional analytics for trending — but they improve the front-end extraction step by reading how customers *actually describe* issues, including variations that don't map cleanly to predefined categories.
 
-```bash
-#!/bin/bash
-# Main.sh — Daily Call Detective pipeline orchestration
+### Where the Tracks Reinforce Each Other
 
-# Step 1: Pull latest DCC cases and generate labels
-sas -sysin DCCtoCall.sas
-sas -sysin Labelling.sas
+The dual-track architecture isn't just separation of concerns — the tracks actively improve each other.
 
-# Step 2: Read and tokenize transcripts
-python3 Read_Trnscpt.py --input /DATA3/VERINT/JSON/ \
-                        --output tokenized_transcripts.csv
+LLM summaries **speed up the HITL review process** for the ML track. ML complaint scores **prioritize the LLM coaching pipeline** — rather than analyzing every call at LLM token rates, you focus on calls the model flagged. And RAG-powered knowledge gap detection **informs how analysts interpret complaint predictions** — "this agent's calls are being flagged because they're giving incorrect hardship program information, not because they're being rude."
 
-# Step 3: Preprocess and score
-python3 Preprocessing.py --input tokenized_transcripts.csv
-python3 Scoring.py --model rf_complaint_model.pkl \
-                   --output /DATA/download/scored_calls.csv
+The compound effect of both tracks on shared infrastructure is greater than either alone.
 
-echo "Pipeline complete. QMS will pick up scored_calls.csv"
-```
+### Where This Is Heading
 
-In a more modern enterprise deployment, you would likely orchestrate this with Airflow or a similar DAG engine, containerize each step in Docker, use a feature store for the TF-IDF vocabulary and chi-squared selected features, and add automated data quality checks between pipeline steps. The principles remain the same — the shift is from scripts on a server to a managed, observable, version-controlled pipeline.
+**Predictive detection.** Today's complaint model identifies missed complaints after they happen. The next iteration might identify calls *likely to result in complaints* based on early conversation signals — enabling intervention before a customer reaches the point of filing. The same principle applies to other controls: detecting emerging risk patterns before they become regulatory findings.
 
-### Human-in-the-Loop: The QA Review Process That Closes the Loop
+**Multi-modal analysis.** Speech-to-text loses information — tone, pace, pauses. Future systems will analyze audio directly, combining acoustic sentiment with text classification.
 
-A model score is not a final answer — it's a recommendation. The human review process is what turns model output into actionable compliance outcomes.
+**Continuous coaching.** Rather than quarterly training refreshers, every agent receives a personalized weekly brief generated from their actual calls, referencing the policies they got wrong, with specific improvement recommendations.
 
-After the model scores calls each day, the top-ranked predictions are delivered to a review team through QMS. Agents listen to the flagged calls, read the transcripts, and assign a verified label: **complaint** (the model was right — this should have been logged), **feedback** (the model flagged it, but it's feedback rather than a complaint), or **false positive** (the call wasn't a complaint at all).
-
-Each reviewed call also receives an **agent note** documenting the reviewer's assessment. For example:
-
-> *"Customer called in and stated she is annoyed with all the letters she's receiving. ATP says that she doesn't like the policy of sending letters when a payment is past due. Agent answered all questions and was able to satisfy the customer."*
-
-This note is critical for two reasons. First, it creates an audit trail — regulators can verify that flagged calls were actually reviewed and appropriately classified. Second, it generates labeled data that flows back into the model's feedback loop. False positives and missed complaints inform future retraining decisions, helping the model improve over time.
-
-The results are tracked through a **Tableau dashboard** that provides daily visibility into the review process: how many calls were delivered, how many were reviewed, and how many turned out to be true positives (missed complaints or feedback).
-
-![Human-in-the-loop QA review cycle showing model scoring, agent review, outcome classification, and feedback loop for retraining](/images/blog/call-detective/hitl-review-loop.svg)
-
-In July 2022 tracking, the dashboard showed 2 missed complaints and 28 missed feedback cases found out of 307 reviewed calls (from 485 delivered). The 63% review rate highlighted an operational challenge — agent bandwidth for reviewing flagged calls — but the model was successfully surfacing genuine misses that would have otherwise gone undetected.
-
-### Lessons Learned and What We Would Do Differently
-
-Building Call Detective taught several lessons that apply broadly to ML in regulated environments:
-
-**Start with the pipeline, not the model.** The most time-consuming work was data engineering — joining DCC cases to transcripts, building the tokenization engine, designing the NLP preprocessing pipeline. The model itself was relatively straightforward. In any enterprise ML project, the infrastructure is the iceberg; the algorithm is the tip.
-
-**Custom stopwords and synonym dictionaries matter more than algorithm choice.** Switching from Naive Bayes to Random Forest improved KS by a few points. Building domain-specific synonym normalization improved recall dramatically. In NLP, domain knowledge > algorithm sophistication.
-
-**The human loop isn't a weakness — it's a feature.** Some teams view human review as a necessary evil. We found it was one of the most valuable parts of the system. Agent notes provided qualitative context no model could generate. False positive feedback improved the model over time. The QA dashboard gave leadership visibility they never had before.
-
-**Privacy-first architecture pays dividends.** By tokenizing PII upstream of everything else, we simplified the entire downstream architecture. Fewer access controls, simpler data retention policies.
-
-**Batch is fine when batch is what you need.** Not every ML model needs to run in real-time. Detective controls by definition operate retrospectively. Our 3-day-lag batch pipeline was perfectly appropriate for the use case — and orders of magnitude simpler to build and maintain than a real-time streaming architecture would have been.
-
-### Where This Goes Next
-
-The complaints classification platform represents a starting point, not an endpoint. The same transcript pipeline that feeds the complaint classifier can feed increasingly sophisticated analytics: sentiment trending across the customer base, product-specific complaint clustering, root cause analysis of escalation patterns, and predictive models that identify calls likely to result in complaints *before* they happen.
-The approach can be different, but the goal is the same: ensuring that every customer who calls with a complaint gets heard, gets helped, and gets counted.
+The common thread: **call data is an underutilized source of enterprise intelligence.** Every conversation is a signal — about customer experience, product issues, agent performance, emerging risks. The question isn't whether to extract that intelligence. It's whether you're doing it in a way that's defensible for regulatory use cases and impactful for operational ones. Traditional ML where you need to explain. GenAI where you need to understand. Both on the same foundation.
