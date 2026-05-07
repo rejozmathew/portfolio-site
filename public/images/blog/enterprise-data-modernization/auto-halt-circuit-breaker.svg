@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="dsCB" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hgCB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c0392b"/>
+      <stop offset="100%" stop-color="#1F4E79"/>
+    </linearGradient>
+    <marker id="aCB" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#c0392b"/>
+    </marker>
+    <marker id="aCBn" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#1F4E79"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="280" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="920" height="48" fill="url(#hgCB)" rx="12"/>
+  <rect x="0" y="24" width="920" height="24" fill="url(#hgCB)"/>
+  <text x="460" y="32" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">Auto-Halt Circuit Breaker — Automated Pipeline Protection</text>
+
+  <!-- Step 1: Message Log -->
+  <g filter="url(#dsCB)">
+    <rect x="25" y="75" width="140" height="80" rx="8" fill="#fff5f5" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+  <text x="95" y="100" text-anchor="middle" fill="#c0392b" font-size="11" font-weight="700">📋 Message Log</text>
+  <text x="95" y="118" text-anchor="middle" fill="#64748b" font-size="8.5">MC=50, 51, 52, 30</text>
+  <text x="95" y="132" text-anchor="middle" fill="#64748b" font-size="8.5">aggregated per attribute</text>
+  <text x="95" y="146" text-anchor="middle" fill="#64748b" font-size="8.5">per run date</text>
+
+  <!-- Arrow 1 -->
+  <line x1="165" y1="115" x2="192" y2="115" stroke="#c0392b" stroke-width="1.5" marker-end="url(#aCB)"/>
+
+  <!-- Step 2: Threshold Compare -->
+  <g filter="url(#dsCB)">
+    <rect x="198" y="75" width="150" height="80" rx="8" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+  </g>
+  <text x="273" y="98" text-anchor="middle" fill="#c0392b" font-size="11" font-weight="700">⚖️ Threshold Check</text>
+  <text x="273" y="116" text-anchor="middle" fill="#2C3E50" font-size="8.5">Compare exception count</text>
+  <text x="273" y="130" text-anchor="middle" fill="#2C3E50" font-size="8.5">or % against predefined</text>
+  <text x="273" y="144" text-anchor="middle" fill="#2C3E50" font-size="8.5">limits per attribute/MC</text>
+
+  <!-- Arrow 2 with "BREACH" label -->
+  <line x1="348" y1="115" x2="388" y2="115" stroke="#c0392b" stroke-width="2" marker-end="url(#aCB)"/>
+  <text x="368" y="107" text-anchor="middle" fill="#c0392b" font-size="7.5" font-weight="700">BREACH</text>
+
+  <!-- Step 3: Non-zero return code -->
+  <g filter="url(#dsCB)">
+    <rect x="394" y="75" width="130" height="80" rx="8" fill="#c0392b"/>
+  </g>
+  <text x="459" y="100" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">🚨 Return Code</text>
+  <text x="459" y="118" text-anchor="middle" fill="#ffc9c9" font-size="9">Non-zero RC</text>
+  <text x="459" y="134" text-anchor="middle" fill="#ffc9c9" font-size="9">to scheduler</text>
+  <text x="459" y="148" text-anchor="middle" fill="#ffc9c9" font-size="8">(automated, no human)</text>
+
+  <!-- Arrow 3 -->
+  <line x1="524" y1="115" x2="554" y2="115" stroke="#c0392b" stroke-width="2" marker-end="url(#aCB)"/>
+
+  <!-- Step 4: Scheduler halts -->
+  <g filter="url(#dsCB)">
+    <rect x="560" y="68" width="160" height="94" rx="8" fill="#1F4E79"/>
+  </g>
+  <text x="640" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">⛔ Scheduler Halts</text>
+  <text x="640" y="110" text-anchor="middle" fill="#d1e3f3" font-size="8.5">Consumption Prep</text>
+  <text x="640" y="124" text-anchor="middle" fill="#d1e3f3" font-size="8.5">Semantic Layer Refresh</text>
+  <text x="640" y="138" text-anchor="middle" fill="#d1e3f3" font-size="8.5">Feature Store Materialization</text>
+  <text x="640" y="152" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">ALL downstream halted</text>
+
+  <!-- Arrow 4 -->
+  <line x1="720" y1="115" x2="750" y2="115" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#aCBn)"/>
+
+  <!-- Step 5: Incident -->
+  <g filter="url(#dsCB)">
+    <rect x="756" y="75" width="140" height="80" rx="8" fill="#fef9e7" stroke="#d4a017" stroke-width="1.5"/>
+  </g>
+  <text x="826" y="100" text-anchor="middle" fill="#b8860b" font-size="11" font-weight="700">🎫 Incident Ticket</text>
+  <text x="826" y="118" text-anchor="middle" fill="#2C3E50" font-size="8.5">Auto-generated</text>
+  <text x="826" y="132" text-anchor="middle" fill="#2C3E50" font-size="8.5">with exception details</text>
+  <text x="826" y="146" text-anchor="middle" fill="#2C3E50" font-size="8.5">for investigation</text>
+
+  <!-- Bottom annotation -->
+  <rect x="25" y="190" width="870" height="74" rx="8" fill="#1F4E79" opacity="0.06" stroke="#1F4E79" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="460" y="212" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">No human decides to stop the pipeline — it stops itself.</text>
+  <text x="460" y="230" text-anchor="middle" fill="#64748b" font-size="10">Bad data cannot propagate into consumption, reports, models, or AI pipelines.</text>
+  <text x="460" y="248" text-anchor="middle" fill="#64748b" font-size="10">Pipeline resumes only when the source issue is resolved and the process returns clean.</text>
+</svg>

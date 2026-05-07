@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 380" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="dsVL" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hgVL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="940" height="380" fill="#f9fafb" rx="12"/>
+  <rect x="0" y="0" width="940" height="48" fill="url(#hgVL)" rx="12"/>
+  <rect x="0" y="24" width="940" height="24" fill="url(#hgVL)"/>
+  <text x="470" y="32" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">Validation Intensity Across the Architecture</text>
+
+  <!-- Intensity bar visual (gradient bar) -->
+  <text x="470" y="72" text-anchor="middle" fill="#64748b" font-size="9" font-style="italic">Heaviest validation at the layer where business meaning is asserted</text>
+
+  <!-- SDW Column -->
+  <g filter="url(#dsVL)">
+    <rect x="25" y="90" width="200" height="240" rx="8" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="25" y="90" width="200" height="34" rx="8" fill="#1F4E79"/>
+    <rect x="25" y="108" width="200" height="16" fill="#1F4E79"/>
+  </g>
+  <text x="125" y="112" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Source Data Warehouse</text>
+
+  <!-- SDW intensity indicator (1 bar) -->
+  <rect x="45" y="136" width="25" height="8" rx="2" fill="#1F4E79" opacity="0.3"/>
+  <rect x="75" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="105" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="135" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <text x="175" y="144" text-anchor="start" fill="#64748b" font-size="8" font-weight="600">LIGHT</text>
+
+  <text x="125" y="168" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Process Monitoring</text>
+  <text x="125" y="186" text-anchor="middle" fill="#64748b" font-size="9">• Data type checks</text>
+  <text x="125" y="202" text-anchor="middle" fill="#64748b" font-size="9">• Record count validation</text>
+  <text x="125" y="218" text-anchor="middle" fill="#64748b" font-size="9">• Format standardization</text>
+  <text x="125" y="234" text-anchor="middle" fill="#64748b" font-size="9">• Job execution monitoring</text>
+
+  <line x1="45" y1="252" x2="205" y2="252" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="125" y="272" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">No applicability rules</text>
+  <text x="125" y="286" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">No validation trees</text>
+  <text x="125" y="300" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">Data in natural form</text>
+
+  <!-- Domain Column (HEAVIEST - visually emphasized) -->
+  <g filter="url(#dsVL)">
+    <rect x="240" y="86" width="220" height="248" rx="8" fill="#ffffff" stroke="#2A7F62" stroke-width="3"/>
+    <rect x="240" y="86" width="220" height="34" rx="8" fill="#2A7F62"/>
+    <rect x="240" y="104" width="220" height="16" fill="#2A7F62"/>
+  </g>
+  <text x="350" y="108" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Domain Integration</text>
+
+  <!-- Domain intensity indicator (4 bars - full) -->
+  <rect x="260" y="132" width="25" height="8" rx="2" fill="#2A7F62"/>
+  <rect x="290" y="132" width="25" height="8" rx="2" fill="#2A7F62"/>
+  <rect x="320" y="132" width="25" height="8" rx="2" fill="#2A7F62"/>
+  <rect x="350" y="132" width="25" height="8" rx="2" fill="#2A7F62"/>
+  <text x="390" y="140" text-anchor="start" fill="#2A7F62" font-size="8" font-weight="700">FULL</text>
+
+  <text x="350" y="162" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Complete Validation Suite</text>
+  <text x="350" y="180" text-anchor="middle" fill="#2C3E50" font-size="9">• All applicability rules</text>
+  <text x="350" y="196" text-anchor="middle" fill="#2C3E50" font-size="9">• Auto-generated validation trees</text>
+  <text x="350" y="212" text-anchor="middle" fill="#2C3E50" font-size="9">• Message log (MC=50/51/52/30)</text>
+  <text x="350" y="228" text-anchor="middle" fill="#2C3E50" font-size="9">• RI log with join rates</text>
+  <text x="350" y="244" text-anchor="middle" fill="#2C3E50" font-size="9">• Threshold validation + auto-halt</text>
+  <text x="350" y="260" text-anchor="middle" fill="#2C3E50" font-size="9">• ML anomaly detection</text>
+
+  <line x1="260" y1="274" x2="440" y2="274" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="350" y="294" text-anchor="middle" fill="#2A7F62" font-size="8.5" font-weight="600" font-style="italic">Business meaning asserted here</text>
+  <text x="350" y="308" text-anchor="middle" fill="#2A7F62" font-size="8.5" font-weight="600" font-style="italic">→ Heaviest validation here</text>
+
+  <!-- Consumption Column -->
+  <g filter="url(#dsVL)">
+    <rect x="475" y="90" width="200" height="240" rx="8" fill="#ffffff" stroke="#d4a017" stroke-width="1.5"/>
+    <rect x="475" y="90" width="200" height="34" rx="8" fill="#d4a017"/>
+    <rect x="475" y="108" width="200" height="16" fill="#d4a017"/>
+  </g>
+  <text x="575" y="112" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Consumption Prep</text>
+
+  <!-- Consumption intensity indicator (2 bars) -->
+  <rect x="495" y="136" width="25" height="8" rx="2" fill="#d4a017"/>
+  <rect x="525" y="136" width="25" height="8" rx="2" fill="#d4a017"/>
+  <rect x="555" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="585" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <text x="625" y="144" text-anchor="start" fill="#b8860b" font-size="8" font-weight="600">TARGETED</text>
+
+  <text x="575" y="168" text-anchor="middle" fill="#b8860b" font-size="10" font-weight="600">Aggregation Checks</text>
+  <text x="575" y="186" text-anchor="middle" fill="#64748b" font-size="9">• Dimension RI checks</text>
+  <text x="575" y="202" text-anchor="middle" fill="#64748b" font-size="9">• Missing code monitoring</text>
+  <text x="575" y="218" text-anchor="middle" fill="#64748b" font-size="9">• Aggregate ref validation</text>
+  <text x="575" y="234" text-anchor="middle" fill="#64748b" font-size="9">• Time-window thresholds</text>
+
+  <line x1="495" y1="252" x2="655" y2="252" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="575" y="272" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">Flags new transaction codes</text>
+  <text x="575" y="286" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">not in aggregate reference</text>
+
+  <!-- Semantic Column -->
+  <g filter="url(#dsVL)">
+    <rect x="690" y="90" width="225" height="240" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="690" y="90" width="225" height="34" rx="8" fill="#7c3aed"/>
+    <rect x="690" y="108" width="225" height="16" fill="#7c3aed"/>
+  </g>
+  <text x="802" y="112" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Semantic Layer</text>
+
+  <!-- Semantic intensity indicator (1 bar) -->
+  <rect x="710" y="136" width="25" height="8" rx="2" fill="#7c3aed" opacity="0.4"/>
+  <rect x="740" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="770" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <rect x="800" y="136" width="25" height="8" rx="2" fill="#e2e8f0"/>
+  <text x="840" y="144" text-anchor="start" fill="#7c3aed" font-size="8" font-weight="600">GOVERNANCE</text>
+
+  <text x="802" y="168" text-anchor="middle" fill="#7c3aed" font-size="10" font-weight="600">Definition Controls</text>
+  <text x="802" y="186" text-anchor="middle" fill="#64748b" font-size="9">• KPI calculation governance</text>
+  <text x="802" y="202" text-anchor="middle" fill="#64748b" font-size="9">• Metric versioning</text>
+  <text x="802" y="218" text-anchor="middle" fill="#64748b" font-size="9">• Access controls</text>
+  <text x="802" y="234" text-anchor="middle" fill="#64748b" font-size="9">• Refresh cycle validation</text>
+
+  <line x1="710" y1="252" x2="895" y2="252" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="802" y="272" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">Definitions are correct —</text>
+  <text x="802" y="286" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-style="italic">data quality handled below</text>
+
+  <!-- Bottom bar -->
+  <rect x="25" y="345" width="890" height="24" rx="6" fill="#2A7F62" opacity="0.08"/>
+  <text x="470" y="362" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Heaviest validation at the layer that changes least • Lightest at the layers that change most</text>
+</svg>
