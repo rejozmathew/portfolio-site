@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds3" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="cg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4f8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="500" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="56" fill="url(#hg3)" rx="12"/>
+  <rect x="0" y="28" width="920" height="28" fill="url(#hg3)"/>
+  <text x="460" y="36" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">Mobile App Scorecard — KPI Framework</text>
+
+  <!-- Category 1: Digital Metrics (Login) -->
+  <g filter="url(#ds3)">
+    <rect x="30" y="80" width="170" height="400" rx="10" fill="url(#cg3)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="30" y="80" width="170" height="44" rx="10" fill="#1F4E79"/>
+    <rect x="30" y="104" width="170" height="20" fill="#1F4E79"/>
+    <text x="115" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Digital Metrics</text>
+    <text x="115" y="121" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">(Login Health)</text>
+  </g>
+  <text x="50" y="150" fill="#2C3E50" font-size="9.5">App Logins</text>
+  <text x="50" y="168" fill="#2C3E50" font-size="9.5">Login Accounts</text>
+  <text x="50" y="186" fill="#2C3E50" font-size="9.5">Channel Loyalty</text>
+  <text x="50" y="204" fill="#2A7F62" font-size="9.5" font-weight="600">Biometric Use (82%)</text>
+  <text x="50" y="222" fill="#2C3E50" font-size="9.5">Login Success Rate</text>
+  <text x="50" y="240" fill="#2C3E50" font-size="9.5">Non-Biometric Success</text>
+  <text x="50" y="258" fill="#2C3E50" font-size="9.5">OOB Rate</text>
+  <text x="50" y="276" fill="#2C3E50" font-size="9.5">Logins Per Account</text>
+
+  <!-- Category 2: Channel Containment -->
+  <g filter="url(#ds3)">
+    <rect x="210" y="80" width="170" height="400" rx="10" fill="url(#cg3)" stroke="#c0392b" stroke-width="2"/>
+    <rect x="210" y="80" width="170" height="44" rx="10" fill="#c0392b"/>
+    <rect x="210" y="104" width="170" height="20" fill="#c0392b"/>
+    <text x="295" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Channel</text>
+    <text x="295" y="121" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">Containment</text>
+  </g>
+  <text x="230" y="150" fill="#c0392b" font-size="9.5" font-weight="600">% Breakage App→Web</text>
+  <text x="230" y="168" fill="#c0392b" font-size="9.5" font-weight="600">% Calls to Agent</text>
+  <text x="230" y="186" fill="#2C3E50" font-size="9.5">Auth Web View %</text>
+  <line x1="225" y1="198" x2="365" y2="198" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="230" y="216" fill="#6b7280" font-size="8.5" font-style="italic">This is where breakage</text>
+  <text x="230" y="230" fill="#6b7280" font-size="8.5" font-style="italic">measurement lives —</text>
+  <text x="230" y="244" fill="#6b7280" font-size="8.5" font-style="italic">the signal that digital</text>
+  <text x="230" y="258" fill="#6b7280" font-size="8.5" font-style="italic">isn't meeting the need.</text>
+
+  <!-- Star highlight -->
+  <text x="295" y="290" text-anchor="middle" fill="#c0392b" font-size="24">★</text>
+
+  <!-- Category 3: Servicing & Feature Usage -->
+  <g filter="url(#ds3)">
+    <rect x="390" y="80" width="170" height="400" rx="10" fill="url(#cg3)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="390" y="80" width="170" height="44" rx="10" fill="#1F4E79"/>
+    <rect x="390" y="104" width="170" height="20" fill="#1F4E79"/>
+    <text x="475" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Servicing &amp;</text>
+    <text x="475" y="121" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">Feature Usage</text>
+  </g>
+  <text x="410" y="150" fill="#2C3E50" font-size="9.5">Payments (completion, time)</text>
+  <text x="410" y="168" fill="#2C3E50" font-size="9.5">Redemptions</text>
+  <text x="410" y="186" fill="#2C3E50" font-size="9.5">5% Enrollments</text>
+  <text x="410" y="204" fill="#2C3E50" font-size="9.5">Balance Transfers</text>
+  <text x="410" y="222" fill="#2C3E50" font-size="9.5">LIR (Lost / Stolen)</text>
+  <text x="410" y="240" fill="#2C3E50" font-size="9.5">Registrations</text>
+  <text x="410" y="258" fill="#2C3E50" font-size="9.5">Paperless Enrollment</text>
+  <text x="410" y="276" fill="#2C3E50" font-size="9.5">Add Auth User</text>
+  <text x="410" y="294" fill="#2C3E50" font-size="9.5">ITP Enrollment</text>
+  <line x1="405" y1="306" x2="545" y2="306" stroke="#e2e8f0" stroke-width="0.5"/>
+  <text x="410" y="322" fill="#6b7280" font-size="8.5" font-style="italic">Each tracks: online %,</text>
+  <text x="410" y="336" fill="#6b7280" font-size="8.5" font-style="italic">completion rate, avg time,</text>
+  <text x="410" y="350" fill="#6b7280" font-size="8.5" font-style="italic">and tech diff rate.</text>
+
+  <!-- Category 4: Marketing / Cross-Sell -->
+  <g filter="url(#ds3)">
+    <rect x="570" y="80" width="170" height="400" rx="10" fill="url(#cg3)" stroke="#2A7F62" stroke-width="1.5"/>
+    <rect x="570" y="80" width="170" height="44" rx="10" fill="#2A7F62"/>
+    <rect x="570" y="104" width="170" height="20" fill="#2A7F62"/>
+    <text x="655" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Marketing /</text>
+    <text x="655" y="121" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">Cross-Sell</text>
+  </g>
+  <text x="590" y="150" fill="#2C3E50" font-size="9.5">WT Impressions</text>
+  <text x="590" y="168" fill="#2C3E50" font-size="9.5">PZN per Account</text>
+  <text x="590" y="186" fill="#2C3E50" font-size="9.5">PZN Impression Reach</text>
+  <text x="590" y="204" fill="#2C3E50" font-size="9.5">WT Conversions</text>
+
+  <!-- Category 5: Technical Resiliency + VOC -->
+  <g filter="url(#ds3)">
+    <rect x="750" y="80" width="140" height="190" rx="10" fill="url(#cg3)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="750" y="80" width="140" height="44" rx="10" fill="#1F4E79"/>
+    <rect x="750" y="104" width="140" height="20" fill="#1F4E79"/>
+    <text x="820" y="108" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">Technical</text>
+    <text x="820" y="121" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">Resiliency</text>
+  </g>
+  <text x="770" y="150" fill="#2C3E50" font-size="9.5">Tech Diff Rate</text>
+  <text x="770" y="168" fill="#2C3E50" font-size="9.5">Crash Rate</text>
+
+  <!-- VOC -->
+  <g filter="url(#ds3)">
+    <rect x="750" y="290" width="140" height="190" rx="10" fill="url(#cg3)" stroke="#2A7F62" stroke-width="1.5"/>
+    <rect x="750" y="290" width="140" height="44" rx="10" fill="#2A7F62"/>
+    <rect x="750" y="314" width="140" height="20" fill="#2A7F62"/>
+    <text x="820" y="318" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700">VOC &amp;</text>
+    <text x="820" y="331" text-anchor="middle" fill="#ffffff" font-size="9" opacity="0.85">Competitive</text>
+  </g>
+  <text x="770" y="360" fill="#2C3E50" font-size="9.5">OL Average Rating</text>
+  <text x="770" y="378" fill="#2C3E50" font-size="9.5">iOS Rating</text>
+  <text x="770" y="396" fill="#2C3E50" font-size="9.5">Android Rating</text>
+  <text x="770" y="414" fill="#2C3E50" font-size="9.5">Complaints</text>
+  <text x="770" y="432" fill="#2C3E50" font-size="9.5">Peer Set Comparison</text>
+</svg>

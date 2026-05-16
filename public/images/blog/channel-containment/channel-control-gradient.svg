@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4f8"/>
+    </linearGradient>
+    <marker id="arrowNav" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="520" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="56" fill="url(#hg)" rx="12"/>
+  <rect x="0" y="28" width="920" height="28" fill="url(#hg)"/>
+  <text x="460" y="36" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">Channel Preference Hierarchy — The Control &amp; Optimization Gradient</text>
+
+  <!-- Gradient bar showing control level -->
+  <rect x="60" y="76" width="800" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="60" y="76" width="800" height="8" rx="4" fill="url(#hg)" opacity="0.3"/>
+  <rect x="60" y="76" width="540" height="8" rx="4" fill="url(#hg)" opacity="0.5"/>
+  <rect x="60" y="76" width="260" height="8" rx="4" fill="url(#hg)"/>
+  <text x="60" y="102" fill="#2A7F62" font-size="10" font-weight="600">HIGH CONTROL</text>
+  <text x="860" y="102" text-anchor="end" fill="#c0392b" font-size="10" font-weight="600">LOW CONTROL</text>
+
+  <!-- MOBILE APP Card -->
+  <g filter="url(#ds)">
+    <rect x="40" y="120" width="270" height="380" rx="10" fill="url(#cardGrad)" stroke="#2A7F62" stroke-width="2"/>
+    <rect x="40" y="120" width="270" height="48" rx="10" fill="#2A7F62"/>
+    <rect x="40" y="148" width="270" height="20" fill="#2A7F62"/>
+    <!-- Icon -->
+    <rect x="60" y="132" width="20" height="30" rx="4" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="66" y1="155" x2="74" y2="155" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="95" y="152" fill="#ffffff" font-size="15" font-weight="700">Mobile App</text>
+    <text x="260" y="152" fill="#ffffff" font-size="11" font-weight="600" opacity="0.9">PREFERRED</text>
+  </g>
+
+  <!-- App attributes -->
+  <text x="175" y="192" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">What You Gain</text>
+  <line x1="80" y1="200" x2="270" y2="200" stroke="#e2e8f0" stroke-width="1"/>
+
+  <circle cx="75" cy="222" r="5" fill="#2A7F62"/>
+  <text x="88" y="226" fill="#2C3E50" font-size="10.5">Forced authentication (always know user)</text>
+
+  <circle cx="75" cy="248" r="5" fill="#2A7F62"/>
+  <text x="88" y="252" fill="#2C3E50" font-size="10.5">Biometric login (82% adoption)</text>
+
+  <circle cx="75" cy="274" r="5" fill="#2A7F62"/>
+  <text x="88" y="278" fill="#2C3E50" font-size="10.5">Full journey attribution</text>
+
+  <circle cx="75" cy="300" r="5" fill="#2A7F62"/>
+  <text x="88" y="304" fill="#2C3E50" font-size="10.5">Controlled experimentation</text>
+
+  <circle cx="75" cy="326" r="5" fill="#2A7F62"/>
+  <text x="88" y="330" fill="#2C3E50" font-size="10.5">Standardized marketing placement</text>
+
+  <circle cx="75" cy="352" r="5" fill="#2A7F62"/>
+  <text x="88" y="356" fill="#2C3E50" font-size="10.5">Version control &amp; push updates</text>
+
+  <circle cx="75" cy="378" r="5" fill="#2A7F62"/>
+  <text x="88" y="382" fill="#2C3E50" font-size="10.5">Auto OTP population</text>
+
+  <!-- Breakage stat -->
+  <rect x="70" y="405" width="210" height="36" rx="6" fill="#e8f5e9" stroke="#2A7F62" stroke-width="1"/>
+  <text x="175" y="420" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">BREAKAGE TO CALL</text>
+  <text x="175" y="435" text-anchor="middle" fill="#2A7F62" font-size="12" font-weight="700">0.27 – 0.29%</text>
+
+  <!-- Breakage to web stat -->
+  <rect x="70" y="448" width="210" height="36" rx="6" fill="#e8f0fe" stroke="#1F4E79" stroke-width="1"/>
+  <text x="175" y="463" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">LEAKAGE TO WEB</text>
+  <text x="175" y="478" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700">0.58 – 0.62%</text>
+
+  <!-- Arrow from App to Web -->
+  <line x1="315" y1="310" x2="345" y2="310" stroke="#1F4E79" stroke-width="2" marker-end="url(#arrowNav)" stroke-dasharray="6,3"/>
+
+  <!-- WEB Card -->
+  <g filter="url(#ds)">
+    <rect x="350" y="120" width="250" height="380" rx="10" fill="url(#cardGrad)" stroke="#1F4E79" stroke-width="1.5"/>
+    <rect x="350" y="120" width="250" height="48" rx="10" fill="#1F4E79"/>
+    <rect x="350" y="148" width="250" height="20" fill="#1F4E79"/>
+    <!-- Icon -->
+    <rect x="370" y="132" width="26" height="20" rx="2" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="370" y1="158" x2="396" y2="158" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="410" y="152" fill="#ffffff" font-size="15" font-weight="700">Website</text>
+    <text x="555" y="152" fill="#ffffff" font-size="11" font-weight="600" opacity="0.8">FALLBACK</text>
+  </g>
+
+  <!-- Web attributes -->
+  <text x="475" y="192" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">What You Lose</text>
+  <line x1="390" y1="200" x2="560" y2="200" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="398" y="226" fill="#2C3E50" font-size="10.5">✗  Anonymous browsing possible</text>
+  <text x="398" y="252" fill="#2C3E50" font-size="10.5">✗  Browser variation &amp; orientation</text>
+  <text x="398" y="278" fill="#2C3E50" font-size="10.5">✗  Harder journey attribution</text>
+  <text x="398" y="304" fill="#2C3E50" font-size="10.5">✗  Cookie-based identity (fragile)</text>
+  <text x="398" y="330" fill="#2C3E50" font-size="10.5">✗  Less controlled marketing</text>
+  <text x="398" y="356" fill="#2C3E50" font-size="10.5">✗  Password-based auth friction</text>
+
+  <!-- Web breakage stat -->
+  <rect x="380" y="405" width="190" height="36" rx="6" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+  <text x="475" y="420" text-anchor="middle" fill="#e67e22" font-size="10" font-weight="600">BREAKAGE TO CALL</text>
+  <text x="475" y="435" text-anchor="middle" fill="#e67e22" font-size="12" font-weight="700">0.76 – 0.90%</text>
+
+  <rect x="380" y="448" width="190" height="36" rx="6" fill="#f3f4f6" stroke="#6b7280" stroke-width="1"/>
+  <text x="475" y="463" text-anchor="middle" fill="#6b7280" font-size="10" font-weight="600">~3× HIGHER THAN APP</text>
+  <text x="475" y="478" text-anchor="middle" fill="#6b7280" font-size="10">Same chat infrastructure</text>
+
+  <!-- Arrow from Web to Phone -->
+  <line x1="605" y1="310" x2="635" y2="310" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowRed)" stroke-dasharray="6,3"/>
+
+  <!-- PHONE Card -->
+  <g filter="url(#ds)">
+    <rect x="640" y="120" width="240" height="380" rx="10" fill="url(#cardGrad)" stroke="#c0392b" stroke-width="1.5"/>
+    <rect x="640" y="120" width="240" height="48" rx="10" fill="#c0392b"/>
+    <rect x="640" y="148" width="240" height="20" fill="#c0392b"/>
+    <!-- Icon -->
+    <rect x="660" y="134" width="14" height="24" rx="3" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="667" cy="153" r="2" fill="#ffffff"/>
+    <text x="690" y="152" fill="#ffffff" font-size="15" font-weight="700">Phone Call</text>
+    <text x="838" y="152" fill="#ffffff" font-size="11" font-weight="600" opacity="0.8">FAILURE</text>
+  </g>
+
+  <!-- Phone attributes -->
+  <text x="760" y="192" text-anchor="middle" fill="#2C3E50" font-size="11.5" font-weight="600">Impact</text>
+  <line x1="680" y1="200" x2="840" y2="200" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="688" y="226" fill="#c0392b" font-size="10.5">⚠ Ties up live agents</text>
+  <text x="688" y="252" fill="#c0392b" font-size="10.5">⚠ Workforce planning strain</text>
+  <text x="688" y="278" fill="#c0392b" font-size="10.5">⚠ Service-level volatility</text>
+  <text x="688" y="304" fill="#c0392b" font-size="10.5">⚠ Highest cost per interaction</text>
+  <text x="688" y="330" fill="#c0392b" font-size="10.5">⚠ Signal of UX failure</text>
+
+  <!-- Phone volume -->
+  <rect x="670" y="370" width="200" height="50" rx="6" fill="#fde8e8" stroke="#c0392b" stroke-width="1"/>
+  <text x="770" y="390" text-anchor="middle" fill="#c0392b" font-size="10" font-weight="600">COMBINED BREAKAGE</text>
+  <text x="770" y="410" text-anchor="middle" fill="#c0392b" font-size="14" font-weight="700">0.37 – 0.42%</text>
+
+  <rect x="670" y="430" width="200" height="50" rx="6" fill="#f3f4f6" stroke="#6b7280" stroke-width="1"/>
+  <text x="770" y="450" text-anchor="middle" fill="#6b7280" font-size="10" font-weight="600">~2M+ CALLS / MONTH</text>
+  <text x="770" y="467" text-anchor="middle" fill="#6b7280" font-size="10">~630K–690K breakage calls</text>
+</svg>

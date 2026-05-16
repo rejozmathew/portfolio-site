@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds5" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="cg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4f8"/>
+    </linearGradient>
+    <marker id="a5" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <marker id="a5t" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2A7F62"/>
+    </marker>
+    <marker id="a5o" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#e67e22"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="440" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="56" fill="url(#hg5)" rx="12"/>
+  <rect x="0" y="28" width="920" height="28" fill="url(#hg5)"/>
+  <text x="460" y="36" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">Intent Discovery Pipeline — Topic Modeling &amp; Emerging Intent Detection</text>
+
+  <!-- Stage 1: Raw Chat Data -->
+  <g filter="url(#ds5)">
+    <rect x="30" y="90" width="130" height="100" rx="8" fill="url(#cg5)" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+  <text x="95" y="115" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">Chat Transcripts</text>
+  <text x="95" y="135" text-anchor="middle" fill="#6b7280" font-size="9.5">App + Web</text>
+  <text x="95" y="150" text-anchor="middle" fill="#6b7280" font-size="9.5">Freshworks data</text>
+  <text x="95" y="172" text-anchor="middle" fill="#2C3E50" font-size="9">Raw text + metadata</text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="140" x2="190" y2="140" stroke="#1F4E79" stroke-width="2" marker-end="url(#a5)"/>
+
+  <!-- Stage 2: Embedding -->
+  <g filter="url(#ds5)">
+    <rect x="200" y="90" width="140" height="100" rx="8" fill="url(#cg5)" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+  <text x="270" y="115" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700">Text Embedding</text>
+  <text x="270" y="135" text-anchor="middle" fill="#6b7280" font-size="9.5">Language model</text>
+  <text x="270" y="150" text-anchor="middle" fill="#6b7280" font-size="9.5">encodes chat text</text>
+  <text x="270" y="172" text-anchor="middle" fill="#2C3E50" font-size="9">→ Dense vectors</text>
+
+  <!-- Arrow -->
+  <line x1="340" y1="140" x2="370" y2="140" stroke="#1F4E79" stroke-width="2" marker-end="url(#a5)"/>
+
+  <!-- Stage 3: HDBSCAN Clustering -->
+  <g filter="url(#ds5)">
+    <rect x="380" y="80" width="170" height="120" rx="8" fill="url(#cg5)" stroke="#2A7F62" stroke-width="2"/>
+  </g>
+  <text x="465" y="105" text-anchor="middle" fill="#2A7F62" font-size="12" font-weight="700">HDBSCAN</text>
+  <text x="465" y="120" text-anchor="middle" fill="#2A7F62" font-size="10">Density-based clustering</text>
+  <line x1="400" y1="130" x2="530" y2="130" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="465" y="148" text-anchor="middle" fill="#6b7280" font-size="9.5">No predefined k</text>
+  <text x="465" y="163" text-anchor="middle" fill="#6b7280" font-size="9.5">Handles noise natively</text>
+  <text x="465" y="180" text-anchor="middle" fill="#6b7280" font-size="9.5">Variable-density clusters</text>
+
+  <!-- Arrow to known topics -->
+  <line x1="550" y1="120" x2="590" y2="120" stroke="#2A7F62" stroke-width="2" marker-end="url(#a5t)"/>
+
+  <!-- Stage 4: Known Topics -->
+  <g filter="url(#ds5)">
+    <rect x="600" y="80" width="140" height="120" rx="8" fill="url(#cg5)" stroke="#2A7F62" stroke-width="1.5"/>
+  </g>
+  <text x="670" y="105" text-anchor="middle" fill="#2A7F62" font-size="11" font-weight="700">Known Intents</text>
+  <line x1="615" y1="115" x2="725" y2="115" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="615" y="122" width="100" height="16" rx="3" fill="#e8f5e9"/>
+  <text x="665" y="134" text-anchor="middle" fill="#2A7F62" font-size="8.5">Balance inquiry</text>
+  <rect x="615" y="142" width="100" height="16" rx="3" fill="#e8f5e9"/>
+  <text x="665" y="154" text-anchor="middle" fill="#2A7F62" font-size="8.5">Payment issue</text>
+  <rect x="615" y="162" width="100" height="16" rx="3" fill="#e8f5e9"/>
+  <text x="665" y="174" text-anchor="middle" fill="#2A7F62" font-size="8.5">Card activation</text>
+  <rect x="615" y="182" width="60" height="10" rx="2" fill="#e8f5e9" opacity="0.5"/>
+
+  <!-- Output arrow -->
+  <line x1="740" y1="140" x2="775" y2="140" stroke="#2A7F62" stroke-width="2" marker-end="url(#a5t)"/>
+
+  <!-- Output: Actionable Intelligence -->
+  <g filter="url(#ds5)">
+    <rect x="785" y="90" width="110" height="100" rx="8" fill="#2A7F62" opacity="0.1" stroke="#2A7F62" stroke-width="1.5"/>
+  </g>
+  <text x="840" y="118" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">Actionable</text>
+  <text x="840" y="133" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="700">Intelligence</text>
+  <text x="840" y="155" text-anchor="middle" fill="#2C3E50" font-size="9">Feed to product,</text>
+  <text x="840" y="168" text-anchor="middle" fill="#2C3E50" font-size="9">design, and ops</text>
+  <text x="840" y="181" text-anchor="middle" fill="#2C3E50" font-size="9">teams</text>
+
+  <!-- "No Topic" branch going down -->
+  <line x1="465" y1="200" x2="465" y2="240" stroke="#e67e22" stroke-width="2" marker-end="url(#a5o)"/>
+
+  <!-- No Topic bucket -->
+  <g filter="url(#ds5)">
+    <rect x="350" y="250" width="230" height="80" rx="8" fill="url(#cg5)" stroke="#e67e22" stroke-width="2"/>
+  </g>
+  <text x="465" y="275" text-anchor="middle" fill="#e67e22" font-size="12" font-weight="700">"No Topic" Bucket</text>
+  <text x="465" y="295" text-anchor="middle" fill="#6b7280" font-size="9.5">Messages that don't fit existing clusters</text>
+  <text x="465" y="312" text-anchor="middle" fill="#e67e22" font-size="9.5" font-weight="600">Acts as a canary for emerging needs</text>
+
+  <!-- Monitor arrow -->
+  <line x1="465" y1="330" x2="465" y2="360" stroke="#e67e22" stroke-width="2" marker-end="url(#a5o)"/>
+
+  <!-- Volume Monitor -->
+  <g filter="url(#ds5)">
+    <rect x="310" y="365" width="310" height="55" rx="8" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+  </g>
+  <text x="465" y="388" text-anchor="middle" fill="#e67e22" font-size="11" font-weight="700">Volume grows ~20%?</text>
+  <text x="465" y="406" text-anchor="middle" fill="#e67e22" font-size="10">→ Retrain on "no topic" subset to discover new intents</text>
+
+  <!-- Feedback loop arrow back up to HDBSCAN -->
+  <path d="M310,392 L250,392 L250,160 L380,160" stroke="#e67e22" stroke-width="1.5" fill="none" stroke-dasharray="6,3" marker-end="url(#a5o)"/>
+  <text x="240" y="280" fill="#e67e22" font-size="9" font-weight="600" transform="rotate(-90, 240, 280)">RETRAIN LOOP</text>
+</svg>

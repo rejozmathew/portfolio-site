@@ -1,0 +1,125 @@
+---
+title: "Digital Channel Containment: Measuring UX Breakage Across Mobile, Web, and Voice"
+date: "2025-04-15"
+description: "How we built an analytics framework to measure when customers abandon digital channels for the phone — and used NLP-driven intent matching to understand why. A practitioner's guide to breakage measurement, channel containment scorecards, and chat-to-call topic modeling."
+tags: ["UX Analytics", "Channel Containment", "Digital Breakage", "NLP", "Topic Modeling", "HDBSCAN", "Consumer Banking", "Mobile App Analytics", "Contact Center Optimization", "Customer Experience"]
+contentType: "strategy"
+traits: ["framework", "architecture"]
+heroImage: "/images/blog/channel-containment/channel-control-gradient.svg"
+---
+
+{/* Hero section */}
+
+### The Question Nobody Was Asking
+
+Every financial services company tracks digital adoption. App downloads, login counts, feature usage — the dashboards are full of green arrows and healthy trends. But there's a metric that matters more than any of those, and most organizations either don't measure it or measure it wrong: **breakage**.
+
+Breakage is what happens when a customer starts in a digital channel — the mobile app or the website — and then picks up the phone and calls customer service. It means the digital experience failed them. They came looking for an answer, couldn't find it, and escalated to the most expensive channel available. Every breakage event is a simultaneous UX failure and an operational cost.
+
+We built an analytics framework to measure breakage systematically across mobile app, web, and phone channels — not as a one-off study, but as a standing KPI embedded in a broader scorecard. Then we went deeper: we connected chat sessions to subsequent phone calls using NLP-driven topic modeling to understand *why* people were breaking. This article walks through the approach, the measurement methodology, and what the data told us.
+
+### Why Channel Preference Is Really About Control
+
+The strategic preference for mobile app over web over phone isn't primarily a cost argument — though cost is a factor. It's a **control and optimization gradient**. Each step down the hierarchy reduces your ability to understand and influence the customer experience.
+
+<img src="/images/blog/channel-containment/channel-control-gradient.svg" alt="Channel preference hierarchy showing mobile app, web, and phone as a gradient of control — from high control with full attribution and biometric login on app, to low control with live agent dependency on phone" />
+
+The mobile app is a governed environment. Users must authenticate, so you always know who they are. You control the UI pixel by pixel. You can run controlled experiments, push updates instantly, and track the complete journey from login to task completion. Biometric authentication removes friction — in our case, 82% of app logins used biometrics. Marketing placements are standardized. The app is, in effect, a laboratory where you can measure and iterate with precision.
+
+The web browser loses most of those advantages. Users can browse anonymously. Browser diversity creates inconsistency in rendering and behavior. Session attribution relies on cookies, which are fragile. Password-based authentication adds friction. Marketing layouts vary with screen size and browser. The same chat infrastructure (in our case, Freshworks) powers both channels, so the backend cost is identical — what changes is the quality of the data envelope around each interaction.
+
+The phone call is the failure state. Not because agents aren't valuable — they are — but because a phone call triggered by a digital session means the digital experience didn't resolve the customer's need. Each breakage call ties up a live agent, creates workforce planning pressure at the contact center, and introduces service-level volatility. When breakage spikes, either you've overstaffed (expensive) or you haven't (poor service). Neither is good.
+
+The strategic goal, then, is twofold: drive adoption toward the app, and minimize breakage from *either* digital channel to the phone. The app preference isn't about cheapness — it's about building the tightest possible feedback loop between customer behavior and product improvement.
+
+### How We Defined and Measured Breakage
+
+Breakage sounds intuitive, but the measurement requires precision. A customer who uses the app at 9 AM and calls about an unrelated issue at 3 PM isn't a breakage event. A customer who logs in, can't find what they need, and calls five minutes later is.
+
+<img src="/images/blog/channel-containment/breakage-measurement-window.svg" alt="Breakage detection window showing the timeline: visit start, 1-minute exclusion threshold, visit end, and 60-minute post-visit window that defines a breakage call" />
+
+We defined **call breakage** as any customer-initiated call that occurs between 1 minute after the start of a digital visit and 60 minutes after the end of that visit. The 1-minute floor filters out noise — IVR callbacks, auto-dials, and other system-generated events that don't represent a human choosing to pick up the phone. The 60-minute ceiling after session end captures the realistic window in which someone gives up on digital and calls.
+
+**Digital breakage rate** is then calculated as:
+
+```
+Digital Breakage % = Total breakage calls from channel ÷ Total visits for that channel in the period
+```
+
+This runs separately for app and web, producing two rates that can be compared directly. We also tracked a combined breakage rate across both digital channels and a separate metric for app-to-web leakage — cases where a user starts on the app but ends up in an authenticated web view, which isn't a failure per se but suggests the app couldn't fully serve the need.
+
+### Where Breakage Lives in the Scorecard
+
+Breakage doesn't exist in a vacuum. Measuring it in isolation would tell you *that* people are leaving, but not whether the problem is authentication friction, feature gaps, technical instability, or something else entirely. We embedded breakage within a comprehensive mobile app scorecard that spans five categories.
+
+<img src="/images/blog/channel-containment/scorecard-taxonomy.svg" alt="Mobile App Scorecard framework showing five KPI categories: Digital Metrics (login health), Channel Containment (breakage), Servicing and Feature Usage, Marketing and Cross-Sell, Technical Resiliency, and VOC" />
+
+**Digital Metrics (Login Health)** tracks the front door: how many people are logging in, on how many accounts, what percentage use biometrics, what's the login success rate, how often does out-of-band authentication fire. These are leading indicators — if login friction increases, breakage will follow.
+
+**Channel Containment** is where breakage lives. Two key metrics: the percentage of app users who break to web (app-to-web leakage), and the percentage who break to a phone call (call breakage). This is the signal that the digital experience is failing.
+
+**Servicing & Feature Usage** tracks whether people can actually do what they came to do. For each major feature — payments, redemptions, enrollments, balance transfers, lost/stolen reports, registrations — we tracked four sub-metrics: what percentage of those actions happened online (vs. phone), the app completion rate, the average time to complete, and the technical difficulty rate (tech diff). If payment completion rates drop or average time to complete a balance transfer spikes, breakage is the likely downstream effect.
+
+**Marketing / Cross-Sell** measures engagement with personalized offers — impression volume, personalization per account, reach, and conversion. This matters because irrelevant or intrusive marketing in the app erodes trust and can itself drive breakage.
+
+**Technical Resiliency** watches for the app breaking at an infrastructure level — tech diff rate (the percentage of sessions with technical errors) and crash rate. And **VOC & Competitive** tracks app store ratings (iOS and Android separately), complaint volume, and peer set benchmarks.
+
+The scorecard ran monthly, with month-over-month and year-over-year variance. It wasn't a report that sat on a shelf — it was the artifact around which product, design, engineering, and analytics aligned on what to fix and in what order.
+
+### What the Numbers Showed
+
+Over the period we tracked (roughly December 2023 through October 2024), the numbers told a consistent story.
+
+App breakage to call held remarkably steady at **0.27–0.29%** of total app visits. On a base of roughly 125–135 million monthly app visits, that translates to approximately 344,000–372,000 breakage calls per month from app users. Low in percentage terms, significant in absolute volume.
+
+Web breakage was consistently higher: **0.76–0.90%** of total web visits, on a base of 32–38 million monthly web visits. That's roughly 283,000–319,000 breakage calls per month from web users — comparable in absolute terms despite a much smaller visit base.
+
+Combined breakage across both digital channels ranged from **0.37–0.42%**, producing a total breakage call volume of roughly 630,000–690,000 per month feeding into the contact center.
+
+App-to-web leakage — users starting in the app but ending up in an authenticated web view — sat at **0.58–0.62%**. Not a failure in the same way as a phone call, but a signal that certain tasks weren't fully supported in the native app experience.
+
+The 3× gap between app and web breakage rates is significant. Both channels use the same underlying chat infrastructure (Freshworks), so the difference isn't about backend capability. It's about the experience envelope: the app's forced authentication, controlled UI, and frictionless biometric login create an environment where users are more likely to find what they need — or at least more likely to persist in trying.
+
+### Going Deeper: Chat-to-Call Intent Matching
+
+Knowing *that* people break is useful. Knowing *why* they break is actionable. We built a pipeline to connect digital chat sessions to subsequent phone calls, allowing us to match the topic a customer chatted about to the reason they eventually called.
+
+<img src="/images/blog/channel-containment/chat-to-call-pipeline.svg" alt="Chat-to-call matching pipeline showing identity resolution for authenticated and anonymous users, and topic alignment between chat intents and call reason codes" />
+
+The pipeline starts with three data sources: the chat transcript from Freshworks (available on both app and web), the user's session activity (last page visited, search terms used), and the inbound call record (including the call topic or reason code and the caller's phone number).
+
+**Identity resolution** is the critical first step. For authenticated users — anyone who was logged in during the chat — this is straightforward. The customer ID links the chat session, the app/web session, and the call record deterministically. For unauthenticated users, particularly on the web, the link is harder. We matched the browser's unique visitor ID (from cookies) to the phone number the user provided when they called. This is inherently probabilistic and lower-confidence, but it covered a meaningful portion of the anonymous-to-call transitions.
+
+Once identity is resolved, **topic alignment** compares the chat topic (derived from NLP classification) to the call reason code. When these match — a user chatted about a payment dispute and then called about a billing dispute — it confirms that the digital channel didn't resolve their need. This confirmation matters because it separates genuine breakage (digital failed) from coincidental proximity (user happened to call about something unrelated shortly after using the app).
+
+### Intent Discovery with Topic Modeling
+
+The chat topic classification itself was built using an NLP pipeline designed for unsupervised intent discovery. We didn't start with predefined categories — we let the data surface them.
+
+<img src="/images/blog/channel-containment/intent-discovery-pipeline.svg" alt="Intent discovery pipeline showing chat transcripts embedded with a language model, clustered with HDBSCAN, and a retraining loop triggered by growth in the no-topic bucket" />
+
+Raw chat transcripts from both app and web were embedded using a language model to produce dense vector representations. These vectors capture semantic similarity — messages about similar topics land close together in the embedding space regardless of the specific words used.
+
+We clustered the embeddings using **HDBSCAN** (Hierarchical Density-Based Spatial Clustering of Applications with Noise). HDBSCAN was a deliberate choice over alternatives like k-means for three reasons. First, it doesn't require specifying the number of clusters in advance — important when you don't know how many distinct intents exist. Second, it handles noise natively by assigning a "no topic" label to messages that don't fit any cluster, rather than forcing every message into an ill-fitting group. Third, it finds clusters of variable density, which matters because some intents (like balance inquiries) are extremely common while others (like fraud disputes) are rarer but equally important.
+
+The resulting clusters became our known intent taxonomy. Most incoming messages mapped cleanly to existing topics. But the **"no topic" bucket** served a crucial function: it acted as a canary for emerging customer needs.
+
+We monitored the volume of "no topic" messages over time. When that bucket's volume grew by approximately 20% relative to its baseline, it triggered a retraining cycle. We'd take just the "no topic" messages and run a fresh HDBSCAN clustering on that subset alone, looking for new natural groupings that hadn't existed before — perhaps a new product feature generating confusion, a policy change driving questions, or a seasonal pattern emerging.
+
+This feedback loop meant the intent taxonomy wasn't static. It evolved as customer behavior evolved, without requiring manual curation or predefined rules. The pipeline ran on both web and mobile chat data, providing a consistent view across channels.
+
+{/* Placeholder: Intent categories and volumes can be added here once available */}
+
+### What a Data Leader Takes Away
+
+This work sits at an intersection that data and analytics leaders increasingly need to own: the space between UX measurement, operational efficiency, and unstructured data intelligence.
+
+**Breakage is a cross-functional metric.** It doesn't belong solely to UX, or to the contact center, or to product. It's a signal that spans all three, and the scorecard framework exists to make that span visible. When you can show that a drop in payment completion rate in July correlates with a spike in breakage calls about billing, you've connected a product problem to an operational cost in a way that drives action.
+
+**Channel preference is a data strategy, not just a UX strategy.** The preference for app over web isn't aesthetic — it's about the quality of the data you can collect and the speed at which you can iterate. Forced authentication, consistent instrumentation, and controlled experimentation make the app a fundamentally better platform for learning about your customers. Every user you move from web to app improves not just their experience but your ability to improve everyone's experience.
+
+**Connecting structured behavioral data to unstructured text unlocks a different kind of insight.** Clickstream data tells you *where* people went. Chat transcripts tell you *what they were trying to do*. Call records tell you *what they eventually needed help with*. Joining these three datasets — through identity resolution and topic alignment — produces a causal narrative that none of them can provide alone.
+
+**Lightweight NLP pipelines can be more valuable than heavy infrastructure.** The HDBSCAN-based intent discovery pipeline isn't a massive ML platform. It's an embedding model, a clustering algorithm, and a monitoring heuristic for when to retrain. It doesn't require labeled training data, doesn't need a team of ML engineers to maintain, and produces directly actionable output. Sometimes the most valuable analytics work isn't the most complex.
+
+The breakage numbers themselves were low — sub-0.3% on the app channel. But in an environment with tens of millions of monthly logins, even fractions of a percent translate to hundreds of thousands of calls, each one a customer whose need went unmet and an agent whose time could have been spent elsewhere. Measuring that, understanding why it happens, and building the feedback loops to reduce it — that's where UX analytics meets operational impact.

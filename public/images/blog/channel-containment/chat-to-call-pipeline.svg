@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="ds4" x="-3%" y="-3%" width="106%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="hg4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="100%" stop-color="#2A7F62"/>
+    </linearGradient>
+    <linearGradient id="cg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4f8"/>
+    </linearGradient>
+    <marker id="a4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#1F4E79"/>
+    </marker>
+    <marker id="a4t" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2A7F62"/>
+    </marker>
+    <marker id="a4r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="480" fill="#f9fafb" rx="12"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="920" height="56" fill="url(#hg4)" rx="12"/>
+  <rect x="0" y="28" width="920" height="28" fill="url(#hg4)"/>
+  <text x="460" y="36" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" letter-spacing="0.5">Chat-to-Call Intent Matching — Identity Resolution &amp; Topic Alignment</text>
+
+  <!-- Row 1: Digital Activity Sources -->
+  <text x="80" y="88" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">DIGITAL ACTIVITY</text>
+
+  <!-- Chat Session box -->
+  <g filter="url(#ds4)">
+    <rect x="40" y="100" width="180" height="90" rx="8" fill="url(#cg4)" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+  <text x="130" y="122" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700">Chat Session</text>
+  <text x="130" y="140" text-anchor="middle" fill="#6b7280" font-size="9.5">Bot → Live Agent</text>
+  <text x="130" y="156" text-anchor="middle" fill="#6b7280" font-size="9.5">(Freshworks)</text>
+  <text x="130" y="176" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">Chat transcript + metadata</text>
+
+  <!-- Web/App Session box -->
+  <g filter="url(#ds4)">
+    <rect x="250" y="100" width="180" height="90" rx="8" fill="url(#cg4)" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+  <text x="340" y="122" text-anchor="middle" fill="#1F4E79" font-size="12" font-weight="700">App / Web Session</text>
+  <text x="340" y="140" text-anchor="middle" fill="#6b7280" font-size="9.5">Last page visited</text>
+  <text x="340" y="156" text-anchor="middle" fill="#6b7280" font-size="9.5">Search terms used</text>
+  <text x="340" y="176" text-anchor="middle" fill="#2A7F62" font-size="9" font-weight="600">Behavioral signals</text>
+
+  <!-- Phone Call box -->
+  <text x="560" y="88" fill="#c0392b" font-size="11" font-weight="700" letter-spacing="1">PHONE CHANNEL</text>
+  <g filter="url(#ds4)">
+    <rect x="500" y="100" width="180" height="90" rx="8" fill="url(#cg4)" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+  <text x="590" y="122" text-anchor="middle" fill="#c0392b" font-size="12" font-weight="700">Inbound Call</text>
+  <text x="590" y="140" text-anchor="middle" fill="#6b7280" font-size="9.5">Call topic / reason code</text>
+  <text x="590" y="156" text-anchor="middle" fill="#6b7280" font-size="9.5">Phone number</text>
+  <text x="590" y="176" text-anchor="middle" fill="#c0392b" font-size="9" font-weight="600">Within breakage window</text>
+
+  <!-- Identity Resolution box -->
+  <text x="460" y="226" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">IDENTITY RESOLUTION</text>
+
+  <!-- Logged-in path -->
+  <g filter="url(#ds4)">
+    <rect x="140" y="240" width="260" height="80" rx="8" fill="url(#cg4)" stroke="#2A7F62" stroke-width="1.5"/>
+  </g>
+  <text x="270" y="262" text-anchor="middle" fill="#2A7F62" font-size="11" font-weight="700">Authenticated Users</text>
+  <text x="270" y="282" text-anchor="middle" fill="#2C3E50" font-size="10">Customer ID links chat, session,</text>
+  <text x="270" y="296" text-anchor="middle" fill="#2C3E50" font-size="10">and call records deterministically</text>
+  <rect x="355" y="268" width="36" height="18" rx="4" fill="#e8f5e9" stroke="#2A7F62" stroke-width="1"/>
+  <text x="373" y="281" text-anchor="middle" fill="#2A7F62" font-size="8" font-weight="600">EASY</text>
+
+  <!-- Anonymous path -->
+  <g filter="url(#ds4)">
+    <rect x="440" y="240" width="340" height="80" rx="8" fill="url(#cg4)" stroke="#e67e22" stroke-width="1.5"/>
+  </g>
+  <text x="610" y="262" text-anchor="middle" fill="#e67e22" font-size="11" font-weight="700">Anonymous / Unauthenticated Users</text>
+  <text x="610" y="282" text-anchor="middle" fill="#2C3E50" font-size="10">Browser cookie (unique visitor ID)</text>
+  <text x="610" y="296" text-anchor="middle" fill="#2C3E50" font-size="10">→ matched to phone # provided during call</text>
+  <rect x="730" y="268" width="40" height="18" rx="4" fill="#fff3e0" stroke="#e67e22" stroke-width="1"/>
+  <text x="750" y="281" text-anchor="middle" fill="#e67e22" font-size="8" font-weight="600">HARD</text>
+
+  <!-- Arrows from sources to identity resolution -->
+  <line x1="130" y1="190" x2="230" y2="240" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+  <line x1="340" y1="190" x2="300" y2="240" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+  <line x1="590" y1="190" x2="590" y2="240" stroke="#c0392b" stroke-width="1.5" marker-end="url(#a4r)"/>
+
+  <!-- Topic Matching box -->
+  <text x="460" y="356" text-anchor="middle" fill="#1F4E79" font-size="11" font-weight="700" letter-spacing="1">TOPIC ALIGNMENT</text>
+
+  <g filter="url(#ds4)">
+    <rect x="100" y="368" width="720" height="90" rx="10" fill="#ffffff" stroke="#1F4E79" stroke-width="1.5"/>
+  </g>
+
+  <!-- Three comparison columns -->
+  <rect x="120" y="380" width="200" height="60" rx="6" fill="#e8f0fe"/>
+  <text x="220" y="400" text-anchor="middle" fill="#1F4E79" font-size="10" font-weight="600">Chat Topic</text>
+  <text x="220" y="416" text-anchor="middle" fill="#6b7280" font-size="9.5">(from NLP intent model)</text>
+  <text x="220" y="432" text-anchor="middle" fill="#1F4E79" font-size="9">e.g., "payment dispute"</text>
+
+  <text x="370" y="415" text-anchor="middle" fill="#1F4E79" font-size="16" font-weight="700">↔</text>
+
+  <rect x="400" y="380" width="200" height="60" rx="6" fill="#fff3e0"/>
+  <text x="500" y="400" text-anchor="middle" fill="#e67e22" font-size="10" font-weight="600">Call Reason</text>
+  <text x="500" y="416" text-anchor="middle" fill="#6b7280" font-size="9.5">(from IVR / agent code)</text>
+  <text x="500" y="432" text-anchor="middle" fill="#e67e22" font-size="9">e.g., "billing dispute"</text>
+
+  <text x="645" y="415" text-anchor="middle" fill="#2A7F62" font-size="16" font-weight="700">→</text>
+
+  <rect x="670" y="380" width="130" height="60" rx="6" fill="#e8f5e9"/>
+  <text x="735" y="400" text-anchor="middle" fill="#2A7F62" font-size="10" font-weight="600">Match?</text>
+  <text x="735" y="418" text-anchor="middle" fill="#2A7F62" font-size="11" font-weight="700">✓ Confirmed:</text>
+  <text x="735" y="432" text-anchor="middle" fill="#2A7F62" font-size="9">Digital didn't resolve</text>
+
+  <!-- Arrows down -->
+  <line x1="270" y1="320" x2="270" y2="368" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+  <line x1="610" y1="320" x2="610" y2="368" stroke="#1F4E79" stroke-width="1.5" marker-end="url(#a4)"/>
+</svg>
