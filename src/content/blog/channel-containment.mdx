@@ -2,7 +2,7 @@
 title: "Digital Channel Containment: Measuring UX Breakage Across Mobile, Web, and Voice"
 date: "2025-04-15"
 description: "How we built an analytics framework to measure when customers abandon digital channels for the phone — and used NLP-driven intent matching to understand why. A practitioner's guide to breakage measurement, channel containment scorecards, and chat-to-call topic modeling."
-tags: ["UX Analytics", "Channel Containment", "Digital Breakage", "NLP", "Topic Modeling", "HDBSCAN", "Consumer Banking", "Mobile App Analytics", "Contact Center Optimization", "Customer Experience"]
+tags: ["UX Analytics", "Channel Containment", "Digital Breakage", "NLP", "BERTopic", "Topic Modeling", "HDBSCAN", "Consumer Banking", "Mobile App Analytics", "Contact Center Optimization", "Customer Experience"]
 contentType: "strategy"
 traits: ["framework", "architecture"]
 heroImage: "/images/blog/channel-containment/channel-control-gradient.svg"
@@ -62,7 +62,7 @@ Breakage doesn't exist in a vacuum. Measuring it in isolation would tell you *th
 
 **Marketing / Cross-Sell** measures engagement with personalized offers — impression volume, personalization per account, reach, and conversion. This matters because irrelevant or intrusive marketing in the app erodes trust and can itself drive breakage.
 
-**Technical Resiliency** watches for the app breaking at an infrastructure level — tech diff rate (the percentage of sessions with technical errors) and crash rate. And **VOC & Competitive** tracks app store ratings (iOS and Android separately), complaint volume, and peer set benchmarks.
+**Technical Resiliency** watches for the app breaking at an infrastructure level — tech diff rate (the percentage of sessions with technical errors) and crash rate. And **VOC & Competitive** tracks app store ratings (iOS and Android separately), complaint volume, and peer set benchmarks. The VOC data came from multiple sources: Opinion Labs (a Verint company) administered post-interaction surveys, Sensor Tower provided app store analytics and competitive benchmarking, and Glassbox enabled session-replay deep-dives and captured direct customer feedback from within the digital platforms.
 
 The scorecard ran monthly, with month-over-month and year-over-year variance. It wasn't a report that sat on a shelf — it was the artifact around which product, design, engineering, and analytics aligned on what to fix and in what order.
 
@@ -92,23 +92,35 @@ The pipeline starts with three data sources: the chat transcript from Freshworks
 
 Once identity is resolved, **topic alignment** compares the chat topic (derived from NLP classification) to the call reason code. When these match — a user chatted about a payment dispute and then called about a billing dispute — it confirms that the digital channel didn't resolve their need. This confirmation matters because it separates genuine breakage (digital failed) from coincidental proximity (user happened to call about something unrelated shortly after using the app).
 
-### Intent Discovery with Topic Modeling
+### Intent Discovery with BERTopic
 
-The chat topic classification itself was built using an NLP pipeline designed for unsupervised intent discovery. We didn't start with predefined categories — we let the data surface them.
+The chat topic classification was built using **BERTopic**, an NLP framework that combines transformer-based embeddings with density-based clustering to discover topics without predefined categories. We didn't start with a taxonomy — we let the data surface one.
 
-<img src="/images/blog/channel-containment/intent-discovery-pipeline.svg" alt="Intent discovery pipeline showing chat transcripts embedded with a language model, clustered with HDBSCAN, and a retraining loop triggered by growth in the no-topic bucket" />
+<img src="/images/blog/channel-containment/intent-discovery-pipeline.svg" alt="Intent discovery pipeline showing BERTopic with cascading two-pass outlier reduction — Pass 1 classifies the majority of messages, Pass 2 re-classifies outliers with adjusted parameters, leaving only 0.4% truly unclassifiable" />
 
-Raw chat transcripts from both app and web were embedded using a language model to produce dense vector representations. These vectors capture semantic similarity — messages about similar topics land close together in the embedding space regardless of the specific words used.
+The pipeline ingested live chat transcripts — both customer and agent messages — from Freshworks across app and web channels. Over 336,000 message records flowed through the system. The training data comprised live message transcripts and call transcripts that were separated into agent and customer responses, with customer responses used to train the topic model.
 
-We clustered the embeddings using **HDBSCAN** (Hierarchical Density-Based Spatial Clustering of Applications with Noise). HDBSCAN was a deliberate choice over alternatives like k-means for three reasons. First, it doesn't require specifying the number of clusters in advance — important when you don't know how many distinct intents exist. Second, it handles noise natively by assigning a "no topic" label to messages that don't fit any cluster, rather than forcing every message into an ill-fitting group. Third, it finds clusters of variable density, which matters because some intents (like balance inquiries) are extremely common while others (like fraud disputes) are rarer but equally important.
+BERTopic works in three stages. First, a transformer model (BERT) encodes each customer message into a dense vector representation, capturing semantic meaning rather than surface-level keywords. Second, HDBSCAN clusters those vectors — chosen specifically because it doesn't require specifying the number of clusters in advance, handles noise natively, and finds clusters of variable density. Third, class-based TF-IDF generates interpretable topic labels from the clustered documents, producing human-readable category names rather than opaque cluster IDs.
 
-The resulting clusters became our known intent taxonomy. Most incoming messages mapped cleanly to existing topics. But the **"no topic" bucket** served a crucial function: it acted as a canary for emerging customer needs.
+The result was a **three-level intent taxonomy** with 59 distinct categories:
 
-We monitored the volume of "no topic" messages over time. When that bucket's volume grew by approximately 20% relative to its baseline, it triggered a retraining cycle. We'd take just the "no topic" messages and run a fresh HDBSCAN clustering on that subset alone, looking for new natural groupings that hadn't existed before — perhaps a new product feature generating confusion, a policy change driving questions, or a seasonal pattern emerging.
+**Service Type** formed the top level — Acquisition, Servicing, General, and Other — distinguishing between customers exploring new products, managing existing ones, seeking help, or falling outside known patterns.
 
-This feedback loop meant the intent taxonomy wasn't static. It evolved as customer behavior evolved, without requiring manual curation or predefined rules. The pipeline ran on both web and mobile chat data, providing a consistent view across channels.
+**Primary Category** broke those down further: Payments, Loan Application, Disbursement, Account Management, Onboarding, Personal Details, Support, Technical Issue, Paperless, Refinance, and Loan Inquiry. Payments alone accounted for the largest share of servicing intents.
 
-{/* Placeholder: Intent categories and volumes can be added here once available */}
+**Sub-Category** provided the operational detail. Under Payments, for example, the model discovered 19 distinct sub-intents: Autopay, Balance Inquiry, Change Amount, Due Date, Due Date Change, Early Payoff, Hardship, Late Fee, Mailing Address, Manage Bank Account, Multiple Payments, One Time Payment, Payment Breakdown, Payment Cancellation, Payment Hierarchy, Payoff, and Payoff Quote. Each of these represents a specific customer need that the digital experience either resolved or failed to resolve.
+
+#### Cascading Outlier Reduction
+
+The most architecturally interesting feature wasn't the initial classification — it was how the pipeline handled ambiguity. After the first BERTopic pass, a meaningful number of messages landed in the "Outlier" bucket: messages whose embeddings didn't cluster cleanly with any established topic. In a simpler pipeline, these would be discarded or lumped into a catch-all "Other" category. Instead, we treated them as a second classification problem.
+
+**Pass 2** took only the outlier messages and ran BERTopic again with adjusted density parameters. Because the dataset was smaller and more homogeneous (all ambiguous messages), the algorithm could find structure that was invisible at the scale of the full corpus. Messages that were too subtle or too infrequent to form clusters in the first pass now resolved into recognizable intents. These recovered topics were merged back into the main taxonomy.
+
+The output table carried both the original assignment and the outlier-reduced assignment side by side, making it transparent which messages required the second pass. After two passes, residual outlier volume dropped to just **0.4%** of total messages — meaning 99.6% of all customer messages were assigned to a meaningful, actionable intent category.
+
+#### Bot vs. Agent Dimension
+
+The pipeline also tagged each interaction as **Bot or Non-Bot**, tracking whether the customer was speaking with the virtual assistant or a live agent at the time of the message. This dimension enabled a separate layer of analysis: which intents does the bot handle effectively, and which ones consistently escalate to a human? The escalation patterns informed both bot improvement priorities and agent training — if the bot consistently failed on "Payment Hierarchy" queries, that's a specific capability gap worth engineering, not a vague "the bot isn't good enough" complaint.
 
 ### What a Data Leader Takes Away
 
@@ -120,6 +132,6 @@ This work sits at an intersection that data and analytics leaders increasingly n
 
 **Connecting structured behavioral data to unstructured text unlocks a different kind of insight.** Clickstream data tells you *where* people went. Chat transcripts tell you *what they were trying to do*. Call records tell you *what they eventually needed help with*. Joining these three datasets — through identity resolution and topic alignment — produces a causal narrative that none of them can provide alone.
 
-**Lightweight NLP pipelines can be more valuable than heavy infrastructure.** The HDBSCAN-based intent discovery pipeline isn't a massive ML platform. It's an embedding model, a clustering algorithm, and a monitoring heuristic for when to retrain. It doesn't require labeled training data, doesn't need a team of ML engineers to maintain, and produces directly actionable output. Sometimes the most valuable analytics work isn't the most complex.
+**Cascading classification beats brute-force precision.** The two-pass BERTopic architecture is a design pattern worth internalizing. Rather than building one model that tries to classify everything perfectly — which requires enormous labeled datasets and constant tuning — you build a first model that handles the easy cases well, then a second model optimized for the hard cases. After two passes, 99.6% of messages had actionable classifications. The residual 0.4% isn't a failure; it's the honest boundary of what unsupervised methods can resolve. The architecture doesn't require labeled training data, doesn't need a team of ML engineers to maintain, and produces directly actionable output.
 
 The breakage numbers themselves were low — sub-0.3% on the app channel. But in an environment with tens of millions of monthly logins, even fractions of a percent translate to hundreds of thousands of calls, each one a customer whose need went unmet and an agent whose time could have been spent elsewhere. Measuring that, understanding why it happens, and building the feedback loops to reduce it — that's where UX analytics meets operational impact.
