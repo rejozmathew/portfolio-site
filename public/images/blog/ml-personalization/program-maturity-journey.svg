@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="pj" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="curveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#94A3B8"/>
+      <stop offset="45%" style="stop-color:#1F4E79"/>
+      <stop offset="100%" style="stop-color:#2A7F62"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="920" height="420" fill="#f9fafb" rx="8"/>
+  <text x="460" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">Six Years of Compounding Value: The Program Maturity Journey</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#94A3B8" font-style="italic">From a single app test with 6 offers to 95%+ coverage of all cross-marketing</text>
+
+  <!-- Phase bands -->
+  <rect x="40" y="70" width="250" height="240" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <rect x="310" y="70" width="290" height="240" rx="8" fill="#E8F4FD" stroke="#1F4E79" stroke-width="1" opacity="0.6"/>
+  <rect x="620" y="70" width="260" height="240" rx="8" fill="#E8FAF0" stroke="#2A7F62" stroke-width="1" opacity="0.7"/>
+
+  <text x="165" y="94" text-anchor="middle" font-size="13" font-weight="700" fill="#64748B">SET-UP</text>
+  <text x="455" y="94" text-anchor="middle" font-size="13" font-weight="700" fill="#1F4E79">EXPANSION</text>
+  <text x="750" y="94" text-anchor="middle" font-size="13" font-weight="700" fill="#2A7F62">OPTIMIZATION</text>
+
+  <!-- Value curve -->
+  <path d="M60,290 C120,286 160,278 200,268 C260,252 300,235 360,215 C420,196 470,180 530,160 C600,138 650,125 710,112 C760,102 820,96 860,92"
+        fill="none" stroke="url(#curveGrad)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Milestone dots along the curve -->
+  <circle cx="80" cy="288" r="5" fill="#94A3B8"/>
+  <circle cx="150" cy="278" r="5" fill="#94A3B8"/>
+  <circle cx="220" cy="262" r="5" fill="#94A3B8"/>
+  <circle cx="340" cy="222" r="5" fill="#1F4E79"/>
+  <circle cx="420" cy="196" r="5" fill="#1F4E79"/>
+  <circle cx="500" cy="170" r="5" fill="#1F4E79"/>
+  <circle cx="570" cy="150" r="5" fill="#1F4E79"/>
+  <circle cx="670" cy="120" r="5" fill="#2A7F62"/>
+  <circle cx="750" cy="105" r="5" fill="#2A7F62"/>
+  <circle cx="840" cy="93" r="5" fill="#2A7F62"/>
+
+  <!-- Milestone labels -->
+  <g font-size="8.5" fill="#64748B">
+    <text x="80" y="308" text-anchor="middle">First app test</text>
+    <text x="80" y="319" text-anchor="middle">(6 offers)</text>
+    <text x="150" y="252" text-anchor="middle">Email pilot</text>
+    <text x="220" y="286" text-anchor="middle">First ML models</text>
+    <text x="340" y="246" text-anchor="middle">Cloud migration</text>
+    <text x="420" y="172" text-anchor="middle">Web expansion</text>
+    <text x="500" y="194" text-anchor="middle">Statements &amp;</text>
+    <text x="500" y="205" text-anchor="middle">segmented value</text>
+    <text x="570" y="126" text-anchor="middle">Cross-region</text>
+    <text x="570" y="137" text-anchor="middle">testing</text>
+    <text x="670" y="144" text-anchor="middle">Frequency &amp;</text>
+    <text x="670" y="155" text-anchor="middle">trigger optimization</text>
+    <text x="750" y="82" text-anchor="middle" fill="#2A7F62">Value-based</text>
+    <text x="750" y="71" text-anchor="middle" fill="#2A7F62">sequencing</text>
+    <text x="840" y="117" text-anchor="middle" fill="#2A7F62">ML 2.0 +</text>
+    <text x="840" y="128" text-anchor="middle" fill="#2A7F62">process hardening</text>
+  </g>
+
+  <!-- Y axis label -->
+  <text x="26" y="190" text-anchor="middle" font-size="10" fill="#94A3B8" transform="rotate(-90 26 190)">Cumulative Incremental Value →</text>
+
+  <!-- Phase descriptions -->
+  <rect x="40" y="325" width="250" height="72" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1" filter="url(#pj)"/>
+  <text x="165" y="345" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Prove the concept</text>
+  <text x="165" y="361" text-anchor="middle" font-size="9" fill="#64748B">Single channel, few offers,</text>
+  <text x="165" y="374" text-anchor="middle" font-size="9" fill="#64748B">manual rules, establish</text>
+  <text x="165" y="387" text-anchor="middle" font-size="9" fill="#64748B">measurement discipline</text>
+
+  <rect x="310" y="325" width="290" height="72" rx="8" fill="white" stroke="#1F4E79" stroke-width="1" filter="url(#pj)"/>
+  <text x="455" y="345" text-anchor="middle" font-size="10" font-weight="600" fill="#1F4E79">Meet customers where they are</text>
+  <text x="455" y="361" text-anchor="middle" font-size="9" fill="#64748B">New channels, new products, ML models,</text>
+  <text x="455" y="374" text-anchor="middle" font-size="9" fill="#64748B">infrastructure scaling — reach grows from</text>
+  <text x="455" y="387" text-anchor="middle" font-size="9" fill="#64748B">one placement to nearly every touchpoint</text>
+
+  <rect x="620" y="325" width="260" height="72" rx="8" fill="white" stroke="#2A7F62" stroke-width="1" filter="url(#pj)"/>
+  <text x="750" y="345" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">Make each impression work harder</text>
+  <text x="750" y="361" text-anchor="middle" font-size="9" fill="#64748B">Frequency, sequencing, send-time,</text>
+  <text x="750" y="374" text-anchor="middle" font-size="9" fill="#64748B">trigger enrichment, model upgrades,</text>
+  <text x="750" y="387" text-anchor="middle" font-size="9" fill="#64748B">data &amp; process hardening</text>
+
+  <text x="460" y="412" text-anchor="middle" font-size="10" fill="#94A3B8" font-style="italic">Value came from ~20 sequential capability launches — not one big bang</text>
+</svg>

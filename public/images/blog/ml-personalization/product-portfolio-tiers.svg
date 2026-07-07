@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <filter id="pt" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F4E79" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ptArr" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7" fill="#2A7F62"/></marker>
+  </defs>
+
+  <rect width="920" height="440" fill="#f9fafb" rx="8"/>
+  <text x="460" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1F4E79">The Product Portfolio: Three Strategic Tiers</text>
+  <text x="460" y="50" text-anchor="middle" font-size="11" fill="#94A3B8" font-style="italic">~25 products sequenced along the customer relationship lifecycle</text>
+
+  <!-- Relationship depth arrow -->
+  <line x1="80" y1="86" x2="820" y2="86" stroke="#2A7F62" stroke-width="2.5" marker-end="url(#ptArr)"/>
+  <text x="450" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#2A7F62">DEEPENING CUSTOMER RELATIONSHIP →</text>
+
+  <!-- Tier 1: Early Engagement -->
+  <rect x="40" y="105" width="265" height="230" rx="10" fill="white" stroke="#1F4E79" stroke-width="2" filter="url(#pt)"/>
+  <rect x="40" y="105" width="265" height="40" rx="10" fill="#1F4E79"/>
+  <rect x="40" y="135" width="265" height="10" fill="#1F4E79"/>
+  <text x="172" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="white">1 · EARLY ENGAGEMENT</text>
+  <text x="172" y="138" text-anchor="middle" font-size="9" fill="#BFDBFE">Establish habits &amp; stickiness</text>
+
+  <g font-size="10" fill="#2C3E50">
+    <rect x="56" y="158" width="233" height="22" rx="4" fill="#E8F4FD"/><text x="172" y="173" text-anchor="middle">Card activation</text>
+    <rect x="56" y="186" width="233" height="22" rx="4" fill="#E8F4FD"/><text x="172" y="201" text-anchor="middle">Paperless enrollment</text>
+    <rect x="56" y="214" width="233" height="22" rx="4" fill="#E8F4FD"/><text x="172" y="229" text-anchor="middle">Digital wallet provisioning</text>
+    <rect x="56" y="242" width="233" height="22" rx="4" fill="#E8F4FD"/><text x="172" y="257" text-anchor="middle">Account alerts &amp; monitoring</text>
+    <rect x="56" y="270" width="233" height="22" rx="4" fill="#E8F4FD"/><text x="172" y="285" text-anchor="middle">Rewards enrollment · Refer-a-friend</text>
+  </g>
+  <text x="172" y="318" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">Value: engagement, habit formation,</text>
+  <text x="172" y="330" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">servicing cost reduction</text>
+
+  <!-- Tier 2: Product Usage -->
+  <rect x="327" y="105" width="265" height="230" rx="10" fill="white" stroke="#E97451" stroke-width="2" filter="url(#pt)"/>
+  <rect x="327" y="105" width="265" height="40" rx="10" fill="#E97451"/>
+  <rect x="327" y="135" width="265" height="10" fill="#E97451"/>
+  <text x="459" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="white">2 · CORE PRODUCT USAGE</text>
+  <text x="459" y="138" text-anchor="middle" font-size="9" fill="#FFE4D6">Deepen the existing relationship</text>
+
+  <g font-size="10" fill="#2C3E50">
+    <rect x="343" y="158" width="233" height="22" rx="4" fill="#FFF2ED"/><text x="459" y="173" text-anchor="middle">Balance transfer</text>
+    <rect x="343" y="186" width="233" height="22" rx="4" fill="#FFF2ED"/><text x="459" y="201" text-anchor="middle">Credit line increase</text>
+    <rect x="343" y="214" width="233" height="22" rx="4" fill="#FFF2ED"/><text x="459" y="229" text-anchor="middle">Authorized user</text>
+    <rect x="343" y="242" width="233" height="22" rx="4" fill="#FFF2ED"/><text x="459" y="257" text-anchor="middle">Promotional APR · Identity protection</text>
+    <rect x="343" y="270" width="233" height="22" rx="4" fill="#FFF2ED"/><text x="459" y="285" text-anchor="middle">Card design · Redemption</text>
+  </g>
+  <text x="459" y="318" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">Value: balance growth, spend volume,</text>
+  <text x="459" y="330" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">fee &amp; interest income</text>
+
+  <!-- Tier 3: Cross-Marketing -->
+  <rect x="614" y="105" width="265" height="230" rx="10" fill="white" stroke="#2A7F62" stroke-width="2" filter="url(#pt)"/>
+  <rect x="614" y="105" width="265" height="40" rx="10" fill="#2A7F62"/>
+  <rect x="614" y="135" width="265" height="10" fill="#2A7F62"/>
+  <text x="746" y="124" text-anchor="middle" font-size="13" font-weight="700" fill="white">3 · CROSS-MARKETING</text>
+  <text x="746" y="138" text-anchor="middle" font-size="9" fill="#D1FAE5">Expand into new product lines</text>
+
+  <g font-size="10" fill="#2C3E50">
+    <rect x="630" y="158" width="233" height="22" rx="4" fill="#E8FAF0"/><text x="746" y="173" text-anchor="middle">Personal loans</text>
+    <rect x="630" y="186" width="233" height="22" rx="4" fill="#E8FAF0"/><text x="746" y="201" text-anchor="middle">Home equity loans</text>
+    <rect x="630" y="214" width="233" height="22" rx="4" fill="#E8FAF0"/><text x="746" y="229" text-anchor="middle">Savings accounts</text>
+    <rect x="630" y="242" width="233" height="22" rx="4" fill="#E8FAF0"/><text x="746" y="257" text-anchor="middle">Checking accounts</text>
+    <rect x="630" y="270" width="233" height="22" rx="4" fill="#E8FAF0"/><text x="746" y="285" text-anchor="middle">Certificates of deposit</text>
+  </g>
+  <text x="746" y="318" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">Value: wallet share, new relationships,</text>
+  <text x="746" y="330" text-anchor="middle" font-size="9" fill="#64748B" font-style="italic">highest NPV per conversion</text>
+
+  <!-- Bottom insight bar -->
+  <rect x="40" y="355" width="839" height="62" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="460" y="378" text-anchor="middle" font-size="11" font-weight="600" fill="#1F4E79">Why tiering matters for the algorithm</text>
+  <text x="460" y="396" text-anchor="middle" font-size="10" fill="#64748B">Each tier has different economics, decision complexity, and readiness signals. The engine learns which tier a customer</text>
+  <text x="460" y="410" text-anchor="middle" font-size="10" fill="#64748B">is ready for — new customers see engagement actions; established, engaged customers see higher-value expansion offers.</text>
+</svg>
