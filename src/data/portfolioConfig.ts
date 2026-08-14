@@ -20,6 +20,9 @@ export const portfolioConfig: PortfolioItemConfig[] = [
   {
     blogSlug: "ml-driven-marketing-personalization",
     titleOverride: "ML-Driven Marketing Personalization",
+    // This post's frontmatter uses `image:` rather than `heroImage:`, which the
+    // loader reads — without the override the card falls back to a placeholder.
+    imageOverride: "/images/blog/ml-personalization/gbdt-dnn-architecture.svg",
     descriptionOverride:
       "Replaced quarterly placement negotiations between product teams with an algorithm that allocates marketing real estate by expected value, choosing among dozens of offers per session in real time. Underneath it: a hybrid GBDT and deep neural network architecture, and the model risk review it had to survive.",
   },
