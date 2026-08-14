@@ -1,95 +1,67 @@
-"use client"; // Mark component as client-side for recharts & motion
+"use client"; // Mark component as client-side for motion
 
 import React from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
 import { motion } from "framer-motion"; // Import motion
 import Link from "next/link"; // Import Link for CTA
 
-// Define skill categories and items based on resume/instructions
+// Five groupings, each stating what the capability was for.
 const expertiseAreas = [
-  // ... (Keep the existing expertiseAreas array definition) ...
   {
-    title: "Leadership & Strategy",
+    title: "AI & Machine Learning",
+    summary:
+      "Models that carry a business decision, and the operating layer that keeps them trustworthy once they are live.",
     skills: [
-      "Executive Leadership & Communication",
-      "Data & Analytics Strategy Roadmap",
-      "Multi-Discipline Team Management (Data Science, Engineering, Analytics)",
-      "Cross-Functional Collaboration",
-      "Business Strategy Alignment",
-      "Data Literacy Promotion",
-      "Project & Program Management",
-      "Lean Six-Sigma Process Improvement",
+      "ML decisioning and personalization — selecting offers across channels in real time",
+      "Feature store design — consistent, production-ready features for credit risk, retention, and lifetime value models",
+      "MLOps — governed code promotion, production monitoring, drift detection, explainability",
+      "GenAI and RAG with human-in-the-loop review before a decision stands",
+      "Hands-on model development in Python and SAS",
     ],
   },
   {
-    title: "Data Science & AI/ML",
+    title: "Data Platform & Governance",
+    summary:
+      "The governed foundation everything else runs on — modernization, identity, and the controls that make data defensible to a regulator.",
     skills: [
-      "AI Strategy & Vision",
-      "Machine Learning (ML) Model Development & Implementation",
-      "Predictive Modeling (Credit Risk, Retention, Pre-payment)",
-      "ML Feature Engineering & Datastores",
-      "MLOps (Concept & Certification)",
-      "Natural Language Processing (NLP - Implied)",
-      "Graph Analytics (Neo4j, RAG)",
-      "Generative AI Applications",
-      "Data Science Languages (Python, SAS)",
+      "Cloud platform modernization (Snowflake, AWS) and domain-centric architecture",
+      "Identity graph (Neo4j) and MDM / Customer 360 for resolving a customer across products",
+      "Semantic layers and self-service BI (AtScale, Tableau) so business teams query governed definitions",
+      "Data quality, lineage, and observability; regulatory compliance (KYC/AML, GLBA, GDPR/CCPA)",
     ],
   },
   {
-    title: "Data Engineering & Infrastructure",
+    title: "Commercial & Portfolio Analytics",
+    summary:
+      "Where the analysis meets the P&L: what to charge, where to spend, and what a portfolio is worth.",
     skills: [
-      "Data Infrastructure Management (Cloud & On-Prem)",
-      "Master Data Management (MDM - Customer360)",
-      "Enterprise Identity Graphs",
-      "Data Platform Architecture",
-      "ETL/ELT Pipeline Development",
-      "Data Warehousing (Snowflake, Teradata)",
-      "Data Governance & Control Environments",
-      "Data Stewardship",
-      "DAMA Certified Data Management Professional",
+      "Risk-based pricing, fund transfer pricing, and equity allocation",
+      "Portfolio economics — balance walk validation, vintage and collection curve analysis",
+      "Marketing investment and multi-touch attribution",
+      "Divestiture and M&A data workstreams",
     ],
   },
   {
-    title: "Business Intelligence & Analytics",
+    title: "Customer & Marketing Data",
+    summary:
+      "Making first-party customer data usable for targeting and measurement without stepping outside privacy constraints.",
     skills: [
-      "Business Intelligence (BI) Strategy & Implementation",
-      "Self-Service BI Enablement",
-      "Marketing & Business Analytics",
-      "Executive Dashboards & Reporting",
-      "Pricing Analytics & Strategy",
-      "Performance Metrics Analysis (CPA, Conversion etc.)",
-      "Data Visualization",
-      "BI Tools (Tableau, AtScale etc.)",
+      "MarTech and CDP integration (Adobe, Segment, Salesforce, Acxiom)",
+      "First-party marketing analytics database and campaign measurement",
+      "Segmentation, household, journey, and lifecycle analytics",
+      "Privacy-compliant activation under GDPR/CCPA",
     ],
   },
   {
-    title: "Technologies & Tools", // Keep this for the list view
+    title: "Leadership",
+    summary:
+      "Running a multi-discipline data organization and holding the executive relationships that fund it.",
     skills: [
-      "Cloud Platforms (AWS Certified)",
-      "Databases (SQL, NoSQL, Graph - Neo4j)",
-      "Cloud ML Frameworks",
-      "MarTech Platforms (Neustar, Segment)",
-      "ServiceNow (Case Management)",
-      "Enterprise Architecture",
+      "Global team leadership across data science, engineering, analytics, and data product management",
+      "Data product management and roadmap sequencing with business lines",
+      "C-suite advisory on data & AI strategy and adoption",
+      "Vendor partnerships and product-oriented delivery models",
     ],
   },
-];
-
-// Sample data for the Radar chart (adjust scores as needed)
-const skillProficiencyData = [
-  { subject: "Leadership", A: 95, fullMark: 100 },
-  { subject: "AI/ML", A: 90, fullMark: 100 },
-  { subject: "Data Eng.", A: 95, fullMark: 100 },
-  { subject: "BI/Analytics", A: 100, fullMark: 100 },
-  { subject: "Technology", A: 85, fullMark: 100 },
 ];
 
 // Animation variants for fade-in effect
@@ -115,71 +87,28 @@ const Expertise: React.FC = () => {
           Expertise & Skills
         </h2>
 
-        {/* Radar Chart Visualization - Wrapped for animation */}
-        <motion.div
-          className="mb-16 h-80 md:h-96"
-          variants={fadeInVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <h3 className="mb-6 text-center text-2xl font-semibold text-gray-800">
-            Core Competency Overview
-          </h3>
-          <ResponsiveContainer width="100%" height="100%">
-            {/* Adjusted chart colors for light theme */}
-            <RadarChart
-              cx="50%"
-              cy="50%"
-              outerRadius="80%"
-              data={skillProficiencyData}
-            >
-              <PolarGrid stroke="#d1d5db" /> {/* Lighter grid lines */}
-              <PolarAngleAxis dataKey="subject" stroke="#4b5563" />{" "}
-              {/* Darker axis text */}
-              <PolarRadiusAxis
-                angle={30}
-                domain={[0, 100]}
-                tick={false}
-                axisLine={false}
-              />
-              <Radar
-                name="Proficiency"
-                dataKey="A"
-                stroke="#2563eb"
-                fill="#3b82f6"
-                fillOpacity={0.6}
-              />{" "}
-              {/* Blue accent */}
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "rgba(255, 255, 255, 0.8)",
-                  border: "1px solid #d1d5db",
-                }}
-              />{" "}
-              {/* Light tooltip */}
-            </RadarChart>
-          </ResponsiveContainer>
-        </motion.div>
-
         {/* Detailed Skill Lists - Could also wrap this grid or individual cards */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
           {expertiseAreas.map((area) => (
             // White card background, dark text
-            <div key={area.title} className="rounded-lg bg-white p-6 shadow-md">
-              <h3 className="text-primary mb-4 text-xl font-semibold">
+            <motion.div
+              key={area.title}
+              className="rounded-lg bg-white p-6 shadow-md"
+              variants={fadeInVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <h3 className="text-primary mb-2 text-xl font-semibold">
                 {area.title}
               </h3>
-              <ul className="list-inside list-disc space-y-2 text-gray-700">
-                {area.skills.map(
-                  (
-                    skill // Removed unused 'idx'
-                  ) => (
-                    <li key={skill}>{skill}</li>
-                  )
-                )}
+              <p className="mb-4 text-sm text-gray-600">{area.summary}</p>
+              <ul className="list-outside list-disc space-y-2 pl-5 text-gray-700">
+                {area.skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 

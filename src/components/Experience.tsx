@@ -89,10 +89,10 @@ const experiences: ExperienceItem[] = [
   {
     company: "Deloitte Consulting LLP",
     location: "Chicago",
-    title: "Senior Consultant (Summer Associate)",
+    title: "Summer Associate",
     dates: "Jun 2008 – Aug 2008",
     description: [
-      "Developed a $40M business transformation plan for healthcare BI systems.",
+      "MBA summer internship: developed a $40M business reengineering plan for a healthcare insurer's BI ecosystem.",
     ],
   },
   {
