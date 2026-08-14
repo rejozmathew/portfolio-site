@@ -73,10 +73,10 @@ const ClientSections: React.FC<ClientSectionsProps> = ({
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={defaultSectionViewport}
+        viewport={tallSectionViewport}
         variants={sectionVariants}
       >
-        <Expertise />
+        <Portfolio projects={portfolioProjects} />
       </motion.div>
       <motion.div
         initial="hidden"
@@ -89,10 +89,10 @@ const ClientSections: React.FC<ClientSectionsProps> = ({
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={tallSectionViewport}
+        viewport={defaultSectionViewport}
         variants={sectionVariants}
       >
-        <Portfolio projects={portfolioProjects} />
+        <Expertise />
       </motion.div>
       <motion.div
         initial="hidden"

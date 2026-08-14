@@ -70,10 +70,10 @@ const About: React.FC = () => {
         {/* CTA Button */}
         <div className="mt-12 text-center">
           <Link
-            href="/expertise"
+            href="/portfolio"
             className="btn-primary inline-block rounded px-6 py-3 text-lg font-semibold text-white shadow transition duration-300"
           >
-            See My Expertise
+            See My Portfolio
           </Link>
         </div>
       </div>

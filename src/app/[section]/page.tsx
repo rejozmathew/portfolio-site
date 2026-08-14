@@ -4,9 +4,9 @@ import { getPortfolioData } from "@/lib/getPortfolioData";
 
 const sectionIds = [
   "about",
-  "expertise",
-  "experience",
   "portfolio",
+  "experience",
+  "expertise",
   "education",
   "certifications",
   "contact",
