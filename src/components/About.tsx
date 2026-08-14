@@ -37,67 +37,35 @@ const About: React.FC = () => {
         <h2 className="border-primary mb-12 border-b-2 pb-2 text-center text-3xl font-bold text-gray-900">
           Executive Summary
         </h2>
-        <div className="space-y-6 text-lg text-gray-700">
-          <p>
-            With over 20 years of extensive leadership experience, I specialize
-            in driving transformational change at the intersection of data
-            science, business strategy, and technology within the financial
-            services industry. My career has focused on building and leading
-            high-performing, multi-disciplinary teams across data science,
-            business intelligence, analytics, and data infrastructure
-            management.
-          </p>
-          <p>
-            I possess a unique blend of deep technical expertise and strong
-            business acumen, allowing me to effectively bridge the gap between
-            advanced AI/ML capabilities and tangible business outcomes. My
-            leadership philosophy centers on fostering data literacy,
-            democratizing analytics, and leveraging cutting-edge technology to
-            solve complex challenges and achieve aggressive organizational
-            targets.
-          </p>
-          <p>
-            Throughout my tenure, particularly at Discover Financial Services, I
-            have envisioned and executed key data and analytics strategies,
-            delivering significant cost savings, productivity gains, and
-            enhanced customer experiences through initiatives such as:
-          </p>
-          {/* List items using standard body text color, wrapped for animation */}
-          <motion.ul
-            className="grid list-inside list-disc space-y-2 gap-x-8 pl-4 text-gray-700 md:grid-cols-2"
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible" // Trigger animation when in view
-            viewport={{ once: true, amount: 0.3 }} // Trigger once when 30% visible
-          >
-            <motion.li variants={itemVariants}>
-              Developing enterprise-scale Identity/Knowledge Graphs and Customer360 MDM
-              platforms.
-            </motion.li>
-            <motion.li variants={itemVariants}>
-              Implementing impactful MarTech/CDP solutions (Adobe, Segment)
-              for improved marketing activation and personalization.
-            </motion.li>
-            <motion.li variants={itemVariants}>
-              Creating generalized Machine Learning feature datastores
-              supporting critical modeling efforts (credit risk, retention).
-            </motion.li>
-            <motion.li variants={itemVariants}>
-              Leading the development of self-service BI capabilities across
-              multiple business units.
-            </motion.li>
-            <motion.li variants={itemVariants}>
-              Building sophisticated enterprise control environments and
-              exception management systems.
-            </motion.li>
-          </motion.ul>
-          <p>
-            Equally fluent in C-suite strategy discussions and hands-on AI
-            engineering, I am passionate about leading data initiatives that
-            drive both innovation and measurable ROI, preparing organizations
-            for the future of data-driven decision-making.
-          </p>
-        </div>
+        <motion.div
+          className="space-y-6 text-lg text-gray-700"
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.p variants={itemVariants}>
+            I lead data, analytics, and AI in consumer banking — and I&apos;ve
+            spent as much time on what these capabilities decide as on how
+            they&apos;re built.
+          </motion.p>
+          <motion.p variants={itemVariants}>
+            At Discover I ran a global organization of about 75 people across
+            data science, engineering, analytics, and data product management.
+            We built the identity graph and Customer 360 so marketing could
+            target and measure across products; the ML feature store so credit
+            risk and retention models ran on consistent, production-ready data;
+            the governance and observability layer so all of it held up to
+            regulators. Earlier, I redesigned risk-based pricing and fund
+            transfer pricing for the home equity business. When Discover
+            divested its $9B student loan portfolio and was later acquired by
+            Capital One, I owned the data workstreams behind both.
+          </motion.p>
+          <motion.p variants={itemVariants}>
+            I&apos;m still hands-on. The articles below are written from systems
+            I designed and, in places, built.
+          </motion.p>
+        </motion.div>
 
         {/* CTA Button */}
         <div className="mt-12 text-center">
