@@ -163,7 +163,7 @@ const Experience: React.FC = () => {
                 {exp.location ? `, ${exp.location}` : ""}
               </p>
               <p className="mb-2 text-sm text-gray-500">{exp.dates}</p>
-              <ul className="list-inside list-disc space-y-1 text-sm text-gray-700">
+              <ul className="list-outside list-disc space-y-1 pl-5 text-sm text-gray-700">
                 {exp.description.map((item, idx) => (
                   <li key={idx}>{item}</li>
                 ))}
