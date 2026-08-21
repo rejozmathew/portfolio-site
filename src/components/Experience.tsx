@@ -42,6 +42,7 @@ const experiences: ExperienceItem[] = [
       "Designed an enterprise marketing analytics database anchored on first-party data, enabling privacy-compliant targeting and measurement post-GDPR/CCPA.",
       "Implemented centralized controls and exception management (ServiceNow) supporting CFPB consent order remediation.",
       "Served as Chief Data Steward for Consumer Banking, advancing governance frameworks and data quality standards.",
+      "Developed the balance history and portfolio analytics framework for consumer loan products, supporting Finance, Credit Strategy, and business unit analytics teams with reconciliation, trend analysis, and regulatory reporting.",
     ],
   },
   {
@@ -50,7 +51,7 @@ const experiences: ExperienceItem[] = [
     title: "Sr. Manager, Analytics, BI & Pricing – Discover Home Loans",
     dates: "Jul 2016 – Oct 2018",
     description: [
-      "Redesigned risk-based pricing and product structure for the home equity portfolio, improving loan profitability — a 20% increase in ROE — while improving conversion.",
+      "Redesigned risk-based pricing models and product structures, driving a 20% increase in ROE while improving conversion.",
       "Built a multi-touch attribution model that quantified what each channel actually contributed, and used it to redirect marketing investment across digital and offline campaigns.",
       "Stood up the analytical data environment and BI infrastructure from scratch after an origination system migration, restoring enterprise reporting and marketing analytics for Discover Home Loans.",
       "Ran the CSAT/NPS survey pipeline for funded loan customers, giving the home loans business its voice-of-customer reporting.",

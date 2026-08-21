@@ -81,7 +81,7 @@ const ClientSections: React.FC<ClientSectionsProps> = ({
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={defaultSectionViewport}
+        viewport={tallSectionViewport}
         variants={sectionVariants}
       >
         <Experience />

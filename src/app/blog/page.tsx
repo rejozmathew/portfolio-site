@@ -56,8 +56,8 @@ function getAllPostsMetadata(): PostMetadata[] {
 }
 
 export const metadata = {
-  title: 'Blog | My Portfolio',
-  description: 'Read my latest thoughts and articles.',
+  title: 'Insights | Rejo Z Mathew',
+  description: 'A collection of articles on financial-services data, analytics, AI, architecture, governance, and business transformation.',
 };
 
 export default function BlogIndexPage() {

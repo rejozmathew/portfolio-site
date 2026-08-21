@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
           id="hero"
           className="flex min-h-screen items-center justify-center bg-gray-50 py-20"
         >
-          <div className="container mx-auto flex flex-col items-center gap-8 px-4 md:flex-row">
+          <div className="container mx-auto flex flex-col items-center gap-8 px-4 md:flex-row -mt-12 lg:-mt-24">
             <div className="text-center md:w-1/2 md:text-left">
               <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
                 Rejo Z Mathew
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
                 Senior Data, Analytics & AI Leader in Financial Services
               </h2>
               <p className="mb-8 text-lg text-gray-700">
-                Driving customer growth and business performance through analytics, ML, and governed data platforms — in consumer banking, lending, and deposits.
+                Driving customer growth and business performance across consumer banking, lending, and deposits through analytics, ML, and governed data platforms.
               </p>
               <div className="flex justify-center gap-4 md:justify-start">
                 <Link

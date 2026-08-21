@@ -48,10 +48,10 @@ const About: React.FC = () => {
             I lead data, analytics, and AI in financial services — consumer banking, lending, and deposits — building the analytics, ML, and governed data platforms that drive customer growth and business performance.
           </motion.p>
           <motion.p variants={itemVariants}>
-            For more than 20 years my work has spanned business ownership and technology leadership: pricing, portfolio economics, and marketing and operational analytics on one side; cloud-native data architecture, decisioning frameworks, and responsible AI in regulated environments on the other.
+            For more than 20 years, my work has spanned business ownership and technology leadership: pricing, portfolio economics, and marketing and operational analytics on one side; cloud-native data architecture, decisioning frameworks, and responsible AI in regulated environments on the other.
           </motion.p>
           <motion.p variants={itemVariants}>
-            At Discover I directed the data workstreams for a $9B student-loan portfolio divestiture and orchestrated customer data consolidation for Capital One&apos;s $35B acquisition — alongside building the enterprise identity graph, Customer 360, ML feature store, and self-service BI capabilities used across Consumer Banking.
+            I directed the data and analytics workstreams for Discover&apos;s $9B student-loan portfolio divestiture and orchestrated customer data consolidation for Capital One&apos;s $35B acquisition — alongside building the enterprise identity graph, Customer 360, ML feature store, and self-service BI capabilities used across Consumer Banking.
           </motion.p>
           <motion.p variants={itemVariants}>
             I lead global teams and partner with C-suite stakeholders on enterprise data & AI strategy. Most of what I write about here started as a problem someone needed solved.

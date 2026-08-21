@@ -98,7 +98,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.frontmatter.title,
+    title: `${post.frontmatter.title} | Rejo Z Mathew`,
     description: post.frontmatter.description,
   };
 }
