@@ -13,9 +13,20 @@ const inter = Inter({
 
 // Update metadata
 export const metadata: Metadata = {
-  title: "Rejo Z Mathew | AI & Data Strategy Leader",
+  title: "Rejo Z Mathew | Data, Analytics & AI Leader in Financial Services",
   description:
-    "Executive portfolio showcasing expertise in AI/ML, Data Science, Analytics, and Engineering within Financial Services.",
+    "Data, analytics, and AI leadership in financial services — consumer banking, lending, and deposits. Enterprise data platforms, analytics, governance, and AI/ML in regulated environments.",
+  openGraph: {
+    title: "Rejo Z Mathew | Data, Analytics & AI Leader in Financial Services",
+    description:
+      "Data, analytics, and AI leadership in financial services — consumer banking, lending, and deposits. Enterprise data platforms, analytics, governance, and AI/ML in regulated environments.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rejo Z Mathew | Data, Analytics & AI Leader in Financial Services",
+    description:
+      "Data, analytics, and AI leadership in financial services — consumer banking, lending, and deposits. Enterprise data platforms, analytics, governance, and AI/ML in regulated environments.",
+  },
 };
 
 export default function RootLayout({

@@ -4,62 +4,50 @@ import React from "react";
 import { motion } from "framer-motion"; // Import motion
 import Link from "next/link"; // Import Link for CTA
 
-// Five groupings, each stating what the capability was for.
 const expertiseAreas = [
   {
-    title: "AI & Machine Learning",
-    summary:
-      "Models that carry a business decision, and the operating layer that keeps them trustworthy once they are live.",
+    title: "Business & Domain",
     skills: [
-      "ML decisioning and personalization — selecting offers across channels in real time",
-      "Feature store design — consistent, production-ready features for credit risk, retention, and lifetime value models",
-      "MLOps — governed code promotion, production monitoring, drift detection, explainability",
-      "GenAI and RAG with human-in-the-loop review before a decision stands",
-      "Hands-on model development in Python and SAS",
+      "Consumer Banking, Lending & Deposits",
+      "Customer Acquisition, Retention & Lifecycle Analytics",
+      "Portfolio, Pricing & Credit Analytics",
+      "Pricing Strategy & Product Structure",
+      "M&A Integration, Divestiture & Portfolio Migration",
+      "Customer Experience & Decision Intelligence",
+      "Marketing & Operational Analytics",
     ],
   },
   {
-    title: "Data Platform & Governance",
-    summary:
-      "The governed foundation everything else runs on — modernization, identity, and the controls that make data defensible to a regulator.",
+    title: "Strategy & Leadership",
     skills: [
-      "Cloud platform modernization (Snowflake, AWS) and domain-centric architecture",
-      "Identity graph (Neo4j) and MDM / Customer 360 for resolving a customer across products",
-      "Semantic layers and self-service BI (AtScale, Tableau) so business teams query governed definitions",
-      "Data quality, lineage, and observability; regulatory compliance (KYC/AML, GLBA, GDPR/CCPA)",
+      "Enterprise Data & AI Strategy, Architecture & Modernization",
+      "Technical Program & Data Product Management",
+      "Global, Multi-Discipline Team Leadership (Data Science, Engineering, Analytics)",
+      "C-Suite Partnership & Executive Communication",
+      "Cross-Functional Stakeholder Alignment",
+      "Data Literacy & Analytics Adoption",
     ],
   },
   {
-    title: "Commercial & Portfolio Analytics",
-    summary:
-      "Where the analysis meets the P&L: what to charge, where to spend, and what a portfolio is worth.",
+    title: "Platform & Technology",
     skills: [
-      "Risk-based pricing, fund transfer pricing, and equity allocation",
-      "Portfolio economics — balance walk validation, vintage and collection curve analysis",
-      "Marketing investment and multi-touch attribution",
-      "Divestiture and M&A data workstreams",
+      "Cloud-Native Data Platforms (AWS, GCP, Snowflake, Databricks, Spark)",
+      "Knowledge Graph, Semantic Layer & BI (Neo4j, AtScale, Tableau)",
+      "Master Data Management & Identity Resolution (Customer 360)",
+      "MarTech & CRM Integration (Adobe, Segment, Salesforce)",
+      "Data Platform Architecture & Modernization",
+      "Self-Service BI Enablement",
     ],
   },
   {
-    title: "Customer & Marketing Data",
-    summary:
-      "Making first-party customer data usable for targeting and measurement without stepping outside privacy constraints.",
+    title: "AI/ML & Governance",
     skills: [
-      "MarTech and CDP integration (Adobe, Segment, Salesforce, Acxiom)",
-      "First-party marketing analytics database and campaign measurement",
-      "Segmentation, household, journey, and lifecycle analytics",
-      "Privacy-compliant activation under GDPR/CCPA",
-    ],
-  },
-  {
-    title: "Leadership",
-    summary:
-      "Running a multi-discipline data organization and holding the executive relationships that fund it.",
-    skills: [
-      "Global team leadership across data science, engineering, analytics, and data product management",
-      "Data product management and roadmap sequencing with business lines",
-      "C-suite advisory on data & AI strategy and adoption",
-      "Vendor partnerships and product-oriented delivery models",
+      "AI/GenAI Lifecycle & Responsible AI (ML, LLMs, RAG, Agentic AI, MLOps, Observability)",
+      "Predictive Modeling (Credit Risk, Retention, Pre-payment, CLV)",
+      "ML Feature Engineering & Feature Stores",
+      "Data Governance, Quality, Metadata & Lineage (Alation, Anomalo)",
+      "Regulatory Compliance (KYC/AML, TCPA, GLBA, PCI DSS, GDPR/CCPA)",
+      "Controls, Exception Management & Consent Order Remediation (ServiceNow)",
     ],
   },
 ];
@@ -102,7 +90,6 @@ const Expertise: React.FC = () => {
               <h3 className="text-primary mb-2 text-xl font-semibold">
                 {area.title}
               </h3>
-              <p className="mb-4 text-sm text-gray-600">{area.summary}</p>
               <ul className="list-outside list-disc space-y-2 pl-5 text-gray-700">
                 {area.skills.map((skill) => (
                   <li key={skill}>{skill}</li>
