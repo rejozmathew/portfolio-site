@@ -18,10 +18,10 @@ const Contact: React.FC = () => {
           {/* Dark text, blue hover for links */}
           <p className="text-gray-800">
             <a
-              href="mailto:rejozacharia@gmail.com"
+              href="mailto:rejozmathew@gmail.com"
               className="hover:text-primary transition duration-300"
             >
-              📧 rejozacharia@gmail.com
+              📧 rejozmathew@gmail.com
             </a>
           </p>
           <p className="text-gray-800">
@@ -29,7 +29,7 @@ const Contact: React.FC = () => {
               href="tel:+17074567356"
               className="hover:text-primary transition duration-300"
             >
-              📞 (707) 456-7356
+              📞 +1 (707) 456-7356
             </a>
           </p>
         </div>

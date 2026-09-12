@@ -4,9 +4,6 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   // Your existing options, e.g. allowedDevOrigins:
   allowedDevOrigins: [
-    'me.zactower.com',
-    'portfolio.zactower.com',
-    '*.zactower.com',
     'rejozmathew.com',
   ],
 
